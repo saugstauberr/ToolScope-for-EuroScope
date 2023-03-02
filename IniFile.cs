@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace SCRRS_Installer.Functions
+namespace Ini
 {
     internal class IniFile
     {

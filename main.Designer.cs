@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges8 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.controlbar = new Bunifu.UI.WinForms.BunifuPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,10 +49,12 @@
             this.notifytimer = new System.Windows.Forms.Timer(this.components);
             this.packagebox = new Bunifu.UI.WinForms.BunifuDropdown();
             this.label6 = new System.Windows.Forms.Label();
-            this.airacbox = new Bunifu.UI.WinForms.BunifuDropdown();
             this.label5 = new System.Windows.Forms.Label();
             this.regionbox = new Bunifu.UI.WinForms.BunifuDropdown();
             this.label4 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.airactxt = new System.Windows.Forms.Label();
+            this.releasetxt = new System.Windows.Forms.Label();
             this.controlbar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,11 +122,11 @@
             this.minimizebtn.ColorContrastOnClick = 45;
             this.minimizebtn.ColorContrastOnHover = 45;
             this.minimizebtn.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges5.BottomLeft = true;
-            borderEdges5.BottomRight = true;
-            borderEdges5.TopLeft = true;
-            borderEdges5.TopRight = true;
-            this.minimizebtn.CustomizableEdges = borderEdges5;
+            borderEdges1.BottomLeft = true;
+            borderEdges1.BottomRight = true;
+            borderEdges1.TopLeft = true;
+            borderEdges1.TopRight = true;
+            this.minimizebtn.CustomizableEdges = borderEdges1;
             this.minimizebtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.minimizebtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.minimizebtn.DisabledFillColor = System.Drawing.Color.Empty;
@@ -213,11 +215,11 @@
             this.closebtn.ColorContrastOnClick = 45;
             this.closebtn.ColorContrastOnHover = 45;
             this.closebtn.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges6.BottomLeft = true;
-            borderEdges6.BottomRight = true;
-            borderEdges6.TopLeft = true;
-            borderEdges6.TopRight = true;
-            this.closebtn.CustomizableEdges = borderEdges6;
+            borderEdges2.BottomLeft = true;
+            borderEdges2.BottomRight = true;
+            borderEdges2.TopLeft = true;
+            borderEdges2.TopRight = true;
+            this.closebtn.CustomizableEdges = borderEdges2;
             this.closebtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.closebtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.closebtn.DisabledFillColor = System.Drawing.Color.Empty;
@@ -338,11 +340,11 @@
             this.airacsettingsbtn.ColorContrastOnClick = 45;
             this.airacsettingsbtn.ColorContrastOnHover = 45;
             this.airacsettingsbtn.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges7.BottomLeft = true;
-            borderEdges7.BottomRight = true;
-            borderEdges7.TopLeft = true;
-            borderEdges7.TopRight = true;
-            this.airacsettingsbtn.CustomizableEdges = borderEdges7;
+            borderEdges3.BottomLeft = true;
+            borderEdges3.BottomRight = true;
+            borderEdges3.TopLeft = true;
+            borderEdges3.TopRight = true;
+            this.airacsettingsbtn.CustomizableEdges = borderEdges3;
             this.airacsettingsbtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.airacsettingsbtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.airacsettingsbtn.DisabledFillColor = System.Drawing.Color.Empty;
@@ -368,7 +370,7 @@
             this.airacsettingsbtn.IdleIconLeftImage = null;
             this.airacsettingsbtn.IdleIconRightImage = null;
             this.airacsettingsbtn.IndicateFocus = false;
-            this.airacsettingsbtn.Location = new System.Drawing.Point(296, 193);
+            this.airacsettingsbtn.Location = new System.Drawing.Point(315, 173);
             this.airacsettingsbtn.Name = "airacsettingsbtn";
             this.airacsettingsbtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.airacsettingsbtn.OnDisabledState.BorderRadius = 1;
@@ -430,11 +432,11 @@
             this.bunifuButton1.ColorContrastOnClick = 45;
             this.bunifuButton1.ColorContrastOnHover = 45;
             this.bunifuButton1.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges8.BottomLeft = true;
-            borderEdges8.BottomRight = true;
-            borderEdges8.TopLeft = true;
-            borderEdges8.TopRight = true;
-            this.bunifuButton1.CustomizableEdges = borderEdges8;
+            borderEdges4.BottomLeft = true;
+            borderEdges4.BottomRight = true;
+            borderEdges4.TopLeft = true;
+            borderEdges4.TopRight = true;
+            this.bunifuButton1.CustomizableEdges = borderEdges4;
             this.bunifuButton1.DialogResult = System.Windows.Forms.DialogResult.None;
             this.bunifuButton1.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.bunifuButton1.DisabledFillColor = System.Drawing.Color.Empty;
@@ -460,7 +462,7 @@
             this.bunifuButton1.IdleIconLeftImage = null;
             this.bunifuButton1.IdleIconRightImage = null;
             this.bunifuButton1.IndicateFocus = false;
-            this.bunifuButton1.Location = new System.Drawing.Point(162, 193);
+            this.bunifuButton1.Location = new System.Drawing.Point(181, 173);
             this.bunifuButton1.Name = "bunifuButton1";
             this.bunifuButton1.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.bunifuButton1.OnDisabledState.BorderRadius = 1;
@@ -565,7 +567,7 @@
             this.packagebox.ItemHighLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.packagebox.ItemHighLightForeColor = System.Drawing.Color.White;
             this.packagebox.ItemTopMargin = 3;
-            this.packagebox.Location = new System.Drawing.Point(251, 153);
+            this.packagebox.Location = new System.Drawing.Point(193, 127);
             this.packagebox.Name = "packagebox";
             this.packagebox.Size = new System.Drawing.Size(145, 25);
             this.packagebox.TabIndex = 19;
@@ -578,66 +580,21 @@
             this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.label6.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label6.Location = new System.Drawing.Point(162, 153);
+            this.label6.Location = new System.Drawing.Point(104, 127);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(82, 29);
             this.label6.TabIndex = 18;
             this.label6.Text = "Package:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // airacbox
-            // 
-            this.airacbox.BackColor = System.Drawing.Color.Transparent;
-            this.airacbox.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.airacbox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
-            this.airacbox.BorderRadius = 0;
-            this.airacbox.Color = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
-            this.airacbox.Direction = Bunifu.UI.WinForms.BunifuDropdown.Directions.Down;
-            this.airacbox.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.airacbox.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.airacbox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.airacbox.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.airacbox.DisabledIndicatorColor = System.Drawing.Color.DarkGray;
-            this.airacbox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.airacbox.DropdownBorderThickness = Bunifu.UI.WinForms.BunifuDropdown.BorderThickness.Thick;
-            this.airacbox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.airacbox.DropDownTextAlign = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
-            this.airacbox.FillDropDown = true;
-            this.airacbox.FillIndicator = false;
-            this.airacbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.airacbox.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
-            this.airacbox.ForeColor = System.Drawing.Color.White;
-            this.airacbox.FormattingEnabled = true;
-            this.airacbox.Icon = null;
-            this.airacbox.IndicatorAlignment = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
-            this.airacbox.IndicatorColor = System.Drawing.Color.DarkGray;
-            this.airacbox.IndicatorLocation = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
-            this.airacbox.IndicatorThickness = 2;
-            this.airacbox.IsDropdownOpened = false;
-            this.airacbox.ItemBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.airacbox.ItemBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
-            this.airacbox.ItemForeColor = System.Drawing.Color.White;
-            this.airacbox.ItemHeight = 19;
-            this.airacbox.ItemHighLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.airacbox.ItemHighLightForeColor = System.Drawing.Color.White;
-            this.airacbox.ItemTopMargin = 3;
-            this.airacbox.Location = new System.Drawing.Point(251, 91);
-            this.airacbox.Name = "airacbox";
-            this.airacbox.Size = new System.Drawing.Size(145, 25);
-            this.airacbox.TabIndex = 21;
-            this.airacbox.Text = null;
-            this.airacbox.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
-            this.airacbox.TextLeftMargin = 5;
-            this.airacbox.SelectedIndexChanged += new System.EventHandler(this.airacbox_SelectedIndexChanged);
-            // 
             // label5
             // 
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.label5.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label5.Location = new System.Drawing.Point(162, 91);
+            this.label5.Location = new System.Drawing.Point(344, 96);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 29);
+            this.label5.Size = new System.Drawing.Size(67, 29);
             this.label5.TabIndex = 20;
             this.label5.Text = "AIRAC:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -678,7 +635,7 @@
             this.regionbox.ItemHighLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.regionbox.ItemHighLightForeColor = System.Drawing.Color.White;
             this.regionbox.ItemTopMargin = 3;
-            this.regionbox.Location = new System.Drawing.Point(251, 122);
+            this.regionbox.Location = new System.Drawing.Point(193, 96);
             this.regionbox.Name = "regionbox";
             this.regionbox.Size = new System.Drawing.Size(145, 25);
             this.regionbox.TabIndex = 23;
@@ -692,12 +649,48 @@
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.label4.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label4.Location = new System.Drawing.Point(162, 122);
+            this.label4.Location = new System.Drawing.Point(104, 96);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 29);
             this.label4.TabIndex = 22;
             this.label4.Text = "Region:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.label7.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label7.Location = new System.Drawing.Point(344, 123);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(67, 29);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "Released:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // airactxt
+            // 
+            this.airactxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.airactxt.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.airactxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.airactxt.Location = new System.Drawing.Point(417, 96);
+            this.airactxt.Name = "airactxt";
+            this.airactxt.Size = new System.Drawing.Size(67, 29);
+            this.airactxt.TabIndex = 25;
+            this.airactxt.Text = "AIRAC";
+            this.airactxt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // releasetxt
+            // 
+            this.releasetxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.releasetxt.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.releasetxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.releasetxt.Location = new System.Drawing.Point(417, 123);
+            this.releasetxt.Name = "releasetxt";
+            this.releasetxt.Size = new System.Drawing.Size(67, 29);
+            this.releasetxt.TabIndex = 26;
+            this.releasetxt.Text = "RELEASE";
+            this.releasetxt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // main
             // 
@@ -705,9 +698,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(601, 263);
+            this.Controls.Add(this.releasetxt);
+            this.Controls.Add(this.airactxt);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.regionbox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.airacbox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.packagebox);
             this.Controls.Add(this.label6);
@@ -747,10 +742,12 @@
         private System.Windows.Forms.Timer notifytimer;
         private Bunifu.UI.WinForms.BunifuDropdown packagebox;
         private System.Windows.Forms.Label label6;
-        private Bunifu.UI.WinForms.BunifuDropdown airacbox;
         private System.Windows.Forms.Label label5;
         private Bunifu.UI.WinForms.BunifuDropdown regionbox;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label airactxt;
+        private System.Windows.Forms.Label releasetxt;
     }
 }
 

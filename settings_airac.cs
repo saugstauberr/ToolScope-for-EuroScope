@@ -9,8 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Schema;
-using IniParser;
-using IniParser.Model;
+using Ini;
 
 namespace ToolScope_for_EuroScope
 {
@@ -30,22 +29,19 @@ namespace ToolScope_for_EuroScope
         {
             InitializeComponent();
 
-            var parser = new FileIniDataParser();
-            IniData data = parser.ReadFile("config.ini");
+            var config = new IniFile("config.ini");
 
             readAllFromIni();
 
-            if(data["Settings"]["packagedir"] == null)
+            if(config.Read("packagedir", "Settings") == null)
             {
-                
-                data["Settings"]["packagedir"] = System.IO.Path.GetTempPath() + "toolscope_download";
-                parser.WriteFile("config.ini", data);
+
+                config.Write("packagedir", System.IO.Path.GetTempPath() + "toolscope_download", "Settings");
             }
 
-            if(data["Settings"]["esdir"] == null)
+            if(config.Read("esdir", "Settings") == null)
             {
-                data["Settings"]["esdir"] = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope";
-                parser.WriteFile("config.ini", data);
+                config.Write("esdir", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope", "Settings");
             }
 
             insertInTextBoxes();
@@ -55,29 +51,25 @@ namespace ToolScope_for_EuroScope
 
         private void readAllFromIni()
         {
-            var parser = new FileIniDataParser();
-            IniData data = parser.ReadFile("config.ini");
+            var config = new IniFile("config.ini");
 
-            packagedir = data["Settings"]["packagedir"];
-            esdir = data["Settings"]["esdir"];
-            cid = data["Settings"]["cid"];
+            packagedir = config.Read("packagedir", "Settings");
+            esdir = config.Read("esdir", "Settings");
+            cid = config.Read("cid", "Settings");
 
-            if (data["Settings"]["passwd"] != null)
+            if (config.Read("passwd", "Settings") != null)
             {
-                passwd = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(data["Settings"]["passwd"]));
+                passwd = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(config.Read("passwd", "Settings")));
             }
-            rating = data["Settings"]["rating"];
-            server = data["Settings"]["server"];
-            callsign = data["Settings"]["callsign"];
-            realname = data["Settings"]["realname"];
-            hoppiecode = data["Settings"]["hoppiecode"];
+            rating = config.Read("rating", "Settings");
+            server = config.Read("server", "Settings"); ;
+            callsign = config.Read("callsign", "Settings");
+            realname = config.Read("realname", "Settings");
+            hoppiecode = config.Read("hoppiecode", "Settings");
         }
 
         private string ratingConvert(string task, string data2)
         {
-            var parser = new FileIniDataParser();
-            IniData data = parser.ReadFile("config.ini");
-
             if (task == "write")
             {
                 switch (data2)
@@ -130,35 +122,17 @@ namespace ToolScope_for_EuroScope
         {
             var password64 = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(passwdbox.Text));
 
-            var parser = new FileIniDataParser();
-            IniData data = parser.ReadFile("config.ini");
+            var config = new IniFile("config.ini");
 
-            data["Settings"]["packagedir"] = packagedir;
-            parser.WriteFile("config.ini", data);
-
-            data["Settings"]["esdir"] = esdir;
-            parser.WriteFile("config.ini", data);
-
-            data["Settings"]["cid"] = cid;
-            parser.WriteFile("config.ini", data);
-
-            data["Settings"]["passwd"] = password64;
-            parser.WriteFile("config.ini", data);
-
-            data["Settings"]["rating"] = rating;
-            parser.WriteFile("config.ini", data);
-
-            data["Settings"]["server"] = server;
-            parser.WriteFile("config.ini", data);
-
-            data["Settings"]["callsign"] = callsign;
-            parser.WriteFile("config.ini", data);
-
-            data["Settings"]["realname"] = realname;
-            parser.WriteFile("config.ini", data);
-
-            data["Settings"]["hoppiecode"] = hoppiecode;
-            parser.WriteFile("config.ini", data);
+            config.Write("packagedir", packagedir, "Settings");
+            config.Write("esdir", esdir, "Settings");
+            config.Write("cid", cid, "Settings");
+            config.Write("passwd", password64, "Settings");
+            config.Write("rating", rating, "Settings");
+            config.Write("server", server, "Settings");
+            config.Write("callsign", callsign, "Settings");
+            config.Write("realname", realname, "Settings");
+            config.Write("hoppiecode", hoppiecode, "Settings");
         }
 
         private void insertInTextBoxes()
