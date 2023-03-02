@@ -58,11 +58,12 @@ namespace ToolScope_for_EuroScope
         public main()
         {
             InitializeComponent();
-            AutoUpdater.Start("https://rbsoft.org/updates/AutoUpdaterTest.xml");
+            AutoUpdater.InstalledVersion = new Version(pversion);
+            AutoUpdater.Start("https://raw.githubusercontent.com/saugstauberr/ToolScope-for-EuroScope/master/updates/update.xml");
             var config = new IniFile("config.ini");
 
             readAllFromIni();
-            var webRequest = WebRequest.Create(@"https://raw.githubusercontent.com/saugstauberr/ToolScope-for-EuroScope/master/packages.ini");
+            var webRequest = WebRequest.Create(@"https://raw.githubusercontent.com/saugstauberr/ToolScope-for-EuroScope/master/updates/packages.ini");
 
             using (var response = webRequest.GetResponse())
             using (var content = response.GetResponseStream())
