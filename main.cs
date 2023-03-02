@@ -45,7 +45,7 @@ namespace ToolScope_for_EuroScope
         public string selectedurl;
         public string selectedregion;
 
-        public string pversion = "0.0.9";
+        public string pversion = "1.0.0";
 
         public List<string> regions = new List<string>();
 

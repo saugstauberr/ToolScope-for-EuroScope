@@ -1036,7 +1036,7 @@
             this.esfolderbox.Padding = new System.Windows.Forms.Padding(3);
             this.esfolderbox.PasswordChar = '\0';
             this.esfolderbox.PlaceholderForeColor = System.Drawing.Color.Silver;
-            this.esfolderbox.PlaceholderText = "C:/";
+            this.esfolderbox.PlaceholderText = "Standard: C:/Documents/EuroScope";
             this.esfolderbox.ReadOnly = false;
             this.esfolderbox.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.esfolderbox.SelectedText = "";
@@ -1050,7 +1050,7 @@
             this.esfolderbox.TextMarginBottom = 0;
             this.esfolderbox.TextMarginLeft = 3;
             this.esfolderbox.TextMarginTop = 0;
-            this.esfolderbox.TextPlaceholder = "C:/";
+            this.esfolderbox.TextPlaceholder = "Standard: C:/Documents/EuroScope";
             this.esfolderbox.UseSystemPasswordChar = false;
             this.esfolderbox.WordWrap = true;
             this.esfolderbox.Click += new System.EventHandler(this.esfolderbox_Click);
