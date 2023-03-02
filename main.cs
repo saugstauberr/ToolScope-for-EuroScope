@@ -16,6 +16,10 @@ using System.Globalization;
 using System.Reflection;
 using static System.Net.WebRequestMethods;
 using System.Data.SqlTypes;
+using WindowsFormsControlLibrary1;
+using System.Runtime.Remoting.Lifetime;
+using ToolScope_for_EuroScope;
+using System.Text.RegularExpressions;
 
 namespace ToolScope_for_EuroScope
 {
@@ -31,6 +35,12 @@ namespace ToolScope_for_EuroScope
         public string callsign;
         public string realname;
         public string hoppiecode;
+
+        public string selectedurl;
+
+        public List<string> regions = new List<string>();
+
+        public List<string> allpackages = new List<string>();
 
         // ##### LINK AUFBAU #####
         // https://files.aero-nav.com/EDMM/Full-Update_20230225100326-230201-2.zip
@@ -53,27 +63,55 @@ namespace ToolScope_for_EuroScope
                 saveAllToIni();
             }
             getRegions();
+            addToPackagesList();
         }
 
         #region Package Manager
         // 27 Zeichen vor dem EDXX
 
-        private void getRegions()
+        private void addToPackagesList()
         {
-            var regions = new List<string>() { };
             var config = new IniFile("config.ini");
             int x = 0;
             int y;
 
             int.TryParse(config.Read("amount", "Links"), NumberStyles.Number, CultureInfo.CurrentCulture.NumberFormat, out y);
+
             while (x <= y)
             {
-                string regionName2 = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("/") + 21);
+                allpackages.Add(config.Read(x.ToString(), "Links"));
+
+                x++;
+            }
+        }
+
+        private void getRegions()
+        {
+            string regionName = "0";
+            var config = new IniFile("config.ini");
+            int x = 0;
+            int y;
+
+            int.TryParse(config.Read("amount", "Links"), NumberStyles.Number, CultureInfo.CurrentCulture.NumberFormat, out y);
+
+            while (x <= y)
+            {
+
+                string regionName2 = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("nav.com/") + 8);
                 regionName2 = regionName2.Substring(0, regionName2.IndexOf("/"));
+
+                string release = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("nav.com/") + 8);
+                release = release.Substring(0, release.IndexOf("/"));
+
+                string airac = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("nav.com/") + 8);
+                airac = airac.Substring(0, airac.IndexOf("/"));
+
+                string version = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("nav.com/") + 8);
+                version = version.Substring(0, version.IndexOf("/"));
 
                 if (!regions.Contains(regionName2))
                 {
-                    string regionName = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("/") + 21);
+                    regionName = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("nav.com/") + 8);
                     regionName = regionName.Substring(0, regionName.IndexOf("/"));
                     regionbox.Items.Add(regionName);
                 }
@@ -95,7 +133,7 @@ namespace ToolScope_for_EuroScope
             while(x <= y)
             {
                 if (config.Read(x.ToString(), "Links").Contains(filter) == true) {
-                    string packageName = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("/") + 26);
+                    string packageName = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("nav.com/") + 13);
                     packageName = packageName.Substring(0, packageName.IndexOf("2") - 1);
                     packagebox.Items.Add(packageName);
                 }
@@ -211,6 +249,42 @@ namespace ToolScope_for_EuroScope
         private void regionbox_SelectedIndexChanged(object sender, EventArgs e)
         {
             addPackageItems(regionbox.Text);
+            packagebox.Text = "";
+            versiontxt.Text = "None";
+            airactxt.Text = "None";
+            releasetxt.Text = "None";
+        }
+
+        private void packagebox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // ##### LINK AUFBAU #####
+            // https://files.aero-nav.com/EDMM/Full-Update_20230225100326-230201-2.zip
+            // url / SEKTOR / Packagename_YYYYMMDDHHMMSS-AIRAC/xx-Version .zip
+
+            var config = new IniFile("config.ini");
+
+            var x = allpackages.FindIndex(s => s.Contains("https://files.aero-nav.com/"+ regionbox.Text + "/" + packagebox.Text));
+
+            selectedurl = allpackages[x];
+
+            string regionName = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("nav.com/") + 8);
+            regionName = regionName.Substring(0, regionName.IndexOf("/"));
+
+            string release = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("_2") + 1);
+            release = release.Substring(0, release.IndexOf(".zip") - 10);
+
+            string airac = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("_2") + 16);
+            airac = airac.Substring(0, airac.IndexOf(".zip") - 2);
+
+            string version = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("_2") + 23);
+            version = version.Substring(0, version.IndexOf(".zip"));
+
+
+            versiontxt.Text = "V" + version;
+            DateTime da = DateTime.ParseExact(airac, "yyMMdd", new CultureInfo("da-DK"));
+            airactxt.Text = da.ToString(@"yy\/MM");
+            DateTime dr = DateTime.ParseExact(release, "yyyyMMddHHmms", CultureInfo.InvariantCulture);
+            releasetxt.Text = dr.ToString("dd.MM.yyyy");
         }
     }
 }

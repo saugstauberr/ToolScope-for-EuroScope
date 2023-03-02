@@ -7,6 +7,7 @@ namespace Ini
 {
     internal class IniFile
     {
+
         string Path;
         string EXE = Assembly.GetExecutingAssembly().GetName().Name;
 

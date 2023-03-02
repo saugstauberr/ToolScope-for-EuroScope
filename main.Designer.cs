@@ -55,6 +55,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.airactxt = new System.Windows.Forms.Label();
             this.releasetxt = new System.Windows.Forms.Label();
+            this.versiontxt = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.controlbar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -370,7 +372,7 @@
             this.airacsettingsbtn.IdleIconLeftImage = null;
             this.airacsettingsbtn.IdleIconRightImage = null;
             this.airacsettingsbtn.IndicateFocus = false;
-            this.airacsettingsbtn.Location = new System.Drawing.Point(315, 173);
+            this.airacsettingsbtn.Location = new System.Drawing.Point(314, 204);
             this.airacsettingsbtn.Name = "airacsettingsbtn";
             this.airacsettingsbtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.airacsettingsbtn.OnDisabledState.BorderRadius = 1;
@@ -462,7 +464,7 @@
             this.bunifuButton1.IdleIconLeftImage = null;
             this.bunifuButton1.IdleIconRightImage = null;
             this.bunifuButton1.IndicateFocus = false;
-            this.bunifuButton1.Location = new System.Drawing.Point(181, 173);
+            this.bunifuButton1.Location = new System.Drawing.Point(180, 204);
             this.bunifuButton1.Name = "bunifuButton1";
             this.bunifuButton1.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.bunifuButton1.OnDisabledState.BorderRadius = 1;
@@ -574,6 +576,7 @@
             this.packagebox.Text = null;
             this.packagebox.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
             this.packagebox.TextLeftMargin = 5;
+            this.packagebox.SelectedIndexChanged += new System.EventHandler(this.packagebox_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -675,9 +678,9 @@
             this.airactxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.airactxt.Location = new System.Drawing.Point(417, 96);
             this.airactxt.Name = "airactxt";
-            this.airactxt.Size = new System.Drawing.Size(67, 29);
+            this.airactxt.Size = new System.Drawing.Size(94, 29);
             this.airactxt.TabIndex = 25;
-            this.airactxt.Text = "AIRAC";
+            this.airactxt.Text = "None";
             this.airactxt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // releasetxt
@@ -687,10 +690,34 @@
             this.releasetxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.releasetxt.Location = new System.Drawing.Point(417, 123);
             this.releasetxt.Name = "releasetxt";
-            this.releasetxt.Size = new System.Drawing.Size(67, 29);
+            this.releasetxt.Size = new System.Drawing.Size(116, 29);
             this.releasetxt.TabIndex = 26;
-            this.releasetxt.Text = "RELEASE";
+            this.releasetxt.Text = "None";
             this.releasetxt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // versiontxt
+            // 
+            this.versiontxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.versiontxt.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.versiontxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.versiontxt.Location = new System.Drawing.Point(417, 152);
+            this.versiontxt.Name = "versiontxt";
+            this.versiontxt.Size = new System.Drawing.Size(116, 29);
+            this.versiontxt.TabIndex = 28;
+            this.versiontxt.Text = "None";
+            this.versiontxt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label9
+            // 
+            this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.label9.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label9.Location = new System.Drawing.Point(344, 152);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(67, 29);
+            this.label9.TabIndex = 27;
+            this.label9.Text = "Version:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // main
             // 
@@ -698,6 +725,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(601, 263);
+            this.Controls.Add(this.versiontxt);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.releasetxt);
             this.Controls.Add(this.airactxt);
             this.Controls.Add(this.label7);
@@ -748,6 +777,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label airactxt;
         private System.Windows.Forms.Label releasetxt;
+        private System.Windows.Forms.Label versiontxt;
+        private System.Windows.Forms.Label label9;
     }
 }
 
