@@ -25,6 +25,7 @@ using System.Threading;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using File = System.IO.File;
 using static System.Net.Mime.MediaTypeNames;
+using AutoUpdaterDotNET;
 
 namespace ToolScope_for_EuroScope
 {
@@ -44,6 +45,8 @@ namespace ToolScope_for_EuroScope
         public string selectedurl;
         public string selectedregion;
 
+        public string pversion = "0.0.9";
+
         public List<string> regions = new List<string>();
 
         public List<string> allpackages = new List<string>();
@@ -55,6 +58,7 @@ namespace ToolScope_for_EuroScope
         public main()
         {
             InitializeComponent();
+            AutoUpdater.Start("https://rbsoft.org/updates/AutoUpdaterTest.xml");
             var config = new IniFile("config.ini");
 
             readAllFromIni();
@@ -70,6 +74,7 @@ namespace ToolScope_for_EuroScope
             }
             getRegions();
             addToPackagesList();
+            notifyText("info", "Loaded! Version " + pversion, 10);
         }
 
         #region FileManager

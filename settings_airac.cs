@@ -33,15 +33,10 @@ namespace ToolScope_for_EuroScope
 
             readAllFromIni();
 
-            if(config.Read("packagedir", "Settings") == null)
-            {
-
-                config.Write("packagedir", System.IO.Path.GetTempPath() + "toolscope_download", "Settings");
-            }
-
-            if(config.Read("esdir", "Settings") == null)
+            if(config.Read("esdir", "Settings") == "")
             {
                 config.Write("esdir", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope", "Settings");
+                esfolderbox.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope";
             }
 
             insertInTextBoxes();
@@ -114,7 +109,7 @@ namespace ToolScope_for_EuroScope
             callsign = callsignbox.Text;
             realname = namebox.Text;
             hoppiecode = hoppiecodebox.Text;
-            packagedir = downloadfolderbox.Text;
+            //packagedir = downloadfolderbox.Text;
             esdir = esfolderbox.Text;
         }
 
@@ -143,7 +138,7 @@ namespace ToolScope_for_EuroScope
             callsignbox.Text = callsign;
             namebox.Text = realname;
             hoppiecodebox.Text = hoppiecode;
-            downloadfolderbox.Text = packagedir;
+            //downloadfolderbox.Text = packagedir;
             esfolderbox.Text = esdir;
         }
 
@@ -171,20 +166,6 @@ namespace ToolScope_for_EuroScope
             saveAllToIni();
             main.notifyText("success", "Settings have been saved!", 5);
             Hide();
-        }
-
-        private void downloadfolderbox_Click(object sender, EventArgs e)
-        {
-            using (var fbd = new FolderBrowserDialog())
-            {
-                DialogResult result = fbd.ShowDialog();
-
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
-                {
-                    packagedir = fbd.SelectedPath;
-                    downloadfolderbox.Text = packagedir;
-                }
-            }
         }
 
         private void esfolderbox_Click(object sender, EventArgs e)
