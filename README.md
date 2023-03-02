@@ -1,9 +1,9 @@
 
 # ToolScope for EuroScope
 ### Welcome to Toolscape! :wave:
- [Download here!](https://github.com/saugstauberr/ToolScope-for-EuroScope/releases)
- [Where I've got this idea from](https://board.vatsim-germany.org/threads/tool-powershell-script-fuer-airac-update-mit-erhaltung-eigener-einstellungen.69729/page-2)
- [VATSIM Germany Website](https://vatsim-germany.org/)
+ [Download here!](https://github.com/saugstauberr/ToolScope-for-EuroScope/releases) •
+ [Where I've got this idea from](https://board.vatsim-germany.org/threads/tool-powershell-script-fuer-airac-update-mit-erhaltung-eigener-einstellungen.69729/page-2) •
+ [VATSIM Germany Website](https://vatsim-germany.org/) •
  [Manual AIRAC download](http://files.aero-nav.com/EDXX)
 
 ## What is Toolscape?
