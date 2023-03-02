@@ -5,6 +5,9 @@
  [Where I've got this idea from](https://board.vatsim-germany.org/threads/tool-powershell-script-fuer-airac-update-mit-erhaltung-eigener-einstellungen.69729/page-2) •
  [VATSIM Germany Website](https://vatsim-germany.org/) •
  [Manual AIRAC download](http://files.aero-nav.com/EDXX)
+ 
+![Main Menu](https://i.imgur.com/koOWvxo.png)
+![Settings Menu](https://i.imgur.com/qbGWwWd.png)
 
 ## What is Toolscape?
 Toolspace is a tool which allows you to update your EuroScope AIRAC or even just install a AIRAC package for a new sector without having to type your credentials and your hoppie code ever again! 
@@ -27,3 +30,5 @@ Issues and bugs can happen. Please report them in the [**Issues**](https://githu
 - more customization
 - Autoupdater
 - Pluginkeeper
+- international AIRAC support
+- various other features, it should be a program for multiple purposes
