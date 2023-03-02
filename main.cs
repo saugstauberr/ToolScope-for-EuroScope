@@ -23,6 +23,8 @@ using ToolScope_for_EuroScope;
 using System.Text.RegularExpressions;
 using System.Threading;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using File = System.IO.File;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ToolScope_for_EuroScope
 {
@@ -34,12 +36,13 @@ namespace ToolScope_for_EuroScope
         public string cid;
         public string passwd;
         public string rating;
-        public string server = "AUTOMATIC";
+        public string server = "";
         public string callsign;
         public string realname;
         public string hoppiecode;
 
         public string selectedurl;
+        public string selectedregion;
 
         public List<string> regions = new List<string>();
 
@@ -74,7 +77,8 @@ namespace ToolScope_for_EuroScope
         private void CreateBackup(string pathinesdir)
         {
             var sourcePath = esdir + "/" + pathinesdir;
-            var targetPath = esdir + "/ToolScope/" + pathinesdir;
+            var targetPath = esdir + "/ToolScope/Backup/";
+
 
             foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
             {
@@ -87,7 +91,141 @@ namespace ToolScope_for_EuroScope
                 System.IO.File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
             }
         }
-        
+
+        public void ReplaceEuroScope()
+        {
+            var sourcePath = esdir + "/ToolScope/data";
+            var targetPath = esdir + "/Scenario";
+
+            try
+            {
+                Directory.Delete(esdir + "/ToolScope/data", true);
+            } catch
+            {
+
+            }
+
+            ZipFile.ExtractToDirectory(esdir + "/ToolScope/data.zip", esdir + "/ToolScope/data");
+            System.IO.File.Delete(esdir + "/ToolScope/data.zip");
+
+            foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
+            {
+                Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
+            }
+
+            //Copy all the files & Replaces any files with the same name
+            foreach (string newPath in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories))
+            {
+                System.IO.File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
+            }
+
+            Directory.Delete(sourcePath, true );
+
+            if (selectedurl.ToString().Contains("EDGG") == true)
+            {
+                var text = new StringBuilder();
+
+                text.Append(System.IO.File.ReadAllText(targetPath + "/EDDF Apron.prf"));
+                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + cid);
+                text = text.Append("\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
+                    "certificate\t" + cid + "\r\nLastSession\tpassword\t" + passwd + "\r\nLastSession\trating\t" + rating + "\r\nLastSession\t" +
+                    "server\t" + server + "\r\nLastSession\ttovatsim\t1");
+
+                System.IO.File.WriteAllText(targetPath + "/EDDF Apron.prf", text.ToString());
+                System.IO.File.WriteAllText(targetPath + "/EDUU Rhein Radar.prf", text.ToString());
+                System.IO.File.WriteAllText(targetPath + "/EDGG Langen Radar.prf", text.ToString());
+                System.IO.File.WriteAllText(targetPath + "/Tower Ground.prf", text.ToString());
+
+                text.Clear();
+                notifyText("success", "Successfully updated (EDGG)!", 5);
+            } 
+            else if (selectedurl.Contains("EDMM") == true) {
+                var text = new StringBuilder();
+                var apptext = "\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
+                    "certificate\t" + cid + "\r\nLastSession\tpassword\t" + passwd + "\r\nLastSession\trating\t" + rating + "\r\nLastSession\t" +
+                    "server\t" + server + "\r\nLastSession\ttovatsim\t1";
+
+                text.Append(System.IO.File.ReadAllText(targetPath + "/EDMM.prf") + apptext);
+                System.IO.File.WriteAllText(targetPath + "/EDMM.prf", text.ToString());
+                text.Clear();
+
+                text.Append(System.IO.File.ReadAllText(targetPath + "/EDUU.prf") + apptext);
+                System.IO.File.WriteAllText(targetPath + "/EDUU.prf", text.ToString());
+                text.Clear();
+
+                text.Append(System.IO.File.ReadAllText(targetPath + "/TWR_REAL.prf") + apptext);
+                System.IO.File.WriteAllText(targetPath + "/TWR_REAL.prf", text.ToString());
+                text.Clear();
+
+                notifyText("success", "Successfully updated (EDMM)!", 5);
+            }
+            else if (selectedurl.Contains("EDWW/DFS") == true)
+            {
+                var text = new StringBuilder();
+                var apptext = "\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
+                    "certificate\t" + cid + "\r\nLastSession\tpassword\t" + passwd + "\r\nLastSession\trating\t" + rating + "\r\nLastSession\t" +
+                    "server\t" + server + "\r\nLastSession\ttovatsim\t1";
+
+                text.Append(System.IO.File.ReadAllText(targetPath + "/EDBB-CTR-APP.prf") + apptext);
+                System.IO.File.WriteAllText(targetPath + "/EDBB-CTR-APP.prf", text.ToString());
+                text.Clear();
+
+                text.Append(System.IO.File.ReadAllText(targetPath + "/EDBB-TWR.prf") + apptext);
+                System.IO.File.WriteAllText(targetPath + "/EDBB-TWR.prf", text.ToString());
+                text.Clear();
+
+                text.Append(System.IO.File.ReadAllText(targetPath + "/EDUU-CTR.prf") + apptext);
+                System.IO.File.WriteAllText(targetPath + "/EDUU-CTR.prf", text.ToString());
+                text.Clear();
+
+                text.Append(System.IO.File.ReadAllText(targetPath + "/EDWW-CTR-APP.prf") + apptext);
+                System.IO.File.WriteAllText(targetPath + "/EDWW-CTR-APP.prf", text.ToString());
+                text.Clear();
+
+                text.Append(System.IO.File.ReadAllText(targetPath + "/EDWW-TWR.prf") + apptext);
+                System.IO.File.WriteAllText(targetPath + "/EDWW-TWR.prf", text.ToString());
+                text.Clear();
+
+                text.Append(System.IO.File.ReadAllText(targetPath + "/EDYY-CTR.prf") + apptext);
+                System.IO.File.WriteAllText(targetPath + "/EDYY-CTR.prf", text.ToString());
+                text.Clear();
+
+                notifyText("success", "Successfully updated (EDWW-DFS)!", 5);
+            }
+            else if (selectedurl.Contains("EDWW/EDBB") == true)
+            {
+                var text = new StringBuilder();
+                var apptext = "\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
+                    "certificate\t" + cid + "\r\nLastSession\tpassword\t" + passwd + "\r\nLastSession\trating\t" + rating + "\r\nLastSession\t" +
+                    "server\t" + server + "\r\nLastSession\ttovatsim\t1";
+
+                text.Append(System.IO.File.ReadAllText(targetPath + "/EDBB_TopSky.prf") + apptext);
+                System.IO.File.WriteAllText(targetPath + "/EDBB_TopSky.prf", text.ToString());
+                text.Clear();
+
+                text.Append(System.IO.File.ReadAllText(targetPath + "/EDBB_TopSky-Tower.prf") + apptext);
+                System.IO.File.WriteAllText(targetPath + "/EDBB_TopSky-Tower.prf", text.ToString());
+                text.Clear();
+
+                notifyText("success", "Successfully updated (EDWW-EDBB)!", 5);
+            }
+            else if (selectedurl.Contains("EDXX") == true)
+            {
+                var text = new StringBuilder();
+                var apptext = "\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
+                    "certificate\t" + cid + "\r\nLastSession\tpassword\t" + passwd + "\r\nLastSession\trating\t" + rating + "\r\nLastSession\t" +
+                    "server\t" + server + "\r\nLastSession\ttovatsim\t1";
+
+                text.Append(System.IO.File.ReadAllText(targetPath + "/FIS.prf") + apptext);
+                System.IO.File.WriteAllText(targetPath + "/FIS.prf", text.ToString());
+                text.Clear();
+            }
+
+            foreach (string s in Directory.EnumerateFiles(esdir + "/Scenario/" + selectedregion + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories)) {
+                System.IO.File.WriteAllText(s, hoppiecode);
+            }
+        }
+
         #endregion
 
         #region Package Manager
@@ -280,9 +418,7 @@ namespace ToolScope_for_EuroScope
                 } catch
                 {
                 }
-                ZipFile.ExtractToDirectory(esdir + "/ToolScope/data.zip", esdir + "/ToolScope/data");
-                System.IO.File.Delete(esdir + "/ToolScope/data.zip");
-                notifyText("success", "Package downloaded and extracted!", 5);
+                ReplaceEuroScope();
             });
         }
         #endregion
@@ -327,6 +463,7 @@ namespace ToolScope_for_EuroScope
             string version = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("_2") + 23);
             version = version.Substring(0, version.IndexOf(".zip"));
 
+            selectedregion = regionName;
 
             versiontxt.Text = "V" + version;
             DateTime da = DateTime.ParseExact(airac, "yyMMdd", new CultureInfo("da-DK"));
@@ -338,9 +475,7 @@ namespace ToolScope_for_EuroScope
         private void downloadbtn_Click(object sender, EventArgs e)
         {
             CreateBackup("Scenario");
-
-            MessageBox.Show(selectedurl);
-            Clipboard.SetText(selectedurl);
+            readAllFromIni();
 
             Thread thread = new Thread(() => {
                 WebClient client = new WebClient();
