@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolScope for EuroScope", "ToolScope for EuroScope.csproj", "{F40FD11A-DE63-4B1E-8233-BB7584B3846E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F40FD11A-DE63-4B1E-8233-BB7584B3846E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F40FD11A-DE63-4B1E-8233-BB7584B3846E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F40FD11A-DE63-4B1E-8233-BB7584B3846E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F40FD11A-DE63-4B1E-8233-BB7584B3846E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {737191EA-7F0F-48E6-A404-86A13F9DC116}
+	EndGlobalSection
+EndGlobal
