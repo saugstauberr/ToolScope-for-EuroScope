@@ -30,11 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges8 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.controlbar = new Bunifu.UI.WinForms.BunifuPanel();
+            this.notifytxt = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.minimizebtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -43,8 +44,7 @@
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.airacsettingsbtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.bunifuButton1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.notifytxt = new System.Windows.Forms.Label();
+            this.downloadbtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.bunifuDragControl2 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.notifytimer = new System.Windows.Forms.Timer(this.components);
             this.packagebox = new Bunifu.UI.WinForms.BunifuDropdown();
@@ -57,6 +57,7 @@
             this.releasetxt = new System.Windows.Forms.Label();
             this.versiontxt = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.progressbar = new Bunifu.UI.WinForms.BunifuProgressBar();
             this.controlbar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,6 +80,21 @@
             this.controlbar.ShowBorders = false;
             this.controlbar.Size = new System.Drawing.Size(601, 31);
             this.controlbar.TabIndex = 0;
+            // 
+            // notifytxt
+            // 
+            this.notifytxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.notifytxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.notifytxt.Font = new System.Drawing.Font("Microsoft PhagsPa", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.notifytxt.ForeColor = System.Drawing.Color.White;
+            this.notifytxt.Location = new System.Drawing.Point(158, 7);
+            this.notifytxt.Name = "notifytxt";
+            this.notifytxt.Size = new System.Drawing.Size(375, 17);
+            this.notifytxt.TabIndex = 4;
+            this.notifytxt.Text = "Notification here!";
+            this.notifytxt.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.notifytxt.Visible = false;
             // 
             // label2
             // 
@@ -124,11 +140,11 @@
             this.minimizebtn.ColorContrastOnClick = 45;
             this.minimizebtn.ColorContrastOnHover = 45;
             this.minimizebtn.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges1.BottomLeft = true;
-            borderEdges1.BottomRight = true;
-            borderEdges1.TopLeft = true;
-            borderEdges1.TopRight = true;
-            this.minimizebtn.CustomizableEdges = borderEdges1;
+            borderEdges5.BottomLeft = true;
+            borderEdges5.BottomRight = true;
+            borderEdges5.TopLeft = true;
+            borderEdges5.TopRight = true;
+            this.minimizebtn.CustomizableEdges = borderEdges5;
             this.minimizebtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.minimizebtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.minimizebtn.DisabledFillColor = System.Drawing.Color.Empty;
@@ -217,11 +233,11 @@
             this.closebtn.ColorContrastOnClick = 45;
             this.closebtn.ColorContrastOnHover = 45;
             this.closebtn.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges2.BottomLeft = true;
-            borderEdges2.BottomRight = true;
-            borderEdges2.TopLeft = true;
-            borderEdges2.TopRight = true;
-            this.closebtn.CustomizableEdges = borderEdges2;
+            borderEdges6.BottomLeft = true;
+            borderEdges6.BottomRight = true;
+            borderEdges6.TopLeft = true;
+            borderEdges6.TopRight = true;
+            this.closebtn.CustomizableEdges = borderEdges6;
             this.closebtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.closebtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.closebtn.DisabledFillColor = System.Drawing.Color.Empty;
@@ -342,11 +358,11 @@
             this.airacsettingsbtn.ColorContrastOnClick = 45;
             this.airacsettingsbtn.ColorContrastOnHover = 45;
             this.airacsettingsbtn.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges3.BottomLeft = true;
-            borderEdges3.BottomRight = true;
-            borderEdges3.TopLeft = true;
-            borderEdges3.TopRight = true;
-            this.airacsettingsbtn.CustomizableEdges = borderEdges3;
+            borderEdges7.BottomLeft = true;
+            borderEdges7.BottomRight = true;
+            borderEdges7.TopLeft = true;
+            borderEdges7.TopRight = true;
+            this.airacsettingsbtn.CustomizableEdges = borderEdges7;
             this.airacsettingsbtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.airacsettingsbtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.airacsettingsbtn.DisabledFillColor = System.Drawing.Color.Empty;
@@ -415,111 +431,97 @@
             this.airacsettingsbtn.UseDefaultRadiusAndThickness = true;
             this.airacsettingsbtn.Click += new System.EventHandler(this.airacsettingsbtn_Click);
             // 
-            // bunifuButton1
+            // downloadbtn
             // 
-            this.bunifuButton1.AllowAnimations = true;
-            this.bunifuButton1.AllowMouseEffects = true;
-            this.bunifuButton1.AllowToggling = false;
-            this.bunifuButton1.AnimationSpeed = 200;
-            this.bunifuButton1.AutoGenerateColors = false;
-            this.bunifuButton1.AutoRoundBorders = false;
-            this.bunifuButton1.AutoSizeLeftIcon = true;
-            this.bunifuButton1.AutoSizeRightIcon = true;
-            this.bunifuButton1.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuButton1.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(122)))), ((int)(((byte)(183)))));
-            this.bunifuButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuButton1.BackgroundImage")));
-            this.bunifuButton1.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.bunifuButton1.ButtonText = "Update AIRAC";
-            this.bunifuButton1.ButtonTextMarginLeft = 0;
-            this.bunifuButton1.ColorContrastOnClick = 45;
-            this.bunifuButton1.ColorContrastOnHover = 45;
-            this.bunifuButton1.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges4.BottomLeft = true;
-            borderEdges4.BottomRight = true;
-            borderEdges4.TopLeft = true;
-            borderEdges4.TopRight = true;
-            this.bunifuButton1.CustomizableEdges = borderEdges4;
-            this.bunifuButton1.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.bunifuButton1.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.bunifuButton1.DisabledFillColor = System.Drawing.Color.Empty;
-            this.bunifuButton1.DisabledForecolor = System.Drawing.Color.Empty;
-            this.bunifuButton1.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
-            this.bunifuButton1.Font = new System.Drawing.Font("Microsoft PhagsPa", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(252)))), ((int)(((byte)(159)))));
-            this.bunifuButton1.IconLeft = null;
-            this.bunifuButton1.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bunifuButton1.IconLeftCursor = System.Windows.Forms.Cursors.Default;
-            this.bunifuButton1.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
-            this.bunifuButton1.IconMarginLeft = 11;
-            this.bunifuButton1.IconPadding = 10;
-            this.bunifuButton1.IconRight = null;
-            this.bunifuButton1.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.bunifuButton1.IconRightCursor = System.Windows.Forms.Cursors.Default;
-            this.bunifuButton1.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
-            this.bunifuButton1.IconSize = 25;
-            this.bunifuButton1.IdleBorderColor = System.Drawing.Color.Empty;
-            this.bunifuButton1.IdleBorderRadius = 0;
-            this.bunifuButton1.IdleBorderThickness = 0;
-            this.bunifuButton1.IdleFillColor = System.Drawing.Color.Empty;
-            this.bunifuButton1.IdleIconLeftImage = null;
-            this.bunifuButton1.IdleIconRightImage = null;
-            this.bunifuButton1.IndicateFocus = false;
-            this.bunifuButton1.Location = new System.Drawing.Point(180, 204);
-            this.bunifuButton1.Name = "bunifuButton1";
-            this.bunifuButton1.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.bunifuButton1.OnDisabledState.BorderRadius = 1;
-            this.bunifuButton1.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.bunifuButton1.OnDisabledState.BorderThickness = 2;
-            this.bunifuButton1.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.bunifuButton1.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.bunifuButton1.OnDisabledState.IconLeftImage = null;
-            this.bunifuButton1.OnDisabledState.IconRightImage = null;
-            this.bunifuButton1.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
-            this.bunifuButton1.onHoverState.BorderRadius = 1;
-            this.bunifuButton1.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.bunifuButton1.onHoverState.BorderThickness = 2;
-            this.bunifuButton1.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(87)))), ((int)(((byte)(28)))));
-            this.bunifuButton1.onHoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(252)))), ((int)(((byte)(159)))));
-            this.bunifuButton1.onHoverState.IconLeftImage = null;
-            this.bunifuButton1.onHoverState.IconRightImage = null;
-            this.bunifuButton1.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(207)))), ((int)(((byte)(6)))));
-            this.bunifuButton1.OnIdleState.BorderRadius = 1;
-            this.bunifuButton1.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.bunifuButton1.OnIdleState.BorderThickness = 2;
-            this.bunifuButton1.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(64)))), ((int)(((byte)(22)))));
-            this.bunifuButton1.OnIdleState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(252)))), ((int)(((byte)(159)))));
-            this.bunifuButton1.OnIdleState.IconLeftImage = null;
-            this.bunifuButton1.OnIdleState.IconRightImage = null;
-            this.bunifuButton1.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(207)))), ((int)(((byte)(6)))));
-            this.bunifuButton1.OnPressedState.BorderRadius = 1;
-            this.bunifuButton1.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.bunifuButton1.OnPressedState.BorderThickness = 2;
-            this.bunifuButton1.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(64)))), ((int)(((byte)(22)))));
-            this.bunifuButton1.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(252)))), ((int)(((byte)(159)))));
-            this.bunifuButton1.OnPressedState.IconLeftImage = null;
-            this.bunifuButton1.OnPressedState.IconRightImage = null;
-            this.bunifuButton1.Size = new System.Drawing.Size(128, 29);
-            this.bunifuButton1.TabIndex = 6;
-            this.bunifuButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bunifuButton1.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
-            this.bunifuButton1.TextMarginLeft = 0;
-            this.bunifuButton1.TextPadding = new System.Windows.Forms.Padding(0);
-            this.bunifuButton1.UseDefaultRadiusAndThickness = true;
-            // 
-            // notifytxt
-            // 
-            this.notifytxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.notifytxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.notifytxt.Font = new System.Drawing.Font("Microsoft PhagsPa", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.notifytxt.ForeColor = System.Drawing.Color.White;
-            this.notifytxt.Location = new System.Drawing.Point(158, 7);
-            this.notifytxt.Name = "notifytxt";
-            this.notifytxt.Size = new System.Drawing.Size(375, 17);
-            this.notifytxt.TabIndex = 4;
-            this.notifytxt.Text = "Notification here!";
-            this.notifytxt.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.notifytxt.Visible = false;
+            this.downloadbtn.AllowAnimations = true;
+            this.downloadbtn.AllowMouseEffects = true;
+            this.downloadbtn.AllowToggling = false;
+            this.downloadbtn.AnimationSpeed = 200;
+            this.downloadbtn.AutoGenerateColors = false;
+            this.downloadbtn.AutoRoundBorders = false;
+            this.downloadbtn.AutoSizeLeftIcon = true;
+            this.downloadbtn.AutoSizeRightIcon = true;
+            this.downloadbtn.BackColor = System.Drawing.Color.Transparent;
+            this.downloadbtn.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(122)))), ((int)(((byte)(183)))));
+            this.downloadbtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("downloadbtn.BackgroundImage")));
+            this.downloadbtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.downloadbtn.ButtonText = "Update AIRAC";
+            this.downloadbtn.ButtonTextMarginLeft = 0;
+            this.downloadbtn.ColorContrastOnClick = 45;
+            this.downloadbtn.ColorContrastOnHover = 45;
+            this.downloadbtn.Cursor = System.Windows.Forms.Cursors.Default;
+            borderEdges8.BottomLeft = true;
+            borderEdges8.BottomRight = true;
+            borderEdges8.TopLeft = true;
+            borderEdges8.TopRight = true;
+            this.downloadbtn.CustomizableEdges = borderEdges8;
+            this.downloadbtn.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.downloadbtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.downloadbtn.DisabledFillColor = System.Drawing.Color.Empty;
+            this.downloadbtn.DisabledForecolor = System.Drawing.Color.Empty;
+            this.downloadbtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
+            this.downloadbtn.Font = new System.Drawing.Font("Microsoft PhagsPa", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.downloadbtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(252)))), ((int)(((byte)(159)))));
+            this.downloadbtn.IconLeft = null;
+            this.downloadbtn.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.downloadbtn.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.downloadbtn.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.downloadbtn.IconMarginLeft = 11;
+            this.downloadbtn.IconPadding = 10;
+            this.downloadbtn.IconRight = null;
+            this.downloadbtn.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.downloadbtn.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.downloadbtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.downloadbtn.IconSize = 25;
+            this.downloadbtn.IdleBorderColor = System.Drawing.Color.Empty;
+            this.downloadbtn.IdleBorderRadius = 0;
+            this.downloadbtn.IdleBorderThickness = 0;
+            this.downloadbtn.IdleFillColor = System.Drawing.Color.Empty;
+            this.downloadbtn.IdleIconLeftImage = null;
+            this.downloadbtn.IdleIconRightImage = null;
+            this.downloadbtn.IndicateFocus = false;
+            this.downloadbtn.Location = new System.Drawing.Point(180, 204);
+            this.downloadbtn.Name = "downloadbtn";
+            this.downloadbtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.downloadbtn.OnDisabledState.BorderRadius = 1;
+            this.downloadbtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.downloadbtn.OnDisabledState.BorderThickness = 2;
+            this.downloadbtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.downloadbtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.downloadbtn.OnDisabledState.IconLeftImage = null;
+            this.downloadbtn.OnDisabledState.IconRightImage = null;
+            this.downloadbtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
+            this.downloadbtn.onHoverState.BorderRadius = 1;
+            this.downloadbtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.downloadbtn.onHoverState.BorderThickness = 2;
+            this.downloadbtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(87)))), ((int)(((byte)(28)))));
+            this.downloadbtn.onHoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(252)))), ((int)(((byte)(159)))));
+            this.downloadbtn.onHoverState.IconLeftImage = null;
+            this.downloadbtn.onHoverState.IconRightImage = null;
+            this.downloadbtn.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(207)))), ((int)(((byte)(6)))));
+            this.downloadbtn.OnIdleState.BorderRadius = 1;
+            this.downloadbtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.downloadbtn.OnIdleState.BorderThickness = 2;
+            this.downloadbtn.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(64)))), ((int)(((byte)(22)))));
+            this.downloadbtn.OnIdleState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(252)))), ((int)(((byte)(159)))));
+            this.downloadbtn.OnIdleState.IconLeftImage = null;
+            this.downloadbtn.OnIdleState.IconRightImage = null;
+            this.downloadbtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(207)))), ((int)(((byte)(6)))));
+            this.downloadbtn.OnPressedState.BorderRadius = 1;
+            this.downloadbtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.downloadbtn.OnPressedState.BorderThickness = 2;
+            this.downloadbtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(64)))), ((int)(((byte)(22)))));
+            this.downloadbtn.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(252)))), ((int)(((byte)(159)))));
+            this.downloadbtn.OnPressedState.IconLeftImage = null;
+            this.downloadbtn.OnPressedState.IconRightImage = null;
+            this.downloadbtn.Size = new System.Drawing.Size(128, 29);
+            this.downloadbtn.TabIndex = 6;
+            this.downloadbtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.downloadbtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.downloadbtn.TextMarginLeft = 0;
+            this.downloadbtn.TextPadding = new System.Windows.Forms.Padding(0);
+            this.downloadbtn.UseDefaultRadiusAndThickness = true;
+            this.downloadbtn.Click += new System.EventHandler(this.downloadbtn_Click);
             // 
             // bunifuDragControl2
             // 
@@ -719,12 +721,40 @@
             this.label9.Text = "Version:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // progressbar
+            // 
+            this.progressbar.AllowAnimations = false;
+            this.progressbar.Animation = 0;
+            this.progressbar.AnimationSpeed = 220;
+            this.progressbar.AnimationStep = 10;
+            this.progressbar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.progressbar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("progressbar.BackgroundImage")));
+            this.progressbar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.progressbar.BorderRadius = 2;
+            this.progressbar.BorderThickness = 2;
+            this.progressbar.Location = new System.Drawing.Point(169, 239);
+            this.progressbar.Maximum = 100;
+            this.progressbar.MaximumValue = 100;
+            this.progressbar.Minimum = 0;
+            this.progressbar.MinimumValue = 0;
+            this.progressbar.Name = "progressbar";
+            this.progressbar.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.progressbar.ProgressBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.progressbar.ProgressColorLeft = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
+            this.progressbar.ProgressColorRight = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
+            this.progressbar.Size = new System.Drawing.Size(285, 13);
+            this.progressbar.TabIndex = 29;
+            this.progressbar.Value = 0;
+            this.progressbar.ValueByTransition = 0;
+            this.progressbar.Visible = false;
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(601, 263);
+            this.Controls.Add(this.progressbar);
             this.Controls.Add(this.versiontxt);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.releasetxt);
@@ -735,7 +765,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.packagebox);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.bunifuButton1);
+            this.Controls.Add(this.downloadbtn);
             this.Controls.Add(this.airacsettingsbtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.bunifuPanel1);
@@ -765,7 +795,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton airacsettingsbtn;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton bunifuButton1;
+        private Bunifu.UI.WinForms.BunifuButton.BunifuButton downloadbtn;
         private System.Windows.Forms.Label notifytxt;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl2;
         private System.Windows.Forms.Timer notifytimer;
@@ -779,6 +809,7 @@
         private System.Windows.Forms.Label releasetxt;
         private System.Windows.Forms.Label versiontxt;
         private System.Windows.Forms.Label label9;
+        private Bunifu.UI.WinForms.BunifuProgressBar progressbar;
     }
 }
 

@@ -13,6 +13,7 @@ using System.Net;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Globalization;
+using System.IO.Compression;
 using System.Reflection;
 using static System.Net.WebRequestMethods;
 using System.Data.SqlTypes;
@@ -20,6 +21,8 @@ using WindowsFormsControlLibrary1;
 using System.Runtime.Remoting.Lifetime;
 using ToolScope_for_EuroScope;
 using System.Text.RegularExpressions;
+using System.Threading;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ToolScope_for_EuroScope
 {
@@ -65,6 +68,27 @@ namespace ToolScope_for_EuroScope
             getRegions();
             addToPackagesList();
         }
+
+        #region FileManager
+
+        private void CreateBackup(string pathinesdir)
+        {
+            var sourcePath = esdir + "/" + pathinesdir;
+            var targetPath = esdir + "/ToolScope/" + pathinesdir;
+
+            foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
+            {
+                Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
+            }
+
+            //Copy all the files & Replaces any files with the same name
+            foreach (string newPath in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories))
+            {
+                System.IO.File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
+            }
+        }
+        
+        #endregion
 
         #region Package Manager
         // 27 Zeichen vor dem EDXX
@@ -235,6 +259,34 @@ namespace ToolScope_for_EuroScope
         }
         #endregion
 
+        #region Downloader
+        void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            this.BeginInvoke((MethodInvoker)delegate {
+                double bytesIn = double.Parse(e.BytesReceived.ToString());
+                double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+                double percentage = bytesIn / totalBytes * 100;
+                progressbar.Visible = true;
+                progressbar.Value = int.Parse(Math.Truncate(percentage).ToString());
+            });
+        }
+        void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            this.BeginInvoke((MethodInvoker)delegate {
+                progressbar.Visible = false;
+                try
+                {
+                    Directory.Delete(esdir + "/ToolScope/data");
+                } catch
+                {
+                }
+                ZipFile.ExtractToDirectory(esdir + "/ToolScope/data.zip", esdir + "/ToolScope/data");
+                System.IO.File.Delete(esdir + "/ToolScope/data.zip");
+                notifyText("success", "Package downloaded and extracted!", 5);
+            });
+        }
+        #endregion
+
         private void airacsettingsbtn_Click(object sender, EventArgs e)
         {
             settings_airac settings_airac = new settings_airac();
@@ -257,10 +309,6 @@ namespace ToolScope_for_EuroScope
 
         private void packagebox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // ##### LINK AUFBAU #####
-            // https://files.aero-nav.com/EDMM/Full-Update_20230225100326-230201-2.zip
-            // url / SEKTOR / Packagename_YYYYMMDDHHMMSS-AIRAC/xx-Version .zip
-
             var config = new IniFile("config.ini");
 
             var x = allpackages.FindIndex(s => s.Contains("https://files.aero-nav.com/"+ regionbox.Text + "/" + packagebox.Text));
@@ -285,6 +333,25 @@ namespace ToolScope_for_EuroScope
             airactxt.Text = da.ToString(@"yy\/MM");
             DateTime dr = DateTime.ParseExact(release, "yyyyMMddHHmms", CultureInfo.InvariantCulture);
             releasetxt.Text = dr.ToString("dd.MM.yyyy");
+        }
+
+        private void downloadbtn_Click(object sender, EventArgs e)
+        {
+            CreateBackup("Scenario");
+
+            MessageBox.Show(selectedurl);
+            Clipboard.SetText(selectedurl);
+
+            Thread thread = new Thread(() => {
+                WebClient client = new WebClient();
+                client.Credentials = new NetworkCredential("user", "coolpasswd");
+                client.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate,sdch");
+                client.Headers.Add(HttpRequestHeader.Referer, "https://files.aero-nav.com/EDXX/");
+                client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                client.DownloadFileAsync(new Uri(selectedurl), esdir + "/ToolScope/data.zip");
+            });
+            thread.Start();
         }
     }
 }

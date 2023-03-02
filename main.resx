@@ -161,7 +161,7 @@
         AfgziOf9M8ihTggHDlO+24x8qksAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="bunifuButton1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="downloadbtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAIAAAAAdCAYAAABixmRWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACgSURBVGhD7dutDYAwEEDhM4AgQSL42YXRkOzCMIwEKSBA
@@ -176,6 +176,18 @@
   <metadata name="notifytimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>337, 17</value>
   </metadata>
+  <data name="progressbar.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAR0AAAANCAYAAACUy7pUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFaSURBVGhD7du9UoNAFIZhSktLL8HSCkJnh4SBccLAOOEv
+        l8Id5LK8BEtLy9hZrudkFhFnlUBj834zT8Uu5TeH3cQjhJB/T9d1m6ZpegBYoq7rB+mPG1sl85ENB9l4
+        atvWAMBa0iPPUj63tlrc0cIZNpRladI0NdvtFgAukiSJKYrie/F8SPHc2YqZRh5cyYJ3XRhFkfF9HwBW
+        CcPQ7Ha7r4nH1sw0+h2mC7SlXC8BgCWCIDD7/f5cPDLU3NuqGSNt1OtDHY9cLwCApfSIxk47va2aMcN5
+        jo5Ers0AsJSe82iviKOtmjF62KMPq6o6j0WuFwDAEsOhsgw1j7ZqppER6EUXZFnmfAEAXEovpLRPpFfe
+        ZKi5tjUzjTzY6CKlV+Y/r8MAYE4cxybP8+GzSqecg60Yd/QWS5rpddgAAGtIj5xmC2eI/mbHlo/zZ84A
+        8BfpjyfpkV/+CuF5n7uJvQsF1QSmAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAAAAAAAEAIAALLgAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAEAAAABAAgGAAAAXHKoZgAAAAFv
