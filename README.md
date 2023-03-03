@@ -25,7 +25,7 @@ Wait one moment and you're ready to go! 🥳
 
 ## Can you see my credentials?
 No, absolutely not. That's the reason why I've published the code on GitHub. This program only needs your internet connection for the Autoupdater and AIRAC downloader. Of course you're free to compile it yourself! If you have any question regarding this topic feel free to contact me here:
-### **Contact:** Saugstauber#2252
+**Contact:** Saugstauber#2252
 
 ## Oh wait, there's something wrong with it!
 Issues and bugs can happen. Please report them in the [**Issues**](https://github.com/saugstauberr/ToolScope-for-EuroScope/issues) tab. Thank you very much! 😊
