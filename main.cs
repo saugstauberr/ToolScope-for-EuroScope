@@ -63,6 +63,7 @@ namespace ToolScope_for_EuroScope
             InitializeComponent();
             AutoUpdater.InstalledVersion = new Version(pversion);
             AutoUpdater.Start("https://raw.githubusercontent.com/saugstauberr/ToolScope-for-EuroScope/master/updates/update.xml");
+            versionlabel.Text = pversion;
             var config = new IniFile("config.ini");
 
             readAllFromIni();
@@ -81,8 +82,8 @@ namespace ToolScope_for_EuroScope
 
             if (config.Read("esdir", "Settings") == "")
             {
-                config.Write("esdir", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope", "Settings");
-                esfolderbox.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope";
+                config.Write("esdir", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope/Scenario", "Settings");
+                esfolderbox.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope/Scenario";
                 notifyText("error", "Remember to change your settings!", 10);
             }
 
@@ -95,7 +96,7 @@ namespace ToolScope_for_EuroScope
 
         private void CreateBackup(string pathinesdir)
         {
-            var sourcePath = esdir + "/" + pathinesdir;
+            var sourcePath = esdir + pathinesdir;
             var targetPath = esdir + "/ToolScope/Backup/";
 
 
@@ -114,7 +115,7 @@ namespace ToolScope_for_EuroScope
         public void ReplaceEuroScope()
         {
             var sourcePath = esdir + "/ToolScope/data";
-            var targetPath = esdir + "/Scenario";
+            var targetPath = esdir;
 
             try
             {
@@ -240,7 +241,7 @@ namespace ToolScope_for_EuroScope
                 text.Clear();
             }
 
-            foreach (string s in Directory.EnumerateFiles(esdir + "/Scenario/" + selectedregion + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories)) {
+            foreach (string s in Directory.EnumerateFiles(esdir + "/" + selectedregion + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories)) {
                 System.IO.File.WriteAllText(s, hoppiecode);
             }
 
@@ -329,13 +330,14 @@ namespace ToolScope_for_EuroScope
 
         private void ChangeUI(string pagename, Bunifu.UI.WinForms.BunifuButton.BunifuButton current)
         {
-            current.OnIdleState.FillColor = Color.FromArgb(255, 92, 82, 37);
-
+            //current.OnIdleState.FillColor = Color.FromArgb(255, 92, 82, 37);
+            current.Enabled = false;
 
             if (lastButton != null)
             {
-                lastButton.OnIdleState.FillColor = Color.FromArgb(255, 64, 57, 22);
-                lastButton.OnIdleState.BorderColor = Color.FromArgb(255, 207, 160, 6);
+                //lastButton.OnIdleState.FillColor = Color.FromArgb(255, 64, 57, 22);
+                //lastButton.OnIdleState.BorderColor = Color.FromArgb(255, 207, 160, 6);
+                lastButton.Enabled = true;
             }
 
             lastButton = current;
@@ -566,8 +568,10 @@ namespace ToolScope_for_EuroScope
         private void downloadbtn_Click(object sender, EventArgs e)
         {
             readAllFromIni();
-            CreateBackup("Scenario");
+            CreateBackup("");
             downloadbtn.Enabled = false;
+            Directory.CreateDirectory(esdir + "/ToolScope");
+            Directory.CreateDirectory(esdir + "/ToolScope/Backup");
 
             Thread thread = new Thread(() => {
                 WebClient client = new WebClient();
