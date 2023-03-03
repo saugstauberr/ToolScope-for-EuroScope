@@ -230,6 +230,9 @@ namespace ToolScope_for_EuroScope
             foreach (string s in Directory.EnumerateFiles(esdir + "/Scenario/" + selectedregion + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories)) {
                 System.IO.File.WriteAllText(s, hoppiecode);
             }
+
+            downloadbtn.Enabled = true;
+            airacsettingsbtn.Enabled = true;
         }
 
         #endregion
@@ -480,12 +483,13 @@ namespace ToolScope_for_EuroScope
 
         private void downloadbtn_Click(object sender, EventArgs e)
         {
-            CreateBackup("Scenario");
             readAllFromIni();
+            CreateBackup("Scenario");
+            downloadbtn.Enabled = false;
+            airacsettingsbtn.Enabled = false;
 
             Thread thread = new Thread(() => {
                 WebClient client = new WebClient();
-                client.Credentials = new NetworkCredential("user", "coolpasswd");
                 client.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate,sdch");
                 client.Headers.Add(HttpRequestHeader.Referer, "https://files.aero-nav.com/EDXX/");
                 client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
