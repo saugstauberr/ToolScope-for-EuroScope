@@ -26,6 +26,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using File = System.IO.File;
 using static System.Net.Mime.MediaTypeNames;
 using AutoUpdaterDotNET;
+using System.Runtime.Remoting.Messaging;
 
 namespace ToolScope_for_EuroScope
 {
@@ -37,7 +38,7 @@ namespace ToolScope_for_EuroScope
         public string cid;
         public string passwd;
         public string rating;
-        public string server = "";
+        public string server = "AUTOMATIC";
         public string callsign;
         public string realname;
         public string hoppiecode;
@@ -46,6 +47,8 @@ namespace ToolScope_for_EuroScope
         public string selectedregion;
 
         public string pversion = "1.0.1";
+
+        private Bunifu.UI.WinForms.BunifuButton.BunifuButton lastButton = null;
 
         public List<string> regions = new List<string>();
 
@@ -73,8 +76,16 @@ namespace ToolScope_for_EuroScope
                 System.IO.File.WriteAllText("config.ini", strContent);
                 saveAllToIni();
             }
+
+            if (config.Read("esdir", "Settings") == "")
+            {
+                config.Write("esdir", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope", "Settings");
+                esfolderbox.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope";
+            }
+
             getRegions();
             addToPackagesList();
+            insertInTextBoxes();
             notifyText("info", "Loaded! Version " + pversion, 10);
         }
 
@@ -232,7 +243,6 @@ namespace ToolScope_for_EuroScope
             }
 
             downloadbtn.Enabled = true;
-            airacsettingsbtn.Enabled = true;
         }
 
         #endregion
@@ -313,7 +323,26 @@ namespace ToolScope_for_EuroScope
         }
         #endregion
 
-        #region Sonstige Functions
+        #region Sonstige Funktionen
+
+        private void ChangeUI(string pagename, Bunifu.UI.WinForms.BunifuButton.BunifuButton current)
+        {
+            current.OnIdleState.FillColor = Color.FromArgb(255, 110, 110, 110);
+            current.OnIdleState.BorderColor = Color.FromArgb(255, 113, 113, 113);
+            current.OnIdleState.ForeColor = Color.FromArgb(255, 232, 232, 232);
+
+
+            if (lastButton != null)
+            {
+                lastButton.OnIdleState.FillColor = Color.FromArgb(255, 54, 54, 54);
+                lastButton.OnIdleState.BorderColor = Color.FromArgb(255, 94, 94, 94);
+                lastButton.OnIdleState.ForeColor = Color.FromArgb(255, 204, 204, 204);
+            }
+
+            lastButton = current;
+            pagenametxt.Text = pagename;
+        }
+
         private void readAllFromIni()
         {
             var config = new IniFile("config.ini");
@@ -333,9 +362,61 @@ namespace ToolScope_for_EuroScope
             hoppiecode = config.Read("hoppiecode", "Settings");
         }
 
+        private string ratingConvert(string task, string data2)
+        {
+            if (task == "write")
+            {
+                switch (data2)
+                {
+                    case "S1 - Tower Trainee":
+                        return "1";
+                    case "S2 - Tower Controller":
+                        return "2";
+                    case "S3 - Terminal Controller":
+                        return "3";
+                    case "C1 - Enroute Controller":
+                        return "4";
+                    case "C3 - Senior Controller":
+                        return "5";
+                    default:
+                        return null;
+                }
+            }
+            else
+            {
+                switch (data2)
+                {
+                    case "1":
+                        return "S1 - Tower Trainee";
+                    case "2":
+                        return "S2 - Tower Controller";
+                    case "3":
+                        return "S3 - Terminal Controller";
+                    case "4":
+                        return "C1 - Enroute Controller";
+                    case "5":
+                        return "C3 - Senior Controller";
+                    default:
+                        return null;
+                }
+            }
+        }
+
+        private void updateVars()
+        {
+            cid = cidbox.Text;
+            passwd = passwdbox.Text;
+            rating = ratingConvert("write", ratingbox.Text);
+            callsign = callsignbox.Text;
+            realname = namebox.Text;
+            hoppiecode = hoppiecodebox.Text;
+            //packagedir = downloadfolderbox.Text;
+            esdir = esfolderbox.Text;
+        }
+
         private void saveAllToIni()
         {
-            var password64 = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(passwd));
+            var password64 = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(passwdbox.Text));
 
             var config = new IniFile("config.ini");
 
@@ -349,6 +430,19 @@ namespace ToolScope_for_EuroScope
             config.Write("realname", realname, "Settings");
             config.Write("hoppiecode", hoppiecode, "Settings");
         }
+
+        private void insertInTextBoxes()
+        {
+            cidbox.Text = cid;
+            passwdbox.Text = passwd;
+            ratingbox.Text = rating = ratingConvert("read", rating); ;
+            callsignbox.Text = callsign;
+            namebox.Text = realname;
+            hoppiecodebox.Text = hoppiecode;
+            //downloadfolderbox.Text = packagedir;
+            esfolderbox.Text = esdir;
+        }
+
         #endregion
 
         #region Control Bar
@@ -432,17 +526,6 @@ namespace ToolScope_for_EuroScope
         }
         #endregion
 
-        private void airacsettingsbtn_Click(object sender, EventArgs e)
-        {
-            settings_airac settings_airac = new settings_airac();
-            settings_airac.ShowDialog();
-        }
-
-        private void main_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void regionbox_SelectedIndexChanged(object sender, EventArgs e)
         {
             addPackageItems(regionbox.Text);
@@ -486,7 +569,6 @@ namespace ToolScope_for_EuroScope
             readAllFromIni();
             CreateBackup("Scenario");
             downloadbtn.Enabled = false;
-            airacsettingsbtn.Enabled = false;
 
             Thread thread = new Thread(() => {
                 WebClient client = new WebClient();
@@ -497,6 +579,40 @@ namespace ToolScope_for_EuroScope
                 client.DownloadFileAsync(new Uri(selectedurl), esdir + "/ToolScope/data.zip");
             });
             thread.Start();
+        }
+
+        private void openupdateui_Click(object sender, EventArgs e)
+        {
+            uipage.SelectedIndex = 0;
+            ChangeUI("AIRAC Updater/Downloader", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
+        }
+
+        private void opensettingsui_Click(object sender, EventArgs e)
+        {
+            uipage.SelectedIndex = 1;
+            ChangeUI("AIRAC Settings", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
+        }
+
+        private void savebtn_Click(object sender, EventArgs e)
+        {
+            updateVars();
+            saveAllToIni();
+            readAllFromIni();
+            notifyText("success", "Settings have been saved and loaded!", 5);
+        }
+
+        private void esfolderbox_Click(object sender, EventArgs e)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    esdir = fbd.SelectedPath;
+                    esfolderbox.Text = esdir;
+                }
+            }
         }
     }
 }
