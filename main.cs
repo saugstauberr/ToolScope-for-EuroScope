@@ -364,11 +364,13 @@ namespace ToolScope_for_EuroScope
             hoppiecode = config.Read("hoppiecode", "Settings");
         }
 
-        private string ratingConvert(string task, string data2)
+        private string ratingConvert(string task)
         {
+            var data = ratingbox.Text;
+
             if (task == "write")
             {
-                switch (data2)
+                switch (data)
                 {
                     case "S1 - Tower Trainee":
                         return "1";
@@ -386,7 +388,7 @@ namespace ToolScope_for_EuroScope
             }
             else
             {
-                switch (data2)
+                switch (rating)
                 {
                     case "1":
                         return "S1 - Tower Trainee";
@@ -399,7 +401,7 @@ namespace ToolScope_for_EuroScope
                     case "5":
                         return "C3 - Senior Controller";
                     default:
-                        return null;
+                        return "Rating not found";
                 }
             }
         }
@@ -408,7 +410,7 @@ namespace ToolScope_for_EuroScope
         {
             cid = cidbox.Text;
             passwd = passwdbox.Text;
-            rating = ratingConvert("write", ratingbox.Text);
+            rating = ratingConvert("write");
             callsign = callsignbox.Text;
             realname = namebox.Text;
             hoppiecode = hoppiecodebox.Text;
@@ -427,7 +429,7 @@ namespace ToolScope_for_EuroScope
             config.Write("cid", cid, "Settings");
             config.Write("passwd", password64, "Settings");
             config.Write("rating", rating, "Settings");
-            config.Write("server", server, "Settings");
+            config.Write("server", "AUTOMATIC", "Settings");
             config.Write("callsign", callsign, "Settings");
             config.Write("realname", realname, "Settings");
             config.Write("hoppiecode", hoppiecode, "Settings");
@@ -437,7 +439,7 @@ namespace ToolScope_for_EuroScope
         {
             cidbox.Text = cid;
             passwdbox.Text = passwd;
-            ratingbox.Text = rating = ratingConvert("read", rating); ;
+            ratingbox.Text = ratingConvert("read");
             callsignbox.Text = callsign;
             namebox.Text = realname;
             hoppiecodebox.Text = hoppiecode;
