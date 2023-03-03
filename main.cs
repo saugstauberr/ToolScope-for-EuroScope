@@ -27,6 +27,10 @@ using File = System.IO.File;
 using static System.Net.Mime.MediaTypeNames;
 using AutoUpdaterDotNET;
 using System.Runtime.Remoting.Messaging;
+using System.Security.Policy;
+using System.Xml.Linq;
+using System.Xml;
+using HtmlAgilityPack;
 
 namespace ToolScope_for_EuroScope
 {
@@ -46,7 +50,7 @@ namespace ToolScope_for_EuroScope
         public string selectedurl;
         public string selectedregion;
 
-        public string pversion = "1.1.0";
+        public string pversion = "1.1.1";
 
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton lastButton = null;
 
@@ -87,8 +91,8 @@ namespace ToolScope_for_EuroScope
                 notifyText("error", "Remember to change your settings!", 10);
             }
 
+            GrabDownloadUrls();
             getRegions();
-            addToPackagesList();
             insertInTextBoxes();
         }
 
@@ -250,6 +254,24 @@ namespace ToolScope_for_EuroScope
 
         #endregion
 
+        #region Download URL Grabber
+
+        private void GrabDownloadUrls()
+        {
+            var config = new IniFile("config.ini");
+
+            HtmlWeb hw = new HtmlWeb();
+            HtmlAgilityPack.HtmlDocument doc = hw.Load("http://files.aero-nav.com/EDXX");
+            foreach (HtmlNode link in doc.DocumentNode.SelectNodes("//a[@href]"))
+            {
+                if(link.Attributes["href"].Value.Contains(".zip")) {
+                    allpackages.Add(link.Attributes["href"].Value);
+                }
+            }
+        }
+
+        #endregion
+
         #region Package Manager
         // 27 Zeichen vor dem EDXX
 
@@ -278,30 +300,28 @@ namespace ToolScope_for_EuroScope
 
             int.TryParse(config.Read("amount", "Links"), NumberStyles.Number, CultureInfo.CurrentCulture.NumberFormat, out y);
 
-            while (x <= y)
+            foreach (string link in allpackages)
             {
-
-                string regionName2 = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("nav.com/") + 8);
+                string regionName2 = link.Substring(link.IndexOf("nav.com/") + 8);
                 regionName2 = regionName2.Substring(0, regionName2.IndexOf("/"));
 
-                string release = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("nav.com/") + 8);
+                string release = link.Substring(link.IndexOf("nav.com/") + 8);
                 release = release.Substring(0, release.IndexOf("/"));
 
-                string airac = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("nav.com/") + 8);
+                string airac = link.Substring(link.IndexOf("nav.com/") + 8);
                 airac = airac.Substring(0, airac.IndexOf("/"));
 
-                string version = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("nav.com/") + 8);
+                string version = link.Substring(link.IndexOf("nav.com/") + 8);
                 version = version.Substring(0, version.IndexOf("/"));
 
                 if (!regions.Contains(regionName2))
                 {
-                    regionName = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("nav.com/") + 8);
+                    regionName = link.Substring(link.IndexOf("nav.com/") + 8);
                     regionName = regionName.Substring(0, regionName.IndexOf("/"));
                     regionbox.Items.Add(regionName);
                 }
 
                 regions.Add(regionName2);
-                x++;
             }
         }
 
@@ -314,14 +334,15 @@ namespace ToolScope_for_EuroScope
             packagebox.Items.Clear();
 
             int.TryParse(config.Read("amount", "Links"), NumberStyles.Number, CultureInfo.CurrentCulture.NumberFormat, out y);
-            while(x <= y)
+
+            foreach (string link in allpackages)
             {
-                if (config.Read(x.ToString(), "Links").Contains(filter) == true) {
-                    string packageName = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("nav.com/") + 13);
+                if (link.Contains(filter) == true)
+                {
+                    string packageName = link.Substring(link.IndexOf("nav.com/") + 13);
                     packageName = packageName.Substring(0, packageName.IndexOf("2") - 1);
                     packagebox.Items.Add(packageName);
                 }
-                x++;
             }
         }
         #endregion
@@ -549,16 +570,16 @@ namespace ToolScope_for_EuroScope
 
             selectedurl = allpackages[x];
 
-            string regionName = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("nav.com/") + 8);
+            string regionName = allpackages[x].Substring(allpackages[x].IndexOf("nav.com/") + 8);
             regionName = regionName.Substring(0, regionName.IndexOf("/"));
 
-            string release = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("_2") + 1);
+            string release = allpackages[x].Substring(allpackages[x].IndexOf("_2") + 1);
             release = release.Substring(0, release.IndexOf(".zip") - 10);
 
-            string airac = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("_2") + 16);
+            string airac = allpackages[x].Substring(allpackages[x].IndexOf("_2") + 16);
             airac = airac.Substring(0, airac.IndexOf(".zip") - 2);
 
-            string version = config.Read(x.ToString(), "Links").Substring(config.Read(x.ToString(), "Links").IndexOf("_2") + 23);
+            string version = allpackages[x].Substring(allpackages[x].IndexOf("_2") + 23);
             version = version.Substring(0, version.IndexOf(".zip"));
 
             selectedregion = regionName;
