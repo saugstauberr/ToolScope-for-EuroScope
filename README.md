@@ -1,5 +1,5 @@
 
-# ToolScope for EuroScope
+![Banner](https://i.imgur.com/Itmo2Vl.png)
 ### Welcome to Toolscape! :wave:
  [Download here!](https://github.com/saugstauberr/ToolScope-for-EuroScope/releases) •
  [Where I've got this idea from](https://board.vatsim-germany.org/threads/tool-powershell-script-fuer-airac-update-mit-erhaltung-eigener-einstellungen.69729/page-2) •
@@ -22,6 +22,9 @@ And the best thing: **It's super easy to use!** 👌
 First you have to download the .exe-File from the releases tab. After that just run the file, change the settings as you need them and browse through the regions and packages. When you've found your package, just select it and click **Update AIRAC**.
 Wait one moment and you're ready to go! 🥳
 **Currently it's only supported for German EuroScope Scenarios!**
+
+## Can you see my credentials?
+No, absolutely not. That's the reason why I've published the code on GitHub. This program only needs your internet connection for the Autoupdater and AIRAC downloader. Of course you're free to compile it yourself! If you have any question regarding any topic feel free to contact me here: **Saugstauber#2252**
 
 ## Oh wait, there's something wrong with it!
 Issues and bugs can happen. Please report them in the [**Issues**](https://github.com/saugstauberr/ToolScope-for-EuroScope/issues) tab. Thank you very much! 😊
