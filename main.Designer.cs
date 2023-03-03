@@ -111,6 +111,8 @@
             this.bunifuPanel2 = new Bunifu.UI.WinForms.BunifuPanel();
             this.bunifuPanel3 = new Bunifu.UI.WinForms.BunifuPanel();
             this.versionlabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.countrybox = new Bunifu.UI.WinForms.BunifuDropdown();
             this.controlbar.SuspendLayout();
             this.uipage.SuspendLayout();
             this.airacdownloadpan.SuspendLayout();
@@ -713,10 +715,10 @@
             this.uipage.Location = new System.Drawing.Point(109, 31);
             this.uipage.Multiline = true;
             this.uipage.Name = "uipage";
-            this.uipage.Page = this.tabPage2;
-            this.uipage.PageIndex = 1;
-            this.uipage.PageName = "tabPage2";
-            this.uipage.PageTitle = "Other Settings";
+            this.uipage.Page = this.airacdownloadpan;
+            this.uipage.PageIndex = 0;
+            this.uipage.PageName = "airacdownloadpan";
+            this.uipage.PageTitle = "AIRAC Downloader";
             this.uipage.SelectedIndex = 0;
             this.uipage.Size = new System.Drawing.Size(655, 363);
             this.uipage.TabIndex = 30;
@@ -741,6 +743,8 @@
             // airacdownloadpan
             // 
             this.airacdownloadpan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.airacdownloadpan.Controls.Add(this.label3);
+            this.airacdownloadpan.Controls.Add(this.countrybox);
             this.airacdownloadpan.Controls.Add(this.progressbar);
             this.airacdownloadpan.Controls.Add(this.versiontxt);
             this.airacdownloadpan.Controls.Add(this.downloadbtn);
@@ -1767,6 +1771,63 @@
             this.versionlabel.Text = "0.0.1";
             this.versionlabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.label3.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label3.Location = new System.Drawing.Point(101, 81);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 29);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "Country:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // countrybox
+            // 
+            this.countrybox.BackColor = System.Drawing.Color.Transparent;
+            this.countrybox.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.countrybox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.countrybox.BorderRadius = 0;
+            this.countrybox.Color = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.countrybox.Direction = Bunifu.UI.WinForms.BunifuDropdown.Directions.Down;
+            this.countrybox.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.countrybox.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.countrybox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.countrybox.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.countrybox.DisabledIndicatorColor = System.Drawing.Color.DarkGray;
+            this.countrybox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.countrybox.DropdownBorderThickness = Bunifu.UI.WinForms.BunifuDropdown.BorderThickness.Thick;
+            this.countrybox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.countrybox.DropDownTextAlign = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
+            this.countrybox.FillDropDown = true;
+            this.countrybox.FillIndicator = false;
+            this.countrybox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.countrybox.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
+            this.countrybox.ForeColor = System.Drawing.Color.White;
+            this.countrybox.FormattingEnabled = true;
+            this.countrybox.Icon = null;
+            this.countrybox.IndicatorAlignment = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
+            this.countrybox.IndicatorColor = System.Drawing.Color.DarkGray;
+            this.countrybox.IndicatorLocation = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
+            this.countrybox.IndicatorThickness = 2;
+            this.countrybox.IsDropdownOpened = false;
+            this.countrybox.ItemBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.countrybox.ItemBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.countrybox.ItemForeColor = System.Drawing.Color.White;
+            this.countrybox.ItemHeight = 19;
+            this.countrybox.ItemHighLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.countrybox.ItemHighLightForeColor = System.Drawing.Color.White;
+            this.countrybox.ItemTopMargin = 3;
+            this.countrybox.Location = new System.Drawing.Point(190, 81);
+            this.countrybox.Name = "countrybox";
+            this.countrybox.Size = new System.Drawing.Size(145, 25);
+            this.countrybox.TabIndex = 31;
+            this.countrybox.Text = null;
+            this.countrybox.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
+            this.countrybox.TextLeftMargin = 5;
+            this.countrybox.SelectedIndexChanged += new System.EventHandler(this.countrybox_SelectedIndexChanged);
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1846,6 +1907,8 @@
         private Bunifu.UI.WinForms.BunifuPanel bunifuPanel2;
         private Bunifu.UI.WinForms.BunifuPanel bunifuPanel3;
         private System.Windows.Forms.Label versionlabel;
+        private System.Windows.Forms.Label label3;
+        private Bunifu.UI.WinForms.BunifuDropdown countrybox;
     }
 }
 
