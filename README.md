@@ -6,8 +6,8 @@
  [VATSIM Germany Website](https://vatsim-germany.org/) •
  [Manual AIRAC download](http://files.aero-nav.com/EDXX)
  
-![Main Menu](https://i.imgur.com/koOWvxo.png)
-![Settings Menu](https://i.imgur.com/qbGWwWd.png)
+![Main Menu](https://i.imgur.com/fe3Cl5T.png)
+![Settings Menu](https://i.imgur.com/b07OUrU.png)
 
 ## What is Toolscape?
 Toolspace is a tool which allows you to update your EuroScope AIRAC or even just install a AIRAC package for a new sector without having to type your credentials and your hoppie code ever again! 
