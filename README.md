@@ -17,6 +17,7 @@ And the best thing: **It's super easy to use!** 👌
 - 🔄️ automatic file download and extraction
 - ⌨️ never type in your credentials and hoppie code again manually
 - ⬇️ drop-down menu for selecting your favourite package
+- ♾️ automatic program updates for new releases
 
 ## How do I use it?
 First you have to download the .exe-File from the releases tab. After that just run the file, change the settings as you need them and browse through the regions and packages. When you've found your package, just select it and click **Update AIRAC**.
@@ -31,7 +32,6 @@ Issues and bugs can happen. Please report them in the [**Issues**](https://githu
 
 ## Incoming features
 - more customization
-- Autoupdater
 - Pluginkeeper
 - international AIRAC support
 - various other features, it should be a program for multiple purposes
