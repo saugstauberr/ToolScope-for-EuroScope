@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <item>
-  <version>0.0.9</version>
+  <version>1.0.0</version>
   <url>https://github.com/saugstauberr/ToolScope-for-EuroScope/releases/download/release/release.zip</url>
   <changelog>https://github.com/saugstauberr/ToolScope-for-EuroScope/releases</changelog>
   <mandatory>true</mandatory>
