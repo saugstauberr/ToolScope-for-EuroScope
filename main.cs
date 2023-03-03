@@ -330,6 +330,7 @@ namespace ToolScope_for_EuroScope
 
         private void ChangeUI(string pagename, Bunifu.UI.WinForms.BunifuButton.BunifuButton current)
         {
+            insertInTextBoxes();
             //current.OnIdleState.FillColor = Color.FromArgb(255, 92, 82, 37);
             current.Enabled = false;
 
@@ -442,6 +443,7 @@ namespace ToolScope_for_EuroScope
             hoppiecodebox.Text = hoppiecode;
             //downloadfolderbox.Text = packagedir;
             esfolderbox.Text = esdir;
+            savebtn.Enabled = false;
         }
 
         #endregion
@@ -534,6 +536,7 @@ namespace ToolScope_for_EuroScope
             versiontxt.Text = "None";
             airactxt.Text = "None";
             releasetxt.Text = "None";
+            downloadbtn.Enabled = false;
         }
 
         private void packagebox_SelectedIndexChanged(object sender, EventArgs e)
@@ -563,6 +566,7 @@ namespace ToolScope_for_EuroScope
             airactxt.Text = da.ToString(@"yy\/MM");
             DateTime dr = DateTime.ParseExact(release, "yyyyMMddHHmms", CultureInfo.InvariantCulture);
             releasetxt.Text = dr.ToString("dd.MM.yyyy");
+            downloadbtn.Enabled = true;
         }
 
         private void downloadbtn_Click(object sender, EventArgs e)
@@ -602,6 +606,7 @@ namespace ToolScope_for_EuroScope
             saveAllToIni();
             readAllFromIni();
             insertInTextBoxes();
+            savebtn.Enabled = false;
             notifyText("success", "Settings have been saved and loaded!", 5);
         }
 
@@ -618,5 +623,42 @@ namespace ToolScope_for_EuroScope
                 }
             }
         }
+
+        #region Save Button Design
+        private void cidbox_TextChanged(object sender, EventArgs e)
+        {
+            savebtn.Enabled = true;
+        }
+
+        private void passwdbox_TextChanged(object sender, EventArgs e)
+        {
+            savebtn.Enabled = true;
+        }
+
+        private void namebox_TextChanged(object sender, EventArgs e)
+        {
+            savebtn.Enabled = true;
+        }
+
+        private void ratingbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            savebtn.Enabled = true;
+        }
+
+        private void callsignbox_TextChanged(object sender, EventArgs e)
+        {
+            savebtn.Enabled = true;
+        }
+
+        private void hoppiecodebox_TextChanged(object sender, EventArgs e)
+        {
+            savebtn.Enabled = true;
+        }
+
+        private void esfolderbox_TextChanged(object sender, EventArgs e)
+        {
+            savebtn.Enabled = true;
+        }
+        #endregion
     }
 }

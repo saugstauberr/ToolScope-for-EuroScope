@@ -413,6 +413,7 @@
             this.downloadbtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.downloadbtn.DisabledFillColor = System.Drawing.Color.Empty;
             this.downloadbtn.DisabledForecolor = System.Drawing.Color.Empty;
+            this.downloadbtn.Enabled = false;
             this.downloadbtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
             this.downloadbtn.Font = new System.Drawing.Font("Microsoft PhagsPa", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadbtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(252)))), ((int)(((byte)(159)))));
@@ -1059,6 +1060,7 @@
             this.esfolderbox.TextPlaceholder = "Standard: C:/Documents/EuroScope/Scenario\r\n";
             this.esfolderbox.UseSystemPasswordChar = false;
             this.esfolderbox.WordWrap = true;
+            this.esfolderbox.TextChanged += new System.EventHandler(this.esfolderbox_TextChanged);
             this.esfolderbox.Click += new System.EventHandler(this.esfolderbox_Click);
             // 
             // label10
@@ -1173,6 +1175,7 @@
             this.hoppiecodebox.TextPlaceholder = "143sfk1204l";
             this.hoppiecodebox.UseSystemPasswordChar = false;
             this.hoppiecodebox.WordWrap = true;
+            this.hoppiecodebox.TextChanged += new System.EventHandler(this.hoppiecodebox_TextChanged);
             // 
             // label12
             // 
@@ -1261,6 +1264,7 @@
             this.callsignbox.TextPlaceholder = "XY_OBS";
             this.callsignbox.UseSystemPasswordChar = false;
             this.callsignbox.WordWrap = true;
+            this.callsignbox.TextChanged += new System.EventHandler(this.callsignbox_TextChanged);
             // 
             // savebtn
             // 
@@ -1290,6 +1294,7 @@
             this.savebtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.savebtn.DisabledFillColor = System.Drawing.Color.Empty;
             this.savebtn.DisabledForecolor = System.Drawing.Color.Empty;
+            this.savebtn.Enabled = false;
             this.savebtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
             this.savebtn.Font = new System.Drawing.Font("Microsoft PhagsPa", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.savebtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(252)))), ((int)(((byte)(159)))));
@@ -1403,6 +1408,7 @@
             this.ratingbox.Text = null;
             this.ratingbox.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
             this.ratingbox.TextLeftMargin = 5;
+            this.ratingbox.SelectedIndexChanged += new System.EventHandler(this.ratingbox_SelectedIndexChanged);
             // 
             // label14
             // 
@@ -1503,6 +1509,7 @@
             this.passwdbox.TextPlaceholder = "****";
             this.passwdbox.UseSystemPasswordChar = false;
             this.passwdbox.WordWrap = true;
+            this.passwdbox.TextChanged += new System.EventHandler(this.passwdbox_TextChanged);
             // 
             // label16
             // 
@@ -1603,6 +1610,7 @@
             this.namebox.TextPlaceholder = "Max M.";
             this.namebox.UseSystemPasswordChar = false;
             this.namebox.WordWrap = true;
+            this.namebox.TextChanged += new System.EventHandler(this.namebox_TextChanged);
             // 
             // label18
             // 
@@ -1691,6 +1699,7 @@
             this.cidbox.TextPlaceholder = "123456789";
             this.cidbox.UseSystemPasswordChar = false;
             this.cidbox.WordWrap = true;
+            this.cidbox.TextChanged += new System.EventHandler(this.cidbox_TextChanged);
             // 
             // pagenametxt
             // 
