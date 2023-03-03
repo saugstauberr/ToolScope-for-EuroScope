@@ -77,16 +77,18 @@ namespace ToolScope_for_EuroScope
                 saveAllToIni();
             }
 
+            notifyText("info", "Loaded! Version " + pversion, 10);
+
             if (config.Read("esdir", "Settings") == "")
             {
                 config.Write("esdir", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope", "Settings");
                 esfolderbox.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope";
+                notifyText("error", "Remember to change your settings!", 10);
             }
 
             getRegions();
             addToPackagesList();
             insertInTextBoxes();
-            notifyText("info", "Loaded! Version " + pversion, 10);
         }
 
         #region FileManager
@@ -327,16 +329,13 @@ namespace ToolScope_for_EuroScope
 
         private void ChangeUI(string pagename, Bunifu.UI.WinForms.BunifuButton.BunifuButton current)
         {
-            current.OnIdleState.FillColor = Color.FromArgb(255, 110, 110, 110);
-            current.OnIdleState.BorderColor = Color.FromArgb(255, 113, 113, 113);
-            current.OnIdleState.ForeColor = Color.FromArgb(255, 232, 232, 232);
+            current.OnIdleState.FillColor = Color.FromArgb(255, 92, 82, 37);
 
 
             if (lastButton != null)
             {
-                lastButton.OnIdleState.FillColor = Color.FromArgb(255, 54, 54, 54);
-                lastButton.OnIdleState.BorderColor = Color.FromArgb(255, 94, 94, 94);
-                lastButton.OnIdleState.ForeColor = Color.FromArgb(255, 204, 204, 204);
+                lastButton.OnIdleState.FillColor = Color.FromArgb(255, 64, 57, 22);
+                lastButton.OnIdleState.BorderColor = Color.FromArgb(255, 207, 160, 6);
             }
 
             lastButton = current;
@@ -598,6 +597,7 @@ namespace ToolScope_for_EuroScope
             updateVars();
             saveAllToIni();
             readAllFromIni();
+            insertInTextBoxes();
             notifyText("success", "Settings have been saved and loaded!", 5);
         }
 

@@ -108,10 +108,13 @@
             this.cidbox = new Bunifu.UI.WinForms.BunifuTextBox();
             this.pagenametxt = new System.Windows.Forms.Label();
             this.bunifuDragControl3 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
+            this.bunifuPanel2 = new Bunifu.UI.WinForms.BunifuPanel();
+            this.bunifuPanel3 = new Bunifu.UI.WinForms.BunifuPanel();
             this.controlbar.SuspendLayout();
             this.uipage.SuspendLayout();
             this.airacdownloadpan.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.bunifuPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // controlbar
@@ -814,7 +817,7 @@
             this.openupdateui.DisabledForecolor = System.Drawing.Color.Empty;
             this.openupdateui.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Idle;
             this.openupdateui.Font = new System.Drawing.Font("Microsoft PhagsPa", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.openupdateui.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.openupdateui.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
             this.openupdateui.IconLeft = null;
             this.openupdateui.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openupdateui.IconLeftCursor = System.Windows.Forms.Cursors.Default;
@@ -833,7 +836,7 @@
             this.openupdateui.IdleIconLeftImage = null;
             this.openupdateui.IdleIconRightImage = null;
             this.openupdateui.IndicateFocus = false;
-            this.openupdateui.Location = new System.Drawing.Point(3, 42);
+            this.openupdateui.Location = new System.Drawing.Point(0, 1);
             this.openupdateui.Name = "openupdateui";
             this.openupdateui.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.openupdateui.OnDisabledState.BorderRadius = 1;
@@ -843,31 +846,31 @@
             this.openupdateui.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
             this.openupdateui.OnDisabledState.IconLeftImage = null;
             this.openupdateui.OnDisabledState.IconRightImage = null;
-            this.openupdateui.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(133)))), ((int)(((byte)(133)))));
+            this.openupdateui.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(160)))), ((int)(((byte)(6)))));
             this.openupdateui.onHoverState.BorderRadius = 1;
             this.openupdateui.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.openupdateui.onHoverState.BorderThickness = 2;
-            this.openupdateui.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
-            this.openupdateui.onHoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.openupdateui.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(57)))), ((int)(((byte)(22)))));
+            this.openupdateui.onHoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
             this.openupdateui.onHoverState.IconLeftImage = null;
             this.openupdateui.onHoverState.IconRightImage = null;
-            this.openupdateui.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.openupdateui.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(160)))), ((int)(((byte)(6)))));
             this.openupdateui.OnIdleState.BorderRadius = 1;
             this.openupdateui.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.openupdateui.OnIdleState.BorderThickness = 2;
-            this.openupdateui.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.openupdateui.OnIdleState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.openupdateui.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(57)))), ((int)(((byte)(22)))));
+            this.openupdateui.OnIdleState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
             this.openupdateui.OnIdleState.IconLeftImage = null;
             this.openupdateui.OnIdleState.IconRightImage = null;
-            this.openupdateui.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.openupdateui.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(160)))), ((int)(((byte)(6)))));
             this.openupdateui.OnPressedState.BorderRadius = 1;
             this.openupdateui.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.openupdateui.OnPressedState.BorderThickness = 2;
-            this.openupdateui.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.openupdateui.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.openupdateui.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(57)))), ((int)(((byte)(22)))));
+            this.openupdateui.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
             this.openupdateui.OnPressedState.IconLeftImage = null;
             this.openupdateui.OnPressedState.IconRightImage = null;
-            this.openupdateui.Size = new System.Drawing.Size(100, 29);
+            this.openupdateui.Size = new System.Drawing.Size(103, 29);
             this.openupdateui.TabIndex = 30;
             this.openupdateui.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.openupdateui.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -906,7 +909,7 @@
             this.opensettingsui.DisabledForecolor = System.Drawing.Color.Empty;
             this.opensettingsui.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Idle;
             this.opensettingsui.Font = new System.Drawing.Font("Microsoft PhagsPa", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.opensettingsui.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.opensettingsui.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
             this.opensettingsui.IconLeft = null;
             this.opensettingsui.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.opensettingsui.IconLeftCursor = System.Windows.Forms.Cursors.Default;
@@ -925,7 +928,7 @@
             this.opensettingsui.IdleIconLeftImage = null;
             this.opensettingsui.IdleIconRightImage = null;
             this.opensettingsui.IndicateFocus = false;
-            this.opensettingsui.Location = new System.Drawing.Point(3, 71);
+            this.opensettingsui.Location = new System.Drawing.Point(0, 30);
             this.opensettingsui.Name = "opensettingsui";
             this.opensettingsui.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.opensettingsui.OnDisabledState.BorderRadius = 1;
@@ -935,31 +938,31 @@
             this.opensettingsui.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
             this.opensettingsui.OnDisabledState.IconLeftImage = null;
             this.opensettingsui.OnDisabledState.IconRightImage = null;
-            this.opensettingsui.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(133)))), ((int)(((byte)(133)))));
+            this.opensettingsui.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(160)))), ((int)(((byte)(6)))));
             this.opensettingsui.onHoverState.BorderRadius = 1;
             this.opensettingsui.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.opensettingsui.onHoverState.BorderThickness = 2;
-            this.opensettingsui.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
-            this.opensettingsui.onHoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.opensettingsui.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(57)))), ((int)(((byte)(22)))));
+            this.opensettingsui.onHoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
             this.opensettingsui.onHoverState.IconLeftImage = null;
             this.opensettingsui.onHoverState.IconRightImage = null;
-            this.opensettingsui.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.opensettingsui.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(160)))), ((int)(((byte)(6)))));
             this.opensettingsui.OnIdleState.BorderRadius = 1;
             this.opensettingsui.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.opensettingsui.OnIdleState.BorderThickness = 2;
-            this.opensettingsui.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.opensettingsui.OnIdleState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.opensettingsui.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(57)))), ((int)(((byte)(22)))));
+            this.opensettingsui.OnIdleState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
             this.opensettingsui.OnIdleState.IconLeftImage = null;
             this.opensettingsui.OnIdleState.IconRightImage = null;
-            this.opensettingsui.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.opensettingsui.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(160)))), ((int)(((byte)(6)))));
             this.opensettingsui.OnPressedState.BorderRadius = 1;
             this.opensettingsui.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.opensettingsui.OnPressedState.BorderThickness = 2;
-            this.opensettingsui.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.opensettingsui.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.opensettingsui.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(57)))), ((int)(((byte)(22)))));
+            this.opensettingsui.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
             this.opensettingsui.OnPressedState.IconLeftImage = null;
             this.opensettingsui.OnPressedState.IconRightImage = null;
-            this.opensettingsui.Size = new System.Drawing.Size(100, 29);
+            this.opensettingsui.Size = new System.Drawing.Size(103, 29);
             this.opensettingsui.TabIndex = 31;
             this.opensettingsui.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.opensettingsui.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1707,6 +1710,40 @@
             this.bunifuDragControl3.TargetControl = this.uipage;
             this.bunifuDragControl3.Vertical = true;
             // 
+            // bunifuPanel2
+            // 
+            this.bunifuPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.bunifuPanel2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
+            this.bunifuPanel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuPanel2.BackgroundImage")));
+            this.bunifuPanel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bunifuPanel2.BorderColor = System.Drawing.Color.Transparent;
+            this.bunifuPanel2.BorderRadius = 3;
+            this.bunifuPanel2.BorderThickness = 0;
+            this.bunifuPanel2.Location = new System.Drawing.Point(104, 30);
+            this.bunifuPanel2.Name = "bunifuPanel2";
+            this.bunifuPanel2.ShowBorders = false;
+            this.bunifuPanel2.Size = new System.Drawing.Size(3, 366);
+            this.bunifuPanel2.TabIndex = 3;
+            // 
+            // bunifuPanel3
+            // 
+            this.bunifuPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.bunifuPanel3.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.bunifuPanel3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuPanel3.BackgroundImage")));
+            this.bunifuPanel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bunifuPanel3.BorderColor = System.Drawing.Color.Transparent;
+            this.bunifuPanel3.BorderRadius = 3;
+            this.bunifuPanel3.BorderThickness = 1;
+            this.bunifuPanel3.Controls.Add(this.openupdateui);
+            this.bunifuPanel3.Controls.Add(this.opensettingsui);
+            this.bunifuPanel3.Location = new System.Drawing.Point(0, 32);
+            this.bunifuPanel3.Name = "bunifuPanel3";
+            this.bunifuPanel3.ShowBorders = true;
+            this.bunifuPanel3.Size = new System.Drawing.Size(103, 362);
+            this.bunifuPanel3.TabIndex = 32;
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1714,10 +1751,10 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(764, 394);
             this.Controls.Add(this.bunifuPanel1);
-            this.Controls.Add(this.opensettingsui);
-            this.Controls.Add(this.openupdateui);
             this.Controls.Add(this.uipage);
             this.Controls.Add(this.controlbar);
+            this.Controls.Add(this.bunifuPanel2);
+            this.Controls.Add(this.bunifuPanel3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -1729,6 +1766,7 @@
             this.uipage.ResumeLayout(false);
             this.airacdownloadpan.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.bunifuPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1782,6 +1820,8 @@
         private Bunifu.UI.WinForms.BunifuTextBox cidbox;
         private System.Windows.Forms.Label pagenametxt;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl3;
+        private Bunifu.UI.WinForms.BunifuPanel bunifuPanel2;
+        private Bunifu.UI.WinForms.BunifuPanel bunifuPanel3;
     }
 }
 
