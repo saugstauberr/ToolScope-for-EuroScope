@@ -757,5 +757,33 @@ namespace ToolScope_for_EuroScope
             savebtn.Enabled = true;
         }
         #endregion
+
+        private void clearesfolderbtn_Click(object sender, EventArgs e)
+        {
+            if ((MessageBox.Show("Do you really want to delete all downloaded AIRACs? Your settings won't be changed.", "Delete all downloaded AIRACs",
+            MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+            MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
+            {
+                try
+                {
+                    System.IO.DirectoryInfo di = new DirectoryInfo(esdir);
+
+                    foreach (FileInfo file in di.GetFiles())
+                    {
+                        file.Delete();
+                    }
+                    foreach (DirectoryInfo dir in di.GetDirectories())
+                    {
+                        dir.Delete(true);
+                    }
+
+                    notifyText("success", "All AIRACs deleted!", 5);
+                } catch
+                {
+                    notifyText("info", "No AIRACs found!", 5);
+                }
+                
+            }
+        }
     }
 }

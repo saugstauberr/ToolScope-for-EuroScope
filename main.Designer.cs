@@ -61,6 +61,7 @@
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties24 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.controlbar = new Bunifu.UI.WinForms.BunifuPanel();
             this.pagenametxt = new System.Windows.Forms.Label();
             this.notifytxt = new System.Windows.Forms.Label();
@@ -113,6 +114,7 @@
             this.bunifuPanel2 = new Bunifu.UI.WinForms.BunifuPanel();
             this.bunifuPanel3 = new Bunifu.UI.WinForms.BunifuPanel();
             this.versionlabel = new System.Windows.Forms.Label();
+            this.clearesfolderbtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.controlbar.SuspendLayout();
             this.uipage.SuspendLayout();
             this.airacdownloadpan.SuspendLayout();
@@ -413,7 +415,7 @@
             this.downloadbtn.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(122)))), ((int)(((byte)(183)))));
             this.downloadbtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("downloadbtn.BackgroundImage")));
             this.downloadbtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.downloadbtn.ButtonText = "Update AIRAC";
+            this.downloadbtn.ButtonText = "Install/Update AIRAC";
             this.downloadbtn.ButtonTextMarginLeft = 0;
             this.downloadbtn.ColorContrastOnClick = 45;
             this.downloadbtn.ColorContrastOnHover = 45;
@@ -1807,6 +1809,7 @@
             this.bunifuPanel3.BorderColor = System.Drawing.Color.Transparent;
             this.bunifuPanel3.BorderRadius = 3;
             this.bunifuPanel3.BorderThickness = 1;
+            this.bunifuPanel3.Controls.Add(this.clearesfolderbtn);
             this.bunifuPanel3.Controls.Add(this.versionlabel);
             this.bunifuPanel3.Controls.Add(this.openupdateui);
             this.bunifuPanel3.Controls.Add(this.opensettingsui);
@@ -1827,6 +1830,99 @@
             this.versionlabel.TabIndex = 48;
             this.versionlabel.Text = "0.0.1";
             this.versionlabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // clearesfolderbtn
+            // 
+            this.clearesfolderbtn.AllowAnimations = true;
+            this.clearesfolderbtn.AllowMouseEffects = true;
+            this.clearesfolderbtn.AllowToggling = false;
+            this.clearesfolderbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.clearesfolderbtn.AnimationSpeed = 200;
+            this.clearesfolderbtn.AutoGenerateColors = false;
+            this.clearesfolderbtn.AutoRoundBorders = false;
+            this.clearesfolderbtn.AutoSizeLeftIcon = true;
+            this.clearesfolderbtn.AutoSizeRightIcon = true;
+            this.clearesfolderbtn.BackColor = System.Drawing.Color.Transparent;
+            this.clearesfolderbtn.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(122)))), ((int)(((byte)(183)))));
+            this.clearesfolderbtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("clearesfolderbtn.BackgroundImage")));
+            this.clearesfolderbtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.clearesfolderbtn.ButtonText = "Delete all AIRACS";
+            this.clearesfolderbtn.ButtonTextMarginLeft = 0;
+            this.clearesfolderbtn.ColorContrastOnClick = 45;
+            this.clearesfolderbtn.ColorContrastOnHover = 45;
+            this.clearesfolderbtn.Cursor = System.Windows.Forms.Cursors.Default;
+            borderEdges7.BottomLeft = true;
+            borderEdges7.BottomRight = true;
+            borderEdges7.TopLeft = true;
+            borderEdges7.TopRight = true;
+            this.clearesfolderbtn.CustomizableEdges = borderEdges7;
+            this.clearesfolderbtn.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.clearesfolderbtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.clearesfolderbtn.DisabledFillColor = System.Drawing.Color.Empty;
+            this.clearesfolderbtn.DisabledForecolor = System.Drawing.Color.Empty;
+            this.clearesfolderbtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
+            this.clearesfolderbtn.Font = new System.Drawing.Font("Microsoft PhagsPa", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearesfolderbtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.clearesfolderbtn.IconLeft = null;
+            this.clearesfolderbtn.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.clearesfolderbtn.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.clearesfolderbtn.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.clearesfolderbtn.IconMarginLeft = 11;
+            this.clearesfolderbtn.IconPadding = 10;
+            this.clearesfolderbtn.IconRight = null;
+            this.clearesfolderbtn.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.clearesfolderbtn.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.clearesfolderbtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.clearesfolderbtn.IconSize = 25;
+            this.clearesfolderbtn.IdleBorderColor = System.Drawing.Color.Empty;
+            this.clearesfolderbtn.IdleBorderRadius = 0;
+            this.clearesfolderbtn.IdleBorderThickness = 0;
+            this.clearesfolderbtn.IdleFillColor = System.Drawing.Color.Empty;
+            this.clearesfolderbtn.IdleIconLeftImage = null;
+            this.clearesfolderbtn.IdleIconRightImage = null;
+            this.clearesfolderbtn.IndicateFocus = false;
+            this.clearesfolderbtn.Location = new System.Drawing.Point(0, 317);
+            this.clearesfolderbtn.Name = "clearesfolderbtn";
+            this.clearesfolderbtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.clearesfolderbtn.OnDisabledState.BorderRadius = 0;
+            this.clearesfolderbtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.clearesfolderbtn.OnDisabledState.BorderThickness = 2;
+            this.clearesfolderbtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.clearesfolderbtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.clearesfolderbtn.OnDisabledState.IconLeftImage = null;
+            this.clearesfolderbtn.OnDisabledState.IconRightImage = null;
+            this.clearesfolderbtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.clearesfolderbtn.onHoverState.BorderRadius = 0;
+            this.clearesfolderbtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.clearesfolderbtn.onHoverState.BorderThickness = 2;
+            this.clearesfolderbtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.clearesfolderbtn.onHoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.clearesfolderbtn.onHoverState.IconLeftImage = null;
+            this.clearesfolderbtn.onHoverState.IconRightImage = null;
+            this.clearesfolderbtn.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.clearesfolderbtn.OnIdleState.BorderRadius = 0;
+            this.clearesfolderbtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.clearesfolderbtn.OnIdleState.BorderThickness = 2;
+            this.clearesfolderbtn.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
+            this.clearesfolderbtn.OnIdleState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.clearesfolderbtn.OnIdleState.IconLeftImage = null;
+            this.clearesfolderbtn.OnIdleState.IconRightImage = null;
+            this.clearesfolderbtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.clearesfolderbtn.OnPressedState.BorderRadius = 0;
+            this.clearesfolderbtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.clearesfolderbtn.OnPressedState.BorderThickness = 2;
+            this.clearesfolderbtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
+            this.clearesfolderbtn.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.clearesfolderbtn.OnPressedState.IconLeftImage = null;
+            this.clearesfolderbtn.OnPressedState.IconRightImage = null;
+            this.clearesfolderbtn.Size = new System.Drawing.Size(103, 26);
+            this.clearesfolderbtn.TabIndex = 48;
+            this.clearesfolderbtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.clearesfolderbtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.clearesfolderbtn.TextMarginLeft = 0;
+            this.clearesfolderbtn.TextPadding = new System.Windows.Forms.Padding(0);
+            this.clearesfolderbtn.UseDefaultRadiusAndThickness = true;
+            this.clearesfolderbtn.Click += new System.EventHandler(this.clearesfolderbtn_Click);
             // 
             // main
             // 
@@ -1909,6 +2005,7 @@
         private System.Windows.Forms.Label versionlabel;
         private System.Windows.Forms.Label label3;
         private Bunifu.UI.WinForms.BunifuDropdown countrybox;
+        private Bunifu.UI.WinForms.BunifuButton.BunifuButton clearesfolderbtn;
     }
 }
 
