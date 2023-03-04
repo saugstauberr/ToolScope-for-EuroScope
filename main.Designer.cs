@@ -451,7 +451,7 @@
             this.downloadbtn.IdleIconLeftImage = null;
             this.downloadbtn.IdleIconRightImage = null;
             this.downloadbtn.IndicateFocus = false;
-            this.downloadbtn.Location = new System.Drawing.Point(148, 219);
+            this.downloadbtn.Location = new System.Drawing.Point(158, 233);
             this.downloadbtn.Name = "downloadbtn";
             this.downloadbtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.downloadbtn.OnDisabledState.BorderRadius = 1;
@@ -542,7 +542,7 @@
             this.packagebox.ItemHighLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.packagebox.ItemHighLightForeColor = System.Drawing.Color.White;
             this.packagebox.ItemTopMargin = 3;
-            this.packagebox.Location = new System.Drawing.Point(190, 143);
+            this.packagebox.Location = new System.Drawing.Point(200, 157);
             this.packagebox.Name = "packagebox";
             this.packagebox.Size = new System.Drawing.Size(145, 25);
             this.packagebox.TabIndex = 19;
@@ -556,7 +556,7 @@
             this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.label6.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label6.Location = new System.Drawing.Point(101, 143);
+            this.label6.Location = new System.Drawing.Point(111, 157);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(82, 29);
             this.label6.TabIndex = 18;
@@ -568,7 +568,7 @@
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.label5.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label5.Location = new System.Drawing.Point(350, 112);
+            this.label5.Location = new System.Drawing.Point(360, 126);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 29);
             this.label5.TabIndex = 20;
@@ -611,7 +611,7 @@
             this.regionbox.ItemHighLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.regionbox.ItemHighLightForeColor = System.Drawing.Color.White;
             this.regionbox.ItemTopMargin = 3;
-            this.regionbox.Location = new System.Drawing.Point(190, 112);
+            this.regionbox.Location = new System.Drawing.Point(200, 126);
             this.regionbox.Name = "regionbox";
             this.regionbox.Size = new System.Drawing.Size(145, 25);
             this.regionbox.TabIndex = 23;
@@ -625,7 +625,7 @@
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.label4.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label4.Location = new System.Drawing.Point(101, 112);
+            this.label4.Location = new System.Drawing.Point(111, 126);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 29);
             this.label4.TabIndex = 22;
@@ -637,7 +637,7 @@
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.label7.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label7.Location = new System.Drawing.Point(350, 139);
+            this.label7.Location = new System.Drawing.Point(360, 153);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(67, 29);
             this.label7.TabIndex = 24;
@@ -649,7 +649,7 @@
             this.airactxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.airactxt.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.airactxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.airactxt.Location = new System.Drawing.Point(423, 112);
+            this.airactxt.Location = new System.Drawing.Point(433, 126);
             this.airactxt.Name = "airactxt";
             this.airactxt.Size = new System.Drawing.Size(94, 29);
             this.airactxt.TabIndex = 25;
@@ -661,7 +661,7 @@
             this.releasetxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.releasetxt.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.releasetxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.releasetxt.Location = new System.Drawing.Point(423, 139);
+            this.releasetxt.Location = new System.Drawing.Point(433, 153);
             this.releasetxt.Name = "releasetxt";
             this.releasetxt.Size = new System.Drawing.Size(116, 29);
             this.releasetxt.TabIndex = 26;
@@ -673,7 +673,7 @@
             this.versiontxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.versiontxt.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.versiontxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.versiontxt.Location = new System.Drawing.Point(423, 168);
+            this.versiontxt.Location = new System.Drawing.Point(433, 182);
             this.versiontxt.Name = "versiontxt";
             this.versiontxt.Size = new System.Drawing.Size(116, 29);
             this.versiontxt.TabIndex = 28;
@@ -685,7 +685,7 @@
             this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.label9.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label9.Location = new System.Drawing.Point(350, 168);
+            this.label9.Location = new System.Drawing.Point(360, 182);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(67, 29);
             this.label9.TabIndex = 27;
@@ -703,7 +703,7 @@
             this.progressbar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
             this.progressbar.BorderRadius = 5;
             this.progressbar.BorderThickness = 2;
-            this.progressbar.Location = new System.Drawing.Point(149, 254);
+            this.progressbar.Location = new System.Drawing.Point(159, 268);
             this.progressbar.Maximum = 100;
             this.progressbar.MaximumValue = 100;
             this.progressbar.Minimum = 0;
@@ -784,7 +784,7 @@
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.label3.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label3.Location = new System.Drawing.Point(101, 81);
+            this.label3.Location = new System.Drawing.Point(111, 95);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 29);
             this.label3.TabIndex = 30;
@@ -827,7 +827,7 @@
             this.countrybox.ItemHighLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.countrybox.ItemHighLightForeColor = System.Drawing.Color.White;
             this.countrybox.ItemTopMargin = 3;
-            this.countrybox.Location = new System.Drawing.Point(190, 81);
+            this.countrybox.Location = new System.Drawing.Point(200, 95);
             this.countrybox.Name = "countrybox";
             this.countrybox.Size = new System.Drawing.Size(246, 25);
             this.countrybox.TabIndex = 31;
@@ -1606,7 +1606,7 @@
             this.openupdateui.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(122)))), ((int)(((byte)(183)))));
             this.openupdateui.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("openupdateui.BackgroundImage")));
             this.openupdateui.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.openupdateui.ButtonText = "Update AIRAC";
+            this.openupdateui.ButtonText = "AIRAC Manager";
             this.openupdateui.ButtonTextMarginLeft = 0;
             this.openupdateui.ColorContrastOnClick = 0;
             this.openupdateui.ColorContrastOnHover = 0;

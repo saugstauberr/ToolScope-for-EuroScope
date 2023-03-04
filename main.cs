@@ -13,6 +13,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ToolScope_for_EuroScope
 {
@@ -33,7 +34,7 @@ namespace ToolScope_for_EuroScope
         public string selectedurl;
         public string selectedregion;
 
-        public string pversion = "1.2.1";
+        public string pversion = "1.2.2";
 
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton lastButton = null;
 
@@ -57,7 +58,7 @@ namespace ToolScope_for_EuroScope
             versionlabel.Text = pversion;
             var config = new IniFile("config.ini");
 
-            Ini("read", "all");
+            UpdateIni("read", "all");
             var webRequest = WebRequest.Create(@"https://raw.githubusercontent.com/saugstauberr/ToolScope-for-EuroScope/master/updates/packages.ini");
 
             using (var response = webRequest.GetResponse())
@@ -66,7 +67,7 @@ namespace ToolScope_for_EuroScope
             {
                 var strContent = reader.ReadToEnd();
                 System.IO.File.WriteAllText("config.ini", strContent);
-                Ini("save", "all");
+                UpdateIni("save", "all");
             }
 
             notifyText("info", "Loaded! Version " + pversion, 10);
@@ -78,9 +79,10 @@ namespace ToolScope_for_EuroScope
                 notifyText("error", "Remember to change your settings!", 10);
             }
 
-            Ini("read", "all");
-            insertInTextBoxes();
+            UpdateIni("read", "all");
+            UpdateUI();
             GetCountries();
+            //CreateInstalledLabels();
         }
 
         #region FileManager
@@ -132,22 +134,35 @@ namespace ToolScope_for_EuroScope
 
             Directory.Delete(sourcePath, true );
 
+            // Inserting the data into the .prf-Files
+
             if (selectedurl.ToString().Contains("EDGG") == true)
             {
                 var text = new StringBuilder();
-
-                text.Append(System.IO.File.ReadAllText(targetPath + "/EDDF Apron.prf"));
-                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + cid);
-                text = text.Append("\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
+                var apptext = "\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
                     "certificate\t" + cid + "\r\nLastSession\tpassword\t" + passwd + "\r\nLastSession\trating\t" + rating + "\r\nLastSession\t" +
-                    "server\t" + server + "\r\nLastSession\ttovatsim\t1");
+                    "server\t" + server + "\r\nLastSession\ttovatsim\t1";
 
+                text.Append(System.IO.File.ReadAllText(targetPath + "/EDDF Apron.prf") + apptext);
+                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + cid);
                 System.IO.File.WriteAllText(targetPath + "/EDDF Apron.prf", text.ToString());
-                System.IO.File.WriteAllText(targetPath + "/EDUU Rhein Radar.prf", text.ToString());
-                System.IO.File.WriteAllText(targetPath + "/EDGG Langen Radar.prf", text.ToString());
-                System.IO.File.WriteAllText(targetPath + "/Tower Ground.prf", text.ToString());
-
                 text.Clear();
+
+                text.Append(System.IO.File.ReadAllText(targetPath + "/EDDF Rhein Radar.prf") + apptext);
+                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + cid);
+                System.IO.File.WriteAllText(targetPath + "/EDUU Rhein Radar.prf", text.ToString());
+                text.Clear();
+
+                text.Append(System.IO.File.ReadAllText(targetPath + "/EDDF Langen Radar.prf") + apptext);
+                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + cid);
+                System.IO.File.WriteAllText(targetPath + "/EDGG Langen Radar.prf", text.ToString());
+                text.Clear();
+
+                text.Append(System.IO.File.ReadAllText(targetPath + "/EDDF Tower Ground.prf") + apptext);
+                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + cid);
+                System.IO.File.WriteAllText(targetPath + "/Tower Ground.prf", text.ToString());
+                text.Clear();
+
                 notifyText("success", "Successfully updated (EDGG)!", 5);
             } 
             else if (selectedurl.Contains("EDMM") == true) {
@@ -278,7 +293,8 @@ namespace ToolScope_for_EuroScope
                 System.IO.File.WriteAllText(s, hoppiecode);
             }
             //installedpackages.Add(selectedurl);
-            Ini("save", "all");
+            UpdateIni("save", "all");
+            //CreateInstalledLabels();
             downloadbtn.Enabled = true;
         }
 
@@ -408,7 +424,26 @@ namespace ToolScope_for_EuroScope
 
         #region Sonstige Funktionen
         
-        private void Ini(string task, string type)
+        private void CreateInstalledLabels()
+        {
+            int x = 5;
+            int y = 57;
+
+            foreach (string package in installedpackages)
+            {
+                Label namelabel = new Label();
+                namelabel.Location = new Point(x, y);
+                namelabel.Text = package;
+                namelabel.AutoSize = true;
+                namelabel.TextAlign = ContentAlignment.MiddleLeft;
+                namelabel.ForeColor = Color.FromArgb(255, 224, 224, 224);
+                namelabel.Font = new Font("Microsoft PhagsPa", 9);
+                this.Controls.Add(namelabel);
+                y += 8;
+            }
+        }
+
+        private void UpdateIni(string task, string type)
         {
             var config = new IniFile("config.ini");
 
@@ -462,7 +497,7 @@ namespace ToolScope_for_EuroScope
 
         private void ChangeUI(string pagename, Bunifu.UI.WinForms.BunifuButton.BunifuButton current)
         {
-            insertInTextBoxes();
+            UpdateUI();
             current.Enabled = false;
 
             if (lastButton != null)
@@ -528,18 +563,25 @@ namespace ToolScope_for_EuroScope
             esdir = esfolderbox.Text;
         }
 
-        private void insertInTextBoxes()
+        private void UpdateUI(string attributes = "all")
         {
-            cidbox.Text = cid;
-            passwdbox.Text = passwd;
-            ratingbox.Text = ratingConvert("read");
-            callsignbox.Text = callsign;
-            namebox.Text = realname;
-            hoppiecodebox.Text = hoppiecode;
-            //downloadfolderbox.Text = packagedir;
-            esfolderbox.Text = esdir;
-            savebtn.Enabled = false;
-            countrybox.Text = country;
+            switch (attributes)
+            {
+                case "all":
+                    cidbox.Text = cid;
+                    passwdbox.Text = passwd;
+                    ratingbox.Text = ratingConvert("read");
+                    callsignbox.Text = callsign;
+                    namebox.Text = realname;
+                    hoppiecodebox.Text = hoppiecode;
+                    //downloadfolderbox.Text = packagedir;
+                    esfolderbox.Text = esdir;
+                    savebtn.Enabled = false;
+                    countrybox.Text = country;
+                    break;
+                default:
+                    break;
+            }
         }
 
         #endregion
@@ -680,7 +722,7 @@ namespace ToolScope_for_EuroScope
 
         private void downloadbtn_Click(object sender, EventArgs e)
         {
-            Ini("read", "all");
+            UpdateIni("read", "all");
             CreateBackup("");
             downloadbtn.Enabled = false;
             Directory.CreateDirectory(esdir + "/ToolScope");
@@ -712,9 +754,9 @@ namespace ToolScope_for_EuroScope
         private void savebtn_Click(object sender, EventArgs e)
         {
             updateVars();
-            Ini("save", "all");
-            Ini("read", "all");
-            insertInTextBoxes();
+            UpdateIni("save", "all");
+            UpdateIni("read", "all");
+            UpdateUI();
             savebtn.Enabled = false;
             notifyText("success", "Settings have been saved and loaded!", 5);
         }
