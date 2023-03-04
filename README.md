@@ -18,11 +18,11 @@ And the best thing: **It's super easy to use!** 👌
 - ⌨️ never type in your credentials and hoppie code again manually
 - ⬇️ drop-down menu for selecting your favourite package
 - ♾️ automatic program updates for new releases
+- 🚩 international support for all countries
 
 ## How do I use it?
 First you have to download the .exe-File from the releases tab. After that just run the file, change the settings as you need them and browse through the regions and packages. When you've found your package, just select it and click **Update AIRAC**.
 Wait one moment and you're ready to go! 🥳
-**Currently it's only supported for German EuroScope Scenarios!**
 
 ## Can you see my credentials?
 No, absolutely not. That's the reason why I've published the code on GitHub. This program only needs your internet connection for the Autoupdater and AIRAC downloader. Of course you're free to compile it yourself! If you have any question regarding any topic feel free to contact me here: **Saugstauber#2252**
@@ -33,5 +33,4 @@ Issues and bugs can happen. Please report them in the [**Issues**](https://githu
 ## Incoming features
 - more customization
 - Pluginkeeper
-- international AIRAC support
 - various other features, it should be a program for multiple purposes
