@@ -73,11 +73,12 @@ namespace ToolScope_for_EuroScope
 
             if (config.Read("esdir", "Settings") == "")
             {
-                config.Write("esdir", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope/Scenario", "Settings");
-                esfolderbox.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope/Scenario";
+                config.Write("esdir", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope", "Settings");
+                esfolderbox.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope";
                 notifyText("error", "Remember to change your settings!", 10);
             }
 
+            Ini("read", "all");
             insertInTextBoxes();
             GetCountries();
         }
