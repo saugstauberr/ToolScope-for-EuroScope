@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <item>
   <version>1.2.0</version>
-  <url>https://github.com/saugstauberr/ToolScope-for-EuroScope/releases/download/2.0.0-stable/release.zip</url>
+  <url>https://github.com/saugstauberr/ToolScope-for-EuroScope/releases/download/1.2.0-stable/release.zip</url>
   <changelog>https://github.com/saugstauberr/ToolScope-for-EuroScope/releases/</changelog>
   <mandatory>true</mandatory>
 </item>
