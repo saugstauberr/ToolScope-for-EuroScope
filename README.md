@@ -34,3 +34,4 @@ Issues and bugs can happen. Please report them in the [**Issues**](https://githu
 - more customization
 - Pluginkeeper
 - various other features, it should be a program for multiple purposes
+- remove manual .prf selection, let script insert all credentials in all .prf files
