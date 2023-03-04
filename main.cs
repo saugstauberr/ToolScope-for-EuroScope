@@ -500,7 +500,7 @@ namespace ToolScope_for_EuroScope
 
         private void saveAllToIni()
         {
-            var password64 = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(passwdbox.Text));
+            var password64 = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(passwd));
 
             var config = new IniFile("config.ini");
 
