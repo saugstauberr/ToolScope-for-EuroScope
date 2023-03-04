@@ -47,6 +47,7 @@ namespace ToolScope_for_EuroScope
         public string callsign;
         public string realname;
         public string hoppiecode;
+        public string country;
 
         public string selectedurl;
         public string selectedregion;
@@ -260,11 +261,12 @@ namespace ToolScope_for_EuroScope
 
         private void GrabDownloadUrls()
         {
+            CountryNames database = new CountryNames();
             var config = new IniFile("config.ini");
             allpackages.Clear();
 
             HtmlWeb hw = new HtmlWeb();
-            HtmlAgilityPack.HtmlDocument doc = hw.Load("http://files.aero-nav.com/" + countrybox.Text);
+            HtmlAgilityPack.HtmlDocument doc = hw.Load("http://files.aero-nav.com/" + database.GetCountryIcao(countrybox.Text));
             foreach (HtmlNode link in doc.DocumentNode.SelectNodes("//a[@href]"))
             {
                 if(link.Attributes["href"].Value.Contains(".zip")) {
@@ -320,13 +322,29 @@ namespace ToolScope_for_EuroScope
 
         private void GetCountries()
         {
+            CountryNames database = new CountryNames();
             var config = new IniFile("config.ini");
             countries = config.Read("countries", "Server").Split(',').ToList();
 
             foreach (string country in countries)
             {
-                countrybox.Items.Add(country);
+                try
+                {
+                    if (database.GetCountryDisplayName(country) != null)
+                    {
+                        countrybox.Items.Add(database.GetCountryDisplayName(country));
+                    } else
+                    {
+                        countrybox.Items.Add(country);
+                    }
+                } catch
+                {
+                    countrybox.Items.Add(country);
+                }
+                
             }
+            GrabDownloadUrls();
+            getRegions();
         }
 
         private void getRegions()
@@ -397,6 +415,7 @@ namespace ToolScope_for_EuroScope
             callsign = config.Read("callsign", "Settings");
             realname = config.Read("realname", "Settings");
             hoppiecode = config.Read("hoppiecode", "Settings");
+            country = config.Read("country", "Settings");
         }
 
         private string ratingConvert(string task)
@@ -468,6 +487,7 @@ namespace ToolScope_for_EuroScope
             config.Write("callsign", callsign, "Settings");
             config.Write("realname", realname, "Settings");
             config.Write("hoppiecode", hoppiecode, "Settings");
+            config.Write("country", country, "Settings");
         }
 
         private void insertInTextBoxes()
@@ -481,6 +501,7 @@ namespace ToolScope_for_EuroScope
             //downloadfolderbox.Text = packagedir;
             esfolderbox.Text = esdir;
             savebtn.Enabled = false;
+            countrybox.Text = country;
         }
 
         #endregion
@@ -568,14 +589,19 @@ namespace ToolScope_for_EuroScope
 
         private void countrybox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GrabDownloadUrls();
-            getRegions();
+            var config = new IniFile("config.ini");
+            CountryNames country = new CountryNames();
+
+            config.Write("country", countrybox.Text, "Settings");
             regionbox.Text = "";
             packagebox.Text = "";
             versiontxt.Text = "None";
             airactxt.Text = "None";
             releasetxt.Text = "None";
             downloadbtn.Enabled = false;
+
+            GrabDownloadUrls();
+            getRegions();
         }
 
         private void regionbox_SelectedIndexChanged(object sender, EventArgs e)
