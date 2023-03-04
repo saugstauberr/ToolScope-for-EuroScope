@@ -52,7 +52,7 @@ namespace ToolScope_for_EuroScope
         public string selectedurl;
         public string selectedregion;
 
-        public string pversion = "1.2.0";
+        public string pversion = "1.2.1";
 
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton lastButton = null;
 
@@ -250,29 +250,45 @@ namespace ToolScope_for_EuroScope
                 notifyText("success", "Successfully updated (EDXX)!", 5);
             } else
             {
-                OpenFileDialog profiles = new OpenFileDialog();
-                profiles.Title = "Select .prf-File/s where your credentials should be inserted into";
-                profiles.Filter = "EuroScope Profiles (multiple possible)|*.prf";
-                profiles.Multiselect = true;
-                profiles.InitialDirectory = esdir;
-                if (profiles.ShowDialog() == DialogResult.OK)
+                
+                string[] allProfiles = Directory.GetFiles(esdir, "*.prf");
+
+                foreach (string profile in allProfiles)
                 {
-                    string[] allProfiles = profiles.FileNames;
+                    var text = new StringBuilder();
+                    var apptext = "\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
+                        "certificate\t" + cid + "\r\nLastSession\tpassword\t" + passwd + "\r\nLastSession\trating\t" + rating + "\r\nLastSession\t" +
+                        "server\t" + server + "\r\nLastSession\ttovatsim\t1";
 
-                    foreach(string profile in allProfiles )
-                    {
-                        var text = new StringBuilder();
-                        var apptext = "\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
-                            "certificate\t" + cid + "\r\nLastSession\tpassword\t" + passwd + "\r\nLastSession\trating\t" + rating + "\r\nLastSession\t" +
-                            "server\t" + server + "\r\nLastSession\ttovatsim\t1";
-
-                        text.Append(System.IO.File.ReadAllText(profile) + apptext);
-                        System.IO.File.WriteAllText(profile, text.ToString());
-                        text.Clear();
+                    text.Append(System.IO.File.ReadAllText(profile) + apptext);
+                    System.IO.File.WriteAllText(profile, text.ToString());
+                    text.Clear();
                     }
                     notifyText("success", "Successfully updated and data inserted!", 5);
+
+                    /*OpenFileDialog profiles = new OpenFileDialog();
+                    profiles.Title = "Select .prf-File/s where your credentials should be inserted into";
+                    profiles.Filter = "EuroScope Profiles (multiple possible)|*.prf";
+                    profiles.Multiselect = true;
+                    profiles.InitialDirectory = esdir;
+                    if (profiles.ShowDialog() == DialogResult.OK)
+                    {
+                        string[] allProfiles = profiles.FileNames;
+
+                        foreach(string profile in allProfiles )
+                        {
+                            var text = new StringBuilder();
+                            var apptext = "\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
+                                "certificate\t" + cid + "\r\nLastSession\tpassword\t" + passwd + "\r\nLastSession\trating\t" + rating + "\r\nLastSession\t" +
+                                "server\t" + server + "\r\nLastSession\ttovatsim\t1";
+
+                            text.Append(System.IO.File.ReadAllText(profile) + apptext);
+                            System.IO.File.WriteAllText(profile, text.ToString());
+                            text.Clear();
+                        }
+                        notifyText("success", "Successfully updated and data inserted!", 5);
+                    }*/
                 }
-            }
 
             foreach (string s in Directory.EnumerateFiles(esdir + "/" + selectedregion + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories)) {
                 System.IO.File.WriteAllText(s, hoppiecode);
