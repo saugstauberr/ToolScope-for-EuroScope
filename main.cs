@@ -321,7 +321,6 @@ namespace ToolScope_for_EuroScope
         #endregion
 
         #region Package Manager
-        // 27 Zeichen vor dem EDXX
 
         private string GetURLInformation(string link, string type)
         {
