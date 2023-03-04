@@ -1,37 +1,18 @@
-﻿using System;
+﻿using AutoUpdaterDotNET;
+using HtmlAgilityPack;
+using Ini;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.IO;
-using Ini;
-using System.Net;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
 using System.Globalization;
+using System.IO;
 using System.IO.Compression;
-using System.Reflection;
-using static System.Net.WebRequestMethods;
-using System.Data.SqlTypes;
-using WindowsFormsControlLibrary1;
-using System.Runtime.Remoting.Lifetime;
-using ToolScope_for_EuroScope;
-using System.Text.RegularExpressions;
+using System.Linq;
+using System.Net;
+using System.Text;
 using System.Threading;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using File = System.IO.File;
-using static System.Net.Mime.MediaTypeNames;
-using AutoUpdaterDotNET;
-using System.Runtime.Remoting.Messaging;
-using System.Security.Policy;
-using System.Xml.Linq;
-using System.Xml;
-using HtmlAgilityPack;
-using System.Windows.Shapes;
+using System.Windows.Forms;
 
 namespace ToolScope_for_EuroScope
 {
@@ -62,6 +43,8 @@ namespace ToolScope_for_EuroScope
 
         public List<string> allpackages = new List<string>();
 
+        public List<string> installedpackages = new List<string>();
+
         // ##### LINK AUFBAU #####
         // https://files.aero-nav.com/EDMM/Full-Update_20230225100326-230201-2.zip
         // url / SEKTOR / Packagename_YYYYMMDDHHMMSS-AIRAC/xx-Version .zip
@@ -74,7 +57,7 @@ namespace ToolScope_for_EuroScope
             versionlabel.Text = pversion;
             var config = new IniFile("config.ini");
 
-            readAllFromIni();
+            Ini("read", "all");
             var webRequest = WebRequest.Create(@"https://raw.githubusercontent.com/saugstauberr/ToolScope-for-EuroScope/master/updates/packages.ini");
 
             using (var response = webRequest.GetResponse())
@@ -83,7 +66,7 @@ namespace ToolScope_for_EuroScope
             {
                 var strContent = reader.ReadToEnd();
                 System.IO.File.WriteAllText("config.ini", strContent);
-                saveAllToIni();
+                Ini("save", "all");
             }
 
             notifyText("info", "Loaded! Version " + pversion, 10);
@@ -263,8 +246,8 @@ namespace ToolScope_for_EuroScope
                     text.Append(System.IO.File.ReadAllText(profile) + apptext);
                     System.IO.File.WriteAllText(profile, text.ToString());
                     text.Clear();
-                    }
-                    notifyText("success", "Successfully updated and data inserted!", 5);
+                 }
+                notifyText("success", "Successfully updated and data inserted!", 5);
 
                     /*OpenFileDialog profiles = new OpenFileDialog();
                     profiles.Title = "Select .prf-File/s where your credentials should be inserted into";
@@ -293,7 +276,8 @@ namespace ToolScope_for_EuroScope
             foreach (string s in Directory.EnumerateFiles(esdir + "/" + selectedregion + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories)) {
                 System.IO.File.WriteAllText(s, hoppiecode);
             }
-
+            //installedpackages.Add(selectedurl);
+            Ini("save", "all");
             downloadbtn.Enabled = true;
         }
 
@@ -422,42 +406,71 @@ namespace ToolScope_for_EuroScope
         #endregion
 
         #region Sonstige Funktionen
+        
+        private void Ini(string task, string type)
+        {
+            var config = new IniFile("config.ini");
+
+            switch (type)
+            {
+                case "installed":
+                    if (task == "save")
+                    {
+                        config.Write("installed", string.Join(",", installedpackages), "Settings");
+                    } else
+                    {
+                        installedpackages = config.Read("installed", "Settings").Split(',').ToList();
+                    }
+                    break;
+                default:
+                    if (task == "save")
+                    {
+                        var password64c = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(passwd));
+                        config.Write("packagedir", packagedir, "Settings");
+                        config.Write("esdir", esdir, "Settings");
+                        config.Write("cid", cid, "Settings");
+                        config.Write("passwd", password64c, "Settings");
+                        config.Write("rating", rating, "Settings");
+                        config.Write("server", "AUTOMATIC", "Settings");
+                        config.Write("callsign", callsign, "Settings");
+                        config.Write("realname", realname, "Settings");
+                        config.Write("hoppiecode", hoppiecode, "Settings");
+                        config.Write("country", country, "Settings");
+                        config.Write("installed", string.Join(",", installedpackages), "Settings");
+                    } else
+                    {
+                        packagedir = config.Read("packagedir", "Settings");
+                        esdir = config.Read("esdir", "Settings");
+                        cid = config.Read("cid", "Settings");
+
+                        if (config.Read("passwd", "Settings") != null)
+                        {
+                            passwd = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(config.Read("passwd", "Settings")));
+                        }
+                        rating = config.Read("rating", "Settings");
+                        server = config.Read("server", "Settings"); ;
+                        callsign = config.Read("callsign", "Settings");
+                        realname = config.Read("realname", "Settings");
+                        hoppiecode = config.Read("hoppiecode", "Settings");
+                        country = config.Read("country", "Settings");
+                        installedpackages = config.Read("installed", "Settings").Split(',').ToList();
+                    }
+                    break;
+            }
+        }
 
         private void ChangeUI(string pagename, Bunifu.UI.WinForms.BunifuButton.BunifuButton current)
         {
             insertInTextBoxes();
-            //current.OnIdleState.FillColor = Color.FromArgb(255, 92, 82, 37);
             current.Enabled = false;
 
             if (lastButton != null)
             {
-                //lastButton.OnIdleState.FillColor = Color.FromArgb(255, 64, 57, 22);
-                //lastButton.OnIdleState.BorderColor = Color.FromArgb(255, 207, 160, 6);
                 lastButton.Enabled = true;
             }
 
             lastButton = current;
             pagenametxt.Text = pagename;
-        }
-
-        private void readAllFromIni()
-        {
-            var config = new IniFile("config.ini");
-
-            packagedir = config.Read("packagedir", "Settings");
-            esdir = config.Read("esdir", "Settings");
-            cid = config.Read("cid", "Settings");
-
-            if (config.Read("passwd", "Settings") != null)
-            {
-                passwd = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(config.Read("passwd", "Settings")));
-            }
-            rating = config.Read("rating", "Settings");
-            server = config.Read("server", "Settings"); ;
-            callsign = config.Read("callsign", "Settings");
-            realname = config.Read("realname", "Settings");
-            hoppiecode = config.Read("hoppiecode", "Settings");
-            country = config.Read("country", "Settings");
         }
 
         private string ratingConvert(string task)
@@ -512,24 +525,6 @@ namespace ToolScope_for_EuroScope
             hoppiecode = hoppiecodebox.Text;
             //packagedir = downloadfolderbox.Text;
             esdir = esfolderbox.Text;
-        }
-
-        private void saveAllToIni()
-        {
-            var password64 = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(passwd));
-
-            var config = new IniFile("config.ini");
-
-            config.Write("packagedir", packagedir, "Settings");
-            config.Write("esdir", esdir, "Settings");
-            config.Write("cid", cid, "Settings");
-            config.Write("passwd", password64, "Settings");
-            config.Write("rating", rating, "Settings");
-            config.Write("server", "AUTOMATIC", "Settings");
-            config.Write("callsign", callsign, "Settings");
-            config.Write("realname", realname, "Settings");
-            config.Write("hoppiecode", hoppiecode, "Settings");
-            config.Write("country", country, "Settings");
         }
 
         private void insertInTextBoxes()
@@ -684,7 +679,7 @@ namespace ToolScope_for_EuroScope
 
         private void downloadbtn_Click(object sender, EventArgs e)
         {
-            readAllFromIni();
+            Ini("read", "all");
             CreateBackup("");
             downloadbtn.Enabled = false;
             Directory.CreateDirectory(esdir + "/ToolScope");
@@ -716,8 +711,8 @@ namespace ToolScope_for_EuroScope
         private void savebtn_Click(object sender, EventArgs e)
         {
             updateVars();
-            saveAllToIni();
-            readAllFromIni();
+            Ini("save", "all");
+            Ini("read", "all");
             insertInTextBoxes();
             savebtn.Enabled = false;
             notifyText("success", "Settings have been saved and loaded!", 5);

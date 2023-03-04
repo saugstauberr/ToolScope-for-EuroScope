@@ -113,8 +113,8 @@
             this.bunifuDragControl3 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.bunifuPanel2 = new Bunifu.UI.WinForms.BunifuPanel();
             this.bunifuPanel3 = new Bunifu.UI.WinForms.BunifuPanel();
-            this.versionlabel = new System.Windows.Forms.Label();
             this.clearesfolderbtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.versionlabel = new System.Windows.Forms.Label();
             this.controlbar.SuspendLayout();
             this.uipage.SuspendLayout();
             this.airacdownloadpan.SuspendLayout();
@@ -1819,18 +1819,6 @@
             this.bunifuPanel3.Size = new System.Drawing.Size(103, 362);
             this.bunifuPanel3.TabIndex = 32;
             // 
-            // versionlabel
-            // 
-            this.versionlabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.versionlabel.Font = new System.Drawing.Font("Microsoft PhagsPa", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.versionlabel.ForeColor = System.Drawing.Color.Silver;
-            this.versionlabel.Location = new System.Drawing.Point(12, 347);
-            this.versionlabel.Name = "versionlabel";
-            this.versionlabel.Size = new System.Drawing.Size(86, 16);
-            this.versionlabel.TabIndex = 48;
-            this.versionlabel.Text = "0.0.1";
-            this.versionlabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // clearesfolderbtn
             // 
             this.clearesfolderbtn.AllowAnimations = true;
@@ -1923,6 +1911,18 @@
             this.clearesfolderbtn.TextPadding = new System.Windows.Forms.Padding(0);
             this.clearesfolderbtn.UseDefaultRadiusAndThickness = true;
             this.clearesfolderbtn.Click += new System.EventHandler(this.clearesfolderbtn_Click);
+            // 
+            // versionlabel
+            // 
+            this.versionlabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.versionlabel.Font = new System.Drawing.Font("Microsoft PhagsPa", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.versionlabel.ForeColor = System.Drawing.Color.Silver;
+            this.versionlabel.Location = new System.Drawing.Point(12, 347);
+            this.versionlabel.Name = "versionlabel";
+            this.versionlabel.Size = new System.Drawing.Size(86, 16);
+            this.versionlabel.TabIndex = 48;
+            this.versionlabel.Text = "0.0.1";
+            this.versionlabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // main
             // 
