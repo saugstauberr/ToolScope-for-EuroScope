@@ -6,7 +6,7 @@
  [VATSIM Germany Website](https://vatsim-germany.org/) •
  [Manual AIRAC download](http://files.aero-nav.com/EDXX)
  
-![Main Menu](https://i.imgur.com/fe3Cl5T.png)
+![Main Menu](https://i.imgur.com/QIDHKHa.png)
 ![Settings Menu](https://i.imgur.com/b07OUrU.png)
 
 ## What is Toolscape?
