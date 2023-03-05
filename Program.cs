@@ -16,7 +16,7 @@ namespace ToolScope_for_EuroScope
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new main());
+            Application.Run(new Main());
         }
     }
 }
