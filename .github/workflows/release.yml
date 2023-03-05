@@ -17,8 +17,7 @@ jobs:
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
           prerelease: true
           files: |
-            updates/release.zip
-            updates/ToolScope.for.EuroScope.exe
+            'updates/release.zip'
+            'updates/ToolScope.for.EuroScope.exe'
