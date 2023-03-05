@@ -66,6 +66,8 @@ namespace ToolScope_for_EuroScope
                 WriteConfig("realname", namebox.Text);
                 WriteConfig("hoppiecode", hoppiecodebox.Text);
                 WriteConfig("esdir", esfolderbox.Text);
+
+                WriteConfig("server", "AUTOMATIC");
             }
         }
 

@@ -20,17 +20,6 @@ namespace ToolScope_for_EuroScope
     public partial class Main : Form
     {
 
-        /*public string packagedir;
-        public string esdir;
-        public string cid;
-        public string passwd;
-        public string rating;
-        public string server = "AUTOMATIC";
-        public string callsign;
-        public string realname;
-        public string hoppiecode;
-        public string country;*/
-
         public string selectedurl;
         public string selectedregion;
 
