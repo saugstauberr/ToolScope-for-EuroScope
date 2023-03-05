@@ -20,7 +20,7 @@ namespace ToolScope_for_EuroScope
     public partial class Main : Form
     {
 
-        public string packagedir;
+        /*public string packagedir;
         public string esdir;
         public string cid;
         public string passwd;
@@ -29,7 +29,7 @@ namespace ToolScope_for_EuroScope
         public string callsign;
         public string realname;
         public string hoppiecode;
-        public string country;
+        public string country;*/
 
         public string selectedurl;
         public string selectedregion;
@@ -58,7 +58,8 @@ namespace ToolScope_for_EuroScope
             versionlabel.Text = pversion;
             var config = new IniFile("config.ini");
 
-            UpdateIni("read", "all");
+            UpdateUI("read");
+
             var webRequest = WebRequest.Create(@"https://raw.githubusercontent.com/saugstauberr/ToolScope-for-EuroScope/master/updates/packages.ini");
 
             using (var response = webRequest.GetResponse())
@@ -67,8 +68,9 @@ namespace ToolScope_for_EuroScope
             {
                 var strContent = reader.ReadToEnd();
                 System.IO.File.WriteAllText("config.ini", strContent);
-                UpdateIni("save", "all");
             }
+            GetCountries();
+            UpdateUI("write");
 
             notifyText("info", "Loaded! Version " + pversion, 10);
 
@@ -78,11 +80,12 @@ namespace ToolScope_for_EuroScope
                 esfolderbox.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope";
                 notifyText("error", "Remember to change your settings!", 10);
             }
-
-            UpdateIni("read", "all");
-            UpdateUI();
-            GetCountries();
             //CreateInstalledLabels();
+        }
+
+        public void Debug(string text)
+        {
+            MessageBox.Show(text);
         }
 
         private void closebtn_Click(object sender, EventArgs e)
@@ -151,11 +154,10 @@ namespace ToolScope_for_EuroScope
 
         private void downloadbtn_Click(object sender, EventArgs e)
         {
-            UpdateIni("read", "all");
             CreateBackup("");
             downloadbtn.Enabled = false;
-            Directory.CreateDirectory(esdir + "/ToolScope");
-            Directory.CreateDirectory(esdir + "/ToolScope/Backup");
+            Directory.CreateDirectory(ReadConfig("esdir") + "/ToolScope");
+            Directory.CreateDirectory(ReadConfig("esdir") + "/ToolScope/Backup");
 
             Thread thread = new Thread(() => {
                 WebClient client = new WebClient();
@@ -163,7 +165,7 @@ namespace ToolScope_for_EuroScope
                 client.Headers.Add(HttpRequestHeader.Referer, "https://files.aero-nav.com/EDXX/");
                 client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                 client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                client.DownloadFileAsync(new Uri(selectedurl), esdir + "/ToolScope/data.zip");
+                client.DownloadFileAsync(new Uri(selectedurl), ReadConfig("esdir") + "/ToolScope/data.zip");
             });
             thread.Start();
         }
@@ -182,10 +184,8 @@ namespace ToolScope_for_EuroScope
 
         private void savebtn_Click(object sender, EventArgs e)
         {
-            updateVars();
-            UpdateIni("save", "all");
-            UpdateIni("read", "all");
-            UpdateUI();
+            UpdateUI("write");
+            UpdateUI("read");
             savebtn.Enabled = false;
             notifyText("success", "Settings have been saved and loaded!", 5);
         }
@@ -198,8 +198,8 @@ namespace ToolScope_for_EuroScope
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    esdir = fbd.SelectedPath;
-                    esfolderbox.Text = esdir;
+                    WriteConfig("esdir", fbd.SelectedPath);
+                    esfolderbox.Text = ReadConfig("esdir");
                 }
             }
         }
@@ -249,7 +249,7 @@ namespace ToolScope_for_EuroScope
             {
                 try
                 {
-                    System.IO.DirectoryInfo di = new DirectoryInfo(esdir);
+                    System.IO.DirectoryInfo di = new DirectoryInfo(ReadConfig("esdir"));
 
                     foreach (FileInfo file in di.GetFiles())
                     {
@@ -267,6 +267,26 @@ namespace ToolScope_for_EuroScope
                 }
                 
             }
+        }
+
+        private void insertcredentials_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUI("write");
+        }
+
+        private void insertatisairport_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUI("write");
+        }
+
+        private void insertplugins_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUI("write");
+        }
+
+        private void insertsettings_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUI("write");
         }
     }
 }

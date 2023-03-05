@@ -157,11 +157,11 @@
   </metadata>
   <data name="downloadbtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAR0AAAAdCAYAAACXHbjPAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC8SURBVHhe7d0rEsIwGIXRmIJgBongsZcurZK9sJguqUyg
-        ogiqkqvOnTkmE/3Zv5iZxXebj+NjHiaAXmpn1uSU8n08LAD9DNOanE10Xqfl/jwDNFO78jc69cN1vAA0
-        8wmP6AApogNEiQ4QJTpAlOgAUaIDRIkOECU6QJToAFGiA0SJDhAlOkCU6ABRogNEiQ4QJTpAlOgAUaID
-        RIkOECU6QNRudFyDAFrbvQYB0M8mOi58Ar39XPg0M8uslDdea6BwCEO1CAAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAAOcAAAAdCAYAAABR/XtfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACySURBVHhe7dwtDsJAFIXRZwqCBIngZy9dWiV7YTFdUslA
+        RRHUzhXnJsdMxn72lZkF7zYfx8c8TEB/rcc1zarv42EBEgzTmuYmztdpuT/PQAetv79xtg/X8QJ08AlU
+        nJBHnBBKnBBKnBBKnBBKnBBKnBBKnBBKnBBKnBBKnBBKnBBKnBBKnBBKnBBKnBBKnBBKnBBKnBBKnBBq
+        N07X96Cf3et7QIJNnC6+Q46fi+9mlraqNyPuIkKo97WLAAAAAElFTkSuQmCC
 </value>
   </data>
   <metadata name="bunifuDragControl2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -172,14 +172,17 @@
   </metadata>
   <data name="progressbar.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAR0AAAANCAYAAACUy7pUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD0SURBVGhD7do7CoNAGEVhl5IyZSpJmc6oqGAhAR+TMkuw
-        dFdZWlJlMj/MYARJ8IFpzoWvcmwPguMxxtjfppQ61nXdAcASVVWdTU92Ni3ja5rmbmgAWIOJz8PE52oT
-        M5wp0kkOlWWp0zTVURQBwCxxHOuiKFx4nqYvB5uafvI5JAeSJNG+7wPAYlmWufC0NjX9XHSkUmMvA8BU
-        YRi66HQ2Nf2IDoC1SU+IDoDNEB0Am/oVnZs8zPN89GUAmOprdJRSe3ko5HeXHAaAuYIgkCs4L2mKXBS0
-        qRnO1Kh14QGAldxtYsYnRZJPIQBYyvTkYtPyMc97A3a92tRFJ+9QAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAAOcAAAANCAYAAABSK3nEAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADrSURBVGhD7do/C4JAHIdxX0pjY5M0tpmKCg4S+OcaewmO
+        vitfWk1d94M7TJCavAyeL3wmz/FBUAPG2B9MKXVs23YA4EfTNGfT3c4muLyu60ZDA/DLRHo3kV5tivOZ
+        ck9yqK5rnee5TpIEwMrSNNVVVblAH6bDg01ymjxe5UCWZToMQwAeFUXhAu1tktNcnFLz0s0A1hPHsYtz
+        sElOI07gd6Q74gQ2iDiBjfoW500ulmW5eDOA9XyMUym1l4tCXu/KYQDri6JIPmE+pT35IcEmOZ+ptneB
+        AvButCkuT8qVRysAf0x3F5vg24LgBdPbc1iutDxcAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="uipage.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="esfolderbox.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAVYAAAAdCAYAAADxR0SYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

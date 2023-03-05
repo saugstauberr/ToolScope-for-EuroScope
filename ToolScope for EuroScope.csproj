@@ -313,6 +313,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Functions\DataManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Functions\FileManager.cs">
       <SubType>Form</SubType>
     </Compile>

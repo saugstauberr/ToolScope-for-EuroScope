@@ -87,6 +87,18 @@
             this.progressbar = new Bunifu.UI.WinForms.BunifuProgressBar();
             this.uipage = new Bunifu.UI.WinForms.BunifuPages();
             this.airacdownloadpan = new System.Windows.Forms.TabPage();
+            this.label25 = new System.Windows.Forms.Label();
+            this.insertsettings = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
+            this.label24 = new System.Windows.Forms.Label();
+            this.bunifuToggleSwitch24 = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
+            this.label23 = new System.Windows.Forms.Label();
+            this.insertplugins = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
+            this.label22 = new System.Windows.Forms.Label();
+            this.insertatisairport = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
+            this.label21 = new System.Windows.Forms.Label();
+            this.insertcredentials = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.countrybox = new Bunifu.UI.WinForms.BunifuDropdown();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -152,7 +164,7 @@
             this.pagenametxt.Name = "pagenametxt";
             this.pagenametxt.Size = new System.Drawing.Size(225, 21);
             this.pagenametxt.TabIndex = 47;
-            this.pagenametxt.Text = "AIRAC Downloader/Updater";
+            this.pagenametxt.Text = "AIRAC Manager";
             this.pagenametxt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // notifytxt
@@ -451,7 +463,7 @@
             this.downloadbtn.IdleIconLeftImage = null;
             this.downloadbtn.IdleIconRightImage = null;
             this.downloadbtn.IndicateFocus = false;
-            this.downloadbtn.Location = new System.Drawing.Point(158, 233);
+            this.downloadbtn.Location = new System.Drawing.Point(13, 274);
             this.downloadbtn.Name = "downloadbtn";
             this.downloadbtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.downloadbtn.OnDisabledState.BorderRadius = 1;
@@ -485,7 +497,7 @@
             this.downloadbtn.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(252)))), ((int)(((byte)(159)))));
             this.downloadbtn.OnPressedState.IconLeftImage = null;
             this.downloadbtn.OnPressedState.IconRightImage = null;
-            this.downloadbtn.Size = new System.Drawing.Size(285, 29);
+            this.downloadbtn.Size = new System.Drawing.Size(231, 29);
             this.downloadbtn.TabIndex = 6;
             this.downloadbtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.downloadbtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -542,7 +554,7 @@
             this.packagebox.ItemHighLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.packagebox.ItemHighLightForeColor = System.Drawing.Color.White;
             this.packagebox.ItemTopMargin = 3;
-            this.packagebox.Location = new System.Drawing.Point(200, 157);
+            this.packagebox.Location = new System.Drawing.Point(99, 134);
             this.packagebox.Name = "packagebox";
             this.packagebox.Size = new System.Drawing.Size(145, 25);
             this.packagebox.TabIndex = 19;
@@ -556,7 +568,7 @@
             this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.label6.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label6.Location = new System.Drawing.Point(111, 157);
+            this.label6.Location = new System.Drawing.Point(10, 134);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(82, 29);
             this.label6.TabIndex = 18;
@@ -568,7 +580,7 @@
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.label5.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label5.Location = new System.Drawing.Point(360, 126);
+            this.label5.Location = new System.Drawing.Point(25, 163);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 29);
             this.label5.TabIndex = 20;
@@ -611,7 +623,7 @@
             this.regionbox.ItemHighLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.regionbox.ItemHighLightForeColor = System.Drawing.Color.White;
             this.regionbox.ItemTopMargin = 3;
-            this.regionbox.Location = new System.Drawing.Point(200, 126);
+            this.regionbox.Location = new System.Drawing.Point(99, 103);
             this.regionbox.Name = "regionbox";
             this.regionbox.Size = new System.Drawing.Size(145, 25);
             this.regionbox.TabIndex = 23;
@@ -625,7 +637,7 @@
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.label4.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label4.Location = new System.Drawing.Point(111, 126);
+            this.label4.Location = new System.Drawing.Point(10, 103);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 29);
             this.label4.TabIndex = 22;
@@ -637,7 +649,7 @@
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.label7.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label7.Location = new System.Drawing.Point(360, 153);
+            this.label7.Location = new System.Drawing.Point(25, 190);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(67, 29);
             this.label7.TabIndex = 24;
@@ -649,7 +661,7 @@
             this.airactxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.airactxt.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.airactxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.airactxt.Location = new System.Drawing.Point(433, 126);
+            this.airactxt.Location = new System.Drawing.Point(98, 163);
             this.airactxt.Name = "airactxt";
             this.airactxt.Size = new System.Drawing.Size(94, 29);
             this.airactxt.TabIndex = 25;
@@ -661,7 +673,7 @@
             this.releasetxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.releasetxt.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.releasetxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.releasetxt.Location = new System.Drawing.Point(433, 153);
+            this.releasetxt.Location = new System.Drawing.Point(98, 190);
             this.releasetxt.Name = "releasetxt";
             this.releasetxt.Size = new System.Drawing.Size(116, 29);
             this.releasetxt.TabIndex = 26;
@@ -673,7 +685,7 @@
             this.versiontxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.versiontxt.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.versiontxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.versiontxt.Location = new System.Drawing.Point(433, 182);
+            this.versiontxt.Location = new System.Drawing.Point(98, 219);
             this.versiontxt.Name = "versiontxt";
             this.versiontxt.Size = new System.Drawing.Size(116, 29);
             this.versiontxt.TabIndex = 28;
@@ -685,7 +697,7 @@
             this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.label9.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label9.Location = new System.Drawing.Point(360, 182);
+            this.label9.Location = new System.Drawing.Point(25, 219);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(67, 29);
             this.label9.TabIndex = 27;
@@ -703,7 +715,7 @@
             this.progressbar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
             this.progressbar.BorderRadius = 5;
             this.progressbar.BorderThickness = 2;
-            this.progressbar.Location = new System.Drawing.Point(159, 268);
+            this.progressbar.Location = new System.Drawing.Point(13, 309);
             this.progressbar.Maximum = 100;
             this.progressbar.MaximumValue = 100;
             this.progressbar.Minimum = 0;
@@ -713,7 +725,7 @@
             this.progressbar.ProgressBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.progressbar.ProgressColorLeft = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
             this.progressbar.ProgressColorRight = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
-            this.progressbar.Size = new System.Drawing.Size(285, 13);
+            this.progressbar.Size = new System.Drawing.Size(231, 13);
             this.progressbar.TabIndex = 29;
             this.progressbar.Value = 0;
             this.progressbar.ValueByTransition = 0;
@@ -757,6 +769,18 @@
             // airacdownloadpan
             // 
             this.airacdownloadpan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.airacdownloadpan.Controls.Add(this.label25);
+            this.airacdownloadpan.Controls.Add(this.insertsettings);
+            this.airacdownloadpan.Controls.Add(this.label24);
+            this.airacdownloadpan.Controls.Add(this.bunifuToggleSwitch24);
+            this.airacdownloadpan.Controls.Add(this.label23);
+            this.airacdownloadpan.Controls.Add(this.insertplugins);
+            this.airacdownloadpan.Controls.Add(this.label22);
+            this.airacdownloadpan.Controls.Add(this.insertatisairport);
+            this.airacdownloadpan.Controls.Add(this.label21);
+            this.airacdownloadpan.Controls.Add(this.insertcredentials);
+            this.airacdownloadpan.Controls.Add(this.label20);
+            this.airacdownloadpan.Controls.Add(this.label19);
             this.airacdownloadpan.Controls.Add(this.label3);
             this.airacdownloadpan.Controls.Add(this.countrybox);
             this.airacdownloadpan.Controls.Add(this.progressbar);
@@ -779,12 +803,182 @@
             this.airacdownloadpan.TabIndex = 0;
             this.airacdownloadpan.Text = "AIRAC Downloader";
             // 
+            // label25
+            // 
+            this.label25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.label25.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
+            this.label25.ForeColor = System.Drawing.Color.White;
+            this.label25.Location = new System.Drawing.Point(426, 130);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(177, 33);
+            this.label25.TabIndex = 61;
+            this.label25.Text = "Copy settings from previous AIRAC";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // insertsettings
+            // 
+            this.insertsettings.BackColor = System.Drawing.Color.Transparent;
+            this.insertsettings.Checked = true;
+            this.insertsettings.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
+            this.insertsettings.CheckedSwitchColor = System.Drawing.Color.White;
+            this.insertsettings.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
+            this.insertsettings.Location = new System.Drawing.Point(386, 130);
+            this.insertsettings.Name = "insertsettings";
+            this.insertsettings.OutlineThickness = 2;
+            this.insertsettings.Size = new System.Drawing.Size(34, 19);
+            this.insertsettings.TabIndex = 60;
+            this.insertsettings.UncheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.insertsettings.UncheckedSwitchColor = System.Drawing.Color.White;
+            this.insertsettings.UncheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Outline;
+            this.insertsettings.CheckedChanged += new System.EventHandler(this.insertsettings_CheckedChanged);
+            // 
+            // label24
+            // 
+            this.label24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.label24.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
+            this.label24.ForeColor = System.Drawing.Color.White;
+            this.label24.Location = new System.Drawing.Point(426, 167);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(138, 19);
+            this.label24.TabIndex = 59;
+            this.label24.Text = "Run custom script";
+            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label24.Visible = false;
+            // 
+            // bunifuToggleSwitch24
+            // 
+            this.bunifuToggleSwitch24.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuToggleSwitch24.Checked = false;
+            this.bunifuToggleSwitch24.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
+            this.bunifuToggleSwitch24.CheckedSwitchColor = System.Drawing.Color.White;
+            this.bunifuToggleSwitch24.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
+            this.bunifuToggleSwitch24.Location = new System.Drawing.Point(386, 167);
+            this.bunifuToggleSwitch24.Name = "bunifuToggleSwitch24";
+            this.bunifuToggleSwitch24.OutlineThickness = 2;
+            this.bunifuToggleSwitch24.Size = new System.Drawing.Size(34, 19);
+            this.bunifuToggleSwitch24.TabIndex = 58;
+            this.bunifuToggleSwitch24.UncheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.bunifuToggleSwitch24.UncheckedSwitchColor = System.Drawing.Color.White;
+            this.bunifuToggleSwitch24.UncheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Outline;
+            this.bunifuToggleSwitch24.Visible = false;
+            // 
+            // label23
+            // 
+            this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.label23.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
+            this.label23.ForeColor = System.Drawing.Color.White;
+            this.label23.Location = new System.Drawing.Point(426, 106);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(177, 19);
+            this.label23.TabIndex = 56;
+            this.label23.Text = "Copy plugins and insert into .prf";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // insertplugins
+            // 
+            this.insertplugins.BackColor = System.Drawing.Color.Transparent;
+            this.insertplugins.Checked = true;
+            this.insertplugins.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
+            this.insertplugins.CheckedSwitchColor = System.Drawing.Color.White;
+            this.insertplugins.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
+            this.insertplugins.Location = new System.Drawing.Point(386, 106);
+            this.insertplugins.Name = "insertplugins";
+            this.insertplugins.OutlineThickness = 2;
+            this.insertplugins.Size = new System.Drawing.Size(34, 19);
+            this.insertplugins.TabIndex = 55;
+            this.insertplugins.UncheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.insertplugins.UncheckedSwitchColor = System.Drawing.Color.White;
+            this.insertplugins.UncheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Outline;
+            this.insertplugins.CheckedChanged += new System.EventHandler(this.insertplugins_CheckedChanged);
+            // 
+            // label22
+            // 
+            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.label22.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
+            this.label22.ForeColor = System.Drawing.Color.White;
+            this.label22.Location = new System.Drawing.Point(426, 82);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(138, 19);
+            this.label22.TabIndex = 54;
+            this.label22.Text = "Insert ATIS airport";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // insertatisairport
+            // 
+            this.insertatisairport.BackColor = System.Drawing.Color.Transparent;
+            this.insertatisairport.Checked = true;
+            this.insertatisairport.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
+            this.insertatisairport.CheckedSwitchColor = System.Drawing.Color.White;
+            this.insertatisairport.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
+            this.insertatisairport.Location = new System.Drawing.Point(386, 82);
+            this.insertatisairport.Name = "insertatisairport";
+            this.insertatisairport.OutlineThickness = 2;
+            this.insertatisairport.Size = new System.Drawing.Size(34, 19);
+            this.insertatisairport.TabIndex = 53;
+            this.insertatisairport.UncheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.insertatisairport.UncheckedSwitchColor = System.Drawing.Color.White;
+            this.insertatisairport.UncheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Outline;
+            this.insertatisairport.CheckedChanged += new System.EventHandler(this.insertatisairport_CheckedChanged);
+            // 
+            // label21
+            // 
+            this.label21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.label21.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
+            this.label21.ForeColor = System.Drawing.Color.White;
+            this.label21.Location = new System.Drawing.Point(426, 58);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(138, 19);
+            this.label21.TabIndex = 52;
+            this.label21.Text = "Insert credentials";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // insertcredentials
+            // 
+            this.insertcredentials.BackColor = System.Drawing.Color.Transparent;
+            this.insertcredentials.Checked = true;
+            this.insertcredentials.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
+            this.insertcredentials.CheckedSwitchColor = System.Drawing.Color.White;
+            this.insertcredentials.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
+            this.insertcredentials.Location = new System.Drawing.Point(386, 58);
+            this.insertcredentials.Name = "insertcredentials";
+            this.insertcredentials.OutlineThickness = 2;
+            this.insertcredentials.Size = new System.Drawing.Size(34, 19);
+            this.insertcredentials.TabIndex = 51;
+            this.insertcredentials.UncheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.insertcredentials.UncheckedSwitchColor = System.Drawing.Color.White;
+            this.insertcredentials.UncheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Outline;
+            this.insertcredentials.CheckedChanged += new System.EventHandler(this.insertcredentials_CheckedChanged);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.label20.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.White;
+            this.label20.Location = new System.Drawing.Point(397, 27);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(127, 17);
+            this.label20.TabIndex = 49;
+            this.label20.Text = "Additional Settings";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.label19.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.White;
+            this.label19.Location = new System.Drawing.Point(54, 27);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(138, 17);
+            this.label19.TabIndex = 48;
+            this.label19.Text = "Install/Update AIRAC";
+            // 
             // label3
             // 
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.label3.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label3.Location = new System.Drawing.Point(111, 95);
+            this.label3.Location = new System.Drawing.Point(10, 72);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 29);
             this.label3.TabIndex = 30;
@@ -827,9 +1021,9 @@
             this.countrybox.ItemHighLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.countrybox.ItemHighLightForeColor = System.Drawing.Color.White;
             this.countrybox.ItemTopMargin = 3;
-            this.countrybox.Location = new System.Drawing.Point(200, 95);
+            this.countrybox.Location = new System.Drawing.Point(99, 72);
             this.countrybox.Name = "countrybox";
-            this.countrybox.Size = new System.Drawing.Size(246, 25);
+            this.countrybox.Size = new System.Drawing.Size(145, 25);
             this.countrybox.TabIndex = 31;
             this.countrybox.Text = null;
             this.countrybox.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
@@ -1924,7 +2118,7 @@
             this.versionlabel.Text = "0.0.1";
             this.versionlabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // main
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1938,13 +2132,14 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "main";
+            this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ToolScope for EuroScope";
             this.controlbar.ResumeLayout(false);
             this.controlbar.PerformLayout();
             this.uipage.ResumeLayout(false);
             this.airacdownloadpan.ResumeLayout(false);
+            this.airacdownloadpan.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.bunifuPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -2006,6 +2201,18 @@
         private System.Windows.Forms.Label label3;
         private Bunifu.UI.WinForms.BunifuDropdown countrybox;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton clearesfolderbtn;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label24;
+        private Bunifu.UI.WinForms.BunifuToggleSwitch2 bunifuToggleSwitch24;
+        private System.Windows.Forms.Label label23;
+        private Bunifu.UI.WinForms.BunifuToggleSwitch2 insertplugins;
+        private System.Windows.Forms.Label label22;
+        private Bunifu.UI.WinForms.BunifuToggleSwitch2 insertatisairport;
+        private System.Windows.Forms.Label label21;
+        private Bunifu.UI.WinForms.BunifuToggleSwitch2 insertcredentials;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label25;
+        private Bunifu.UI.WinForms.BunifuToggleSwitch2 insertsettings;
     }
 }
 

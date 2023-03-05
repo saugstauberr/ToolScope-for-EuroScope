@@ -33,7 +33,7 @@ namespace ToolScope_for_EuroScope
                 progressbar.Visible = false;
                 try
                 {
-                    Directory.Delete(esdir + "/ToolScope/data");
+                    Directory.Delete(ReadConfig("esdir") + "/ToolScope/data");
                 }
                 catch
                 {
@@ -45,8 +45,8 @@ namespace ToolScope_for_EuroScope
 
         public void CreateBackup(string pathinesdir)
         {
-            var sourcePath = esdir + pathinesdir;
-            var targetPath = esdir + "/ToolScope/Backup/";
+            var sourcePath = ReadConfig("esdir") + pathinesdir;
+            var targetPath = ReadConfig("esdir") + "/ToolScope/Backup/";
 
 
             foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
@@ -61,22 +61,27 @@ namespace ToolScope_for_EuroScope
             }
         }
 
+        public void AddConfigLine()
+        {
+
+        }
+
         public void ReplaceEuroScope()
         {
-            var sourcePath = esdir + "/ToolScope/data";
-            var targetPath = esdir;
+            var sourcePath = ReadConfig("esdir") + "/ToolScope/data";
+            var targetPath = ReadConfig("esdir");
 
             try
             {
-                Directory.Delete(esdir + "/ToolScope/data", true);
+                Directory.Delete(ReadConfig("esdir") + "/ToolScope/data", true);
             }
             catch
             {
 
             }
 
-            ZipFile.ExtractToDirectory(esdir + "/ToolScope/data.zip", esdir + "/ToolScope/data");
-            System.IO.File.Delete(esdir + "/ToolScope/data.zip");
+            ZipFile.ExtractToDirectory(ReadConfig("esdir") + "/ToolScope/data.zip", ReadConfig("esdir") + "/ToolScope/data");
+            System.IO.File.Delete(ReadConfig("esdir") + "/ToolScope/data.zip");
 
             foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
             {
@@ -93,30 +98,32 @@ namespace ToolScope_for_EuroScope
 
             // Inserting the data into the .prf-Files
 
+            var apptext = "\r\nLastSession\tcallsign\t" + ReadConfig("callsign") + "\r\nLastSession\trealname\t" + ReadConfig("realname") +
+                    "\r\nLastSession\t" + "certificate\t" + ReadConfig("cid") + "\r\nLastSession\tpassword\t" +
+                    ConvertPassword("decrypt", ReadConfig("passwd")) + "\r\nLastSession\trating\t" + ReadConfig("rating") +
+                    "\r\nLastSession\t" + "server\t" + ReadConfig("server") + "\r\nLastSession\ttovatsim\t1";
+
             if (selectedurl.ToString().Contains("EDGG") == true)
             {
                 var text = new StringBuilder();
-                var apptext = "\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
-                    "certificate\t" + cid + "\r\nLastSession\tpassword\t" + passwd + "\r\nLastSession\trating\t" + rating + "\r\nLastSession\t" +
-                    "server\t" + server + "\r\nLastSession\ttovatsim\t1";
-
+                
                 text.Append(System.IO.File.ReadAllText(targetPath + "/EDDF Apron.prf") + apptext);
-                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + cid);
+                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + ReadConfig("cid"));
                 System.IO.File.WriteAllText(targetPath + "/EDDF Apron.prf", text.ToString());
                 text.Clear();
 
                 text.Append(System.IO.File.ReadAllText(targetPath + "/EDDF Rhein Radar.prf") + apptext);
-                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + cid);
+                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + ReadConfig("cid"));
                 System.IO.File.WriteAllText(targetPath + "/EDUU Rhein Radar.prf", text.ToString());
                 text.Clear();
 
                 text.Append(System.IO.File.ReadAllText(targetPath + "/EDDF Langen Radar.prf") + apptext);
-                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + cid);
+                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + ReadConfig("cid"));
                 System.IO.File.WriteAllText(targetPath + "/EDGG Langen Radar.prf", text.ToString());
                 text.Clear();
 
                 text.Append(System.IO.File.ReadAllText(targetPath + "/EDDF Tower Ground.prf") + apptext);
-                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + cid);
+                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + ReadConfig("cid"));
                 System.IO.File.WriteAllText(targetPath + "/Tower Ground.prf", text.ToString());
                 text.Clear();
 
@@ -125,9 +132,6 @@ namespace ToolScope_for_EuroScope
             else if (selectedurl.Contains("EDMM") == true)
             {
                 var text = new StringBuilder();
-                var apptext = "\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
-                    "certificate\t" + cid + "\r\nLastSession\tpassword\t" + passwd + "\r\nLastSession\trating\t" + rating + "\r\nLastSession\t" +
-                    "server\t" + server + "\r\nLastSession\ttovatsim\t1";
 
                 text.Append(System.IO.File.ReadAllText(targetPath + "/EDMM.prf") + apptext);
                 System.IO.File.WriteAllText(targetPath + "/EDMM.prf", text.ToString());
@@ -146,9 +150,6 @@ namespace ToolScope_for_EuroScope
             else if (selectedurl.Contains("EDWW/DFS") == true)
             {
                 var text = new StringBuilder();
-                var apptext = "\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
-                    "certificate\t" + cid + "\r\nLastSession\tpassword\t" + passwd + "\r\nLastSession\trating\t" + rating + "\r\nLastSession\t" +
-                    "server\t" + server + "\r\nLastSession\ttovatsim\t1";
 
                 text.Append(System.IO.File.ReadAllText(targetPath + "/EDBB-CTR-APP.prf") + apptext);
                 System.IO.File.WriteAllText(targetPath + "/EDBB-CTR-APP.prf", text.ToString());
@@ -179,9 +180,6 @@ namespace ToolScope_for_EuroScope
             else if (selectedurl.Contains("EDWW/EDBB") == true)
             {
                 var text = new StringBuilder();
-                var apptext = "\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
-                    "certificate\t" + cid + "\r\nLastSession\tpassword\t" + passwd + "\r\nLastSession\trating\t" + rating + "\r\nLastSession\t" +
-                    "server\t" + server + "\r\nLastSession\ttovatsim\t1";
 
                 text.Append(System.IO.File.ReadAllText(targetPath + "/EDBB_TopSky.prf") + apptext);
                 System.IO.File.WriteAllText(targetPath + "/EDBB_TopSky.prf", text.ToString());
@@ -196,9 +194,6 @@ namespace ToolScope_for_EuroScope
             else if (selectedurl.Contains("EDXX") == true)
             {
                 var text = new StringBuilder();
-                var apptext = "\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
-                    "certificate\t" + cid + "\r\nLastSession\tpassword\t" + passwd + "\r\nLastSession\trating\t" + rating + "\r\nLastSession\t" +
-                    "server\t" + server + "\r\nLastSession\ttovatsim\t1";
 
                 text.Append(System.IO.File.ReadAllText(targetPath + "/FIS.prf") + apptext);
                 System.IO.File.WriteAllText(targetPath + "/FIS.prf", text.ToString());
@@ -209,14 +204,11 @@ namespace ToolScope_for_EuroScope
             else
             {
 
-                string[] allProfiles = Directory.GetFiles(esdir, "*.prf");
+                string[] allProfiles = Directory.GetFiles(ReadConfig("esdir"), "*.prf");
 
                 foreach (string profile in allProfiles)
                 {
                     var text = new StringBuilder();
-                    var apptext = "\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
-                        "certificate\t" + cid + "\r\nLastSession\tpassword\t" + passwd + "\r\nLastSession\trating\t" + rating + "\r\nLastSession\t" +
-                        "server\t" + server + "\r\nLastSession\ttovatsim\t1";
 
                     text.Append(System.IO.File.ReadAllText(profile) + apptext);
                     System.IO.File.WriteAllText(profile, text.ToString());
@@ -248,12 +240,11 @@ namespace ToolScope_for_EuroScope
                 }*/
             }
 
-            foreach (string s in Directory.EnumerateFiles(esdir + "/" + selectedregion + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories))
+            foreach (string s in Directory.EnumerateFiles(ReadConfig("esdir") + "/" + selectedregion + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories))
             {
-                System.IO.File.WriteAllText(s, hoppiecode);
+                System.IO.File.WriteAllText(s, ReadConfig("hoppiecode"));
             }
             //installedpackages.Add(selectedurl);
-            UpdateIni("save", "all");
             //CreateInstalledLabels();
             downloadbtn.Enabled = true;
         }
