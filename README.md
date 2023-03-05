@@ -32,6 +32,8 @@ Issues and bugs can happen. Please report them in the [**Issues**](https://githu
 
 ## Incoming features
 - more customization
-- Pluginkeeper
+- keep window position after update
+- pro-mode for custom code/custom settings
+- AIRAC manager
+- keep plugins after update
 - various other features, it should be a program for multiple purposes
-- remove manual .prf selection, let script insert all credentials in all .prf files
