@@ -36,4 +36,5 @@ Issues and bugs can happen. Please report them in the [**Issues**](https://githu
 - pro-mode for custom code/custom settings
 - AIRAC manager
 - keep plugins after update
+- modern UI update ([Design Idea](https://dribbble.com/shots/14195973-Modern-Dashboard-Admin-Design))
 - various other features, it should be a program for multiple purposes
