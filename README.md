@@ -1,6 +1,6 @@
 
 ![Banner](https://i.imgur.com/Itmo2Vl.png)
-### Welcome to Toolscape! :wave:
+### Welcome to ToolScope! :wave:
  [**Download here!**](https://github.com/saugstauberr/ToolScope-for-EuroScope/releases) •
  [Where I've got this idea from](https://board.vatsim-germany.org/threads/tool-powershell-script-fuer-airac-update-mit-erhaltung-eigener-einstellungen.69729/page-2) •
  [VATSIM Germany Website](https://vatsim-germany.org/) •
@@ -9,8 +9,8 @@
 ![Main Menu](https://i.imgur.com/QIDHKHa.png)
 ![Settings Menu](https://i.imgur.com/b07OUrU.png)
 
-## What is Toolscape?
-Toolspace is a tool which allows you to update your EuroScope AIRAC or even just install a AIRAC package for a new sector without having to type your credentials and your hoppie code ever again! 
+## What is ToolScope?
+ToolScope is a tool which allows you to update your EuroScope AIRAC or even just install a AIRAC package for a new sector without having to type your credentials and your hoppie code ever again! 
 And the best thing: **It's super easy to use!** 👌
 
 - ⚙️ install a new AIRAC or update an existing one
