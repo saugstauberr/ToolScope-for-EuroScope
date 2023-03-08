@@ -15,19 +15,14 @@ jobs:
     permissions: write-all
     steps:
       - uses: actions/checkout@v3
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-      - uses: actions/checkout@v3
       - name: Build
         run: cargo build --release
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: release/**
-          #asset_name: myt
+          file: release/ToolScope.For.EuroScope.exe
+          asset_name: ToolScope.For.EuroScope.exe
           tag: ${{ github.ref }}
           overwrite: true
           #body: "This is my release text"
