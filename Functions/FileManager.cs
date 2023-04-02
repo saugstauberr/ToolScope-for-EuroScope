@@ -38,7 +38,8 @@ namespace ToolScope_for_EuroScope
                 catch
                 {
                 }
-                ReplaceEuroScope();
+                ExtractZip();
+                ReplaceProfiles();
             });
         }
         #endregion
@@ -61,12 +62,7 @@ namespace ToolScope_for_EuroScope
             }
         }
 
-        public void AddConfigLine()
-        {
-
-        }
-
-        public void ReplaceEuroScope()
+        public void ExtractZip()
         {
             var sourcePath = ReadConfig("esdir") + "/ToolScope/data";
             var targetPath = ReadConfig("esdir");
@@ -95,126 +91,28 @@ namespace ToolScope_for_EuroScope
             }
 
             Directory.Delete(sourcePath, true);
+        }
 
+        public void ReplaceProfiles()
+        {
             // Inserting the data into the .prf-Files
 
             var apptext = "\r\nLastSession\tcallsign\t" + ReadConfig("callsign") + "\r\nLastSession\trealname\t" + ReadConfig("realname") +
                     "\r\nLastSession\t" + "certificate\t" + ReadConfig("cid") + "\r\nLastSession\tpassword\t" +
                     ConvertPassword("decrypt", ReadConfig("passwd")) + "\r\nLastSession\trating\t" + ReadConfig("rating") +
                     "\r\nLastSession\t" + "server\t" + ReadConfig("server") + "\r\nLastSession\ttovatsim\t1";
+           string[] allProfiles = Directory.GetFiles(ReadConfig("esdir"), "*.prf");
 
-            if (selectedurl.ToString().Contains("EDGG") == true)
-            {
-                var text = new StringBuilder();
-                
-                text.Append(System.IO.File.ReadAllText(targetPath + "/EDDF Apron.prf") + apptext);
-                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + ReadConfig("cid"));
-                System.IO.File.WriteAllText(targetPath + "/EDDF Apron.prf", text.ToString());
-                text.Clear();
-
-                text.Append(System.IO.File.ReadAllText(targetPath + "/EDDF Rhein Radar.prf") + apptext);
-                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + ReadConfig("cid"));
-                System.IO.File.WriteAllText(targetPath + "/EDUU Rhein Radar.prf", text.ToString());
-                text.Clear();
-
-                text.Append(System.IO.File.ReadAllText(targetPath + "/EDDF Langen Radar.prf") + apptext);
-                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + ReadConfig("cid"));
-                System.IO.File.WriteAllText(targetPath + "/EDGG Langen Radar.prf", text.ToString());
-                text.Clear();
-
-                text.Append(System.IO.File.ReadAllText(targetPath + "/EDDF Tower Ground.prf") + apptext);
-                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + ReadConfig("cid"));
-                System.IO.File.WriteAllText(targetPath + "/Tower Ground.prf", text.ToString());
-                text.Clear();
-
-                notifyText("success", "Successfully updated (EDGG)!", 5);
-            }
-            else if (selectedurl.Contains("EDMM") == true)
-            {
-                var text = new StringBuilder();
-
-                text.Append(System.IO.File.ReadAllText(targetPath + "/EDMM.prf") + apptext);
-                System.IO.File.WriteAllText(targetPath + "/EDMM.prf", text.ToString());
-                text.Clear();
-
-                text.Append(System.IO.File.ReadAllText(targetPath + "/EDUU.prf") + apptext);
-                System.IO.File.WriteAllText(targetPath + "/EDUU.prf", text.ToString());
-                text.Clear();
-
-                text.Append(System.IO.File.ReadAllText(targetPath + "/TWR_REAL.prf") + apptext);
-                System.IO.File.WriteAllText(targetPath + "/TWR_REAL.prf", text.ToString());
-                text.Clear();
-
-                notifyText("success", "Successfully updated (EDMM)!", 5);
-            }
-            else if (selectedurl.Contains("EDWW/DFS") == true)
-            {
-                var text = new StringBuilder();
-
-                text.Append(System.IO.File.ReadAllText(targetPath + "/EDBB-CTR-APP.prf") + apptext);
-                System.IO.File.WriteAllText(targetPath + "/EDBB-CTR-APP.prf", text.ToString());
-                text.Clear();
-
-                text.Append(System.IO.File.ReadAllText(targetPath + "/EDBB-TWR.prf") + apptext);
-                System.IO.File.WriteAllText(targetPath + "/EDBB-TWR.prf", text.ToString());
-                text.Clear();
-
-                text.Append(System.IO.File.ReadAllText(targetPath + "/EDUU-CTR.prf") + apptext);
-                System.IO.File.WriteAllText(targetPath + "/EDUU-CTR.prf", text.ToString());
-                text.Clear();
-
-                text.Append(System.IO.File.ReadAllText(targetPath + "/EDWW-CTR-APP.prf") + apptext);
-                System.IO.File.WriteAllText(targetPath + "/EDWW-CTR-APP.prf", text.ToString());
-                text.Clear();
-
-                text.Append(System.IO.File.ReadAllText(targetPath + "/EDWW-TWR.prf") + apptext);
-                System.IO.File.WriteAllText(targetPath + "/EDWW-TWR.prf", text.ToString());
-                text.Clear();
-
-                text.Append(System.IO.File.ReadAllText(targetPath + "/EDYY-CTR.prf") + apptext);
-                System.IO.File.WriteAllText(targetPath + "/EDYY-CTR.prf", text.ToString());
-                text.Clear();
-
-                notifyText("success", "Successfully updated (EDWW-DFS)!", 5);
-            }
-            else if (selectedurl.Contains("EDWW/EDBB") == true)
-            {
-                var text = new StringBuilder();
-
-                text.Append(System.IO.File.ReadAllText(targetPath + "/EDBB_TopSky.prf") + apptext);
-                System.IO.File.WriteAllText(targetPath + "/EDBB_TopSky.prf", text.ToString());
-                text.Clear();
-
-                text.Append(System.IO.File.ReadAllText(targetPath + "/EDBB_TopSky-Tower.prf") + apptext);
-                System.IO.File.WriteAllText(targetPath + "/EDBB_TopSky-Tower.prf", text.ToString());
-                text.Clear();
-
-                notifyText("success", "Successfully updated (EDWW-EDBB)!", 5);
-            }
-            else if (selectedurl.Contains("EDXX") == true)
-            {
-                var text = new StringBuilder();
-
-                text.Append(System.IO.File.ReadAllText(targetPath + "/FIS.prf") + apptext);
-                System.IO.File.WriteAllText(targetPath + "/FIS.prf", text.ToString());
-                text.Clear();
-
-                notifyText("success", "Successfully updated (EDXX)!", 5);
-            }
-            else
-            {
-
-                string[] allProfiles = Directory.GetFiles(ReadConfig("esdir"), "*.prf");
-
-                foreach (string profile in allProfiles)
-                {
+           foreach (string profile in allProfiles)
+           {
                     var text = new StringBuilder();
 
                     text.Append(System.IO.File.ReadAllText(profile) + apptext);
+                    text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + ReadConfig("cid"));
                     System.IO.File.WriteAllText(profile, text.ToString());
                     text.Clear();
-                }
-                notifyText("success", "Successfully updated and data inserted!", 5);
+           }
+           notifyText("success", "Successfully updated and data inserted!", 5);
 
                 /*OpenFileDialog profiles = new OpenFileDialog();
                 profiles.Title = "Select .prf-File/s where your credentials should be inserted into";
@@ -238,7 +136,6 @@ namespace ToolScope_for_EuroScope
                     }
                     notifyText("success", "Successfully updated and data inserted!", 5);
                 }*/
-            }
 
             foreach (string s in Directory.EnumerateFiles(ReadConfig("esdir") + "/" + selectedregion + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories))
             {

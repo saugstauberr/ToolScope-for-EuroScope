@@ -23,7 +23,7 @@ namespace ToolScope_for_EuroScope
         public string selectedurl;
         public string selectedregion;
 
-        public string pversion = "1.2.2";
+        public string pversion = "1.3.0";
 
         public Bunifu.UI.WinForms.BunifuButton.BunifuButton lastButton = null;
 
@@ -162,7 +162,7 @@ namespace ToolScope_for_EuroScope
         private void openupdateui_Click(object sender, EventArgs e)
         {
             uipage.SelectedIndex = 0;
-            ChangeUI("AIRAC Updater/Downloader", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
+            ChangeUI("AIRAC Manager", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
         }
 
         private void opensettingsui_Click(object sender, EventArgs e)

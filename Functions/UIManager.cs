@@ -172,15 +172,16 @@ namespace ToolScope_for_EuroScope
         private void ChangeUI(string pagename, Bunifu.UI.WinForms.BunifuButton.BunifuButton current)
         {
             UpdateUI("read");
-            current.OnIdleState.FillColor = Color.FromArgb(255, 196, 147, 0);
-            current.onHoverState.FillColor = Color.FromArgb(255, 196, 147, 0);
-            current.OnPressedState.FillColor = Color.FromArgb(255, 196, 147, 0);
-
+            /*current.OnIdleState.FillColor = Color.FromArgb(255, 42, 43, 46);
+            current.onHoverState.FillColor = Color.FromArgb(255, 42, 43, 46);
+            current.OnPressedState.FillColor = Color.FromArgb(255, 42, 43, 46);*/
+            current.Enabled = false;
             if (lastButton != null)
             {
-                lastButton.OnIdleState.FillColor = Color.FromArgb(255, 255, 191, 0);
-                lastButton.onHoverState.FillColor = Color.FromArgb(255, 255, 191, 0);
-                lastButton.OnPressedState.FillColor = Color.FromArgb(255, 255, 191, 0);
+                lastButton.Enabled = true;
+               /* lastButton.OnIdleState.FillColor = Color.FromArgb(255, 33, 34, 36);
+                lastButton.onHoverState.FillColor = Color.FromArgb(255, 33, 34, 36);
+                lastButton.OnPressedState.FillColor = Color.FromArgb(255, 33, 34, 36);*/
             }
 
             lastButton = current;
