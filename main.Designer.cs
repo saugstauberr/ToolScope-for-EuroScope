@@ -82,6 +82,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.uipage = new Bunifu.UI.WinForms.BunifuPages();
             this.airacdownloadpan = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.insertsettings = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
             this.clearesfolderbtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -125,7 +126,6 @@
             this.opensettingsui = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.openupdateui = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
-            this.label1 = new System.Windows.Forms.Label();
             this.uipage.SuspendLayout();
             this.airacdownloadpan.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -645,6 +645,18 @@
             this.airacdownloadpan.Size = new System.Drawing.Size(668, 447);
             this.airacdownloadpan.TabIndex = 0;
             this.airacdownloadpan.Text = "AIRAC Downloader";
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.label1.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(407, 94);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(138, 19);
+            this.label1.TabIndex = 62;
+            this.label1.Text = "Coming soon...";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label25
             // 
@@ -2035,6 +2047,7 @@
             this.openupdateui.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.openupdateui.DisabledFillColor = System.Drawing.Color.Empty;
             this.openupdateui.DisabledForecolor = System.Drawing.Color.Empty;
+            this.openupdateui.Enabled = false;
             this.openupdateui.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Idle;
             this.openupdateui.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.openupdateui.ForeColor = System.Drawing.Color.White;
@@ -2104,18 +2117,6 @@
             // 
             this.bunifuElipse1.ElipseRadius = 30;
             this.bunifuElipse1.TargetControl = this;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.label1.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(407, 94);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 19);
-            this.label1.TabIndex = 62;
-            this.label1.Text = "Coming soon...";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Main
             // 
