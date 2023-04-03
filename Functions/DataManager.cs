@@ -66,7 +66,9 @@ namespace ToolScope_for_EuroScope
                 WriteConfig("realname", namebox.Text);
                 WriteConfig("hoppiecode", hoppiecodebox.Text);
                 WriteConfig("esdir", esfolderbox.Text);
-
+                WriteConfig("insertcredentials", insertcredentials.Checked.ToString());
+                WriteConfig("insertatisairport", insertatisairport.Checked.ToString());
+                WriteConfig("insertplugins", insertplugins.Checked.ToString());
                 WriteConfig("server", "AUTOMATIC");
             }
         }

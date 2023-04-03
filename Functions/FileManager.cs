@@ -11,6 +11,9 @@ using System.Windows;
 using System.Windows.Forms;
 using System.ComponentModel;
 using System.Net;
+using ToolScope_for_EuroScope.Properties;
+using System.Windows.Controls;
+using static System.Net.WebRequestMethods;
 
 namespace ToolScope_for_EuroScope
 {
@@ -39,7 +42,17 @@ namespace ToolScope_for_EuroScope
                 {
                 }
                 ExtractZip();
-                ReplaceProfiles();
+
+                // Running selected settings
+                if(insertcredentials.Checked == true)
+                {
+                    ReplaceProfiles();
+                }
+
+                if(insertsettings.Checked == true)
+                {
+                    CopySettings();
+                }
             });
         }
         #endregion
@@ -49,6 +62,13 @@ namespace ToolScope_for_EuroScope
             var sourcePath = ReadConfig("esdir") + pathinesdir;
             var targetPath = ReadConfig("esdir") + "/ToolScope/Backup/";
 
+            try
+            {
+                Directory.Delete(ReadConfig("esdir") + "/ToolScope/Backup", true);
+            } catch
+            {
+
+            }
 
             foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
             {
@@ -112,7 +132,19 @@ namespace ToolScope_for_EuroScope
                     System.IO.File.WriteAllText(profile, text.ToString());
                     text.Clear();
            }
-           notifyText("success", "Successfully updated and data inserted!", 5);
+
+           try
+            {
+                foreach (string s in Directory.EnumerateFiles(ReadConfig("esdir") + "/" + selectedregion + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories))
+                {
+                    System.IO.File.WriteAllText(s, ReadConfig("hoppiecode"));
+                }
+            } catch
+            {
+
+            }
+
+            notifyText("success", "Successfully updated and data inserted!", 5);
 
                 /*OpenFileDialog profiles = new OpenFileDialog();
                 profiles.Title = "Select .prf-File/s where your credentials should be inserted into";
@@ -137,13 +169,33 @@ namespace ToolScope_for_EuroScope
                     notifyText("success", "Successfully updated and data inserted!", 5);
                 }*/
 
-            foreach (string s in Directory.EnumerateFiles(ReadConfig("esdir") + "/" + selectedregion + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories))
-            {
-                System.IO.File.WriteAllText(s, ReadConfig("hoppiecode"));
-            }
             //installedpackages.Add(selectedurl);
             //CreateInstalledLabels();
             downloadbtn.Enabled = true;
+        }
+
+        public void CopySettings()
+        {
+            var allowedExtensions = new[] { "Screen.txt", "SCREEN.txt", "General.txt", "GENERAL.txt", "Settings.txt", "SETTINGS.txt", "DepartureList.txt" };
+
+            try
+            {
+                var files = Directory
+                .GetFiles(ReadConfig("esdir") + "/ToolScope/Backup/" + regionbox.Text + "/Settings", "*", SearchOption.AllDirectories).ToList();
+
+
+                foreach (string file in files)
+                {
+                    if (allowedExtensions.Contains(Path.GetFileName(file)))
+                    {
+                        System.IO.File.Copy(file, file.Replace("/ToolScope/Backup/", "/"), true);
+                    }
+                }
+
+            } catch
+            {
+
+            }
         }
     }
 }

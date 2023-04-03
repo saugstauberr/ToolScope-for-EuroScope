@@ -59,6 +59,8 @@ namespace ToolScope_for_EuroScope
                 System.IO.File.WriteAllText("config.ini", strContent);
             }
             GetCountries();
+
+
             UpdateUI("write");
 
             notifyText("info", "Loaded! Version " + pversion, 10);
