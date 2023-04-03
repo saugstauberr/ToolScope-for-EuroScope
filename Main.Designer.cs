@@ -82,7 +82,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.uipage = new Bunifu.UI.WinForms.BunifuPages();
             this.airacdownloadpan = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.insertsettings = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
             this.clearesfolderbtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -610,7 +609,6 @@
             // airacdownloadpan
             // 
             this.airacdownloadpan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.airacdownloadpan.Controls.Add(this.label1);
             this.airacdownloadpan.Controls.Add(this.label25);
             this.airacdownloadpan.Controls.Add(this.insertsettings);
             this.airacdownloadpan.Controls.Add(this.clearesfolderbtn);
@@ -646,30 +644,17 @@
             this.airacdownloadpan.TabIndex = 0;
             this.airacdownloadpan.Text = "AIRAC Downloader";
             // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.label1.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(407, 94);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 19);
-            this.label1.TabIndex = 62;
-            this.label1.Text = "Coming soon...";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // label25
             // 
             this.label25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label25.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
             this.label25.ForeColor = System.Drawing.Color.White;
-            this.label25.Location = new System.Drawing.Point(450, 206);
+            this.label25.Location = new System.Drawing.Point(431, 122);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(177, 33);
             this.label25.TabIndex = 61;
-            this.label25.Text = "Copy settings from previous AIRAC";
+            this.label25.Text = "Copy settings from previous AIRAC (window position, ...)\r\n";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label25.Visible = false;
             // 
             // insertsettings
             // 
@@ -678,7 +663,7 @@
             this.insertsettings.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
             this.insertsettings.CheckedSwitchColor = System.Drawing.Color.White;
             this.insertsettings.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
-            this.insertsettings.Location = new System.Drawing.Point(410, 206);
+            this.insertsettings.Location = new System.Drawing.Point(391, 122);
             this.insertsettings.Name = "insertsettings";
             this.insertsettings.OutlineThickness = 2;
             this.insertsettings.Size = new System.Drawing.Size(34, 19);
@@ -686,7 +671,6 @@
             this.insertsettings.UncheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
             this.insertsettings.UncheckedSwitchColor = System.Drawing.Color.White;
             this.insertsettings.UncheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Outline;
-            this.insertsettings.Visible = false;
             this.insertsettings.CheckedChanged += new System.EventHandler(this.insertsettings_CheckedChanged);
             // 
             // clearesfolderbtn
@@ -739,7 +723,7 @@
             this.clearesfolderbtn.IdleIconLeftImage = null;
             this.clearesfolderbtn.IdleIconRightImage = null;
             this.clearesfolderbtn.IndicateFocus = false;
-            this.clearesfolderbtn.Location = new System.Drawing.Point(285, 317);
+            this.clearesfolderbtn.Location = new System.Drawing.Point(259, 317);
             this.clearesfolderbtn.Name = "clearesfolderbtn";
             this.clearesfolderbtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.clearesfolderbtn.OnDisabledState.BorderRadius = 15;
@@ -787,7 +771,7 @@
             this.label24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label24.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
             this.label24.ForeColor = System.Drawing.Color.White;
-            this.label24.Location = new System.Drawing.Point(450, 243);
+            this.label24.Location = new System.Drawing.Point(431, 159);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(138, 19);
             this.label24.TabIndex = 59;
@@ -802,7 +786,7 @@
             this.bunifuToggleSwitch24.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
             this.bunifuToggleSwitch24.CheckedSwitchColor = System.Drawing.Color.White;
             this.bunifuToggleSwitch24.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
-            this.bunifuToggleSwitch24.Location = new System.Drawing.Point(410, 243);
+            this.bunifuToggleSwitch24.Location = new System.Drawing.Point(391, 159);
             this.bunifuToggleSwitch24.Name = "bunifuToggleSwitch24";
             this.bunifuToggleSwitch24.OutlineThickness = 2;
             this.bunifuToggleSwitch24.Size = new System.Drawing.Size(34, 19);
@@ -817,7 +801,7 @@
             this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label23.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
             this.label23.ForeColor = System.Drawing.Color.White;
-            this.label23.Location = new System.Drawing.Point(450, 182);
+            this.label23.Location = new System.Drawing.Point(470, 272);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(177, 19);
             this.label23.TabIndex = 56;
@@ -832,7 +816,7 @@
             this.insertplugins.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
             this.insertplugins.CheckedSwitchColor = System.Drawing.Color.White;
             this.insertplugins.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
-            this.insertplugins.Location = new System.Drawing.Point(410, 182);
+            this.insertplugins.Location = new System.Drawing.Point(430, 272);
             this.insertplugins.Name = "insertplugins";
             this.insertplugins.OutlineThickness = 2;
             this.insertplugins.Size = new System.Drawing.Size(34, 19);
@@ -848,7 +832,7 @@
             this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label22.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
             this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(450, 158);
+            this.label22.Location = new System.Drawing.Point(470, 317);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(138, 19);
             this.label22.TabIndex = 54;
@@ -863,7 +847,7 @@
             this.insertatisairport.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
             this.insertatisairport.CheckedSwitchColor = System.Drawing.Color.White;
             this.insertatisairport.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
-            this.insertatisairport.Location = new System.Drawing.Point(410, 158);
+            this.insertatisairport.Location = new System.Drawing.Point(430, 317);
             this.insertatisairport.Name = "insertatisairport";
             this.insertatisairport.OutlineThickness = 2;
             this.insertatisairport.Size = new System.Drawing.Size(34, 19);
@@ -879,13 +863,12 @@
             this.label21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label21.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
             this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(450, 134);
+            this.label21.Location = new System.Drawing.Point(431, 98);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(138, 19);
+            this.label21.Size = new System.Drawing.Size(199, 19);
             this.label21.TabIndex = 52;
-            this.label21.Text = "Insert credentials";
+            this.label21.Text = "Insert credentials and hoppie code";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label21.Visible = false;
             // 
             // insertcredentials
             // 
@@ -894,7 +877,7 @@
             this.insertcredentials.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
             this.insertcredentials.CheckedSwitchColor = System.Drawing.Color.White;
             this.insertcredentials.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
-            this.insertcredentials.Location = new System.Drawing.Point(410, 134);
+            this.insertcredentials.Location = new System.Drawing.Point(391, 98);
             this.insertcredentials.Name = "insertcredentials";
             this.insertcredentials.OutlineThickness = 2;
             this.insertcredentials.Size = new System.Drawing.Size(34, 19);
@@ -902,7 +885,6 @@
             this.insertcredentials.UncheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
             this.insertcredentials.UncheckedSwitchColor = System.Drawing.Color.White;
             this.insertcredentials.UncheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Outline;
-            this.insertcredentials.Visible = false;
             this.insertcredentials.CheckedChanged += new System.EventHandler(this.insertcredentials_CheckedChanged);
             // 
             // label20
@@ -1900,7 +1882,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.versionlabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
             this.versionlabel.Font = new System.Drawing.Font("Microsoft PhagsPa", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.versionlabel.ForeColor = System.Drawing.Color.White;
+            this.versionlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
             this.versionlabel.Location = new System.Drawing.Point(66, 409);
             this.versionlabel.Name = "versionlabel";
             this.versionlabel.Size = new System.Drawing.Size(63, 16);
@@ -2047,7 +2029,6 @@
             this.openupdateui.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.openupdateui.DisabledFillColor = System.Drawing.Color.Empty;
             this.openupdateui.DisabledForecolor = System.Drawing.Color.Empty;
-            this.openupdateui.Enabled = false;
             this.openupdateui.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Idle;
             this.openupdateui.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.openupdateui.ForeColor = System.Drawing.Color.White;
@@ -2213,7 +2194,6 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton savebtn;
         private Bunifu.UI.WinForms.BunifuDropdown ratingbox;
         private Bunifu.UI.WinForms.BunifuTextBox cidbox;
-        private System.Windows.Forms.Label label1;
     }
 }
 
