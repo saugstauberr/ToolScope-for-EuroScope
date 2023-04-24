@@ -581,10 +581,10 @@
             this.uipage.Location = new System.Drawing.Point(225, 0);
             this.uipage.Multiline = true;
             this.uipage.Name = "uipage";
-            this.uipage.Page = this.airacdownloadpan;
-            this.uipage.PageIndex = 0;
-            this.uipage.PageName = "airacdownloadpan";
-            this.uipage.PageTitle = "AIRAC Downloader";
+            this.uipage.Page = this.tabPage2;
+            this.uipage.PageIndex = 1;
+            this.uipage.PageName = "tabPage2";
+            this.uipage.PageTitle = "Other Settings";
             this.uipage.SelectedIndex = 0;
             this.uipage.Size = new System.Drawing.Size(695, 455);
             this.uipage.TabIndex = 30;
@@ -1283,6 +1283,7 @@
             this.savebtn.TextMarginLeft = 0;
             this.savebtn.TextPadding = new System.Windows.Forms.Padding(0);
             this.savebtn.UseDefaultRadiusAndThickness = true;
+            this.savebtn.Click += new System.EventHandler(this.savebtn_Click);
             // 
             // ratingbox
             // 
