@@ -23,7 +23,7 @@ namespace ToolScope_for_EuroScope
         public string selectedurl;
         public string selectedregion;
 
-        public string pversion = "1.3.1";
+        public string pversion = "1.3.2";
 
         public Bunifu.UI.WinForms.BunifuButton.BunifuButton lastButton = null;
 
