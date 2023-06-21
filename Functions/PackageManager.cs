@@ -73,23 +73,17 @@ namespace ToolScope_for_EuroScope
             CountryNames database = new CountryNames();
             var config = new IniFile("config.ini");
             countries = config.Read("countries", "Server").Split(',').ToList();
-
+            var countries2 = config.Read("countries2", "Server").Split(',').ToList();
+            countries.AddRange(countries2);
             foreach (string country in countries)
             {
                 try
                 {
-                    if (database.GetCountryDisplayName(country) != null)
-                    {
-                        countrybox.Items.Add(database.GetCountryDisplayName(country));
-                    }
-                    else
-                    {
                         countrybox.Items.Add(country);
-                    }
                 }
-                catch
+                catch (Exception ex)
                 {
-                    countrybox.Items.Add(country);
+                    MessageBox.Show(ex.ToString());
                 }
 
             }
