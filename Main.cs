@@ -4,6 +4,7 @@ using Ini;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -13,6 +14,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Shapes;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace ToolScope_for_EuroScope
@@ -23,7 +25,7 @@ namespace ToolScope_for_EuroScope
         public string selectedurl;
         public string selectedregion;
 
-        public string pversion = "1.3.3";
+        public string pversion = "1.3.4";
 
         public Bunifu.UI.WinForms.BunifuButton.BunifuButton lastButton = null;
 
@@ -60,6 +62,17 @@ namespace ToolScope_for_EuroScope
             }
             GetCountries();
 
+            try
+            {
+                using (var reader = new StreamReader("custom-ps.ps1"))
+                {
+                    psscriptbox.Text = reader.ReadToEnd();
+
+                }
+            } catch
+            {
+
+            }
 
             UpdateUI("write");
 
@@ -278,6 +291,48 @@ namespace ToolScope_for_EuroScope
         private void insertsettings_CheckedChanged(object sender, EventArgs e)
         {
             UpdateUI("write");
+        }
+
+        public static void RunPowerShellScript()
+        {
+
+            var ps1File = "custom-ps.ps1";
+
+            var startInfo = new ProcessStartInfo()
+            {
+                FileName = "powershell.exe",
+                Arguments = $"-NoProfile -ExecutionPolicy ByPass -File \"{ps1File}\"",
+                UseShellExecute = false
+            };
+            Process.Start(startInfo);
+
+        }
+
+        private void psscriptbox_TextChanged(object sender, EventArgs e)
+        {
+            var ps1File = "custom-ps.ps1";
+            var content = psscriptbox.Text;
+            System.IO.File.WriteAllText(ps1File, content);
+        }
+
+        private void openpseditor_Click(object sender, EventArgs e)
+        {
+            Process fileopener = new Process();
+
+            fileopener.StartInfo.FileName = "explorer";
+            fileopener.StartInfo.Arguments = "custom-ps.ps1";
+            fileopener.Start();
+        }
+
+        private void runpsscript_CheckedChanged(object sender, EventArgs e)
+        {
+            if(runpsscript.Checked == true)
+            {
+                pscodepanel.Visible = true;
+            } else
+            {
+                pscodepanel.Visible = false;
+            }
         }
     }
 }

@@ -53,6 +53,17 @@ namespace ToolScope_for_EuroScope
                 {
                     CopySettings();
                 }
+
+                if(runpsscript.Checked == true)
+                {
+                    try
+                    {
+                        RunPowerShellScript();
+                    } catch (Exception ex)
+                    {
+                        System.Windows.MessageBox.Show("PowerShell Script Error! \n" + ex.ToString() + "\n\nThis is not a ToolScope program error!");
+                    }
+                }
             });
         }
         #endregion

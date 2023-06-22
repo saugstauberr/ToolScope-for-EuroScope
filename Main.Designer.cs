@@ -82,11 +82,14 @@
             this.label9 = new System.Windows.Forms.Label();
             this.uipage = new Bunifu.UI.WinForms.BunifuPages();
             this.airacdownloadpan = new System.Windows.Forms.TabPage();
+            this.openpseditor = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.psscriptbox = new System.Windows.Forms.RichTextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.insertsettings = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
             this.clearesfolderbtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.label24 = new System.Windows.Forms.Label();
-            this.bunifuToggleSwitch24 = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
+            this.runpsscript = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
             this.label23 = new System.Windows.Forms.Label();
             this.insertplugins = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
             this.label22 = new System.Windows.Forms.Label();
@@ -125,11 +128,13 @@
             this.opensettingsui = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.openupdateui = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.pscodepanel = new Bunifu.UI.WinForms.BunifuPanel();
             this.uipage.SuspendLayout();
             this.airacdownloadpan.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.bunifuShadowPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pscodepanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // bunifuDragControl1
@@ -581,10 +586,10 @@
             this.uipage.Location = new System.Drawing.Point(225, 0);
             this.uipage.Multiline = true;
             this.uipage.Name = "uipage";
-            this.uipage.Page = this.tabPage2;
-            this.uipage.PageIndex = 1;
-            this.uipage.PageName = "tabPage2";
-            this.uipage.PageTitle = "Other Settings";
+            this.uipage.Page = this.airacdownloadpan;
+            this.uipage.PageIndex = 0;
+            this.uipage.PageName = "airacdownloadpan";
+            this.uipage.PageTitle = "AIRAC Downloader";
             this.uipage.SelectedIndex = 0;
             this.uipage.Size = new System.Drawing.Size(695, 455);
             this.uipage.TabIndex = 30;
@@ -609,11 +614,12 @@
             // airacdownloadpan
             // 
             this.airacdownloadpan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.airacdownloadpan.Controls.Add(this.pscodepanel);
             this.airacdownloadpan.Controls.Add(this.label25);
             this.airacdownloadpan.Controls.Add(this.insertsettings);
             this.airacdownloadpan.Controls.Add(this.clearesfolderbtn);
             this.airacdownloadpan.Controls.Add(this.label24);
-            this.airacdownloadpan.Controls.Add(this.bunifuToggleSwitch24);
+            this.airacdownloadpan.Controls.Add(this.runpsscript);
             this.airacdownloadpan.Controls.Add(this.label23);
             this.airacdownloadpan.Controls.Add(this.insertplugins);
             this.airacdownloadpan.Controls.Add(this.label22);
@@ -643,6 +649,44 @@
             this.airacdownloadpan.Size = new System.Drawing.Size(668, 447);
             this.airacdownloadpan.TabIndex = 0;
             this.airacdownloadpan.Text = "AIRAC Downloader";
+            // 
+            // openpseditor
+            // 
+            this.openpseditor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.openpseditor.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
+            this.openpseditor.ForeColor = System.Drawing.Color.DimGray;
+            this.openpseditor.Location = new System.Drawing.Point(4, 104);
+            this.openpseditor.Name = "openpseditor";
+            this.openpseditor.Size = new System.Drawing.Size(138, 19);
+            this.openpseditor.TabIndex = 64;
+            this.openpseditor.Text = "Open file in Editor...";
+            this.openpseditor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.openpseditor.Click += new System.EventHandler(this.openpseditor_Click);
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.label1.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Gray;
+            this.label1.Location = new System.Drawing.Point(176, 104);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 19);
+            this.label1.TabIndex = 63;
+            this.label1.Text = "PowerShell";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // psscriptbox
+            // 
+            this.psscriptbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
+            this.psscriptbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.psscriptbox.Font = new System.Drawing.Font("Microsoft PhagsPa", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.psscriptbox.ForeColor = System.Drawing.Color.White;
+            this.psscriptbox.Location = new System.Drawing.Point(7, 8);
+            this.psscriptbox.Name = "psscriptbox";
+            this.psscriptbox.Size = new System.Drawing.Size(239, 96);
+            this.psscriptbox.TabIndex = 62;
+            this.psscriptbox.Text = "";
+            this.psscriptbox.TextChanged += new System.EventHandler(this.psscriptbox_TextChanged);
             // 
             // label25
             // 
@@ -773,35 +817,34 @@
             this.label24.ForeColor = System.Drawing.Color.White;
             this.label24.Location = new System.Drawing.Point(431, 159);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(138, 19);
+            this.label24.Size = new System.Drawing.Size(199, 19);
             this.label24.TabIndex = 59;
-            this.label24.Text = "Run custom script";
+            this.label24.Text = "Run custom PowerShell script";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label24.Visible = false;
             // 
-            // bunifuToggleSwitch24
+            // runpsscript
             // 
-            this.bunifuToggleSwitch24.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuToggleSwitch24.Checked = false;
-            this.bunifuToggleSwitch24.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.bunifuToggleSwitch24.CheckedSwitchColor = System.Drawing.Color.White;
-            this.bunifuToggleSwitch24.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
-            this.bunifuToggleSwitch24.Location = new System.Drawing.Point(391, 159);
-            this.bunifuToggleSwitch24.Name = "bunifuToggleSwitch24";
-            this.bunifuToggleSwitch24.OutlineThickness = 2;
-            this.bunifuToggleSwitch24.Size = new System.Drawing.Size(34, 19);
-            this.bunifuToggleSwitch24.TabIndex = 58;
-            this.bunifuToggleSwitch24.UncheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
-            this.bunifuToggleSwitch24.UncheckedSwitchColor = System.Drawing.Color.White;
-            this.bunifuToggleSwitch24.UncheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Outline;
-            this.bunifuToggleSwitch24.Visible = false;
+            this.runpsscript.BackColor = System.Drawing.Color.Transparent;
+            this.runpsscript.Checked = false;
+            this.runpsscript.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            this.runpsscript.CheckedSwitchColor = System.Drawing.Color.White;
+            this.runpsscript.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
+            this.runpsscript.Location = new System.Drawing.Point(391, 159);
+            this.runpsscript.Name = "runpsscript";
+            this.runpsscript.OutlineThickness = 2;
+            this.runpsscript.Size = new System.Drawing.Size(34, 19);
+            this.runpsscript.TabIndex = 58;
+            this.runpsscript.UncheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
+            this.runpsscript.UncheckedSwitchColor = System.Drawing.Color.White;
+            this.runpsscript.UncheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Outline;
+            this.runpsscript.CheckedChanged += new System.EventHandler(this.runpsscript_CheckedChanged);
             // 
             // label23
             // 
             this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label23.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
             this.label23.ForeColor = System.Drawing.Color.White;
-            this.label23.Location = new System.Drawing.Point(470, 272);
+            this.label23.Location = new System.Drawing.Point(483, 346);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(177, 19);
             this.label23.TabIndex = 56;
@@ -816,7 +859,7 @@
             this.insertplugins.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
             this.insertplugins.CheckedSwitchColor = System.Drawing.Color.White;
             this.insertplugins.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
-            this.insertplugins.Location = new System.Drawing.Point(430, 272);
+            this.insertplugins.Location = new System.Drawing.Point(443, 346);
             this.insertplugins.Name = "insertplugins";
             this.insertplugins.OutlineThickness = 2;
             this.insertplugins.Size = new System.Drawing.Size(34, 19);
@@ -832,7 +875,7 @@
             this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label22.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
             this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(470, 317);
+            this.label22.Location = new System.Drawing.Point(483, 391);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(138, 19);
             this.label22.TabIndex = 54;
@@ -847,7 +890,7 @@
             this.insertatisairport.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
             this.insertatisairport.CheckedSwitchColor = System.Drawing.Color.White;
             this.insertatisairport.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
-            this.insertatisairport.Location = new System.Drawing.Point(430, 317);
+            this.insertatisairport.Location = new System.Drawing.Point(443, 391);
             this.insertatisairport.Name = "insertatisairport";
             this.insertatisairport.OutlineThickness = 2;
             this.insertatisairport.Size = new System.Drawing.Size(34, 19);
@@ -2100,6 +2143,24 @@
             this.bunifuElipse1.ElipseRadius = 30;
             this.bunifuElipse1.TargetControl = this;
             // 
+            // pscodepanel
+            // 
+            this.pscodepanel.BackgroundColor = System.Drawing.Color.Transparent;
+            this.pscodepanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pscodepanel.BackgroundImage")));
+            this.pscodepanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pscodepanel.BorderColor = System.Drawing.Color.Transparent;
+            this.pscodepanel.BorderRadius = 3;
+            this.pscodepanel.BorderThickness = 1;
+            this.pscodepanel.Controls.Add(this.psscriptbox);
+            this.pscodepanel.Controls.Add(this.openpseditor);
+            this.pscodepanel.Controls.Add(this.label1);
+            this.pscodepanel.Location = new System.Drawing.Point(391, 184);
+            this.pscodepanel.Name = "pscodepanel";
+            this.pscodepanel.ShowBorders = true;
+            this.pscodepanel.Size = new System.Drawing.Size(260, 126);
+            this.pscodepanel.TabIndex = 65;
+            this.pscodepanel.Visible = false;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2126,6 +2187,7 @@
             this.bunifuShadowPanel1.ResumeLayout(false);
             this.bunifuShadowPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.pscodepanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2179,7 +2241,7 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton clearesfolderbtn;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label24;
-        private Bunifu.UI.WinForms.BunifuToggleSwitch2 bunifuToggleSwitch24;
+        private Bunifu.UI.WinForms.BunifuToggleSwitch2 runpsscript;
         private System.Windows.Forms.Label label23;
         private Bunifu.UI.WinForms.BunifuToggleSwitch2 insertplugins;
         private System.Windows.Forms.Label label22;
@@ -2195,6 +2257,10 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton savebtn;
         private Bunifu.UI.WinForms.BunifuDropdown ratingbox;
         private Bunifu.UI.WinForms.BunifuTextBox cidbox;
+        private System.Windows.Forms.RichTextBox psscriptbox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label openpseditor;
+        private Bunifu.UI.WinForms.BunifuPanel pscodepanel;
     }
 }
 

@@ -148,6 +148,19 @@
   <metadata name="notifytimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>337, 17</value>
   </metadata>
+  <data name="pscodepanel.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAQQAAAB+CAYAAADCxm8ZAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGrSURBVHhe7dfRacMAEERB91+P+0vwhx8OPtLAzoCQTgU8
+        2AfAl+fz+fN+vx+3271xv77z9QOYogHATR1g258GCAJsEwQgGgDc1AG2mQxABAGIBgA3dYBtJgMQQQCi
+        AcBNHWCbyQBEEIBoAHBTB9hmMgARBCAaANzUAbaZDEAEAYgGADd1gG0mAxBBAKIBwE0dYJvJAEQQgGgA
+        cFMH2GYyABEEIBoA3NQBtpkMQAQBiAYAN3WAbSYDEEEAogHATR1gm8kARBCAaABwUwfYZjIAEQQgGgDc
+        1AG2mQxABAGIBgA3dYBtJgMQQQCiAcBNHWCbyQBEEIBoAHBTB9hmMgARBCAaANzUAbaZDEAEAYgGADd1
+        gG0mAxBBAKIBwE0dYJvJAEQQgGgAcFMH2GYyABEEIBoA3NQBtpkMQAQBiAYAN3WAbSYDEEEAogHATR1g
+        m8kARBCAaABwUwfYZjIAEQQgGgDc1AG2mQxABAGIBgA3dYBtJgMQQQCiAcBNHWCbyQBEEIBoAHBTB9hm
+        MgARBCAaANzUAbaZDEAEAYggAP97heH9uN3urRvgw+PxC/rU4ShZObgyAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="clearesfolderbtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAHQAAAAdCAYAAAB7YUi1AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
