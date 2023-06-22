@@ -6,7 +6,7 @@
  [VATSIM Germany Website](https://vatsim-germany.org/) •
  [Manual AIRAC download](http://files.aero-nav.com/EDXX)
 
- [Support me with a donation here! 💸]https://www.paypal.com/donate/?hosted_button_id=F82TVCAT9CJM2)
+[Support me with a donation here!💸](https://www.paypal.com/donate/?hosted_button_id=F82TVCAT9CJM2)
  
 ![Main Menu](https://i.imgur.com/A05OFHY.png)
 ![Settings Menu](https://i.imgur.com/kkPZTv6.png)
