@@ -120,6 +120,9 @@ namespace ToolScope_for_EuroScope
             this.airac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.released = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.version = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.airacmanagermenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.uninstallairac = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.copyfilespan = new Bunifu.Framework.UI.BunifuCards();
@@ -155,20 +158,17 @@ namespace ToolScope_for_EuroScope
             this.opensettingsui = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.openupdateui = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
-            this.airacmanagermenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.uninstallairac = new System.Windows.Forms.ToolStripMenuItem();
             this.uipage.SuspendLayout();
             this.airacdownloadpan.SuspendLayout();
             this.airacmanagerpan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.packagesdatagrid)).BeginInit();
+            this.airacmanagermenu.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.copyfilespan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.filescopylist)).BeginInit();
             this.filescopymenu.SuspendLayout();
             this.bunifuShadowPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.airacmanagermenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // bunifuDragControl1
@@ -621,10 +621,10 @@ namespace ToolScope_for_EuroScope
             this.uipage.Location = new System.Drawing.Point(211, 0);
             this.uipage.Multiline = true;
             this.uipage.Name = "uipage";
-            this.uipage.Page = this.airacdownloadpan;
-            this.uipage.PageIndex = 0;
-            this.uipage.PageName = "airacdownloadpan";
-            this.uipage.PageTitle = "AIRAC Downloader";
+            this.uipage.Page = this.tabPage2;
+            this.uipage.PageIndex = 2;
+            this.uipage.PageName = "tabPage2";
+            this.uipage.PageTitle = "Other Settings";
             this.uipage.SelectedIndex = 0;
             this.uipage.Size = new System.Drawing.Size(812, 512);
             this.uipage.TabIndex = 30;
@@ -1262,6 +1262,29 @@ namespace ToolScope_for_EuroScope
             this.version.ReadOnly = true;
             this.version.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
+            // airacmanagermenu
+            // 
+            this.airacmanagermenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.uninstallairac});
+            this.airacmanagermenu.Name = "filescopymenu";
+            this.airacmanagermenu.Size = new System.Drawing.Size(231, 48);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Enabled = false;
+            this.toolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(230, 22);
+            this.toolStripMenuItem1.Text = "- Select AIRAC before usage -";
+            // 
+            // uninstallairac
+            // 
+            this.uninstallairac.Name = "uninstallairac";
+            this.uninstallairac.Size = new System.Drawing.Size(230, 22);
+            this.uninstallairac.Text = "Uninstall";
+            this.uninstallairac.Click += new System.EventHandler(this.uninstallairac_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
@@ -1503,6 +1526,7 @@ namespace ToolScope_for_EuroScope
             this.cidbox.TextPlaceholder = "123456789";
             this.cidbox.UseSystemPasswordChar = false;
             this.cidbox.WordWrap = true;
+            this.cidbox.TextChanged += new System.EventHandler(this.cidbox_TextChanged_1);
             // 
             // savebtn
             // 
@@ -1646,6 +1670,7 @@ namespace ToolScope_for_EuroScope
             this.ratingbox.Text = null;
             this.ratingbox.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
             this.ratingbox.TextLeftMargin = 5;
+            this.ratingbox.SelectedIndexChanged += new System.EventHandler(this.ratingbox_SelectedIndexChanged_1);
             // 
             // label13
             // 
@@ -2604,29 +2629,6 @@ namespace ToolScope_for_EuroScope
             this.bunifuElipse1.ElipseRadius = 30;
             this.bunifuElipse1.TargetControl = this;
             // 
-            // airacmanagermenu
-            // 
-            this.airacmanagermenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.uninstallairac});
-            this.airacmanagermenu.Name = "filescopymenu";
-            this.airacmanagermenu.Size = new System.Drawing.Size(231, 48);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Enabled = false;
-            this.toolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(230, 22);
-            this.toolStripMenuItem1.Text = "- Select AIRAC before usage -";
-            // 
-            // uninstallairac
-            // 
-            this.uninstallairac.Name = "uninstallairac";
-            this.uninstallairac.Size = new System.Drawing.Size(230, 22);
-            this.uninstallairac.Text = "Uninstall";
-            this.uninstallairac.Click += new System.EventHandler(this.uninstallairac_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2651,6 +2653,7 @@ namespace ToolScope_for_EuroScope
             this.airacdownloadpan.PerformLayout();
             this.airacmanagerpan.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.packagesdatagrid)).EndInit();
+            this.airacmanagermenu.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.copyfilespan.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.filescopylist)).EndInit();
@@ -2658,7 +2661,6 @@ namespace ToolScope_for_EuroScope
             this.bunifuShadowPanel1.ResumeLayout(false);
             this.bunifuShadowPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.airacmanagermenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -407,8 +407,6 @@ namespace ToolScope_for_EuroScope
 
         private string RatingConvert(string task)
         {
-            ClientConfig clientConfig = JsonConvert.DeserializeObject<ClientConfig>(File.ReadAllText("config.json"));
-
             var data = ratingbox.Text;
 
             if (task == "write")
@@ -431,7 +429,7 @@ namespace ToolScope_for_EuroScope
             }
             else
             {
-                switch (clientConfig.rating)
+                switch (publicconfig.clientconfig.rating)
                 {
                     case "1":
                         return "S1 - Tower Trainee";
@@ -776,7 +774,7 @@ namespace ToolScope_for_EuroScope
 
         #region Button Actions
         #region Save Button Design
-        private void cidbox_TextChanged(object sender, EventArgs e)
+        private void cidbox_TextChanged_1(object sender, EventArgs e)
         {
             savebtn.Enabled = true;
         }
@@ -791,7 +789,7 @@ namespace ToolScope_for_EuroScope
             savebtn.Enabled = true;
         }
 
-        private void ratingbox_SelectedIndexChanged(object sender, EventArgs e)
+        private void ratingbox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             savebtn.Enabled = true;
         }
@@ -991,6 +989,7 @@ namespace ToolScope_for_EuroScope
         {
             UpdateUI("write");
         }
+
         #endregion
     }
 }
