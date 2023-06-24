@@ -10,7 +10,7 @@
  
 ![Main Menu](https://i.ibb.co/Rz36LZt/Screenshot-2023-06-24-163645.png)
 ![AIRAC Manager](https://i.ibb.co/Rz36LZt/Screenshot-2023-06-24-163645.png)
-![Settings Menu](https://i.imgur.com/kkPZTv6.png)
+![Settings Menu](https://i.ibb.co/FWptj28/Screenshot-2023-06-24-163720.png)
 
 ## What is ToolScope?
 ToolScope is a tool which allows you to update your EuroScope AIRAC or even just install a AIRAC package for a new sector without having to type your credentials and your hoppie code ever again! 
