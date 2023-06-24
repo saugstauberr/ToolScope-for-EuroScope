@@ -86,10 +86,6 @@ namespace ToolScope_for_EuroScope
             this.label9 = new System.Windows.Forms.Label();
             this.uipage = new Bunifu.UI.WinForms.BunifuPages();
             this.airacdownloadpan = new System.Windows.Forms.TabPage();
-            this.pscodepanel = new Bunifu.UI.WinForms.BunifuPanel();
-            this.psscriptbox = new System.Windows.Forms.RichTextBox();
-            this.openpseditor = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.insertsettings = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
             this.clearesfolderbtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -137,7 +133,6 @@ namespace ToolScope_for_EuroScope
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.uipage.SuspendLayout();
             this.airacdownloadpan.SuspendLayout();
-            this.pscodepanel.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.bunifuShadowPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -593,10 +588,10 @@ namespace ToolScope_for_EuroScope
             this.uipage.Location = new System.Drawing.Point(225, 0);
             this.uipage.Multiline = true;
             this.uipage.Name = "uipage";
-            this.uipage.Page = this.pseditor;
-            this.uipage.PageIndex = 1;
-            this.uipage.PageName = "pseditor";
-            this.uipage.PageTitle = "PS Editor";
+            this.uipage.Page = this.airacdownloadpan;
+            this.uipage.PageIndex = 0;
+            this.uipage.PageName = "airacdownloadpan";
+            this.uipage.PageTitle = "AIRAC Downloader";
             this.uipage.SelectedIndex = 0;
             this.uipage.Size = new System.Drawing.Size(695, 455);
             this.uipage.TabIndex = 30;
@@ -621,7 +616,6 @@ namespace ToolScope_for_EuroScope
             // airacdownloadpan
             // 
             this.airacdownloadpan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.airacdownloadpan.Controls.Add(this.pscodepanel);
             this.airacdownloadpan.Controls.Add(this.label25);
             this.airacdownloadpan.Controls.Add(this.insertsettings);
             this.airacdownloadpan.Controls.Add(this.clearesfolderbtn);
@@ -656,62 +650,6 @@ namespace ToolScope_for_EuroScope
             this.airacdownloadpan.Size = new System.Drawing.Size(668, 447);
             this.airacdownloadpan.TabIndex = 0;
             this.airacdownloadpan.Text = "AIRAC Downloader";
-            // 
-            // pscodepanel
-            // 
-            this.pscodepanel.BackgroundColor = System.Drawing.Color.Transparent;
-            this.pscodepanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pscodepanel.BackgroundImage")));
-            this.pscodepanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pscodepanel.BorderColor = System.Drawing.Color.Transparent;
-            this.pscodepanel.BorderRadius = 3;
-            this.pscodepanel.BorderThickness = 1;
-            this.pscodepanel.Controls.Add(this.psscriptbox);
-            this.pscodepanel.Controls.Add(this.openpseditor);
-            this.pscodepanel.Controls.Add(this.label1);
-            this.pscodepanel.Location = new System.Drawing.Point(391, 184);
-            this.pscodepanel.Name = "pscodepanel";
-            this.pscodepanel.ShowBorders = true;
-            this.pscodepanel.Size = new System.Drawing.Size(260, 126);
-            this.pscodepanel.TabIndex = 65;
-            this.pscodepanel.Visible = false;
-            // 
-            // psscriptbox
-            // 
-            this.psscriptbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
-            this.psscriptbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.psscriptbox.Font = new System.Drawing.Font("Microsoft PhagsPa", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.psscriptbox.ForeColor = System.Drawing.Color.White;
-            this.psscriptbox.Location = new System.Drawing.Point(7, 8);
-            this.psscriptbox.Name = "psscriptbox";
-            this.psscriptbox.Size = new System.Drawing.Size(239, 96);
-            this.psscriptbox.TabIndex = 62;
-            this.psscriptbox.Text = "";
-            this.psscriptbox.TextChanged += new System.EventHandler(this.psscriptbox_TextChanged);
-            // 
-            // openpseditor
-            // 
-            this.openpseditor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.openpseditor.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
-            this.openpseditor.ForeColor = System.Drawing.Color.DimGray;
-            this.openpseditor.Location = new System.Drawing.Point(4, 104);
-            this.openpseditor.Name = "openpseditor";
-            this.openpseditor.Size = new System.Drawing.Size(138, 19);
-            this.openpseditor.TabIndex = 64;
-            this.openpseditor.Text = "Open file in Editor...";
-            this.openpseditor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.openpseditor.Click += new System.EventHandler(this.openpseditor_Click);
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.label1.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(176, 104);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 19);
-            this.label1.TabIndex = 63;
-            this.label1.Text = "PowerShell";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label25
             // 
@@ -863,7 +801,6 @@ namespace ToolScope_for_EuroScope
             this.runpsscript.UncheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
             this.runpsscript.UncheckedSwitchColor = System.Drawing.Color.White;
             this.runpsscript.UncheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Outline;
-            this.runpsscript.CheckedChanged += new System.EventHandler(this.runpsscript_CheckedChanged);
             // 
             // label23
             // 
@@ -2296,7 +2233,6 @@ namespace ToolScope_for_EuroScope
             this.uipage.ResumeLayout(false);
             this.airacdownloadpan.ResumeLayout(false);
             this.airacdownloadpan.PerformLayout();
-            this.pscodepanel.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.bunifuShadowPanel1.ResumeLayout(false);
             this.bunifuShadowPanel1.PerformLayout();
@@ -2370,10 +2306,6 @@ namespace ToolScope_for_EuroScope
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton savebtn;
         private Bunifu.UI.WinForms.BunifuDropdown ratingbox;
         private Bunifu.UI.WinForms.BunifuTextBox cidbox;
-        private System.Windows.Forms.RichTextBox psscriptbox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label openpseditor;
-        private Bunifu.UI.WinForms.BunifuPanel pscodepanel;
         private System.Windows.Forms.TabPage pseditor;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton openpspan;
     }

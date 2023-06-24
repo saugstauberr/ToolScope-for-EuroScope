@@ -121,6 +121,34 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="increasefontbtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAdCAYAAAC9pNwMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHGSURBVEhL7Va7bgIxELwyZcqUKVOmTElJSZkyJZ+Q8hCI
+        iBIQnAScDgnQAQ2fkDKfkE+gpKSLM2PWPMKC4HCiFIw0OmF7d3bXxuvg32I2m92maZqbTCbhicxj/b2Y
+        n4ckSW7g4G08Hs/xNVkI2wW+6XQ6vRO3xwGDJxh8bjtBICaKItNqtY6y3W7btfDxM4C8uNchotZgMBiY
+        Wq1mwjDMxGq1avr9/joAlP9FZHYh5bWZ9no9Uy6XVYfnkpUQ8aW698g24gJmWiqVVCdZGcexE/8QuQ1k
+        Ly4q7yFWKpX1vu8cttFo9MBBfFVDH3RZI4CCyNpsCxzkpGbkgzzx1MA+v4psEGCAf3w7qRn5YLPZdPsc
+        iuxGmCdQM/LBrdN9Fb4K++VV2AI/ihxkV9KMfFC9QHBxP3KQnUkz8kEmRQ1cz88iu+7FS06wk2iGl5Bt
+        djgcWmEmKbIrYPCdE79Rbre/yHbOJEVyBWmNNut6va46yEL2dwh+ifCmJW4Dk/aQkZ1O5+LnDw+UEwUT
+        kdHBfunE+TDodrvWAct1ChuNhg2aB9X5oeheiTUgyr0nbhbCz+JgeY+BAfBZCie8YM5hEXa5k7L8WwTB
+        N+fv7LmM13PLAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="decreasefontbtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAdCAYAAAC9pNwMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHGSURBVEhL7Va7bgIxELwyZcqUKVOmTElJSZkyJZ+Q8hCI
+        iBIQnAScDgnQAQ2fkDKfkE+gpKSLM2PWPMKC4HCiFIw0OmF7d3bXxuvg32I2m92maZqbTCbhicxj/b2Y
+        n4ckSW7g4G08Hs/xNVkI2wW+6XQ6vRO3xwGDJxh8bjtBICaKItNqtY6y3W7btfDxM4C8uNchotZgMBiY
+        Wq1mwjDMxGq1avr9/joAlP9FZHYh5bWZ9no9Uy6XVYfnkpUQ8aW698g24gJmWiqVVCdZGcexE/8QuQ1k
+        Ly4q7yFWKpX1vu8cttFo9MBBfFVDH3RZI4CCyNpsCxzkpGbkgzzx1MA+v4psEGCAf3w7qRn5YLPZdPsc
+        iuxGmCdQM/LBrdN9Fb4K++VV2AI/ihxkV9KMfFC9QHBxP3KQnUkz8kEmRQ1cz88iu+7FS06wk2iGl5Bt
+        djgcWmEmKbIrYPCdE79Rbre/yHbOJEVyBWmNNut6va46yEL2dwh+ifCmJW4Dk/aQkZ1O5+LnDw+UEwUT
+        kdHBfunE+TDodrvWAct1ChuNhg2aB9X5oeheiTUgyr0nbhbCz+JgeY+BAfBZCie8YM5hEXa5k7L8WwTB
+        N+fv7LmM13PLAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="maximizebtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACoAAAAhCAYAAACvBDmYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

@@ -78,18 +78,6 @@ namespace ToolScope_for_EuroScope
 
             GetCountries();
 
-            try
-            {
-                using (var reader = new StreamReader("custom-ps.ps1"))
-                {
-                    psscriptbox.Text = reader.ReadToEnd();
-
-                }
-            } catch
-            {
-
-            }
-
             if(publicsconfig.motd != "")
             {
                 notifyText("info", publicsconfig.motd, 10);
@@ -104,7 +92,7 @@ namespace ToolScope_for_EuroScope
             public string motd { get; set; }
         }
 
-        private class ClientConfig
+        public class ClientConfig
         {
             public string cid = "";
             public string passwd = "";
@@ -120,6 +108,7 @@ namespace ToolScope_for_EuroScope
             public bool insertatisairport = true;
             public bool insertplugins = true;
             public bool runpowershell = false;
+            public int codezoom = 0;
         }
         #endregion
 
@@ -594,31 +583,6 @@ namespace ToolScope_for_EuroScope
                 UseShellExecute = false
             };
             Process.Start(startInfo);
-        }
-
-        private void psscriptbox_TextChanged(object sender, EventArgs e)
-        {
-            var ps1File = "custom-ps.ps1";
-            var content = psscriptbox.Text;
-            System.IO.File.WriteAllText(ps1File, content);
-        }
-
-        private void openpseditor_Click(object sender, EventArgs e)
-        {
-            PSEditor editor = new PSEditor();
-            editor.Show();
-        }
-
-        private void runpsscript_CheckedChanged(object sender, EventArgs e)
-        {
-            if (runpsscript.Checked == true)
-            {
-                pscodepanel.Visible = true;
-            }
-            else
-            {
-                pscodepanel.Visible = false;
-            }
         }
         #endregion
 

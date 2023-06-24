@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using System.Windows.Controls;
+using Newtonsoft.Json;
+using static ToolScope_for_EuroScope.Main;
 
 namespace ToolScope_for_EuroScope
 {
@@ -19,8 +21,11 @@ namespace ToolScope_for_EuroScope
         private const int cGrip = 16;      // Grip size
         private const int cCaption = 32;   // Caption bar height;
 
+        Main.ClientConfig config = new Main.ClientConfig();
+
         public PSEditor()
         {
+            config = JsonConvert.DeserializeObject<ClientConfig>(File.ReadAllText("config.json"));
             InitializeComponent();
             ConfigEditor();
             try
@@ -33,10 +38,13 @@ namespace ToolScope_for_EuroScope
             this.FormBorderStyle = FormBorderStyle.None;
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.ResizeRedraw, true);
+            codeeditor.Zoom = config.codezoom;
         }
 
         private void closebtn_Click(object sender, EventArgs e)
         {
+            config.codezoom = codeeditor.Zoom;
+            File.WriteAllText("config.json", JsonConvert.SerializeObject(config, Formatting.Indented));
             closebtn.Enabled = false;
             Close();
         }
@@ -197,12 +205,10 @@ namespace ToolScope_for_EuroScope
 
         const int _ = 10; // you can rename this variable if you like
 
-        Rectangle Top { get { return new Rectangle(0, 0, this.ClientSize.Width, _); } }
-        Rectangle Left { get { return new Rectangle(0, 0, _, this.ClientSize.Height); } }
-        Rectangle Bottom { get { return new Rectangle(0, this.ClientSize.Height - _, this.ClientSize.Width, _); } }
-        Rectangle Right { get { return new Rectangle(this.ClientSize.Width - _, 0, _, this.ClientSize.Height); } }
-
-       
+        new Rectangle Top { get { return new Rectangle(0, 0, this.ClientSize.Width, _); } }
+        new Rectangle Left { get { return new Rectangle(0, 0, _, this.ClientSize.Height); } }
+        new Rectangle Bottom { get { return new Rectangle(0, this.ClientSize.Height - _, this.ClientSize.Width, _); } }
+        new Rectangle Right { get { return new Rectangle(this.ClientSize.Width - _, 0, _, this.ClientSize.Height); } }
         Rectangle TopLeft { get { return new Rectangle(0, 0, _, _); } }
         Rectangle TopRight { get { return new Rectangle(this.ClientSize.Width - _, 0, _, _); } }
         Rectangle BottomLeft { get { return new Rectangle(0, this.ClientSize.Height - _, _, _); } }
@@ -248,6 +254,14 @@ namespace ToolScope_for_EuroScope
             savebtn.Enabled = false;
         }
 
-       
+        private void decreasefontbtn_Click(object sender, EventArgs e)
+        {
+            this.codeeditor.Zoom = codeeditor.Zoom - 2;
+        }
+
+        private void increasefontbtn_Click(object sender, EventArgs e)
+        {
+            this.codeeditor.Zoom = codeeditor.Zoom + 2;
+        }
     }
 }
