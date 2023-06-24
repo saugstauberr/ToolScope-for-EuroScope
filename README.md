@@ -8,7 +8,8 @@
 
 [Support me with a donation here!💸](https://www.paypal.com/donate/?hosted_button_id=F82TVCAT9CJM2)
  
-![Main Menu](https://i.imgur.com/A05OFHY.png)
+![Main Menu](https://i.ibb.co/Rz36LZt/Screenshot-2023-06-24-163645.png)
+![AIRAC Manager](https://i.ibb.co/Rz36LZt/Screenshot-2023-06-24-163645.png)
 ![Settings Menu](https://i.imgur.com/kkPZTv6.png)
 
 ## What is ToolScope?
@@ -16,12 +17,14 @@ ToolScope is a tool which allows you to update your EuroScope AIRAC or even just
 And the best thing: **It's super easy to use!** 👌
 
 - ⚙️ install a new AIRAC or update an existing one
+- 📃 AIRAC Manager (manage all installed packages or uninstall them)
 - 🔄️ automatic file download and extraction
 - ⌨️ never type in your credentials and hoppie code again manually
 - ⬇️ drop-down menu for selecting your favourite package
 - ♾️ automatic program updates for new releases
 - 🚩 international support for all countries
 - 💻 custom PowerShell code with custom editor
+- 📲 keep your old EuroScope settings after update
 
 ## How do I use it?
 First you have to download the .exe-File from the releases tab. After that just run the file, change the settings as you need them and browse through the regions and packages. When you've found your package, just select it and click **Update AIRAC**.
@@ -34,7 +37,4 @@ No, absolutely not. That's the reason why I've published the code on GitHub. Thi
 Issues and bugs can happen. Please report them in the [**Issues**](https://github.com/saugstauberr/ToolScope-for-EuroScope/issues) tab. Thank you very much! 😊
 
 ## Incoming features
-- more customization
-- AIRAC manager
-- keep plugins after update
-- various other features, it should be a program for multiple purposes
+- AIRAC Manager: updater
