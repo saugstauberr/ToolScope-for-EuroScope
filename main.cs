@@ -249,13 +249,38 @@ namespace ToolScope_for_EuroScope
 
             foreach (DataGridViewRow dr in filescopylist.Rows)
             {
-                if (dr.Cells.Count >= 0 && //atleast two columns
-                    dr.Cells[0].Value != null) //value is not null
+                if (dr.Cells.Count >= 0 &&
+                    dr.Cells[0].Value != null)
                 {
                     publicconfig.clientconfig.allowedExtensions.Add(dr.Cells[0].Value.ToString());
                 }
             }
                 File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
+        }
+
+        private void deleteFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            publicconfig.clientconfig.allowedExtensions.Clear();
+
+            foreach (DataGridViewCell cell in filescopylist.SelectedCells)
+            {
+                cell.Value = null;
+            }
+
+            foreach (DataGridViewRow dr in filescopylist.Rows)
+            {
+                if (dr.Cells.Count >= 0 &&
+                    dr.Cells[0].Value != null)
+                {
+                    publicconfig.clientconfig.allowedExtensions.Add(dr.Cells[0].Value.ToString());
+                }
+            }
+            File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
+            filescopylist.Rows.Clear();
+            foreach (var ext in publicconfig.clientconfig.allowedExtensions)
+            {
+                filescopylist.Rows.Add(ext);
+            }
         }
         #endregion
 
@@ -296,7 +321,8 @@ namespace ToolScope_for_EuroScope
                     insertatisairport.Checked = publicconfig.clientconfig.insertatisairport;
                     insertplugins.Checked = publicconfig.clientconfig.insertplugins;
                     runpsscript.Checked = publicconfig.clientconfig.runpowershell;
-                    if(publicconfig.clientconfig.allowedExtensions != null)
+                    filescopylist.Rows.Clear();
+                    if (publicconfig.clientconfig.allowedExtensions != null)
                     {
                         //filescopylist.DataSource = publicconfig.clientconfig.allowedExtensions.ConvertAll(x => new { Value = x });
                         foreach(var ext in publicconfig.clientconfig.allowedExtensions)
@@ -931,17 +957,15 @@ namespace ToolScope_for_EuroScope
         private void insertsettings_CheckedChanged(object sender, EventArgs e)
         {
             UpdateUI("write");
-            if(insertsettings.Checked == true)
-            {
-                filescopylist.Visible = true;
-            } else
-            {
-                filescopylist.Visible = false;
-            }
         }
         #endregion
 
         private void airacmanagerpan_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void airacdownloadpan_Click(object sender, EventArgs e)
         {
 
         }
