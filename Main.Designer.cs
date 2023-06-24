@@ -1,4 +1,7 @@
-﻿namespace ToolScope_for_EuroScope
+﻿using ScintillaNET;
+using System.Drawing;
+
+namespace ToolScope_for_EuroScope
 {
     partial class Main
     {
@@ -62,6 +65,7 @@
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties24 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges8 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.controlbar = new Bunifu.UI.WinForms.BunifuPanel();
             this.minimizebtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -103,6 +107,7 @@
             this.countrybox = new Bunifu.UI.WinForms.BunifuDropdown();
             this.progressbar = new Bunifu.UI.WinForms.BunifuProgressBar();
             this.downloadbtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.pseditor = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.cidbox = new Bunifu.UI.WinForms.BunifuTextBox();
             this.savebtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -124,6 +129,7 @@
             this.namebox = new Bunifu.UI.WinForms.BunifuTextBox();
             this.bunifuDragControl3 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.bunifuShadowPanel1 = new Bunifu.UI.WinForms.BunifuShadowPanel();
+            this.openpspan = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.versionlabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.opensettingsui = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -581,15 +587,16 @@
             this.uipage.Alignment = System.Windows.Forms.TabAlignment.Left;
             this.uipage.AllowTransitions = true;
             this.uipage.Controls.Add(this.airacdownloadpan);
+            this.uipage.Controls.Add(this.pseditor);
             this.uipage.Controls.Add(this.tabPage2);
             this.uipage.Dock = System.Windows.Forms.DockStyle.Right;
             this.uipage.Location = new System.Drawing.Point(225, 0);
             this.uipage.Multiline = true;
             this.uipage.Name = "uipage";
-            this.uipage.Page = this.airacdownloadpan;
-            this.uipage.PageIndex = 0;
-            this.uipage.PageName = "airacdownloadpan";
-            this.uipage.PageTitle = "AIRAC Downloader";
+            this.uipage.Page = this.pseditor;
+            this.uipage.PageIndex = 1;
+            this.uipage.PageName = "pseditor";
+            this.uipage.PageTitle = "PS Editor";
             this.uipage.SelectedIndex = 0;
             this.uipage.Size = new System.Drawing.Size(695, 455);
             this.uipage.TabIndex = 30;
@@ -1150,6 +1157,15 @@
             this.downloadbtn.UseDefaultRadiusAndThickness = true;
             this.downloadbtn.Click += new System.EventHandler(this.downloadbtn_Click);
             // 
+            // pseditor
+            // 
+            this.pseditor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.pseditor.Location = new System.Drawing.Point(23, 4);
+            this.pseditor.Name = "pseditor";
+            this.pseditor.Size = new System.Drawing.Size(668, 447);
+            this.pseditor.TabIndex = 2;
+            this.pseditor.Text = "PS Editor";
+            // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
@@ -1430,8 +1446,8 @@
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(507, 39);
             this.label11.TabIndex = 44;
-            this.label11.Text = "Never share your config.ini file! It contains your password which isn\'t encoded s" +
-    "ecurely.\r\nAs long as you don\'t share your config.ini you\'re safe.";
+            this.label11.Text = "Never share your config.json file! It contains your password which isn\'t encoded " +
+    "securely.\r\nAs long as you don\'t share your config.json you\'re safe.";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label8
@@ -1919,6 +1935,7 @@
             this.bunifuShadowPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
             this.bunifuShadowPanel1.BorderRadius = 20;
             this.bunifuShadowPanel1.BorderThickness = 1;
+            this.bunifuShadowPanel1.Controls.Add(this.openpspan);
             this.bunifuShadowPanel1.Controls.Add(this.versionlabel);
             this.bunifuShadowPanel1.Controls.Add(this.label2);
             this.bunifuShadowPanel1.Controls.Add(this.pictureBox1);
@@ -1938,6 +1955,101 @@
             this.bunifuShadowPanel1.Size = new System.Drawing.Size(197, 433);
             this.bunifuShadowPanel1.Style = Bunifu.UI.WinForms.BunifuShadowPanel.BevelStyles.Raised;
             this.bunifuShadowPanel1.TabIndex = 50;
+            // 
+            // openpspan
+            // 
+            this.openpspan.AllowAnimations = true;
+            this.openpspan.AllowMouseEffects = true;
+            this.openpspan.AllowToggling = false;
+            this.openpspan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.openpspan.AnimationSpeed = 200;
+            this.openpspan.AutoGenerateColors = false;
+            this.openpspan.AutoRoundBorders = false;
+            this.openpspan.AutoSizeLeftIcon = true;
+            this.openpspan.AutoSizeRightIcon = true;
+            this.openpspan.BackColor = System.Drawing.Color.Transparent;
+            this.openpspan.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(122)))), ((int)(((byte)(183)))));
+            this.openpspan.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("openpspan.BackgroundImage")));
+            this.openpspan.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.openpspan.ButtonText = "PowerShell Editor";
+            this.openpspan.ButtonTextMarginLeft = 0;
+            this.openpspan.ColorContrastOnClick = 0;
+            this.openpspan.ColorContrastOnHover = 0;
+            this.openpspan.Cursor = System.Windows.Forms.Cursors.Default;
+            borderEdges6.BottomLeft = true;
+            borderEdges6.BottomRight = true;
+            borderEdges6.TopLeft = true;
+            borderEdges6.TopRight = true;
+            this.openpspan.CustomizableEdges = borderEdges6;
+            this.openpspan.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.openpspan.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.openpspan.DisabledFillColor = System.Drawing.Color.Empty;
+            this.openpspan.DisabledForecolor = System.Drawing.Color.Empty;
+            this.openpspan.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Idle;
+            this.openpspan.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold);
+            this.openpspan.ForeColor = System.Drawing.Color.White;
+            this.openpspan.IconLeft = null;
+            this.openpspan.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.openpspan.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.openpspan.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.openpspan.IconMarginLeft = 11;
+            this.openpspan.IconPadding = 18;
+            this.openpspan.IconRight = global::ToolScope_for_EuroScope.Properties.Resources.arrow_24_128;
+            this.openpspan.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.openpspan.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.openpspan.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.openpspan.IconSize = 25;
+            this.openpspan.IdleBorderColor = System.Drawing.Color.Empty;
+            this.openpspan.IdleBorderRadius = 0;
+            this.openpspan.IdleBorderThickness = 0;
+            this.openpspan.IdleFillColor = System.Drawing.Color.Empty;
+            this.openpspan.IdleIconLeftImage = null;
+            this.openpspan.IdleIconRightImage = global::ToolScope_for_EuroScope.Properties.Resources.arrow_24_128;
+            this.openpspan.IndicateFocus = false;
+            this.openpspan.Location = new System.Drawing.Point(16, 207);
+            this.openpspan.Name = "openpspan";
+            this.openpspan.OnDisabledState.BorderColor = System.Drawing.Color.Empty;
+            this.openpspan.OnDisabledState.BorderRadius = 20;
+            this.openpspan.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.openpspan.OnDisabledState.BorderThickness = 0;
+            this.openpspan.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+            this.openpspan.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.openpspan.OnDisabledState.IconLeftImage = null;
+            this.openpspan.OnDisabledState.IconRightImage = null;
+            this.openpspan.onHoverState.BorderColor = System.Drawing.Color.Empty;
+            this.openpspan.onHoverState.BorderRadius = 20;
+            this.openpspan.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.openpspan.onHoverState.BorderThickness = 0;
+            this.openpspan.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+            this.openpspan.onHoverState.ForeColor = System.Drawing.Color.White;
+            this.openpspan.onHoverState.IconLeftImage = null;
+            this.openpspan.onHoverState.IconRightImage = null;
+            this.openpspan.OnIdleState.BorderColor = System.Drawing.Color.Empty;
+            this.openpspan.OnIdleState.BorderRadius = 20;
+            this.openpspan.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.openpspan.OnIdleState.BorderThickness = 0;
+            this.openpspan.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
+            this.openpspan.OnIdleState.ForeColor = System.Drawing.Color.White;
+            this.openpspan.OnIdleState.IconLeftImage = null;
+            this.openpspan.OnIdleState.IconRightImage = global::ToolScope_for_EuroScope.Properties.Resources.arrow_24_128;
+            this.openpspan.OnPressedState.BorderColor = System.Drawing.Color.Empty;
+            this.openpspan.OnPressedState.BorderRadius = 20;
+            this.openpspan.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.openpspan.OnPressedState.BorderThickness = 0;
+            this.openpspan.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+            this.openpspan.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.openpspan.OnPressedState.IconLeftImage = null;
+            this.openpspan.OnPressedState.IconRightImage = null;
+            this.openpspan.Size = new System.Drawing.Size(165, 47);
+            this.openpspan.TabIndex = 50;
+            this.openpspan.TabStop = false;
+            this.openpspan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.openpspan.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.openpspan.TextMarginLeft = 0;
+            this.openpspan.TextPadding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.openpspan.UseDefaultRadiusAndThickness = true;
+            this.openpspan.Click += new System.EventHandler(this.openpspan_Click);
             // 
             // versionlabel
             // 
@@ -1988,11 +2100,11 @@
             this.opensettingsui.ColorContrastOnClick = 0;
             this.opensettingsui.ColorContrastOnHover = 0;
             this.opensettingsui.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges6.BottomLeft = true;
-            borderEdges6.BottomRight = true;
-            borderEdges6.TopLeft = true;
-            borderEdges6.TopRight = true;
-            this.opensettingsui.CustomizableEdges = borderEdges6;
+            borderEdges7.BottomLeft = true;
+            borderEdges7.BottomRight = true;
+            borderEdges7.TopLeft = true;
+            borderEdges7.TopRight = true;
+            this.opensettingsui.CustomizableEdges = borderEdges7;
             this.opensettingsui.DialogResult = System.Windows.Forms.DialogResult.None;
             this.opensettingsui.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.opensettingsui.DisabledFillColor = System.Drawing.Color.Empty;
@@ -2018,7 +2130,7 @@
             this.opensettingsui.IdleIconLeftImage = null;
             this.opensettingsui.IdleIconRightImage = global::ToolScope_for_EuroScope.Properties.Resources.arrow_24_128;
             this.opensettingsui.IndicateFocus = false;
-            this.opensettingsui.Location = new System.Drawing.Point(16, 212);
+            this.opensettingsui.Location = new System.Drawing.Point(16, 260);
             this.opensettingsui.Name = "opensettingsui";
             this.opensettingsui.OnDisabledState.BorderColor = System.Drawing.Color.Empty;
             this.opensettingsui.OnDisabledState.BorderRadius = 20;
@@ -2083,11 +2195,11 @@
             this.openupdateui.ColorContrastOnClick = 0;
             this.openupdateui.ColorContrastOnHover = 0;
             this.openupdateui.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges7.BottomLeft = true;
-            borderEdges7.BottomRight = true;
-            borderEdges7.TopLeft = true;
-            borderEdges7.TopRight = true;
-            this.openupdateui.CustomizableEdges = borderEdges7;
+            borderEdges8.BottomLeft = true;
+            borderEdges8.BottomRight = true;
+            borderEdges8.TopLeft = true;
+            borderEdges8.TopRight = true;
+            this.openupdateui.CustomizableEdges = borderEdges8;
             this.openupdateui.DialogResult = System.Windows.Forms.DialogResult.None;
             this.openupdateui.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.openupdateui.DisabledFillColor = System.Drawing.Color.Empty;
@@ -2262,6 +2374,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label openpseditor;
         private Bunifu.UI.WinForms.BunifuPanel pscodepanel;
+        private System.Windows.Forms.TabPage pseditor;
+        private Bunifu.UI.WinForms.BunifuButton.BunifuButton openpspan;
     }
 }
 

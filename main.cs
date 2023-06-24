@@ -1,6 +1,7 @@
 ﻿using AutoUpdaterDotNET;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
+using ScintillaNET;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -93,8 +94,6 @@ namespace ToolScope_for_EuroScope
             {
                 notifyText("info", publicsconfig.motd, 10);
             }
-            
-
             //CreateInstalledLabels();
         }
 
@@ -606,11 +605,8 @@ namespace ToolScope_for_EuroScope
 
         private void openpseditor_Click(object sender, EventArgs e)
         {
-            Process fileopener = new Process();
-
-            fileopener.StartInfo.FileName = "explorer";
-            fileopener.StartInfo.Arguments = "custom-ps.ps1";
-            fileopener.Start();
+            PSEditor editor = new PSEditor();
+            editor.Show();
         }
 
         private void runpsscript_CheckedChanged(object sender, EventArgs e)
@@ -751,11 +747,20 @@ namespace ToolScope_for_EuroScope
             ChangeUI("AIRAC Manager", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
         }
 
+        private void openpspan_Click(object sender, EventArgs e)
+        {
+            PSEditor pseditor = new PSEditor();
+            //uipage.SelectedIndex = 1;
+            //ChangeUI("PowerShell Editor", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
+            pseditor.Show();
+        }
+
         private void opensettingsui_Click(object sender, EventArgs e)
         {
-            uipage.SelectedIndex = 1;
+            uipage.SelectedIndex = 2;
             ChangeUI("AIRAC Settings", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
         }
+        
 
         private void savebtn_Click(object sender, EventArgs e)
         {
