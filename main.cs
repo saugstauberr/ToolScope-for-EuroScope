@@ -1,8 +1,6 @@
 ﻿using AutoUpdaterDotNET;
 using HtmlAgilityPack;
-using Ini;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,8 +14,6 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using System.Windows.Shapes;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ToolScope_for_EuroScope
 {
@@ -43,25 +39,42 @@ namespace ToolScope_for_EuroScope
         // url / SEKTOR / Packagename_YYYYMMDDHHMMSS-AIRAC/xx-Version .zip
         #endregion
 
+        ClientConfig publicconfig = new ClientConfig();
+        ServerConfig publicsconfig = new ServerConfig();
+
         public Main()
         {
             InitializeComponent();
             AutoUpdater.InstalledVersion = new Version(pversion);
             AutoUpdater.Start("https://raw.githubusercontent.com/saugstauberr/ToolScope-for-EuroScope/master/updates/update.xml");
             versionlabel.Text = pversion;
-            var config = new IniFile("config.ini");
+
+
+            #region Config Loader
+            ClientConfig clientConfig = new ClientConfig();
+
+            if (File.Exists("config.json") == false)
+            {
+                File.WriteAllText("config.json", JsonConvert.SerializeObject(clientConfig, Formatting.Indented));
+            }
+            else
+            {
+                publicconfig = JsonConvert.DeserializeObject<ClientConfig>(File.ReadAllText("config.json"));
+            }
 
             UpdateUI("read");
 
-            var webRequest = WebRequest.Create(@"https://raw.githubusercontent.com/saugstauberr/ToolScope-for-EuroScope/master/updates/packages.ini");
 
-            using (var response = webRequest.GetResponse())
-            using (var content = response.GetResponseStream())
-            using (var reader = new StreamReader(content))
+            var webResponse = "";
+
+            using (WebClient client = new WebClient())
             {
-                var strContent = reader.ReadToEnd();
-                System.IO.File.WriteAllText("config.ini", strContent);
+                webResponse = client.DownloadString(uriserverconfig);
             }
+
+            publicsconfig = JsonConvert.DeserializeObject<ServerConfig>(webResponse);
+            #endregion
+
             GetCountries();
 
             try
@@ -76,16 +89,12 @@ namespace ToolScope_for_EuroScope
 
             }
 
-            UpdateUI("write");
-
-            notifyText("info", "Loaded! Version " + pversion, 10);
-
-            if (config.Read("esdir", "Settings") == "")
+            if(publicsconfig.motd != "")
             {
-                config.Write("esdir", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope", "Settings");
-                esfolderbox.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope";
-                notifyText("error", "Remember to change your settings!", 10);
+                notifyText("info", publicsconfig.motd, 10);
             }
+            
+
             //CreateInstalledLabels();
         }
 
@@ -93,25 +102,25 @@ namespace ToolScope_for_EuroScope
         public class ServerConfig
         {
             public List<string> countries { get; set; }
+            public string motd { get; set; }
         }
 
         private class ClientConfig
         {
+            public string cid = "";
+            public string passwd = "";
+            public string callsign = "";
+            public string realname = "";
+            public string hoppiecode = "";
+            public string rating = "";
+            public string esdir = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope");
 
-        }
-
-        private void WriteConfig(string key, string value)
-        {
-            var config = new IniFile("config.ini");
-
-            config.Write(key, value, "Settings");
-        }
-
-        private string ReadConfig(string key)
-        {
-            var config = new IniFile("config.ini");
-
-            return config.Read(key, "Settings");
+            public string server = "AUTOMATIC";
+            public string country = "";
+            public bool insertcredentials = true;
+            public bool insertatisairport = true;
+            public bool insertplugins = true;
+            public bool runpowershell = false;
         }
         #endregion
 
@@ -173,52 +182,42 @@ namespace ToolScope_for_EuroScope
             pagenametxt.Text = pagename;
         }
 
-        private void UpdateUI(string task, string attributes = "all")
+        private void UpdateUI(string task)
         {
-            var config = new IniFile("config.ini");
-
-            if (task == "read")
+            switch (task)
             {
-                switch (attributes)
-                {
-                    case "all":
-                        cidbox.Text = ReadConfig("cid");
-                        passwdbox.Text = ConvertPassword("decrypt", ReadConfig("passwd"));
-                        ratingbox.Text = RatingConvert("read");
-                        callsignbox.Text = ReadConfig("callsign");
-                        namebox.Text = ReadConfig("realname");
-                        hoppiecodebox.Text = ReadConfig("hoppiecode");
-                        //downloadfolderbox.Text = packagedir;
-                        esfolderbox.Text = ReadConfig("esdir");
-                        countrybox.Text = ReadConfig("country");
-                        try
-                        {
-                            insertcredentials.Checked = bool.Parse(ReadConfig("insertcredentials"));
-                            insertatisairport.Checked = bool.Parse(ReadConfig("insertatisairport"));
-                            insertplugins.Checked = bool.Parse(ReadConfig("insertplugins"));
-                        }
-                        catch { }
-                        savebtn.Enabled = false;
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else if (task == "write")
-            {
-                WriteConfig("cid", cidbox.Text);
-                WriteConfig("passwd", ConvertPassword("encrypt", passwdbox.Text));
-                WriteConfig("rating", RatingConvert("write"));
-                WriteConfig("callsign", callsignbox.Text);
-                WriteConfig("realname", namebox.Text);
-                WriteConfig("hoppiecode", hoppiecodebox.Text);
-                WriteConfig("esdir", esfolderbox.Text);
-                WriteConfig("insertcredentials", insertcredentials.Checked.ToString());
-                WriteConfig("insertatisairport", insertatisairport.Checked.ToString());
-                WriteConfig("insertplugins", insertplugins.Checked.ToString());
-                WriteConfig("server", "AUTOMATIC");
+                case "read":
+                    cidbox.Text = publicconfig.cid;
+                    passwdbox.Text = ConvertPassword("decrypt", publicconfig.passwd);
+                    ratingbox.Text = RatingConvert("read");
+                    callsignbox.Text = publicconfig.callsign;
+                    namebox.Text = publicconfig.realname;
+                    hoppiecodebox.Text = publicconfig.hoppiecode;
+                    esfolderbox.Text = publicconfig.esdir;
+                    countrybox.Text = publicconfig.country;
+                    insertcredentials.Checked = publicconfig.insertcredentials;
+                    insertatisairport.Checked = publicconfig.insertatisairport;
+                    insertplugins.Checked = publicconfig.insertplugins;
+                    runpsscript.Checked = publicconfig.runpowershell;
+                    break;
+                case "write":
+                    publicconfig.cid = cidbox.Text;
+                    publicconfig.passwd = ConvertPassword("encrypt", passwdbox.Text);
+                    publicconfig.rating = RatingConvert("write");
+                    publicconfig.callsign = callsignbox.Text;
+                    publicconfig.realname = namebox.Text;
+                    publicconfig.hoppiecode= hoppiecodebox.Text;
+                    publicconfig.esdir= esfolderbox.Text;
+                    publicconfig.country= countrybox.Text;
+                    publicconfig.insertcredentials= insertcredentials.Checked;
+                    publicconfig.insertatisairport = insertatisairport.Checked;
+                    publicconfig.insertplugins= insertplugins.Checked;
+                    publicconfig.runpowershell = runpsscript.Checked;
+                    File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
+                    break;
             }
         }
+
 
         private string ConvertPassword(string task, string value)
         {
@@ -234,6 +233,8 @@ namespace ToolScope_for_EuroScope
 
         private string RatingConvert(string task)
         {
+            ClientConfig clientConfig = JsonConvert.DeserializeObject<ClientConfig>(File.ReadAllText("config.json"));
+
             var data = ratingbox.Text;
 
             if (task == "write")
@@ -256,7 +257,7 @@ namespace ToolScope_for_EuroScope
             }
             else
             {
-                switch (ReadConfig("rating"))
+                switch (clientConfig.rating)
                 {
                     case "1":
                         return "S1 - Tower Trainee";
@@ -279,7 +280,6 @@ namespace ToolScope_for_EuroScope
         private void GrabDownloadUrls()
         {
             CountryNames database = new CountryNames();
-            var config = new IniFile("config.ini");
             allpackages.Clear();
 
             HtmlWeb hw = new HtmlWeb();
@@ -336,17 +336,7 @@ namespace ToolScope_for_EuroScope
 
         private void GetCountries()
         {
-            var webResponse = "";
-
-            using (WebClient client = new WebClient())
-            {
-                webResponse = client.DownloadString(uriserverconfig);
-            }
-
-            var config = JsonConvert.DeserializeObject<ServerConfig>(webResponse);
-
-            MessageBox.Show(countries.ToString());
-            foreach (string country in config.countries)
+            foreach (string country in publicsconfig.countries)
             {
                 try
                 {
@@ -413,7 +403,7 @@ namespace ToolScope_for_EuroScope
                 progressbar.Visible = false;
                 try
                 {
-                    Directory.Delete(ReadConfig("esdir") + "/ToolScope/data");
+                    Directory.Delete(publicconfig.esdir + "/ToolScope/data");
                 }
                 catch
                 {
@@ -448,12 +438,12 @@ namespace ToolScope_for_EuroScope
 
         private void CreateBackup(string pathinesdir)
         {
-            var sourcePath = ReadConfig("esdir") + pathinesdir;
-            var targetPath = ReadConfig("esdir") + "/ToolScope/Backup/";
+            var sourcePath = publicconfig.esdir + pathinesdir;
+            var targetPath = publicconfig.esdir + "/ToolScope/Backup/";
 
             try
             {
-                Directory.Delete(ReadConfig("esdir") + "/ToolScope/Backup", true);
+                Directory.Delete(publicconfig.esdir + "/ToolScope/Backup", true);
             }
             catch
             {
@@ -474,20 +464,20 @@ namespace ToolScope_for_EuroScope
 
         private void ExtractZip()
         {
-            var sourcePath = ReadConfig("esdir") + "/ToolScope/data";
-            var targetPath = ReadConfig("esdir");
+            var sourcePath = publicconfig.esdir + "/ToolScope/data";
+            var targetPath = publicconfig.esdir;
 
             try
             {
-                Directory.Delete(ReadConfig("esdir") + "/ToolScope/data", true);
+                Directory.Delete(publicconfig.esdir + "/ToolScope/data", true);
             }
             catch
             {
 
             }
 
-            ZipFile.ExtractToDirectory(ReadConfig("esdir") + "/ToolScope/data.zip", ReadConfig("esdir") + "/ToolScope/data");
-            System.IO.File.Delete(ReadConfig("esdir") + "/ToolScope/data.zip");
+            ZipFile.ExtractToDirectory(publicconfig.esdir + "/ToolScope/data.zip", publicconfig.esdir + "/ToolScope/data");
+            System.IO.File.Delete(publicconfig.esdir + "/ToolScope/data.zip");
 
             foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
             {
@@ -507,27 +497,27 @@ namespace ToolScope_for_EuroScope
         {
             // Inserting the data into the .prf-Files
 
-            var apptext = "\r\nLastSession\tcallsign\t" + ReadConfig("callsign") + "\r\nLastSession\trealname\t" + ReadConfig("realname") +
-                    "\r\nLastSession\t" + "certificate\t" + ReadConfig("cid") + "\r\nLastSession\tpassword\t" +
-                    ConvertPassword("decrypt", ReadConfig("passwd")) + "\r\nLastSession\trating\t" + ReadConfig("rating") +
-                    "\r\nLastSession\t" + "server\t" + ReadConfig("server") + "\r\nLastSession\ttovatsim\t1";
-            string[] allProfiles = Directory.GetFiles(ReadConfig("esdir"), "*.prf");
+            var apptext = "\r\nLastSession\tcallsign\t" + publicconfig.callsign + "\r\nLastSession\trealname\t" + publicconfig.realname +
+                    "\r\nLastSession\t" + "certificate\t" + publicconfig.cid + "\r\nLastSession\tpassword\t" +
+                    ConvertPassword("decrypt", publicconfig.passwd) + "\r\nLastSession\trating\t" + publicconfig.rating +
+                    "\r\nLastSession\t" + "server\t" + publicconfig.server + "\r\nLastSession\ttovatsim\t1";
+            string[] allProfiles = Directory.GetFiles(publicconfig.esdir, "*.prf");
 
             foreach (string profile in allProfiles)
             {
                 var text = new StringBuilder();
 
                 text.Append(System.IO.File.ReadAllText(profile) + apptext);
-                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + ReadConfig("cid"));
+                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + publicconfig.cid);
                 System.IO.File.WriteAllText(profile, text.ToString());
                 text.Clear();
             }
 
             try
             {
-                foreach (string s in Directory.EnumerateFiles(ReadConfig("esdir") + "/" + selectedregion + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories))
+                foreach (string s in Directory.EnumerateFiles(publicconfig.esdir + "/" + selectedregion + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories))
                 {
-                    System.IO.File.WriteAllText(s, ReadConfig("hoppiecode"));
+                    System.IO.File.WriteAllText(s, publicconfig.hoppiecode);
                 }
             }
             catch
@@ -572,7 +562,7 @@ namespace ToolScope_for_EuroScope
             try
             {
                 var files = Directory
-                .GetFiles(ReadConfig("esdir") + "/ToolScope/Backup/" + regionbox.Text + "/Settings", "*", SearchOption.AllDirectories).ToList();
+                .GetFiles(publicconfig.esdir + "/ToolScope/Backup/" + regionbox.Text + "/Settings", "*", SearchOption.AllDirectories).ToList();
 
 
                 foreach (string file in files)
@@ -687,10 +677,11 @@ namespace ToolScope_for_EuroScope
 
         private void countrybox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var config = new IniFile("config.ini");
             CountryNames country = new CountryNames();
 
-            config.Write("country", countrybox.Text, "Settings");
+            publicconfig.country = countrybox.Text;
+            File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
+
             regionbox.Text = "";
             packagebox.Text = "";
             versiontxt.Text = "None";
@@ -714,8 +705,6 @@ namespace ToolScope_for_EuroScope
 
         private void packagebox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var config = new IniFile("config.ini");
-
             var x = allpackages.FindIndex(s => s.Contains("https://files.aero-nav.com/" + regionbox.Text + "/" + packagebox.Text));
 
             selectedurl = allpackages[x];
@@ -742,8 +731,8 @@ namespace ToolScope_for_EuroScope
         {
             CreateBackup("");
             downloadbtn.Enabled = false;
-            Directory.CreateDirectory(ReadConfig("esdir") + "/ToolScope");
-            Directory.CreateDirectory(ReadConfig("esdir") + "/ToolScope/Backup");
+            Directory.CreateDirectory(publicconfig.esdir + "/ToolScope");
+            Directory.CreateDirectory(publicconfig.esdir + "/ToolScope/Backup");
 
             Thread thread = new Thread(() => {
                 WebClient client = new WebClient();
@@ -751,7 +740,7 @@ namespace ToolScope_for_EuroScope
                 client.Headers.Add(HttpRequestHeader.Referer, "https://files.aero-nav.com/EDXX/");
                 client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                 client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                client.DownloadFileAsync(new Uri(selectedurl), ReadConfig("esdir") + "/ToolScope/data.zip");
+                client.DownloadFileAsync(new Uri(selectedurl), publicconfig.esdir + "/ToolScope/data.zip");
             });
             thread.Start();
         }
@@ -784,8 +773,9 @@ namespace ToolScope_for_EuroScope
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    WriteConfig("esdir", fbd.SelectedPath);
-                    esfolderbox.Text = ReadConfig("esdir");
+                    publicconfig.esdir = fbd.SelectedPath;
+                    File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
+                    esfolderbox.Text = publicconfig.esdir;
                 }
             }
         }
@@ -798,7 +788,7 @@ namespace ToolScope_for_EuroScope
             {
                 try
                 {
-                    System.IO.DirectoryInfo di = new DirectoryInfo(ReadConfig("esdir"));
+                    System.IO.DirectoryInfo di = new DirectoryInfo(publicconfig.esdir);
 
                     foreach (FileInfo file in di.GetFiles())
                     {

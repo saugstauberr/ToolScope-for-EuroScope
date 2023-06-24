@@ -82,9 +82,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.uipage = new Bunifu.UI.WinForms.BunifuPages();
             this.airacdownloadpan = new System.Windows.Forms.TabPage();
+            this.pscodepanel = new Bunifu.UI.WinForms.BunifuPanel();
+            this.psscriptbox = new System.Windows.Forms.RichTextBox();
             this.openpseditor = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.psscriptbox = new System.Windows.Forms.RichTextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.insertsettings = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
             this.clearesfolderbtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -128,13 +129,12 @@
             this.opensettingsui = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.openupdateui = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
-            this.pscodepanel = new Bunifu.UI.WinForms.BunifuPanel();
             this.uipage.SuspendLayout();
             this.airacdownloadpan.SuspendLayout();
+            this.pscodepanel.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.bunifuShadowPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.pscodepanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // bunifuDragControl1
@@ -650,6 +650,37 @@
             this.airacdownloadpan.TabIndex = 0;
             this.airacdownloadpan.Text = "AIRAC Downloader";
             // 
+            // pscodepanel
+            // 
+            this.pscodepanel.BackgroundColor = System.Drawing.Color.Transparent;
+            this.pscodepanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pscodepanel.BackgroundImage")));
+            this.pscodepanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pscodepanel.BorderColor = System.Drawing.Color.Transparent;
+            this.pscodepanel.BorderRadius = 3;
+            this.pscodepanel.BorderThickness = 1;
+            this.pscodepanel.Controls.Add(this.psscriptbox);
+            this.pscodepanel.Controls.Add(this.openpseditor);
+            this.pscodepanel.Controls.Add(this.label1);
+            this.pscodepanel.Location = new System.Drawing.Point(391, 184);
+            this.pscodepanel.Name = "pscodepanel";
+            this.pscodepanel.ShowBorders = true;
+            this.pscodepanel.Size = new System.Drawing.Size(260, 126);
+            this.pscodepanel.TabIndex = 65;
+            this.pscodepanel.Visible = false;
+            // 
+            // psscriptbox
+            // 
+            this.psscriptbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
+            this.psscriptbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.psscriptbox.Font = new System.Drawing.Font("Microsoft PhagsPa", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.psscriptbox.ForeColor = System.Drawing.Color.White;
+            this.psscriptbox.Location = new System.Drawing.Point(7, 8);
+            this.psscriptbox.Name = "psscriptbox";
+            this.psscriptbox.Size = new System.Drawing.Size(239, 96);
+            this.psscriptbox.TabIndex = 62;
+            this.psscriptbox.Text = "";
+            this.psscriptbox.TextChanged += new System.EventHandler(this.psscriptbox_TextChanged);
+            // 
             // openpseditor
             // 
             this.openpseditor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
@@ -675,19 +706,6 @@
             this.label1.Text = "PowerShell";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // psscriptbox
-            // 
-            this.psscriptbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
-            this.psscriptbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.psscriptbox.Font = new System.Drawing.Font("Microsoft PhagsPa", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.psscriptbox.ForeColor = System.Drawing.Color.White;
-            this.psscriptbox.Location = new System.Drawing.Point(7, 8);
-            this.psscriptbox.Name = "psscriptbox";
-            this.psscriptbox.Size = new System.Drawing.Size(239, 96);
-            this.psscriptbox.TabIndex = 62;
-            this.psscriptbox.Text = "";
-            this.psscriptbox.TextChanged += new System.EventHandler(this.psscriptbox_TextChanged);
-            // 
             // label25
             // 
             this.label25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
@@ -707,6 +725,7 @@
             this.insertsettings.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
             this.insertsettings.CheckedSwitchColor = System.Drawing.Color.White;
             this.insertsettings.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
+            this.insertsettings.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.insertsettings.Location = new System.Drawing.Point(391, 122);
             this.insertsettings.Name = "insertsettings";
             this.insertsettings.OutlineThickness = 2;
@@ -2143,24 +2162,6 @@
             this.bunifuElipse1.ElipseRadius = 30;
             this.bunifuElipse1.TargetControl = this;
             // 
-            // pscodepanel
-            // 
-            this.pscodepanel.BackgroundColor = System.Drawing.Color.Transparent;
-            this.pscodepanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pscodepanel.BackgroundImage")));
-            this.pscodepanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pscodepanel.BorderColor = System.Drawing.Color.Transparent;
-            this.pscodepanel.BorderRadius = 3;
-            this.pscodepanel.BorderThickness = 1;
-            this.pscodepanel.Controls.Add(this.psscriptbox);
-            this.pscodepanel.Controls.Add(this.openpseditor);
-            this.pscodepanel.Controls.Add(this.label1);
-            this.pscodepanel.Location = new System.Drawing.Point(391, 184);
-            this.pscodepanel.Name = "pscodepanel";
-            this.pscodepanel.ShowBorders = true;
-            this.pscodepanel.Size = new System.Drawing.Size(260, 126);
-            this.pscodepanel.TabIndex = 65;
-            this.pscodepanel.Visible = false;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2183,11 +2184,11 @@
             this.uipage.ResumeLayout(false);
             this.airacdownloadpan.ResumeLayout(false);
             this.airacdownloadpan.PerformLayout();
+            this.pscodepanel.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.bunifuShadowPanel1.ResumeLayout(false);
             this.bunifuShadowPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.pscodepanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
