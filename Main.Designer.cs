@@ -38,6 +38,9 @@ namespace ToolScope_for_EuroScope
             Utilities.BunifuPages.BunifuAnimatorNS.Animation animation1 = new Utilities.BunifuPages.BunifuAnimatorNS.Animation();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties1 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties2 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties3 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
@@ -66,6 +69,7 @@ namespace ToolScope_for_EuroScope
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges8 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges9 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.controlbar = new Bunifu.UI.WinForms.BunifuPanel();
             this.minimizebtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -103,7 +107,8 @@ namespace ToolScope_for_EuroScope
             this.countrybox = new Bunifu.UI.WinForms.BunifuDropdown();
             this.progressbar = new Bunifu.UI.WinForms.BunifuProgressBar();
             this.downloadbtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.pseditor = new System.Windows.Forms.TabPage();
+            this.airacmanagerpan = new System.Windows.Forms.TabPage();
+            this.packagesdatagrid = new Bunifu.UI.WinForms.BunifuDataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.cidbox = new Bunifu.UI.WinForms.BunifuTextBox();
             this.savebtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -125,14 +130,23 @@ namespace ToolScope_for_EuroScope
             this.namebox = new Bunifu.UI.WinForms.BunifuTextBox();
             this.bunifuDragControl3 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.bunifuShadowPanel1 = new Bunifu.UI.WinForms.BunifuShadowPanel();
+            this.airacmanagerbtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.openpspan = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.versionlabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.opensettingsui = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.openupdateui = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.country = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.region = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.package = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.airac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.released = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.version = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uipage.SuspendLayout();
             this.airacdownloadpan.SuspendLayout();
+            this.airacmanagerpan.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.packagesdatagrid)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.bunifuShadowPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -582,7 +596,7 @@ namespace ToolScope_for_EuroScope
             this.uipage.Alignment = System.Windows.Forms.TabAlignment.Left;
             this.uipage.AllowTransitions = true;
             this.uipage.Controls.Add(this.airacdownloadpan);
-            this.uipage.Controls.Add(this.pseditor);
+            this.uipage.Controls.Add(this.airacmanagerpan);
             this.uipage.Controls.Add(this.tabPage2);
             this.uipage.Dock = System.Windows.Forms.DockStyle.Right;
             this.uipage.Location = new System.Drawing.Point(225, 0);
@@ -1094,14 +1108,81 @@ namespace ToolScope_for_EuroScope
             this.downloadbtn.UseDefaultRadiusAndThickness = true;
             this.downloadbtn.Click += new System.EventHandler(this.downloadbtn_Click);
             // 
-            // pseditor
+            // airacmanagerpan
             // 
-            this.pseditor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.pseditor.Location = new System.Drawing.Point(23, 4);
-            this.pseditor.Name = "pseditor";
-            this.pseditor.Size = new System.Drawing.Size(668, 447);
-            this.pseditor.TabIndex = 2;
-            this.pseditor.Text = "PS Editor";
+            this.airacmanagerpan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.airacmanagerpan.Controls.Add(this.packagesdatagrid);
+            this.airacmanagerpan.Location = new System.Drawing.Point(23, 4);
+            this.airacmanagerpan.Name = "airacmanagerpan";
+            this.airacmanagerpan.Size = new System.Drawing.Size(668, 447);
+            this.airacmanagerpan.TabIndex = 2;
+            this.airacmanagerpan.Text = "AIRAC Manager";
+            // 
+            // packagesdatagrid
+            // 
+            this.packagesdatagrid.AllowCustomTheming = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            this.packagesdatagrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.packagesdatagrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.packagesdatagrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.packagesdatagrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.packagesdatagrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.packagesdatagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.packagesdatagrid.ColumnHeadersHeight = 40;
+            this.packagesdatagrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.country,
+            this.region,
+            this.package,
+            this.airac,
+            this.released,
+            this.version});
+            this.packagesdatagrid.CurrentTheme.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.packagesdatagrid.CurrentTheme.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.packagesdatagrid.CurrentTheme.AlternatingRowsStyle.ForeColor = System.Drawing.Color.White;
+            this.packagesdatagrid.CurrentTheme.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(117)))), ((int)(((byte)(119)))));
+            this.packagesdatagrid.CurrentTheme.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.packagesdatagrid.CurrentTheme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
+            this.packagesdatagrid.CurrentTheme.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(56)))), ((int)(((byte)(62)))));
+            this.packagesdatagrid.CurrentTheme.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
+            this.packagesdatagrid.CurrentTheme.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
+            this.packagesdatagrid.CurrentTheme.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.packagesdatagrid.CurrentTheme.HeaderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.packagesdatagrid.CurrentTheme.HeaderStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.packagesdatagrid.CurrentTheme.Name = null;
+            this.packagesdatagrid.CurrentTheme.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
+            this.packagesdatagrid.CurrentTheme.RowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.packagesdatagrid.CurrentTheme.RowsStyle.ForeColor = System.Drawing.Color.White;
+            this.packagesdatagrid.CurrentTheme.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(117)))), ((int)(((byte)(119)))));
+            this.packagesdatagrid.CurrentTheme.RowsStyle.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(117)))), ((int)(((byte)(119)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.packagesdatagrid.DefaultCellStyle = dataGridViewCellStyle3;
+            this.packagesdatagrid.EnableHeadersVisualStyles = false;
+            this.packagesdatagrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(56)))), ((int)(((byte)(62)))));
+            this.packagesdatagrid.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
+            this.packagesdatagrid.HeaderBgColor = System.Drawing.Color.Empty;
+            this.packagesdatagrid.HeaderForeColor = System.Drawing.Color.White;
+            this.packagesdatagrid.Location = new System.Drawing.Point(14, 76);
+            this.packagesdatagrid.Name = "packagesdatagrid";
+            this.packagesdatagrid.RowHeadersVisible = false;
+            this.packagesdatagrid.RowTemplate.Height = 40;
+            this.packagesdatagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.packagesdatagrid.Size = new System.Drawing.Size(646, 247);
+            this.packagesdatagrid.TabIndex = 0;
+            this.packagesdatagrid.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Dark;
             // 
             // tabPage2
             // 
@@ -1872,6 +1953,7 @@ namespace ToolScope_for_EuroScope
             this.bunifuShadowPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
             this.bunifuShadowPanel1.BorderRadius = 20;
             this.bunifuShadowPanel1.BorderThickness = 1;
+            this.bunifuShadowPanel1.Controls.Add(this.airacmanagerbtn);
             this.bunifuShadowPanel1.Controls.Add(this.openpspan);
             this.bunifuShadowPanel1.Controls.Add(this.versionlabel);
             this.bunifuShadowPanel1.Controls.Add(this.label2);
@@ -1892,6 +1974,101 @@ namespace ToolScope_for_EuroScope
             this.bunifuShadowPanel1.Size = new System.Drawing.Size(197, 433);
             this.bunifuShadowPanel1.Style = Bunifu.UI.WinForms.BunifuShadowPanel.BevelStyles.Raised;
             this.bunifuShadowPanel1.TabIndex = 50;
+            // 
+            // airacmanagerbtn
+            // 
+            this.airacmanagerbtn.AllowAnimations = true;
+            this.airacmanagerbtn.AllowMouseEffects = true;
+            this.airacmanagerbtn.AllowToggling = false;
+            this.airacmanagerbtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.airacmanagerbtn.AnimationSpeed = 200;
+            this.airacmanagerbtn.AutoGenerateColors = false;
+            this.airacmanagerbtn.AutoRoundBorders = false;
+            this.airacmanagerbtn.AutoSizeLeftIcon = true;
+            this.airacmanagerbtn.AutoSizeRightIcon = true;
+            this.airacmanagerbtn.BackColor = System.Drawing.Color.Transparent;
+            this.airacmanagerbtn.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(122)))), ((int)(((byte)(183)))));
+            this.airacmanagerbtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("airacmanagerbtn.BackgroundImage")));
+            this.airacmanagerbtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.airacmanagerbtn.ButtonText = "AIRAC Overview";
+            this.airacmanagerbtn.ButtonTextMarginLeft = 0;
+            this.airacmanagerbtn.ColorContrastOnClick = 0;
+            this.airacmanagerbtn.ColorContrastOnHover = 0;
+            this.airacmanagerbtn.Cursor = System.Windows.Forms.Cursors.Default;
+            borderEdges6.BottomLeft = true;
+            borderEdges6.BottomRight = true;
+            borderEdges6.TopLeft = true;
+            borderEdges6.TopRight = true;
+            this.airacmanagerbtn.CustomizableEdges = borderEdges6;
+            this.airacmanagerbtn.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.airacmanagerbtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.airacmanagerbtn.DisabledFillColor = System.Drawing.Color.Empty;
+            this.airacmanagerbtn.DisabledForecolor = System.Drawing.Color.Empty;
+            this.airacmanagerbtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Idle;
+            this.airacmanagerbtn.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.airacmanagerbtn.ForeColor = System.Drawing.Color.White;
+            this.airacmanagerbtn.IconLeft = null;
+            this.airacmanagerbtn.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.airacmanagerbtn.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.airacmanagerbtn.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.airacmanagerbtn.IconMarginLeft = 11;
+            this.airacmanagerbtn.IconPadding = 18;
+            this.airacmanagerbtn.IconRight = global::ToolScope_for_EuroScope.Properties.Resources.arrow_24_128;
+            this.airacmanagerbtn.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.airacmanagerbtn.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.airacmanagerbtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.airacmanagerbtn.IconSize = 15;
+            this.airacmanagerbtn.IdleBorderColor = System.Drawing.Color.Empty;
+            this.airacmanagerbtn.IdleBorderRadius = 0;
+            this.airacmanagerbtn.IdleBorderThickness = 0;
+            this.airacmanagerbtn.IdleFillColor = System.Drawing.Color.Empty;
+            this.airacmanagerbtn.IdleIconLeftImage = null;
+            this.airacmanagerbtn.IdleIconRightImage = global::ToolScope_for_EuroScope.Properties.Resources.arrow_24_128;
+            this.airacmanagerbtn.IndicateFocus = false;
+            this.airacmanagerbtn.Location = new System.Drawing.Point(16, 101);
+            this.airacmanagerbtn.Name = "airacmanagerbtn";
+            this.airacmanagerbtn.OnDisabledState.BorderColor = System.Drawing.Color.Empty;
+            this.airacmanagerbtn.OnDisabledState.BorderRadius = 20;
+            this.airacmanagerbtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.airacmanagerbtn.OnDisabledState.BorderThickness = 0;
+            this.airacmanagerbtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+            this.airacmanagerbtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.airacmanagerbtn.OnDisabledState.IconLeftImage = null;
+            this.airacmanagerbtn.OnDisabledState.IconRightImage = null;
+            this.airacmanagerbtn.onHoverState.BorderColor = System.Drawing.Color.Empty;
+            this.airacmanagerbtn.onHoverState.BorderRadius = 20;
+            this.airacmanagerbtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.airacmanagerbtn.onHoverState.BorderThickness = 0;
+            this.airacmanagerbtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+            this.airacmanagerbtn.onHoverState.ForeColor = System.Drawing.Color.White;
+            this.airacmanagerbtn.onHoverState.IconLeftImage = null;
+            this.airacmanagerbtn.onHoverState.IconRightImage = null;
+            this.airacmanagerbtn.OnIdleState.BorderColor = System.Drawing.Color.Empty;
+            this.airacmanagerbtn.OnIdleState.BorderRadius = 20;
+            this.airacmanagerbtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.airacmanagerbtn.OnIdleState.BorderThickness = 0;
+            this.airacmanagerbtn.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
+            this.airacmanagerbtn.OnIdleState.ForeColor = System.Drawing.Color.White;
+            this.airacmanagerbtn.OnIdleState.IconLeftImage = null;
+            this.airacmanagerbtn.OnIdleState.IconRightImage = global::ToolScope_for_EuroScope.Properties.Resources.arrow_24_128;
+            this.airacmanagerbtn.OnPressedState.BorderColor = System.Drawing.Color.Empty;
+            this.airacmanagerbtn.OnPressedState.BorderRadius = 20;
+            this.airacmanagerbtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.airacmanagerbtn.OnPressedState.BorderThickness = 0;
+            this.airacmanagerbtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+            this.airacmanagerbtn.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.airacmanagerbtn.OnPressedState.IconLeftImage = null;
+            this.airacmanagerbtn.OnPressedState.IconRightImage = null;
+            this.airacmanagerbtn.Size = new System.Drawing.Size(165, 47);
+            this.airacmanagerbtn.TabIndex = 51;
+            this.airacmanagerbtn.TabStop = false;
+            this.airacmanagerbtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.airacmanagerbtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.airacmanagerbtn.TextMarginLeft = 0;
+            this.airacmanagerbtn.TextPadding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.airacmanagerbtn.UseDefaultRadiusAndThickness = true;
+            this.airacmanagerbtn.Click += new System.EventHandler(this.airacmanagerbtn_Click);
             // 
             // openpspan
             // 
@@ -1914,11 +2091,11 @@ namespace ToolScope_for_EuroScope
             this.openpspan.ColorContrastOnClick = 0;
             this.openpspan.ColorContrastOnHover = 0;
             this.openpspan.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges6.BottomLeft = true;
-            borderEdges6.BottomRight = true;
-            borderEdges6.TopLeft = true;
-            borderEdges6.TopRight = true;
-            this.openpspan.CustomizableEdges = borderEdges6;
+            borderEdges7.BottomLeft = true;
+            borderEdges7.BottomRight = true;
+            borderEdges7.TopLeft = true;
+            borderEdges7.TopRight = true;
+            this.openpspan.CustomizableEdges = borderEdges7;
             this.openpspan.DialogResult = System.Windows.Forms.DialogResult.None;
             this.openpspan.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.openpspan.DisabledFillColor = System.Drawing.Color.Empty;
@@ -2037,11 +2214,11 @@ namespace ToolScope_for_EuroScope
             this.opensettingsui.ColorContrastOnClick = 0;
             this.opensettingsui.ColorContrastOnHover = 0;
             this.opensettingsui.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges7.BottomLeft = true;
-            borderEdges7.BottomRight = true;
-            borderEdges7.TopLeft = true;
-            borderEdges7.TopRight = true;
-            this.opensettingsui.CustomizableEdges = borderEdges7;
+            borderEdges8.BottomLeft = true;
+            borderEdges8.BottomRight = true;
+            borderEdges8.TopLeft = true;
+            borderEdges8.TopRight = true;
+            this.opensettingsui.CustomizableEdges = borderEdges8;
             this.opensettingsui.DialogResult = System.Windows.Forms.DialogResult.None;
             this.opensettingsui.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.opensettingsui.DisabledFillColor = System.Drawing.Color.Empty;
@@ -2132,11 +2309,11 @@ namespace ToolScope_for_EuroScope
             this.openupdateui.ColorContrastOnClick = 0;
             this.openupdateui.ColorContrastOnHover = 0;
             this.openupdateui.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges8.BottomLeft = true;
-            borderEdges8.BottomRight = true;
-            borderEdges8.TopLeft = true;
-            borderEdges8.TopRight = true;
-            this.openupdateui.CustomizableEdges = borderEdges8;
+            borderEdges9.BottomLeft = true;
+            borderEdges9.BottomRight = true;
+            borderEdges9.TopLeft = true;
+            borderEdges9.TopRight = true;
+            this.openupdateui.CustomizableEdges = borderEdges9;
             this.openupdateui.DialogResult = System.Windows.Forms.DialogResult.None;
             this.openupdateui.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.openupdateui.DisabledFillColor = System.Drawing.Color.Empty;
@@ -2211,6 +2388,54 @@ namespace ToolScope_for_EuroScope
             this.bunifuElipse1.ElipseRadius = 30;
             this.bunifuElipse1.TargetControl = this;
             // 
+            // country
+            // 
+            this.country.DataPropertyName = "country";
+            this.country.HeaderText = "Country";
+            this.country.Name = "country";
+            this.country.ReadOnly = true;
+            this.country.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // region
+            // 
+            this.region.DataPropertyName = "region";
+            this.region.HeaderText = "Region";
+            this.region.Name = "region";
+            this.region.ReadOnly = true;
+            this.region.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // package
+            // 
+            this.package.DataPropertyName = "package";
+            this.package.HeaderText = "Package";
+            this.package.Name = "package";
+            this.package.ReadOnly = true;
+            this.package.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // airac
+            // 
+            this.airac.DataPropertyName = "airac";
+            this.airac.HeaderText = "AIRAC";
+            this.airac.Name = "airac";
+            this.airac.ReadOnly = true;
+            this.airac.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // released
+            // 
+            this.released.DataPropertyName = "released";
+            this.released.HeaderText = "Released";
+            this.released.Name = "released";
+            this.released.ReadOnly = true;
+            this.released.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // version
+            // 
+            this.version.DataPropertyName = "version";
+            this.version.HeaderText = "Version";
+            this.version.Name = "version";
+            this.version.ReadOnly = true;
+            this.version.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2233,6 +2458,8 @@ namespace ToolScope_for_EuroScope
             this.uipage.ResumeLayout(false);
             this.airacdownloadpan.ResumeLayout(false);
             this.airacdownloadpan.PerformLayout();
+            this.airacmanagerpan.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.packagesdatagrid)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.bunifuShadowPanel1.ResumeLayout(false);
             this.bunifuShadowPanel1.PerformLayout();
@@ -2306,8 +2533,16 @@ namespace ToolScope_for_EuroScope
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton savebtn;
         private Bunifu.UI.WinForms.BunifuDropdown ratingbox;
         private Bunifu.UI.WinForms.BunifuTextBox cidbox;
-        private System.Windows.Forms.TabPage pseditor;
+        private System.Windows.Forms.TabPage airacmanagerpan;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton openpspan;
+        private Bunifu.UI.WinForms.BunifuDataGridView packagesdatagrid;
+        private Bunifu.UI.WinForms.BunifuButton.BunifuButton airacmanagerbtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn country;
+        private System.Windows.Forms.DataGridViewTextBoxColumn region;
+        private System.Windows.Forms.DataGridViewTextBoxColumn package;
+        private System.Windows.Forms.DataGridViewTextBoxColumn airac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn released;
+        private System.Windows.Forms.DataGridViewTextBoxColumn version;
     }
 }
 

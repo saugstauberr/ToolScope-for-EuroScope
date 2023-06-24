@@ -189,6 +189,24 @@
         UVSfKkl+Apb1tHqP+bcSAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="country.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="region.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="package.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="airac.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="released.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="version.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="cidbox.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAJMAAAAdCAYAAACuX169AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -321,6 +339,20 @@
   <metadata name="bunifuDragControl3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>448, 17</value>
   </metadata>
+  <data name="airacmanagerbtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAKUAAAAvCAYAAACCAApkAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAG2SURBVHhe7d2rUgMxFIDhlZVIXMilgERW8ghIJBKJRPYt
+        kDwGEolEIpGVyJWQk4ZhaE+5zZIc8WfmE5BQ9U92t8xkh++Gc4fHLsZTF+YX3scl8BfST+nIzU9qWr8f
+        LqQrH+KTD+kVmFZ8LqE6N6u5fT1kZ/QhPOgfBkwpPjmXFjU9fZRLdEjj9h8D/ydfla9rgp/HeockSPQh
+        95s1xY/BJRudrfI95l7N8f2hRl0ItOPjbU1Sdsn8NKQtAtoay24p3xspk0AX+d7yLF+6w7k2CfRQnsS5
+        n4QpPi6H8m8gbRLogShhDlHCHKKEOUQJc4gS5hAlzCFKmEOUMIcoYQ5RwhyihDlECXOIEuYQJcwhSphD
+        lDCHKGEOUcIcooQ5RAlziBLmECXMIUqYQ5QwR6KUYzLUSaCHdZTl9F59AdBaidKlhToJdCAHruUo3Sz/
+        8LI5CfTg3NHB+tBUH2+0BUBb4bEEKSPvlvv5l6vtRUAz49aLn+QEVWUh0MTO15ZwGUcXPt3VBPVRvyLi
+        wQctjDt3yM1R7jF9ulc+BJjID16Bpw15PM8lX8oXmsAU5Ix9ebtdTUwZw/AG8ucJLwz+/fAAAAAASUVO
+        RK5CYII=
+</value>
+  </data>
   <data name="openpspan.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAKUAAAAvCAYAAACCAApkAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

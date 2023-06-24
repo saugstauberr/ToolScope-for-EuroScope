@@ -12,9 +12,11 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using static ToolScope_for_EuroScope.Main;
 
 namespace ToolScope_for_EuroScope
 {
@@ -40,7 +42,7 @@ namespace ToolScope_for_EuroScope
         // url / SEKTOR / Packagename_YYYYMMDDHHMMSS-AIRAC/xx-Version .zip
         #endregion
 
-        ClientConfig publicconfig = new ClientConfig();
+        ClientRoot publicconfig = new ClientRoot();
         ServerConfig publicsconfig = new ServerConfig();
 
         public Main()
@@ -52,7 +54,7 @@ namespace ToolScope_for_EuroScope
 
 
             #region Config Loader
-            ClientConfig clientConfig = new ClientConfig();
+            ClientRoot clientConfig = new ClientRoot();
 
             if (File.Exists("config.json") == false)
             {
@@ -60,7 +62,16 @@ namespace ToolScope_for_EuroScope
             }
             else
             {
-                publicconfig = JsonConvert.DeserializeObject<ClientConfig>(File.ReadAllText("config.json"));
+                publicconfig = JsonConvert.DeserializeObject<ClientRoot>(File.ReadAllText("config.json"));
+            }
+
+            try
+            {
+                Debug.Write(publicconfig.clientconfig.esdir);
+            } catch
+            {
+                File.WriteAllText("config.json", JsonConvert.SerializeObject(clientConfig, Formatting.Indented));
+                MessageBox.Show("JSON file error! Your JSON config file was resetted.");
             }
 
             UpdateUI("read");
@@ -85,11 +96,87 @@ namespace ToolScope_for_EuroScope
             //CreateInstalledLabels();
         }
 
+        #region AIRAC Manager
+
+        private void FeedDataGrid()
+        {
+            publicconfig = JsonConvert.DeserializeObject<ClientRoot>(File.ReadAllText("config.json"));
+            var packages = new List<AIRACPackage>();
+
+            foreach (var pack in publicconfig.installedpackages)
+            {
+                var package = JsonConvert.DeserializeObject<AIRACPackage>(File.ReadAllText(pack.jsonpath));
+                packages.Add(package);
+            }
+            packagesdatagrid.DataSource = packages;
+        }
+
+        private void CreatePackageJSON(string path)
+        {
+            
+            var root = JsonConvert.DeserializeObject<ClientRoot>(File.ReadAllText("config.json"));
+            ClientPackage pack = new ClientPackage();
+
+            AIRACPackage package = new AIRACPackage();
+
+            package.package = packagebox.Text;
+            package.country = countrybox.Text;
+            package.region = regionbox.Text;
+
+            package.airac = airactxt.Text;
+            package.version = versiontxt.Text;
+            package.released = releasetxt.Text;
+
+            File.WriteAllText(path + "/package.json", JsonConvert.SerializeObject(package, Formatting.Indented));
+
+            pack.jsonpath = path + "/package.json";
+
+            var fileExists = false;
+
+            for (int i = 0; i < root.installedpackages.Count; i++)
+            {
+                if (root.installedpackages[i].jsonpath == pack.jsonpath)
+                {
+                    fileExists = true;
+                }
+            }
+
+            if (!fileExists)
+            {
+                root.installedpackages.Add(pack);
+            }
+            
+            File.WriteAllText("config.json", JsonConvert.SerializeObject(root, Formatting.Indented));
+        }
+
+        #endregion
+
         #region Configs
         public class ServerConfig
         {
             public List<string> countries { get; set; }
             public string motd { get; set; }
+        }
+
+        public class ClientRoot
+        {
+            public ClientConfig clientconfig = new ClientConfig();
+            public List<ClientPackage> installedpackages = new List<ClientPackage>();
+        }
+
+        public class ClientPackage
+        {
+            public string jsonpath { get; set; }
+        }
+
+        public class AIRACPackage
+        {
+            public string country { get; set; }
+            public string region { get; set; }
+            public string package { get; set; }
+            public string airac { get; set; }
+            public string released { get; set; }
+            public string version { get; set; }
         }
 
         public class ClientConfig
@@ -175,32 +262,32 @@ namespace ToolScope_for_EuroScope
             switch (task)
             {
                 case "read":
-                    cidbox.Text = publicconfig.cid;
-                    passwdbox.Text = ConvertPassword("decrypt", publicconfig.passwd);
+                    cidbox.Text = publicconfig.clientconfig.cid;
+                    passwdbox.Text = ConvertPassword("decrypt", publicconfig.clientconfig.passwd);
                     ratingbox.Text = RatingConvert("read");
-                    callsignbox.Text = publicconfig.callsign;
-                    namebox.Text = publicconfig.realname;
-                    hoppiecodebox.Text = publicconfig.hoppiecode;
-                    esfolderbox.Text = publicconfig.esdir;
-                    countrybox.Text = publicconfig.country;
-                    insertcredentials.Checked = publicconfig.insertcredentials;
-                    insertatisairport.Checked = publicconfig.insertatisairport;
-                    insertplugins.Checked = publicconfig.insertplugins;
-                    runpsscript.Checked = publicconfig.runpowershell;
+                    callsignbox.Text = publicconfig.clientconfig.callsign;
+                    namebox.Text = publicconfig.clientconfig.realname;
+                    hoppiecodebox.Text = publicconfig.clientconfig.hoppiecode;
+                    esfolderbox.Text = publicconfig.clientconfig.esdir;
+                    countrybox.Text = publicconfig.clientconfig.country;
+                    insertcredentials.Checked = publicconfig.clientconfig.insertcredentials;
+                    insertatisairport.Checked = publicconfig.clientconfig.insertatisairport;
+                    insertplugins.Checked = publicconfig.clientconfig.insertplugins;
+                    runpsscript.Checked = publicconfig.clientconfig.runpowershell;
                     break;
                 case "write":
-                    publicconfig.cid = cidbox.Text;
-                    publicconfig.passwd = ConvertPassword("encrypt", passwdbox.Text);
-                    publicconfig.rating = RatingConvert("write");
-                    publicconfig.callsign = callsignbox.Text;
-                    publicconfig.realname = namebox.Text;
-                    publicconfig.hoppiecode= hoppiecodebox.Text;
-                    publicconfig.esdir= esfolderbox.Text;
-                    publicconfig.country= countrybox.Text;
-                    publicconfig.insertcredentials= insertcredentials.Checked;
-                    publicconfig.insertatisairport = insertatisairport.Checked;
-                    publicconfig.insertplugins= insertplugins.Checked;
-                    publicconfig.runpowershell = runpsscript.Checked;
+                    publicconfig.clientconfig.cid = cidbox.Text;
+                    publicconfig.clientconfig.passwd = ConvertPassword("encrypt", passwdbox.Text);
+                    publicconfig.clientconfig.rating = RatingConvert("write");
+                    publicconfig.clientconfig.callsign = callsignbox.Text;
+                    publicconfig.clientconfig.realname = namebox.Text;
+                    publicconfig.clientconfig.hoppiecode = hoppiecodebox.Text;
+                    publicconfig.clientconfig.esdir = esfolderbox.Text;
+                    publicconfig.clientconfig.country = countrybox.Text;
+                    publicconfig.clientconfig.insertcredentials = insertcredentials.Checked;
+                    publicconfig.clientconfig.insertatisairport = insertatisairport.Checked;
+                    publicconfig.clientconfig.insertplugins = insertplugins.Checked;
+                    publicconfig.clientconfig.runpowershell = runpsscript.Checked;
                     File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
                     break;
             }
@@ -391,7 +478,7 @@ namespace ToolScope_for_EuroScope
                 progressbar.Visible = false;
                 try
                 {
-                    Directory.Delete(publicconfig.esdir + "/ToolScope/data");
+                    Directory.Delete(publicconfig.clientconfig.esdir + "/ToolScope/data");
                 }
                 catch
                 {
@@ -408,6 +495,8 @@ namespace ToolScope_for_EuroScope
                 {
                     CopySettings();
                 }
+
+                CreatePackageJSON(publicconfig.clientconfig.esdir + "/" + selectedregion);
 
                 if (runpsscript.Checked == true)
                 {
@@ -426,12 +515,12 @@ namespace ToolScope_for_EuroScope
 
         private void CreateBackup(string pathinesdir)
         {
-            var sourcePath = publicconfig.esdir + pathinesdir;
-            var targetPath = publicconfig.esdir + "/ToolScope/Backup/";
+            var sourcePath = publicconfig.clientconfig.esdir + pathinesdir;
+            var targetPath = publicconfig.clientconfig.esdir + "/ToolScope/Backup/";
 
             try
             {
-                Directory.Delete(publicconfig.esdir + "/ToolScope/Backup", true);
+                Directory.Delete(publicconfig.clientconfig.esdir + "/ToolScope/Backup", true);
             }
             catch
             {
@@ -452,20 +541,20 @@ namespace ToolScope_for_EuroScope
 
         private void ExtractZip()
         {
-            var sourcePath = publicconfig.esdir + "/ToolScope/data";
-            var targetPath = publicconfig.esdir;
+            var sourcePath = publicconfig.clientconfig.esdir + "/ToolScope/data";
+            var targetPath = publicconfig.clientconfig.esdir;
 
             try
             {
-                Directory.Delete(publicconfig.esdir + "/ToolScope/data", true);
+                Directory.Delete(publicconfig.clientconfig.esdir + "/ToolScope/data", true);
             }
             catch
             {
 
             }
 
-            ZipFile.ExtractToDirectory(publicconfig.esdir + "/ToolScope/data.zip", publicconfig.esdir + "/ToolScope/data");
-            System.IO.File.Delete(publicconfig.esdir + "/ToolScope/data.zip");
+            ZipFile.ExtractToDirectory(publicconfig.clientconfig.esdir + "/ToolScope/data.zip", publicconfig.clientconfig.esdir + "/ToolScope/data");
+            System.IO.File.Delete(publicconfig.clientconfig.esdir + "/ToolScope/data.zip");
 
             foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
             {
@@ -485,27 +574,27 @@ namespace ToolScope_for_EuroScope
         {
             // Inserting the data into the .prf-Files
 
-            var apptext = "\r\nLastSession\tcallsign\t" + publicconfig.callsign + "\r\nLastSession\trealname\t" + publicconfig.realname +
-                    "\r\nLastSession\t" + "certificate\t" + publicconfig.cid + "\r\nLastSession\tpassword\t" +
-                    ConvertPassword("decrypt", publicconfig.passwd) + "\r\nLastSession\trating\t" + publicconfig.rating +
-                    "\r\nLastSession\t" + "server\t" + publicconfig.server + "\r\nLastSession\ttovatsim\t1";
-            string[] allProfiles = Directory.GetFiles(publicconfig.esdir, "*.prf");
+            var apptext = "\r\nLastSession\tcallsign\t" + publicconfig.clientconfig.callsign + "\r\nLastSession\trealname\t" + publicconfig.clientconfig.realname +
+                    "\r\nLastSession\t" + "certificate\t" + publicconfig.clientconfig.cid + "\r\nLastSession\tpassword\t" +
+                    ConvertPassword("decrypt", publicconfig.clientconfig.passwd) + "\r\nLastSession\trating\t" + publicconfig.clientconfig.rating +
+                    "\r\nLastSession\t" + "server\t" + publicconfig.clientconfig.server + "\r\nLastSession\ttovatsim\t1";
+            string[] allProfiles = Directory.GetFiles(publicconfig.clientconfig.esdir, "*.prf");
 
             foreach (string profile in allProfiles)
             {
                 var text = new StringBuilder();
 
                 text.Append(System.IO.File.ReadAllText(profile) + apptext);
-                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + publicconfig.cid);
+                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + publicconfig.clientconfig.cid);
                 System.IO.File.WriteAllText(profile, text.ToString());
                 text.Clear();
             }
 
             try
             {
-                foreach (string s in Directory.EnumerateFiles(publicconfig.esdir + "/" + selectedregion + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories))
+                foreach (string s in Directory.EnumerateFiles(publicconfig.clientconfig.esdir + "/" + selectedregion + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories))
                 {
-                    System.IO.File.WriteAllText(s, publicconfig.hoppiecode);
+                    System.IO.File.WriteAllText(s, publicconfig.clientconfig.hoppiecode);
                 }
             }
             catch
@@ -550,7 +639,7 @@ namespace ToolScope_for_EuroScope
             try
             {
                 var files = Directory
-                .GetFiles(publicconfig.esdir + "/ToolScope/Backup/" + regionbox.Text + "/Settings", "*", SearchOption.AllDirectories).ToList();
+                .GetFiles(publicconfig.clientconfig.esdir + "/ToolScope/Backup/" + regionbox.Text + "/Settings", "*", SearchOption.AllDirectories).ToList();
 
 
                 foreach (string file in files)
@@ -639,7 +728,7 @@ namespace ToolScope_for_EuroScope
         {
             CountryNames country = new CountryNames();
 
-            publicconfig.country = countrybox.Text;
+            publicconfig.clientconfig.country = countrybox.Text;
             File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
 
             regionbox.Text = "";
@@ -691,8 +780,8 @@ namespace ToolScope_for_EuroScope
         {
             CreateBackup("");
             downloadbtn.Enabled = false;
-            Directory.CreateDirectory(publicconfig.esdir + "/ToolScope");
-            Directory.CreateDirectory(publicconfig.esdir + "/ToolScope/Backup");
+            Directory.CreateDirectory(publicconfig.clientconfig.esdir + "/ToolScope");
+            Directory.CreateDirectory(publicconfig.clientconfig.esdir + "/ToolScope/Backup");
 
             Thread thread = new Thread(() => {
                 WebClient client = new WebClient();
@@ -700,7 +789,7 @@ namespace ToolScope_for_EuroScope
                 client.Headers.Add(HttpRequestHeader.Referer, "https://files.aero-nav.com/EDXX/");
                 client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                 client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                client.DownloadFileAsync(new Uri(selectedurl), publicconfig.esdir + "/ToolScope/data.zip");
+                client.DownloadFileAsync(new Uri(selectedurl), publicconfig.clientconfig.esdir + "/ToolScope/data.zip");
             });
             thread.Start();
         }
@@ -724,7 +813,13 @@ namespace ToolScope_for_EuroScope
             uipage.SelectedIndex = 2;
             ChangeUI("AIRAC Settings", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
         }
-        
+
+        private void airacmanagerbtn_Click(object sender, EventArgs e)
+        {
+            FeedDataGrid();
+            uipage.SelectedIndex = 1;
+            ChangeUI("AIRAC Overview", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
+        }
 
         private void savebtn_Click(object sender, EventArgs e)
         {
@@ -742,9 +837,9 @@ namespace ToolScope_for_EuroScope
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    publicconfig.esdir = fbd.SelectedPath;
+                    publicconfig.clientconfig.esdir = fbd.SelectedPath;
                     File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
-                    esfolderbox.Text = publicconfig.esdir;
+                    esfolderbox.Text = publicconfig.clientconfig.esdir;
                 }
             }
         }
@@ -757,7 +852,7 @@ namespace ToolScope_for_EuroScope
             {
                 try
                 {
-                    System.IO.DirectoryInfo di = new DirectoryInfo(publicconfig.esdir);
+                    System.IO.DirectoryInfo di = new DirectoryInfo(publicconfig.clientconfig.esdir);
 
                     foreach (FileInfo file in di.GetFiles())
                     {
