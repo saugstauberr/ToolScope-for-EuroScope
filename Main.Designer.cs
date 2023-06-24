@@ -36,11 +36,16 @@ namespace ToolScope_for_EuroScope
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Utilities.BunifuPages.BunifuAnimatorNS.Animation animation1 = new Utilities.BunifuPages.BunifuAnimatorNS.Animation();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties1 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties2 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties3 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
@@ -70,11 +75,6 @@ namespace ToolScope_for_EuroScope
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges8 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges9 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.controlbar = new Bunifu.UI.WinForms.BunifuPanel();
             this.minimizebtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -97,6 +97,7 @@ namespace ToolScope_for_EuroScope
             this.airacdownloadpan = new System.Windows.Forms.TabPage();
             this.label25 = new System.Windows.Forms.Label();
             this.insertsettings = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
+            this.clearesfolderbtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.label24 = new System.Windows.Forms.Label();
             this.runpsscript = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
             this.label23 = new System.Windows.Forms.Label();
@@ -120,6 +121,13 @@ namespace ToolScope_for_EuroScope
             this.released = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.version = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.copyfilespan = new Bunifu.Framework.UI.BunifuCards();
+            this.filescopylist = new Bunifu.UI.WinForms.BunifuDataGridView();
+            this.allowedExtensions = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.filescopymenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.selectFileBeforeDeletingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cidbox = new Bunifu.UI.WinForms.BunifuTextBox();
             this.savebtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.ratingbox = new Bunifu.UI.WinForms.BunifuDropdown();
@@ -147,23 +155,20 @@ namespace ToolScope_for_EuroScope
             this.opensettingsui = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.openupdateui = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
-            this.filescopymenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.selectFileBeforeDeletingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyfilespan = new Bunifu.Framework.UI.BunifuCards();
-            this.filescopylist = new Bunifu.UI.WinForms.BunifuDataGridView();
-            this.allowedExtensions = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clearesfolderbtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.airacmanagermenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.uninstallairac = new System.Windows.Forms.ToolStripMenuItem();
             this.uipage.SuspendLayout();
             this.airacdownloadpan.SuspendLayout();
             this.airacmanagerpan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.packagesdatagrid)).BeginInit();
             this.tabPage2.SuspendLayout();
-            this.bunifuShadowPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.filescopymenu.SuspendLayout();
             this.copyfilespan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.filescopylist)).BeginInit();
+            this.filescopymenu.SuspendLayout();
+            this.bunifuShadowPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.airacmanagermenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // bunifuDragControl1
@@ -384,7 +389,7 @@ namespace ToolScope_for_EuroScope
             this.pagenametxt.Name = "pagenametxt";
             this.pagenametxt.Size = new System.Drawing.Size(225, 21);
             this.pagenametxt.TabIndex = 47;
-            this.pagenametxt.Text = "AIRAC Manager";
+            this.pagenametxt.Text = "AIRAC Installer";
             this.pagenametxt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // notifytxt
@@ -616,10 +621,10 @@ namespace ToolScope_for_EuroScope
             this.uipage.Location = new System.Drawing.Point(211, 0);
             this.uipage.Multiline = true;
             this.uipage.Name = "uipage";
-            this.uipage.Page = this.airacdownloadpan;
-            this.uipage.PageIndex = 0;
-            this.uipage.PageName = "airacdownloadpan";
-            this.uipage.PageTitle = "AIRAC Downloader";
+            this.uipage.Page = this.airacmanagerpan;
+            this.uipage.PageIndex = 1;
+            this.uipage.PageName = "airacmanagerpan";
+            this.uipage.PageTitle = "AIRAC Manager";
             this.uipage.SelectedIndex = 0;
             this.uipage.Size = new System.Drawing.Size(812, 512);
             this.uipage.TabIndex = 30;
@@ -678,7 +683,6 @@ namespace ToolScope_for_EuroScope
             this.airacdownloadpan.Size = new System.Drawing.Size(785, 504);
             this.airacdownloadpan.TabIndex = 0;
             this.airacdownloadpan.Text = "AIRAC Downloader";
-            this.airacdownloadpan.Click += new System.EventHandler(this.airacdownloadpan_Click);
             // 
             // label25
             // 
@@ -709,6 +713,99 @@ namespace ToolScope_for_EuroScope
             this.insertsettings.UncheckedSwitchColor = System.Drawing.Color.White;
             this.insertsettings.UncheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Outline;
             this.insertsettings.CheckedChanged += new System.EventHandler(this.insertsettings_CheckedChanged);
+            // 
+            // clearesfolderbtn
+            // 
+            this.clearesfolderbtn.AllowAnimations = true;
+            this.clearesfolderbtn.AllowMouseEffects = true;
+            this.clearesfolderbtn.AllowToggling = false;
+            this.clearesfolderbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.clearesfolderbtn.AnimationSpeed = 200;
+            this.clearesfolderbtn.AutoGenerateColors = false;
+            this.clearesfolderbtn.AutoRoundBorders = false;
+            this.clearesfolderbtn.AutoSizeLeftIcon = true;
+            this.clearesfolderbtn.AutoSizeRightIcon = true;
+            this.clearesfolderbtn.BackColor = System.Drawing.Color.Transparent;
+            this.clearesfolderbtn.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(122)))), ((int)(((byte)(183)))));
+            this.clearesfolderbtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("clearesfolderbtn.BackgroundImage")));
+            this.clearesfolderbtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.clearesfolderbtn.ButtonText = "Delete all AIRACS";
+            this.clearesfolderbtn.ButtonTextMarginLeft = 0;
+            this.clearesfolderbtn.ColorContrastOnClick = 45;
+            this.clearesfolderbtn.ColorContrastOnHover = 45;
+            this.clearesfolderbtn.Cursor = System.Windows.Forms.Cursors.Default;
+            borderEdges3.BottomLeft = true;
+            borderEdges3.BottomRight = true;
+            borderEdges3.TopLeft = true;
+            borderEdges3.TopRight = true;
+            this.clearesfolderbtn.CustomizableEdges = borderEdges3;
+            this.clearesfolderbtn.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.clearesfolderbtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.clearesfolderbtn.DisabledFillColor = System.Drawing.Color.Empty;
+            this.clearesfolderbtn.DisabledForecolor = System.Drawing.Color.Empty;
+            this.clearesfolderbtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
+            this.clearesfolderbtn.Font = new System.Drawing.Font("Microsoft PhagsPa", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearesfolderbtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.clearesfolderbtn.IconLeft = null;
+            this.clearesfolderbtn.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.clearesfolderbtn.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.clearesfolderbtn.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.clearesfolderbtn.IconMarginLeft = 11;
+            this.clearesfolderbtn.IconPadding = 10;
+            this.clearesfolderbtn.IconRight = null;
+            this.clearesfolderbtn.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.clearesfolderbtn.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.clearesfolderbtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.clearesfolderbtn.IconSize = 25;
+            this.clearesfolderbtn.IdleBorderColor = System.Drawing.Color.Empty;
+            this.clearesfolderbtn.IdleBorderRadius = 0;
+            this.clearesfolderbtn.IdleBorderThickness = 0;
+            this.clearesfolderbtn.IdleFillColor = System.Drawing.Color.Empty;
+            this.clearesfolderbtn.IdleIconLeftImage = null;
+            this.clearesfolderbtn.IdleIconRightImage = null;
+            this.clearesfolderbtn.IndicateFocus = false;
+            this.clearesfolderbtn.Location = new System.Drawing.Point(292, 317);
+            this.clearesfolderbtn.Name = "clearesfolderbtn";
+            this.clearesfolderbtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.clearesfolderbtn.OnDisabledState.BorderRadius = 15;
+            this.clearesfolderbtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.clearesfolderbtn.OnDisabledState.BorderThickness = 2;
+            this.clearesfolderbtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.clearesfolderbtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.clearesfolderbtn.OnDisabledState.IconLeftImage = null;
+            this.clearesfolderbtn.OnDisabledState.IconRightImage = null;
+            this.clearesfolderbtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.clearesfolderbtn.onHoverState.BorderRadius = 15;
+            this.clearesfolderbtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.clearesfolderbtn.onHoverState.BorderThickness = 2;
+            this.clearesfolderbtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.clearesfolderbtn.onHoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.clearesfolderbtn.onHoverState.IconLeftImage = null;
+            this.clearesfolderbtn.onHoverState.IconRightImage = null;
+            this.clearesfolderbtn.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.clearesfolderbtn.OnIdleState.BorderRadius = 15;
+            this.clearesfolderbtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.clearesfolderbtn.OnIdleState.BorderThickness = 2;
+            this.clearesfolderbtn.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
+            this.clearesfolderbtn.OnIdleState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.clearesfolderbtn.OnIdleState.IconLeftImage = null;
+            this.clearesfolderbtn.OnIdleState.IconRightImage = null;
+            this.clearesfolderbtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.clearesfolderbtn.OnPressedState.BorderRadius = 15;
+            this.clearesfolderbtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.clearesfolderbtn.OnPressedState.BorderThickness = 2;
+            this.clearesfolderbtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
+            this.clearesfolderbtn.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
+            this.clearesfolderbtn.OnPressedState.IconLeftImage = null;
+            this.clearesfolderbtn.OnPressedState.IconRightImage = null;
+            this.clearesfolderbtn.Size = new System.Drawing.Size(116, 29);
+            this.clearesfolderbtn.TabIndex = 48;
+            this.clearesfolderbtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.clearesfolderbtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.clearesfolderbtn.TextMarginLeft = 0;
+            this.clearesfolderbtn.TextPadding = new System.Windows.Forms.Padding(0);
+            this.clearesfolderbtn.UseDefaultRadiusAndThickness = true;
+            this.clearesfolderbtn.Click += new System.EventHandler(this.clearesfolderbtn_Click);
             // 
             // label24
             // 
@@ -1036,10 +1133,9 @@ namespace ToolScope_for_EuroScope
             this.airacmanagerpan.Controls.Add(this.packagesdatagrid);
             this.airacmanagerpan.Location = new System.Drawing.Point(23, 4);
             this.airacmanagerpan.Name = "airacmanagerpan";
-            this.airacmanagerpan.Size = new System.Drawing.Size(668, 447);
+            this.airacmanagerpan.Size = new System.Drawing.Size(785, 504);
             this.airacmanagerpan.TabIndex = 2;
             this.airacmanagerpan.Text = "AIRAC Manager";
-            this.airacmanagerpan.Click += new System.EventHandler(this.airacmanagerpan_Click);
             // 
             // packagesdatagrid
             // 
@@ -1068,6 +1164,7 @@ namespace ToolScope_for_EuroScope
             this.airac,
             this.released,
             this.version});
+            this.packagesdatagrid.ContextMenuStrip = this.airacmanagermenu;
             this.packagesdatagrid.CurrentTheme.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.packagesdatagrid.CurrentTheme.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
             this.packagesdatagrid.CurrentTheme.AlternatingRowsStyle.ForeColor = System.Drawing.Color.White;
@@ -1099,7 +1196,8 @@ namespace ToolScope_for_EuroScope
             this.packagesdatagrid.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
             this.packagesdatagrid.HeaderBgColor = System.Drawing.Color.Empty;
             this.packagesdatagrid.HeaderForeColor = System.Drawing.Color.White;
-            this.packagesdatagrid.Location = new System.Drawing.Point(14, 76);
+            this.packagesdatagrid.Location = new System.Drawing.Point(4, 40);
+            this.packagesdatagrid.MultiSelect = false;
             this.packagesdatagrid.Name = "packagesdatagrid";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
@@ -1112,7 +1210,7 @@ namespace ToolScope_for_EuroScope
             this.packagesdatagrid.RowHeadersVisible = false;
             this.packagesdatagrid.RowTemplate.Height = 40;
             this.packagesdatagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.packagesdatagrid.Size = new System.Drawing.Size(646, 247);
+            this.packagesdatagrid.Size = new System.Drawing.Size(778, 461);
             this.packagesdatagrid.TabIndex = 0;
             this.packagesdatagrid.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Dark;
             // 
@@ -1167,6 +1265,7 @@ namespace ToolScope_for_EuroScope
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.copyfilespan);
             this.tabPage2.Controls.Add(this.cidbox);
             this.tabPage2.Controls.Add(this.savebtn);
@@ -1192,6 +1291,142 @@ namespace ToolScope_for_EuroScope
             this.tabPage2.Size = new System.Drawing.Size(785, 504);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Other Settings";
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.label1.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Gray;
+            this.label1.Location = new System.Drawing.Point(272, 451);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(260, 39);
+            this.label1.TabIndex = 69;
+            this.label1.Text = "Add file names here which you want to keep after an update. Only file names, no f" +
+    "ile paths!\r\n";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // copyfilespan
+            // 
+            this.copyfilespan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.copyfilespan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.copyfilespan.BorderRadius = 30;
+            this.copyfilespan.BottomSahddow = false;
+            this.copyfilespan.color = System.Drawing.Color.Transparent;
+            this.copyfilespan.Controls.Add(this.filescopylist);
+            this.copyfilespan.LeftSahddow = false;
+            this.copyfilespan.Location = new System.Drawing.Point(533, 49);
+            this.copyfilespan.Name = "copyfilespan";
+            this.copyfilespan.RightSahddow = false;
+            this.copyfilespan.ShadowDepth = 20;
+            this.copyfilespan.Size = new System.Drawing.Size(229, 427);
+            this.copyfilespan.TabIndex = 68;
+            // 
+            // filescopylist
+            // 
+            this.filescopylist.AllowCustomTheming = false;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            this.filescopylist.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.filescopylist.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.filescopylist.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.filescopylist.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.filescopylist.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
+            this.filescopylist.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.filescopylist.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.filescopylist.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.filescopylist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.filescopylist.ColumnHeadersHeight = 40;
+            this.filescopylist.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.allowedExtensions});
+            this.filescopylist.ContextMenuStrip = this.filescopymenu;
+            this.filescopylist.CurrentTheme.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.filescopylist.CurrentTheme.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.filescopylist.CurrentTheme.AlternatingRowsStyle.ForeColor = System.Drawing.Color.White;
+            this.filescopylist.CurrentTheme.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(117)))), ((int)(((byte)(119)))));
+            this.filescopylist.CurrentTheme.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.filescopylist.CurrentTheme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
+            this.filescopylist.CurrentTheme.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(56)))), ((int)(((byte)(62)))));
+            this.filescopylist.CurrentTheme.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
+            this.filescopylist.CurrentTheme.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
+            this.filescopylist.CurrentTheme.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.filescopylist.CurrentTheme.HeaderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.filescopylist.CurrentTheme.HeaderStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.filescopylist.CurrentTheme.Name = null;
+            this.filescopylist.CurrentTheme.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
+            this.filescopylist.CurrentTheme.RowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.filescopylist.CurrentTheme.RowsStyle.ForeColor = System.Drawing.Color.White;
+            this.filescopylist.CurrentTheme.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(117)))), ((int)(((byte)(119)))));
+            this.filescopylist.CurrentTheme.RowsStyle.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(117)))), ((int)(((byte)(119)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.filescopylist.DefaultCellStyle = dataGridViewCellStyle7;
+            this.filescopylist.EnableHeadersVisualStyles = false;
+            this.filescopylist.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(56)))), ((int)(((byte)(62)))));
+            this.filescopylist.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
+            this.filescopylist.HeaderBgColor = System.Drawing.Color.Empty;
+            this.filescopylist.HeaderForeColor = System.Drawing.Color.White;
+            this.filescopylist.Location = new System.Drawing.Point(-1, -1);
+            this.filescopylist.Name = "filescopylist";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.filescopylist.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.filescopylist.RowHeadersVisible = false;
+            this.filescopylist.RowTemplate.Height = 40;
+            this.filescopylist.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.filescopylist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.filescopylist.Size = new System.Drawing.Size(230, 431);
+            this.filescopylist.TabIndex = 62;
+            this.filescopylist.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Dark;
+            // 
+            // allowedExtensions
+            // 
+            this.allowedExtensions.DataPropertyName = "Value";
+            this.allowedExtensions.HeaderText = "Setting File Manager";
+            this.allowedExtensions.Name = "allowedExtensions";
+            this.allowedExtensions.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.allowedExtensions.ToolTipText = "e.g. \"GENERAL.txt\"";
+            // 
+            // filescopymenu
+            // 
+            this.filescopymenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectFileBeforeDeletingToolStripMenuItem,
+            this.deleteFileToolStripMenuItem});
+            this.filescopymenu.Name = "filescopymenu";
+            this.filescopymenu.Size = new System.Drawing.Size(238, 48);
+            // 
+            // selectFileBeforeDeletingToolStripMenuItem
+            // 
+            this.selectFileBeforeDeletingToolStripMenuItem.Enabled = false;
+            this.selectFileBeforeDeletingToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectFileBeforeDeletingToolStripMenuItem.Name = "selectFileBeforeDeletingToolStripMenuItem";
+            this.selectFileBeforeDeletingToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.selectFileBeforeDeletingToolStripMenuItem.Text = "- Select file(s) before deleting -";
+            // 
+            // deleteFileToolStripMenuItem
+            // 
+            this.deleteFileToolStripMenuItem.Name = "deleteFileToolStripMenuItem";
+            this.deleteFileToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.deleteFileToolStripMenuItem.Text = "Delete";
+            this.deleteFileToolStripMenuItem.Click += new System.EventHandler(this.deleteFileToolStripMenuItem_Click);
             // 
             // cidbox
             // 
@@ -1972,7 +2207,7 @@ namespace ToolScope_for_EuroScope
             this.airacmanagerbtn.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(122)))), ((int)(((byte)(183)))));
             this.airacmanagerbtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("airacmanagerbtn.BackgroundImage")));
             this.airacmanagerbtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.airacmanagerbtn.ButtonText = "AIRAC Overview";
+            this.airacmanagerbtn.ButtonText = "AIRAC Manager";
             this.airacmanagerbtn.ButtonTextMarginLeft = 0;
             this.airacmanagerbtn.ColorContrastOnClick = 0;
             this.airacmanagerbtn.ColorContrastOnHover = 0;
@@ -2007,7 +2242,7 @@ namespace ToolScope_for_EuroScope
             this.airacmanagerbtn.IdleIconLeftImage = null;
             this.airacmanagerbtn.IdleIconRightImage = global::ToolScope_for_EuroScope.Properties.Resources.arrow_24_128;
             this.airacmanagerbtn.IndicateFocus = false;
-            this.airacmanagerbtn.Location = new System.Drawing.Point(16, 101);
+            this.airacmanagerbtn.Location = new System.Drawing.Point(17, 205);
             this.airacmanagerbtn.Name = "airacmanagerbtn";
             this.airacmanagerbtn.OnDisabledState.BorderColor = System.Drawing.Color.Empty;
             this.airacmanagerbtn.OnDisabledState.BorderRadius = 20;
@@ -2102,7 +2337,7 @@ namespace ToolScope_for_EuroScope
             this.openpspan.IdleIconLeftImage = null;
             this.openpspan.IdleIconRightImage = global::ToolScope_for_EuroScope.Properties.Resources.arrow_24_128;
             this.openpspan.IndicateFocus = false;
-            this.openpspan.Location = new System.Drawing.Point(16, 207);
+            this.openpspan.Location = new System.Drawing.Point(17, 333);
             this.openpspan.Name = "openpspan";
             this.openpspan.OnDisabledState.BorderColor = System.Drawing.Color.Empty;
             this.openpspan.OnDisabledState.BorderRadius = 20;
@@ -2225,7 +2460,7 @@ namespace ToolScope_for_EuroScope
             this.opensettingsui.IdleIconLeftImage = null;
             this.opensettingsui.IdleIconRightImage = global::ToolScope_for_EuroScope.Properties.Resources.arrow_24_128;
             this.opensettingsui.IndicateFocus = false;
-            this.opensettingsui.Location = new System.Drawing.Point(16, 260);
+            this.opensettingsui.Location = new System.Drawing.Point(17, 386);
             this.opensettingsui.Name = "opensettingsui";
             this.opensettingsui.OnDisabledState.BorderColor = System.Drawing.Color.Empty;
             this.opensettingsui.OnDisabledState.BorderRadius = 20;
@@ -2285,7 +2520,7 @@ namespace ToolScope_for_EuroScope
             this.openupdateui.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(122)))), ((int)(((byte)(183)))));
             this.openupdateui.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("openupdateui.BackgroundImage")));
             this.openupdateui.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.openupdateui.ButtonText = "AIRAC Manager";
+            this.openupdateui.ButtonText = "AIRAC Installer";
             this.openupdateui.ButtonTextMarginLeft = 0;
             this.openupdateui.ColorContrastOnClick = 0;
             this.openupdateui.ColorContrastOnHover = 0;
@@ -2320,7 +2555,7 @@ namespace ToolScope_for_EuroScope
             this.openupdateui.IdleIconLeftImage = null;
             this.openupdateui.IdleIconRightImage = global::ToolScope_for_EuroScope.Properties.Resources.arrow_24_128;
             this.openupdateui.IndicateFocus = false;
-            this.openupdateui.Location = new System.Drawing.Point(16, 154);
+            this.openupdateui.Location = new System.Drawing.Point(17, 152);
             this.openupdateui.Name = "openupdateui";
             this.openupdateui.OnDisabledState.BorderColor = System.Drawing.Color.Empty;
             this.openupdateui.OnDisabledState.BorderRadius = 20;
@@ -2369,221 +2604,28 @@ namespace ToolScope_for_EuroScope
             this.bunifuElipse1.ElipseRadius = 30;
             this.bunifuElipse1.TargetControl = this;
             // 
-            // filescopymenu
+            // airacmanagermenu
             // 
-            this.filescopymenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.selectFileBeforeDeletingToolStripMenuItem,
-            this.deleteFileToolStripMenuItem});
-            this.filescopymenu.Name = "filescopymenu";
-            this.filescopymenu.Size = new System.Drawing.Size(238, 48);
+            this.airacmanagermenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.uninstallairac});
+            this.airacmanagermenu.Name = "filescopymenu";
+            this.airacmanagermenu.Size = new System.Drawing.Size(231, 48);
             // 
-            // deleteFileToolStripMenuItem
+            // toolStripMenuItem1
             // 
-            this.deleteFileToolStripMenuItem.Name = "deleteFileToolStripMenuItem";
-            this.deleteFileToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
-            this.deleteFileToolStripMenuItem.Text = "Delete";
-            this.deleteFileToolStripMenuItem.Click += new System.EventHandler(this.deleteFileToolStripMenuItem_Click);
+            this.toolStripMenuItem1.Enabled = false;
+            this.toolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(230, 22);
+            this.toolStripMenuItem1.Text = "- Select AIRAC before usage -";
             // 
-            // selectFileBeforeDeletingToolStripMenuItem
+            // uninstallairac
             // 
-            this.selectFileBeforeDeletingToolStripMenuItem.Enabled = false;
-            this.selectFileBeforeDeletingToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectFileBeforeDeletingToolStripMenuItem.Name = "selectFileBeforeDeletingToolStripMenuItem";
-            this.selectFileBeforeDeletingToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
-            this.selectFileBeforeDeletingToolStripMenuItem.Text = "- Select file(s) before deleting -";
-            // 
-            // copyfilespan
-            // 
-            this.copyfilespan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.copyfilespan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.copyfilespan.BorderRadius = 30;
-            this.copyfilespan.BottomSahddow = false;
-            this.copyfilespan.color = System.Drawing.Color.Transparent;
-            this.copyfilespan.Controls.Add(this.filescopylist);
-            this.copyfilespan.LeftSahddow = false;
-            this.copyfilespan.Location = new System.Drawing.Point(533, 49);
-            this.copyfilespan.Name = "copyfilespan";
-            this.copyfilespan.RightSahddow = false;
-            this.copyfilespan.ShadowDepth = 20;
-            this.copyfilespan.Size = new System.Drawing.Size(229, 427);
-            this.copyfilespan.TabIndex = 68;
-            // 
-            // filescopylist
-            // 
-            this.filescopylist.AllowCustomTheming = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            this.filescopylist.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.filescopylist.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.filescopylist.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.filescopylist.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.filescopylist.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
-            this.filescopylist.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.filescopylist.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.filescopylist.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.filescopylist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.filescopylist.ColumnHeadersHeight = 40;
-            this.filescopylist.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.allowedExtensions});
-            this.filescopylist.ContextMenuStrip = this.filescopymenu;
-            this.filescopylist.CurrentTheme.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
-            this.filescopylist.CurrentTheme.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            this.filescopylist.CurrentTheme.AlternatingRowsStyle.ForeColor = System.Drawing.Color.White;
-            this.filescopylist.CurrentTheme.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(117)))), ((int)(((byte)(119)))));
-            this.filescopylist.CurrentTheme.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            this.filescopylist.CurrentTheme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
-            this.filescopylist.CurrentTheme.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(56)))), ((int)(((byte)(62)))));
-            this.filescopylist.CurrentTheme.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
-            this.filescopylist.CurrentTheme.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
-            this.filescopylist.CurrentTheme.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.filescopylist.CurrentTheme.HeaderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.filescopylist.CurrentTheme.HeaderStyle.SelectionForeColor = System.Drawing.Color.White;
-            this.filescopylist.CurrentTheme.Name = null;
-            this.filescopylist.CurrentTheme.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
-            this.filescopylist.CurrentTheme.RowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            this.filescopylist.CurrentTheme.RowsStyle.ForeColor = System.Drawing.Color.White;
-            this.filescopylist.CurrentTheme.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(117)))), ((int)(((byte)(119)))));
-            this.filescopylist.CurrentTheme.RowsStyle.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(117)))), ((int)(((byte)(119)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.filescopylist.DefaultCellStyle = dataGridViewCellStyle7;
-            this.filescopylist.EnableHeadersVisualStyles = false;
-            this.filescopylist.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(56)))), ((int)(((byte)(62)))));
-            this.filescopylist.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
-            this.filescopylist.HeaderBgColor = System.Drawing.Color.Empty;
-            this.filescopylist.HeaderForeColor = System.Drawing.Color.White;
-            this.filescopylist.Location = new System.Drawing.Point(-1, -1);
-            this.filescopylist.Name = "filescopylist";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.filescopylist.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.filescopylist.RowHeadersVisible = false;
-            this.filescopylist.RowTemplate.Height = 40;
-            this.filescopylist.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.filescopylist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.filescopylist.Size = new System.Drawing.Size(230, 431);
-            this.filescopylist.TabIndex = 62;
-            this.filescopylist.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Dark;
-            // 
-            // allowedExtensions
-            // 
-            this.allowedExtensions.DataPropertyName = "Value";
-            this.allowedExtensions.HeaderText = "Setting File Manager";
-            this.allowedExtensions.Name = "allowedExtensions";
-            this.allowedExtensions.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.allowedExtensions.ToolTipText = "e.g. \"GENERAL.txt\"";
-            // 
-            // clearesfolderbtn
-            // 
-            this.clearesfolderbtn.AllowAnimations = true;
-            this.clearesfolderbtn.AllowMouseEffects = true;
-            this.clearesfolderbtn.AllowToggling = false;
-            this.clearesfolderbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearesfolderbtn.AnimationSpeed = 200;
-            this.clearesfolderbtn.AutoGenerateColors = false;
-            this.clearesfolderbtn.AutoRoundBorders = false;
-            this.clearesfolderbtn.AutoSizeLeftIcon = true;
-            this.clearesfolderbtn.AutoSizeRightIcon = true;
-            this.clearesfolderbtn.BackColor = System.Drawing.Color.Transparent;
-            this.clearesfolderbtn.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(122)))), ((int)(((byte)(183)))));
-            this.clearesfolderbtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("clearesfolderbtn.BackgroundImage")));
-            this.clearesfolderbtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.clearesfolderbtn.ButtonText = "Delete all AIRACS";
-            this.clearesfolderbtn.ButtonTextMarginLeft = 0;
-            this.clearesfolderbtn.ColorContrastOnClick = 45;
-            this.clearesfolderbtn.ColorContrastOnHover = 45;
-            this.clearesfolderbtn.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges3.BottomLeft = true;
-            borderEdges3.BottomRight = true;
-            borderEdges3.TopLeft = true;
-            borderEdges3.TopRight = true;
-            this.clearesfolderbtn.CustomizableEdges = borderEdges3;
-            this.clearesfolderbtn.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.clearesfolderbtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.clearesfolderbtn.DisabledFillColor = System.Drawing.Color.Empty;
-            this.clearesfolderbtn.DisabledForecolor = System.Drawing.Color.Empty;
-            this.clearesfolderbtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
-            this.clearesfolderbtn.Font = new System.Drawing.Font("Microsoft PhagsPa", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearesfolderbtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.clearesfolderbtn.IconLeft = null;
-            this.clearesfolderbtn.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.clearesfolderbtn.IconLeftCursor = System.Windows.Forms.Cursors.Default;
-            this.clearesfolderbtn.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
-            this.clearesfolderbtn.IconMarginLeft = 11;
-            this.clearesfolderbtn.IconPadding = 10;
-            this.clearesfolderbtn.IconRight = null;
-            this.clearesfolderbtn.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.clearesfolderbtn.IconRightCursor = System.Windows.Forms.Cursors.Default;
-            this.clearesfolderbtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
-            this.clearesfolderbtn.IconSize = 25;
-            this.clearesfolderbtn.IdleBorderColor = System.Drawing.Color.Empty;
-            this.clearesfolderbtn.IdleBorderRadius = 0;
-            this.clearesfolderbtn.IdleBorderThickness = 0;
-            this.clearesfolderbtn.IdleFillColor = System.Drawing.Color.Empty;
-            this.clearesfolderbtn.IdleIconLeftImage = null;
-            this.clearesfolderbtn.IdleIconRightImage = null;
-            this.clearesfolderbtn.IndicateFocus = false;
-            this.clearesfolderbtn.Location = new System.Drawing.Point(292, 317);
-            this.clearesfolderbtn.Name = "clearesfolderbtn";
-            this.clearesfolderbtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.clearesfolderbtn.OnDisabledState.BorderRadius = 15;
-            this.clearesfolderbtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.clearesfolderbtn.OnDisabledState.BorderThickness = 2;
-            this.clearesfolderbtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.clearesfolderbtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.clearesfolderbtn.OnDisabledState.IconLeftImage = null;
-            this.clearesfolderbtn.OnDisabledState.IconRightImage = null;
-            this.clearesfolderbtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.clearesfolderbtn.onHoverState.BorderRadius = 15;
-            this.clearesfolderbtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.clearesfolderbtn.onHoverState.BorderThickness = 2;
-            this.clearesfolderbtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.clearesfolderbtn.onHoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.clearesfolderbtn.onHoverState.IconLeftImage = null;
-            this.clearesfolderbtn.onHoverState.IconRightImage = null;
-            this.clearesfolderbtn.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.clearesfolderbtn.OnIdleState.BorderRadius = 15;
-            this.clearesfolderbtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.clearesfolderbtn.OnIdleState.BorderThickness = 2;
-            this.clearesfolderbtn.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
-            this.clearesfolderbtn.OnIdleState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.clearesfolderbtn.OnIdleState.IconLeftImage = null;
-            this.clearesfolderbtn.OnIdleState.IconRightImage = null;
-            this.clearesfolderbtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.clearesfolderbtn.OnPressedState.BorderRadius = 15;
-            this.clearesfolderbtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.clearesfolderbtn.OnPressedState.BorderThickness = 2;
-            this.clearesfolderbtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
-            this.clearesfolderbtn.OnPressedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(163)))), ((int)(((byte)(163)))));
-            this.clearesfolderbtn.OnPressedState.IconLeftImage = null;
-            this.clearesfolderbtn.OnPressedState.IconRightImage = null;
-            this.clearesfolderbtn.Size = new System.Drawing.Size(116, 29);
-            this.clearesfolderbtn.TabIndex = 48;
-            this.clearesfolderbtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.clearesfolderbtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
-            this.clearesfolderbtn.TextMarginLeft = 0;
-            this.clearesfolderbtn.TextPadding = new System.Windows.Forms.Padding(0);
-            this.clearesfolderbtn.UseDefaultRadiusAndThickness = true;
-            this.clearesfolderbtn.Click += new System.EventHandler(this.clearesfolderbtn_Click);
+            this.uninstallairac.Name = "uninstallairac";
+            this.uninstallairac.Size = new System.Drawing.Size(230, 22);
+            this.uninstallairac.Text = "Uninstall";
+            this.uninstallairac.Click += new System.EventHandler(this.uninstallairac_Click);
             // 
             // Main
             // 
@@ -2610,12 +2652,13 @@ namespace ToolScope_for_EuroScope
             this.airacmanagerpan.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.packagesdatagrid)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            this.copyfilespan.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.filescopylist)).EndInit();
+            this.filescopymenu.ResumeLayout(false);
             this.bunifuShadowPanel1.ResumeLayout(false);
             this.bunifuShadowPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.filescopymenu.ResumeLayout(false);
-            this.copyfilespan.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.filescopylist)).EndInit();
+            this.airacmanagermenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2701,6 +2744,10 @@ namespace ToolScope_for_EuroScope
         private Bunifu.UI.WinForms.BunifuDataGridView filescopylist;
         private System.Windows.Forms.DataGridViewTextBoxColumn allowedExtensions;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton clearesfolderbtn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ContextMenuStrip airacmanagermenu;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem uninstallairac;
     }
 }
 

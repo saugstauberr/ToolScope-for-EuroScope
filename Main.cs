@@ -5,11 +5,13 @@ using ScintillaNET;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.IO.Compression;
+using System.IO.Packaging;
 using System.Linq;
 using System.Net;
 using System.Security.Policy;
@@ -101,6 +103,31 @@ namespace ToolScope_for_EuroScope
 
         #region AIRAC Manager
 
+        private void uninstallairac_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = this.packagesdatagrid.SelectedRows[0];
+            string region = row.Cells[1].Value.ToString();
+
+            DirectoryInfo d = new DirectoryInfo(publicconfig.clientconfig.esdir);
+
+            try
+            {
+                Directory.Delete(publicconfig.clientconfig.esdir + "/" + region, true);
+                foreach (var file in d.GetFiles())
+                {
+                    if (file.FullName.Contains(region))
+                    {
+                        file.Delete();
+                    }
+
+                }
+            } catch
+            {
+
+            }
+            FeedDataGrid();
+        }
+
         private void FeedDataGrid()
         {
             publicconfig = JsonConvert.DeserializeObject<ClientRoot>(File.ReadAllText("config.json"));
@@ -108,8 +135,14 @@ namespace ToolScope_for_EuroScope
 
             foreach (var pack in publicconfig.installedpackages)
             {
-                var package = JsonConvert.DeserializeObject<AIRACPackage>(File.ReadAllText(pack.jsonpath));
-                packages.Add(package);
+                try
+                {
+                    var package = JsonConvert.DeserializeObject<AIRACPackage>(File.ReadAllText(pack.jsonpath));
+                    packages.Add(package);
+                } catch
+                {
+                    pack.jsonpath = null;
+                }
             }
             packagesdatagrid.DataSource = packages;
         }
@@ -863,7 +896,7 @@ namespace ToolScope_for_EuroScope
         private void openupdateui_Click(object sender, EventArgs e)
         {
             uipage.SelectedIndex = 0;
-            ChangeUI("AIRAC Manager", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
+            ChangeUI("AIRAC Installer", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
         }
 
         private void openpspan_Click(object sender, EventArgs e)
@@ -884,7 +917,7 @@ namespace ToolScope_for_EuroScope
         {
             FeedDataGrid();
             uipage.SelectedIndex = 1;
-            ChangeUI("AIRAC Overview", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
+            ChangeUI("AIRAC Manager", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
         }
 
         private void savebtn_Click(object sender, EventArgs e)
@@ -959,15 +992,5 @@ namespace ToolScope_for_EuroScope
             UpdateUI("write");
         }
         #endregion
-
-        private void airacmanagerpan_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void airacdownloadpan_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
