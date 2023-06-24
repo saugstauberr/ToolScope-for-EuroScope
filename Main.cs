@@ -15,7 +15,10 @@ using System.Net;
 using System.Security.Policy;
 using System.Text;
 using System.Threading;
+using System.Windows.Documents;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 using static ToolScope_for_EuroScope.Main;
 
 namespace ToolScope_for_EuroScope
@@ -188,6 +191,8 @@ namespace ToolScope_for_EuroScope
             public string hoppiecode = "";
             public string rating = "";
             public string esdir = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope");
+            public List<string> allowedExtensions { get; set; }
+
 
             public string server = "AUTOMATIC";
             public string country = "";
@@ -237,6 +242,23 @@ namespace ToolScope_for_EuroScope
         }
         #endregion
 
+        #region File Copier
+        private void filescopylist_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            publicconfig.clientconfig.allowedExtensions.Clear();
+
+            foreach (DataGridViewRow dr in filescopylist.Rows)
+            {
+                if (dr.Cells.Count >= 0 && //atleast two columns
+                    dr.Cells[0].Value != null) //value is not null
+                {
+                    publicconfig.clientconfig.allowedExtensions.Add(dr.Cells[0].Value.ToString());
+                }
+            }
+                File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
+        }
+        #endregion
+
         #region UI Switcher and Updater
         private void ChangeUI(string pagename, Bunifu.UI.WinForms.BunifuButton.BunifuButton current)
         {
@@ -274,6 +296,23 @@ namespace ToolScope_for_EuroScope
                     insertatisairport.Checked = publicconfig.clientconfig.insertatisairport;
                     insertplugins.Checked = publicconfig.clientconfig.insertplugins;
                     runpsscript.Checked = publicconfig.clientconfig.runpowershell;
+                    if(publicconfig.clientconfig.allowedExtensions != null)
+                    {
+                        //filescopylist.DataSource = publicconfig.clientconfig.allowedExtensions.ConvertAll(x => new { Value = x });
+                        foreach(var ext in publicconfig.clientconfig.allowedExtensions)
+                        {
+                            filescopylist.Rows.Add(ext);
+                        }
+                    } else
+                    {
+                        publicconfig.clientconfig.allowedExtensions = new List<string>() { "Screen.txt", "SCREEN.txt", "General.txt",
+                            "GENERAL.txt", "Settings.txt", "SETTINGS.txt", "DepartureList.txt" };
+                        File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
+                        foreach (var ext in publicconfig.clientconfig.allowedExtensions)
+                        {
+                            filescopylist.Rows.Add(ext);
+                        }
+                    }
                     break;
                 case "write":
                     publicconfig.clientconfig.cid = cidbox.Text;
@@ -288,6 +327,7 @@ namespace ToolScope_for_EuroScope
                     publicconfig.clientconfig.insertatisairport = insertatisairport.Checked;
                     publicconfig.clientconfig.insertplugins = insertplugins.Checked;
                     publicconfig.clientconfig.runpowershell = runpsscript.Checked;
+                    
                     File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
                     break;
             }
@@ -634,7 +674,7 @@ namespace ToolScope_for_EuroScope
 
         private void CopySettings()
         {
-            var allowedExtensions = new[] { "Screen.txt", "SCREEN.txt", "General.txt", "GENERAL.txt", "Settings.txt", "SETTINGS.txt", "DepartureList.txt" };
+            var allowedExtensions = publicconfig.clientconfig.allowedExtensions;
 
             try
             {
@@ -891,7 +931,19 @@ namespace ToolScope_for_EuroScope
         private void insertsettings_CheckedChanged(object sender, EventArgs e)
         {
             UpdateUI("write");
+            if(insertsettings.Checked == true)
+            {
+                filescopylist.Visible = true;
+            } else
+            {
+                filescopylist.Visible = false;
+            }
         }
         #endregion
+
+        private void airacmanagerpan_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

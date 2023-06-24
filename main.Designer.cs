@@ -36,11 +36,16 @@ namespace ToolScope_for_EuroScope
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Utilities.BunifuPages.BunifuAnimatorNS.Animation animation1 = new Utilities.BunifuPages.BunifuAnimatorNS.Animation();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties1 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties2 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties3 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
@@ -90,6 +95,8 @@ namespace ToolScope_for_EuroScope
             this.label9 = new System.Windows.Forms.Label();
             this.uipage = new Bunifu.UI.WinForms.BunifuPages();
             this.airacdownloadpan = new System.Windows.Forms.TabPage();
+            this.filescopylist = new Bunifu.UI.WinForms.BunifuDataGridView();
+            this.allowedExtensions = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label25 = new System.Windows.Forms.Label();
             this.insertsettings = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
             this.clearesfolderbtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -109,6 +116,12 @@ namespace ToolScope_for_EuroScope
             this.downloadbtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.airacmanagerpan = new System.Windows.Forms.TabPage();
             this.packagesdatagrid = new Bunifu.UI.WinForms.BunifuDataGridView();
+            this.country = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.region = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.package = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.airac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.released = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.version = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.cidbox = new Bunifu.UI.WinForms.BunifuTextBox();
             this.savebtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -137,14 +150,10 @@ namespace ToolScope_for_EuroScope
             this.opensettingsui = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.openupdateui = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
-            this.country = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.region = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.package = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.airac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.released = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.version = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.extensionList = new System.Windows.Forms.ListView();
             this.uipage.SuspendLayout();
             this.airacdownloadpan.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.filescopylist)).BeginInit();
             this.airacmanagerpan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.packagesdatagrid)).BeginInit();
             this.tabPage2.SuspendLayout();
@@ -630,6 +639,8 @@ namespace ToolScope_for_EuroScope
             // airacdownloadpan
             // 
             this.airacdownloadpan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.airacdownloadpan.Controls.Add(this.extensionList);
+            this.airacdownloadpan.Controls.Add(this.filescopylist);
             this.airacdownloadpan.Controls.Add(this.label25);
             this.airacdownloadpan.Controls.Add(this.insertsettings);
             this.airacdownloadpan.Controls.Add(this.clearesfolderbtn);
@@ -664,6 +675,87 @@ namespace ToolScope_for_EuroScope
             this.airacdownloadpan.Size = new System.Drawing.Size(668, 447);
             this.airacdownloadpan.TabIndex = 0;
             this.airacdownloadpan.Text = "AIRAC Downloader";
+            // 
+            // filescopylist
+            // 
+            this.filescopylist.AllowCustomTheming = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            this.filescopylist.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.filescopylist.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.filescopylist.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.filescopylist.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
+            this.filescopylist.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.filescopylist.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.filescopylist.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.filescopylist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.filescopylist.ColumnHeadersHeight = 40;
+            this.filescopylist.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.allowedExtensions});
+            this.filescopylist.CurrentTheme.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.filescopylist.CurrentTheme.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.filescopylist.CurrentTheme.AlternatingRowsStyle.ForeColor = System.Drawing.Color.White;
+            this.filescopylist.CurrentTheme.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(117)))), ((int)(((byte)(119)))));
+            this.filescopylist.CurrentTheme.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.filescopylist.CurrentTheme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
+            this.filescopylist.CurrentTheme.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(56)))), ((int)(((byte)(62)))));
+            this.filescopylist.CurrentTheme.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
+            this.filescopylist.CurrentTheme.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
+            this.filescopylist.CurrentTheme.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.filescopylist.CurrentTheme.HeaderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.filescopylist.CurrentTheme.HeaderStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.filescopylist.CurrentTheme.Name = null;
+            this.filescopylist.CurrentTheme.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
+            this.filescopylist.CurrentTheme.RowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.filescopylist.CurrentTheme.RowsStyle.ForeColor = System.Drawing.Color.White;
+            this.filescopylist.CurrentTheme.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(117)))), ((int)(((byte)(119)))));
+            this.filescopylist.CurrentTheme.RowsStyle.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(117)))), ((int)(((byte)(119)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.filescopylist.DefaultCellStyle = dataGridViewCellStyle3;
+            this.filescopylist.EnableHeadersVisualStyles = false;
+            this.filescopylist.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(56)))), ((int)(((byte)(62)))));
+            this.filescopylist.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
+            this.filescopylist.HeaderBgColor = System.Drawing.Color.Empty;
+            this.filescopylist.HeaderForeColor = System.Drawing.Color.White;
+            this.filescopylist.Location = new System.Drawing.Point(451, 206);
+            this.filescopylist.Name = "filescopylist";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.filescopylist.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.filescopylist.RowHeadersVisible = false;
+            this.filescopylist.RowTemplate.Height = 40;
+            this.filescopylist.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.filescopylist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.filescopylist.Size = new System.Drawing.Size(196, 208);
+            this.filescopylist.TabIndex = 62;
+            this.filescopylist.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Dark;
+            this.filescopylist.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.filescopylist_CellValidated);
+            // 
+            // allowedExtensions
+            // 
+            this.allowedExtensions.DataPropertyName = "Value";
+            this.allowedExtensions.HeaderText = "Files to copy";
+            this.allowedExtensions.Name = "allowedExtensions";
+            this.allowedExtensions.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.allowedExtensions.ToolTipText = "e.g. \"GENERAL.txt\"";
             // 
             // label25
             // 
@@ -821,7 +913,7 @@ namespace ToolScope_for_EuroScope
             this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label23.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
             this.label23.ForeColor = System.Drawing.Color.White;
-            this.label23.Location = new System.Drawing.Point(483, 346);
+            this.label23.Location = new System.Drawing.Point(221, 395);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(177, 19);
             this.label23.TabIndex = 56;
@@ -836,7 +928,7 @@ namespace ToolScope_for_EuroScope
             this.insertplugins.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
             this.insertplugins.CheckedSwitchColor = System.Drawing.Color.White;
             this.insertplugins.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
-            this.insertplugins.Location = new System.Drawing.Point(443, 346);
+            this.insertplugins.Location = new System.Drawing.Point(181, 395);
             this.insertplugins.Name = "insertplugins";
             this.insertplugins.OutlineThickness = 2;
             this.insertplugins.Size = new System.Drawing.Size(34, 19);
@@ -852,7 +944,7 @@ namespace ToolScope_for_EuroScope
             this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label22.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F);
             this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(483, 391);
+            this.label22.Location = new System.Drawing.Point(221, 414);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(138, 19);
             this.label22.TabIndex = 54;
@@ -867,7 +959,7 @@ namespace ToolScope_for_EuroScope
             this.insertatisairport.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
             this.insertatisairport.CheckedSwitchColor = System.Drawing.Color.White;
             this.insertatisairport.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
-            this.insertatisairport.Location = new System.Drawing.Point(443, 391);
+            this.insertatisairport.Location = new System.Drawing.Point(181, 414);
             this.insertatisairport.Name = "insertatisairport";
             this.insertatisairport.OutlineThickness = 2;
             this.insertatisairport.Size = new System.Drawing.Size(34, 19);
@@ -1117,25 +1209,27 @@ namespace ToolScope_for_EuroScope
             this.airacmanagerpan.Size = new System.Drawing.Size(668, 447);
             this.airacmanagerpan.TabIndex = 2;
             this.airacmanagerpan.Text = "AIRAC Manager";
+            this.airacmanagerpan.Click += new System.EventHandler(this.airacmanagerpan_Click);
             // 
             // packagesdatagrid
             // 
             this.packagesdatagrid.AllowCustomTheming = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            this.packagesdatagrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            this.packagesdatagrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.packagesdatagrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.packagesdatagrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
             this.packagesdatagrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.packagesdatagrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.packagesdatagrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.packagesdatagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.packagesdatagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.packagesdatagrid.ColumnHeadersHeight = 40;
             this.packagesdatagrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.country,
@@ -1162,14 +1256,14 @@ namespace ToolScope_for_EuroScope
             this.packagesdatagrid.CurrentTheme.RowsStyle.ForeColor = System.Drawing.Color.White;
             this.packagesdatagrid.CurrentTheme.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(117)))), ((int)(((byte)(119)))));
             this.packagesdatagrid.CurrentTheme.RowsStyle.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(117)))), ((int)(((byte)(119)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.packagesdatagrid.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(117)))), ((int)(((byte)(119)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.packagesdatagrid.DefaultCellStyle = dataGridViewCellStyle7;
             this.packagesdatagrid.EnableHeadersVisualStyles = false;
             this.packagesdatagrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(56)))), ((int)(((byte)(62)))));
             this.packagesdatagrid.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
@@ -1177,12 +1271,68 @@ namespace ToolScope_for_EuroScope
             this.packagesdatagrid.HeaderForeColor = System.Drawing.Color.White;
             this.packagesdatagrid.Location = new System.Drawing.Point(14, 76);
             this.packagesdatagrid.Name = "packagesdatagrid";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.packagesdatagrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.packagesdatagrid.RowHeadersVisible = false;
             this.packagesdatagrid.RowTemplate.Height = 40;
             this.packagesdatagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.packagesdatagrid.Size = new System.Drawing.Size(646, 247);
             this.packagesdatagrid.TabIndex = 0;
             this.packagesdatagrid.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Dark;
+            // 
+            // country
+            // 
+            this.country.DataPropertyName = "country";
+            this.country.HeaderText = "Country";
+            this.country.Name = "country";
+            this.country.ReadOnly = true;
+            this.country.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // region
+            // 
+            this.region.DataPropertyName = "region";
+            this.region.HeaderText = "Region";
+            this.region.Name = "region";
+            this.region.ReadOnly = true;
+            this.region.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // package
+            // 
+            this.package.DataPropertyName = "package";
+            this.package.HeaderText = "Package";
+            this.package.Name = "package";
+            this.package.ReadOnly = true;
+            this.package.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // airac
+            // 
+            this.airac.DataPropertyName = "airac";
+            this.airac.HeaderText = "AIRAC";
+            this.airac.Name = "airac";
+            this.airac.ReadOnly = true;
+            this.airac.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // released
+            // 
+            this.released.DataPropertyName = "released";
+            this.released.HeaderText = "Released";
+            this.released.Name = "released";
+            this.released.ReadOnly = true;
+            this.released.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // version
+            // 
+            this.version.DataPropertyName = "version";
+            this.version.HeaderText = "Version";
+            this.version.Name = "version";
+            this.version.ReadOnly = true;
+            this.version.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // tabPage2
             // 
@@ -2388,53 +2538,14 @@ namespace ToolScope_for_EuroScope
             this.bunifuElipse1.ElipseRadius = 30;
             this.bunifuElipse1.TargetControl = this;
             // 
-            // country
+            // extensionList
             // 
-            this.country.DataPropertyName = "country";
-            this.country.HeaderText = "Country";
-            this.country.Name = "country";
-            this.country.ReadOnly = true;
-            this.country.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // region
-            // 
-            this.region.DataPropertyName = "region";
-            this.region.HeaderText = "Region";
-            this.region.Name = "region";
-            this.region.ReadOnly = true;
-            this.region.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // package
-            // 
-            this.package.DataPropertyName = "package";
-            this.package.HeaderText = "Package";
-            this.package.Name = "package";
-            this.package.ReadOnly = true;
-            this.package.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // airac
-            // 
-            this.airac.DataPropertyName = "airac";
-            this.airac.HeaderText = "AIRAC";
-            this.airac.Name = "airac";
-            this.airac.ReadOnly = true;
-            this.airac.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // released
-            // 
-            this.released.DataPropertyName = "released";
-            this.released.HeaderText = "Released";
-            this.released.Name = "released";
-            this.released.ReadOnly = true;
-            this.released.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // version
-            // 
-            this.version.DataPropertyName = "version";
-            this.version.HeaderText = "Version";
-            this.version.Name = "version";
-            this.version.ReadOnly = true;
-            this.version.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.extensionList.HideSelection = false;
+            this.extensionList.Location = new System.Drawing.Point(272, 184);
+            this.extensionList.Name = "extensionList";
+            this.extensionList.Size = new System.Drawing.Size(139, 132);
+            this.extensionList.TabIndex = 63;
+            this.extensionList.UseCompatibleStateImageBehavior = false;
             // 
             // Main
             // 
@@ -2458,6 +2569,7 @@ namespace ToolScope_for_EuroScope
             this.uipage.ResumeLayout(false);
             this.airacdownloadpan.ResumeLayout(false);
             this.airacdownloadpan.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.filescopylist)).EndInit();
             this.airacmanagerpan.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.packagesdatagrid)).EndInit();
             this.tabPage2.ResumeLayout(false);
@@ -2543,6 +2655,9 @@ namespace ToolScope_for_EuroScope
         private System.Windows.Forms.DataGridViewTextBoxColumn airac;
         private System.Windows.Forms.DataGridViewTextBoxColumn released;
         private System.Windows.Forms.DataGridViewTextBoxColumn version;
+        private Bunifu.UI.WinForms.BunifuDataGridView filescopylist;
+        private System.Windows.Forms.DataGridViewTextBoxColumn allowedExtensions;
+        private System.Windows.Forms.ListView extensionList;
     }
 }
 
