@@ -385,7 +385,7 @@ namespace ToolScope_for_EuroScope
             this.pagenametxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.pagenametxt.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pagenametxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.pagenametxt.Location = new System.Drawing.Point(255, 18);
+            this.pagenametxt.Location = new System.Drawing.Point(257, 11);
             this.pagenametxt.Name = "pagenametxt";
             this.pagenametxt.Size = new System.Drawing.Size(225, 21);
             this.pagenametxt.TabIndex = 47;
@@ -621,10 +621,10 @@ namespace ToolScope_for_EuroScope
             this.uipage.Location = new System.Drawing.Point(211, 0);
             this.uipage.Multiline = true;
             this.uipage.Name = "uipage";
-            this.uipage.Page = this.airacmanagerpan;
-            this.uipage.PageIndex = 1;
-            this.uipage.PageName = "airacmanagerpan";
-            this.uipage.PageTitle = "AIRAC Manager";
+            this.uipage.Page = this.airacdownloadpan;
+            this.uipage.PageIndex = 0;
+            this.uipage.PageName = "airacdownloadpan";
+            this.uipage.PageTitle = "AIRAC Downloader";
             this.uipage.SelectedIndex = 0;
             this.uipage.Size = new System.Drawing.Size(812, 512);
             this.uipage.TabIndex = 30;
@@ -1210,7 +1210,7 @@ namespace ToolScope_for_EuroScope
             this.packagesdatagrid.RowHeadersVisible = false;
             this.packagesdatagrid.RowTemplate.Height = 40;
             this.packagesdatagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.packagesdatagrid.Size = new System.Drawing.Size(778, 461);
+            this.packagesdatagrid.Size = new System.Drawing.Size(786, 461);
             this.packagesdatagrid.TabIndex = 0;
             this.packagesdatagrid.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Dark;
             // 
