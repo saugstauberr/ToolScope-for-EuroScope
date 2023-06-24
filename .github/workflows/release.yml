@@ -1,5 +1,5 @@
 # Name of the workflow
-name: Release
+name: Release Commits
 
 # Run on every commit tag which begins with "v" (e.g., "v0.1.4")
 on:
@@ -14,13 +14,14 @@ jobs:
     runs-on: "ubuntu-latest"
     permissions: write-all
     steps:
-      - uses: actions/checkout@v3
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
+      - uses: ChanTsune/release-with-commit@v2.8.0
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: release/ToolScope.For.EuroScope.exe
-          asset_name: ToolScope.For.EuroScope.exe
-          tag: ${{ github.ref }}
-          overwrite: true
-          #body: "This is my release text"
+          regexp: "Release ((\\d+([.]\\d+)*)-(alpha|beta|rc)\\d*)((\\s|\\S)*)"
+          regexp_options: "us"
+          release_name: "Version $1 - Stable Branch"
+          tag_name: "$1"
+          body: "$5"
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}' # This token is provided by Actions, you do not need to create your own token
