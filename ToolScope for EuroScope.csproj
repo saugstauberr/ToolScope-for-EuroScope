@@ -317,25 +317,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Functions\DataManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Functions\FileManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Functions\CountryNames.cs" />
     <Compile Include="IniFile.cs" />
-    <Compile Include="Functions\UIManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Functions\PackageManager.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
