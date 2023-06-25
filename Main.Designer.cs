@@ -111,7 +111,7 @@ namespace ToolScope_for_EuroScope
             this.airacmanagerpan = new System.Windows.Forms.TabPage();
             this.packagesdatagrid = new Bunifu.UI.WinForms.BunifuDataGridView();
             this.airacmanagermenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.strip_airacupdateinfotext = new System.Windows.Forms.ToolStripMenuItem();
             this.uninstallairac = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
@@ -152,6 +152,9 @@ namespace ToolScope_for_EuroScope
             this.bunifuElipse2 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.minimizebtn = new FontAwesome.Sharp.IconButton();
             this.bunifuElipse3 = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.strip_updatebtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.strip_airacversion = new System.Windows.Forms.ToolStripMenuItem();
+            this.strip_airacrelease = new System.Windows.Forms.ToolStripMenuItem();
             this.country = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.region = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.package = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1031,24 +1034,27 @@ namespace ToolScope_for_EuroScope
             // airacmanagermenu
             // 
             this.airacmanagermenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.uninstallairac});
+            this.strip_updatebtn,
+            this.uninstallairac,
+            this.strip_airacupdateinfotext,
+            this.strip_airacrelease,
+            this.strip_airacversion});
             this.airacmanagermenu.Name = "filescopymenu";
-            this.airacmanagermenu.Size = new System.Drawing.Size(231, 48);
+            this.airacmanagermenu.Size = new System.Drawing.Size(215, 114);
             this.airacmanagermenu.Opening += new System.ComponentModel.CancelEventHandler(this.airacmanagermenu_Opening);
             // 
-            // toolStripMenuItem1
+            // strip_airacupdateinfotext
             // 
-            this.toolStripMenuItem1.Enabled = false;
-            this.toolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(230, 22);
-            this.toolStripMenuItem1.Text = "- Select AIRAC before usage -";
+            this.strip_airacupdateinfotext.Enabled = false;
+            this.strip_airacupdateinfotext.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.strip_airacupdateinfotext.Name = "strip_airacupdateinfotext";
+            this.strip_airacupdateinfotext.Size = new System.Drawing.Size(214, 22);
+            this.strip_airacupdateinfotext.Text = "- AIRAC Update available -";
             // 
             // uninstallairac
             // 
             this.uninstallairac.Name = "uninstallairac";
-            this.uninstallairac.Size = new System.Drawing.Size(230, 22);
+            this.uninstallairac.Size = new System.Drawing.Size(214, 22);
             this.uninstallairac.Text = "Uninstall";
             this.uninstallairac.Click += new System.EventHandler(this.uninstallairac_Click);
             // 
@@ -2440,6 +2446,28 @@ namespace ToolScope_for_EuroScope
             this.bunifuElipse3.ElipseRadius = 50;
             this.bunifuElipse3.TargetControl = this.minimizebtn;
             // 
+            // strip_updatebtn
+            // 
+            this.strip_updatebtn.Name = "strip_updatebtn";
+            this.strip_updatebtn.Size = new System.Drawing.Size(214, 22);
+            this.strip_updatebtn.Text = "Update";
+            // 
+            // strip_airacversion
+            // 
+            this.strip_airacversion.Enabled = false;
+            this.strip_airacversion.Name = "strip_airacversion";
+            this.strip_airacversion.Size = new System.Drawing.Size(214, 22);
+            this.strip_airacversion.Text = "Your version: AIRAC Vx";
+            this.strip_airacversion.Visible = false;
+            // 
+            // strip_airacrelease
+            // 
+            this.strip_airacrelease.Enabled = false;
+            this.strip_airacrelease.Name = "strip_airacrelease";
+            this.strip_airacrelease.Size = new System.Drawing.Size(214, 22);
+            this.strip_airacrelease.Text = "o_Release -> n_Release";
+            this.strip_airacrelease.Visible = false;
+            // 
             // country
             // 
             this.country.DataPropertyName = "country";
@@ -2494,6 +2522,7 @@ namespace ToolScope_for_EuroScope
             this.url.HeaderText = "URLHidden";
             this.url.Name = "url";
             this.url.ReadOnly = true;
+            this.url.Visible = false;
             // 
             // Main
             // 
@@ -2606,12 +2635,15 @@ namespace ToolScope_for_EuroScope
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton clearesfolderbtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ContextMenuStrip airacmanagermenu;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem strip_airacupdateinfotext;
         private System.Windows.Forms.ToolStripMenuItem uninstallairac;
         private FontAwesome.Sharp.IconButton closebtn;
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse2;
         private FontAwesome.Sharp.IconButton minimizebtn;
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse3;
+        private System.Windows.Forms.ToolStripMenuItem strip_updatebtn;
+        private System.Windows.Forms.ToolStripMenuItem strip_airacrelease;
+        private System.Windows.Forms.ToolStripMenuItem strip_airacversion;
         private System.Windows.Forms.DataGridViewTextBoxColumn country;
         private System.Windows.Forms.DataGridViewTextBoxColumn region;
         private System.Windows.Forms.DataGridViewTextBoxColumn package;

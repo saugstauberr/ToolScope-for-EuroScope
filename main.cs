@@ -133,21 +133,43 @@ namespace ToolScope_for_EuroScope
         private void airacmanagermenu_Opening(object sender, CancelEventArgs e)
         {
             DataGridViewRow row = this.packagesdatagrid.SelectedRows[0];
-            string country = row.Cells[0].Value.ToString();
-            string region = row.Cells[1].Value.ToString();
-            string package = row.Cells[2].Value.ToString();
-            string airac = row.Cells[3].Value.ToString();
-            string version = row.Cells[5].Value.ToString();
-            string released = GetURLInformation(row.Cells[6].Value.ToString()).released;
+            AIRACUpdate update = GetAIRACUpdate(row.Index);
+            MessageBox.Show(update.new_package.released);
 
-            if (CheckAIRACUpdates(country, region, package, released) != null)
+            if (update.no_url == true)
             {
-                MessageBox.Show(string.Join(", ", CheckAIRACUpdates(country, region, package, released).ToList()));
-            } else
-            {
-                MessageBox.Show("No Update found!");
+                strip_airacupdateinfotext.Text = "- Autoupdater not available, please reinstall package for this feature! -";
+                strip_airacrelease.Visible = false;
+                strip_airacversion.Visible = false;
+                strip_updatebtn.Visible = false;
+                return;
             }
 
+            if (update.update == true)
+            {
+                strip_airacupdateinfotext.Visible = true;
+                strip_airacrelease.Visible = true;
+                strip_airacversion.Visible = true;
+                strip_updatebtn.Visible = true;
+                strip_airacupdateinfotext.Text = "- New version found -";
+
+                DateTime dr_o = DateTime.ParseExact(update.old_package.released, "yyyyMMddHHmms", CultureInfo.InvariantCulture);
+                update.old_package.released = dr_o.ToString("dd.MM.yyyy");
+                DateTime dr = DateTime.ParseExact(update.new_package.released, "yyyyMMddHHmms", CultureInfo.InvariantCulture);
+                update.new_package.released = dr.ToString("dd.MM.yyyy");
+                DateTime da = DateTime.ParseExact(update.new_package.airac, "yyMMdd", new CultureInfo("da-DK"));
+                update.new_package.airac = da.ToString(@"yy\/MM");
+
+                strip_airacrelease.Text = update.old_package.released + " -> " + update.new_package.released;
+                strip_airacversion.Text = "Version: " + update.old_package.airac + " " + update.old_package.version + " -> " + update.new_package.airac + " V" + update.new_package.version;
+            }
+            else
+            {
+                strip_airacrelease.Visible = false;
+                strip_airacversion.Visible = false;
+                strip_airacupdateinfotext.Text = "- Latest version installed -";
+                strip_updatebtn.Visible = false;
+            }
         }
 
         private void FeedDataGrid()
@@ -160,6 +182,10 @@ namespace ToolScope_for_EuroScope
                 try
                 {
                     var package = JsonConvert.DeserializeObject<AIRACPackage>(File.ReadAllText(pack.jsonpath));
+                    if (package.url == null)
+                    {
+                        package.url = "NOURL";
+                    }
                     packages.Add(package);
                 } catch
                 {
@@ -170,12 +196,29 @@ namespace ToolScope_for_EuroScope
 
         }
 
-        private List<string> CheckAIRACUpdates(string country, string region, string package = "", string released = "")
+        private AIRACUpdate GetAIRACUpdate(int rows)
         {
+            AIRACUpdate update = new AIRACUpdate();
+            DataGridViewRow row = this.packagesdatagrid.Rows[rows];
+
+            if (row.Cells[6].Value.ToString() == "NOURL")
+            {
+                update.no_url = true;
+                return update;
+            }
+
+            update.old_package.country = row.Cells[0].Value.ToString();
+            update.old_package.region = row.Cells[1].Value.ToString();
+            update.old_package.package = row.Cells[2].Value.ToString();
+            update.old_package.airac = row.Cells[3].Value.ToString();
+            update.old_package.version = row.Cells[5].Value.ToString();
+            update.old_package.released = GetURLInformation(row.Cells[6].Value.ToString()).released;
+
+            AIRACPackage el = new AIRACPackage();
             List<string> allurls = new List<string>();
 
             HtmlWeb hw = new HtmlWeb();
-            HtmlAgilityPack.HtmlDocument doc = hw.Load("http://files.aero-nav.com/" + country);
+            HtmlAgilityPack.HtmlDocument doc = hw.Load("http://files.aero-nav.com/" + update.old_package.country);
             foreach (HtmlNode link in doc.DocumentNode.SelectNodes("//a[@href]"))
             {
                 if (link.Attributes["href"].Value.Contains(".zip"))
@@ -186,7 +229,7 @@ namespace ToolScope_for_EuroScope
 
             foreach (var x in allurls.ToList())
             {
-                if (x.Contains(region) != true)
+                if (x.Contains(update.old_package.region) != true)
                 {
                     allurls.Remove(x);
                 }
@@ -194,25 +237,29 @@ namespace ToolScope_for_EuroScope
 
             foreach (var x in allurls.ToList())
             {
-                if (x.Contains(package) != true )
+                if (x.Contains(update.old_package.package) != true )
                 {
                     allurls.Remove(x); 
                 }
             }
-
             var url = string.Join("", allurls.ToList());
+            el.airac = GetURLInformation(url).airac; ;
+            el.version = GetURLInformation(url).version;
+            el.released = GetURLInformation(url).released;
+            el.region = GetURLInformation(url).region;
+            el.url= url;
+            el.country = GetURLInformation(url).country;
+            el.package = GetURLInformation(url).package;
+            update.new_package = el;
 
-            var new_airac = GetURLInformation(url).airac; ;
-            var new_version = GetURLInformation(url).version;
-            var new_released = GetURLInformation(url).released;
 
-
-            if (released == new_released)
+            if (update.old_package.released == update.new_package.released)
             {
-                return null;
+                return update;
             } else
             {
-                return new List<string> { package, new_version, new_airac };
+                update.update = true;
+                return update;
             }
         }
 
@@ -258,6 +305,14 @@ namespace ToolScope_for_EuroScope
         #endregion
 
         #region Configs
+
+        public class AIRACUpdate
+        {
+            public bool update = false;
+            public bool no_url = false;
+            public AIRACPackage old_package = new AIRACPackage();
+            public AIRACPackage new_package = new AIRACPackage();
+        }
         public class ServerConfig
         {
             public List<string> countries { get; set; }
