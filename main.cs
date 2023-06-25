@@ -14,6 +14,7 @@ using System.IO.Compression;
 using System.IO.Packaging;
 using System.Linq;
 using System.Net;
+using System.Runtime.Remoting.Lifetime;
 using System.Security.Policy;
 using System.Text;
 using System.Threading;
@@ -99,6 +100,7 @@ namespace ToolScope_for_EuroScope
                 notifyText("info", publicsconfig.motd, 10);
             }
             //CreateInstalledLabels();
+            FeedDataGrid();
         }
 
         #region AIRAC Manager
@@ -128,6 +130,26 @@ namespace ToolScope_for_EuroScope
             FeedDataGrid();
         }
 
+        private void airacmanagermenu_Opening(object sender, CancelEventArgs e)
+        {
+            DataGridViewRow row = this.packagesdatagrid.SelectedRows[0];
+            string country = row.Cells[0].Value.ToString();
+            string region = row.Cells[1].Value.ToString();
+            string package = row.Cells[2].Value.ToString();
+            string airac = row.Cells[3].Value.ToString();
+            string version = row.Cells[5].Value.ToString();
+            string released = GetURLInformation(row.Cells[6].Value.ToString()).released;
+
+            if (CheckAIRACUpdates(country, region, package, released) != null)
+            {
+                MessageBox.Show(string.Join(", ", CheckAIRACUpdates(country, region, package, released).ToList()));
+            } else
+            {
+                MessageBox.Show("No Update found!");
+            }
+
+        }
+
         private void FeedDataGrid()
         {
             publicconfig = JsonConvert.DeserializeObject<ClientRoot>(File.ReadAllText("config.json"));
@@ -145,6 +167,53 @@ namespace ToolScope_for_EuroScope
                 }
             }
             packagesdatagrid.DataSource = packages;
+
+        }
+
+        private List<string> CheckAIRACUpdates(string country, string region, string package = "", string released = "")
+        {
+            List<string> allurls = new List<string>();
+
+            HtmlWeb hw = new HtmlWeb();
+            HtmlAgilityPack.HtmlDocument doc = hw.Load("http://files.aero-nav.com/" + country);
+            foreach (HtmlNode link in doc.DocumentNode.SelectNodes("//a[@href]"))
+            {
+                if (link.Attributes["href"].Value.Contains(".zip"))
+                {
+                    allurls.Add(link.Attributes["href"].Value);
+                }
+            }
+
+            foreach (var x in allurls.ToList())
+            {
+                if (x.Contains(region) != true)
+                {
+                    allurls.Remove(x);
+                }
+            }
+
+            foreach (var x in allurls.ToList())
+            {
+                if (x.Contains(package) != true )
+                {
+                    allurls.Remove(x); 
+                }
+            }
+
+            var url = string.Join("", allurls.ToList());
+
+            var new_airac = GetURLInformation(url).airac; ;
+            var new_version = GetURLInformation(url).version;
+            var new_released = GetURLInformation(url).released;
+
+
+            if (released == new_released)
+            {
+                return null;
+            } else
+            {
+                return new List<string> { package, new_version, new_airac };
+            }
         }
 
         private void CreatePackageJSON(string path)
@@ -162,6 +231,7 @@ namespace ToolScope_for_EuroScope
             package.airac = airactxt.Text;
             package.version = versiontxt.Text;
             package.released = releasetxt.Text;
+            package.url = selectedurl;
 
             File.WriteAllText(path + "/package.json", JsonConvert.SerializeObject(package, Formatting.Indented));
 
@@ -213,6 +283,7 @@ namespace ToolScope_for_EuroScope
             public string airac { get; set; }
             public string released { get; set; }
             public string version { get; set; }
+            public string url { get; set; }
         }
 
         public class ClientConfig
@@ -465,30 +536,27 @@ namespace ToolScope_for_EuroScope
             }
         }
 
-        private string GetURLInformation(string link, string type)
+        private AIRACPackage GetURLInformation(string link)
         {
-            string regionName = "0";
-            string packageName = "0";
-            string release = "0";
-            string airac = "0";
-            string version = "0";
+            AIRACPackage package = new AIRACPackage();
 
-            regionName = link.Substring(link.IndexOf("nav.com/") + 8);
-            string regionName2 = regionName.Substring(0, regionName.IndexOf("/"));
+            var regionName = link.Substring(link.IndexOf("nav.com/") + 8);
+            package.region = regionName.Substring(0, regionName.IndexOf("/"));
 
-            packageName = regionName.Substring(regionName.IndexOf("/") + 1);
-            string packageName2 = packageName.Substring(0, packageName.IndexOf("_2"));
+            var packageName = regionName.Substring(regionName.IndexOf("/") + 1);
+            package.package = packageName.Substring(0, packageName.IndexOf("_2"));
 
-            release = packageName.Substring(packageName.IndexOf("_2") + 1);
-            string release2 = release.Substring(0, release.IndexOf("-"));
+            var release = packageName.Substring(packageName.IndexOf("_2") + 1);
+            package.released = release.Substring(0, release.IndexOf("-"));
 
-            airac = release.Substring(15);
-            string airac2 = airac.Substring(0, airac.IndexOf("-"));
+            var airac = release.Substring(15);
+            package.airac = airac.Substring(0, airac.IndexOf("-"));
 
-            version = airac.Substring(7);
-            string version2 = version.Substring(0, version.IndexOf(".zip"));
+            var version = airac.Substring(7);
+            package.version = version.Substring(0, version.IndexOf(".zip"));
+            package.url = "";
 
-            switch (type)
+            /*switch (type)
             {
                 case "region":
                     return regionName2;
@@ -502,7 +570,8 @@ namespace ToolScope_for_EuroScope
                     return version2;
                 default:
                     return "ERROR";
-            }
+            }*/
+            return package;
         }
 
 
@@ -531,11 +600,11 @@ namespace ToolScope_for_EuroScope
 
             foreach (string link in allpackages)
             {
-                string regionName2 = GetURLInformation(link, "region");
+                string regionName2 = GetURLInformation(link).region;
 
                 if (!regions.Contains(regionName2))
                 {
-                    regionbox.Items.Add(GetURLInformation(link, "region"));
+                    regionbox.Items.Add(GetURLInformation(link).region);
                 }
 
                 regions.Add(regionName2);
@@ -550,7 +619,7 @@ namespace ToolScope_for_EuroScope
             {
                 if (link.Contains(filter) == true)
                 {
-                    packagebox.Items.Add(GetURLInformation(link, "package"));
+                    packagebox.Items.Add(GetURLInformation(link).package);
                 }
             }
         }
@@ -855,13 +924,13 @@ namespace ToolScope_for_EuroScope
 
             selectedurl = allpackages[x];
 
-            string regionName = GetURLInformation(selectedurl, "region");
+            string regionName = GetURLInformation(selectedurl).region;
 
-            string release = GetURLInformation(selectedurl, "release");
+            string release = GetURLInformation(selectedurl).released;
 
-            string airac = GetURLInformation(selectedurl, "airac");
+            string airac = GetURLInformation(selectedurl).airac;
 
-            string version = GetURLInformation(selectedurl, "version");
+            string version = GetURLInformation(selectedurl).version;
 
             selectedregion = regionName;
 
