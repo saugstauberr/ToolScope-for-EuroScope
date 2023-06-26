@@ -174,7 +174,7 @@
             this.savebtn.IdleIconLeftImage = null;
             this.savebtn.IdleIconRightImage = null;
             this.savebtn.IndicateFocus = false;
-            this.savebtn.Location = new System.Drawing.Point(1099, 625);
+            this.savebtn.Location = new System.Drawing.Point(1089, 625);
             this.savebtn.Name = "savebtn";
             this.savebtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.savebtn.OnDisabledState.BorderRadius = 15;
@@ -267,7 +267,7 @@
             this.loadoldscriptbtn.IdleIconLeftImage = null;
             this.loadoldscriptbtn.IdleIconRightImage = null;
             this.loadoldscriptbtn.IndicateFocus = false;
-            this.loadoldscriptbtn.Location = new System.Drawing.Point(907, 625);
+            this.loadoldscriptbtn.Location = new System.Drawing.Point(897, 625);
             this.loadoldscriptbtn.Name = "loadoldscriptbtn";
             this.loadoldscriptbtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.loadoldscriptbtn.OnDisabledState.BorderRadius = 15;
@@ -360,7 +360,7 @@
             this.increasefontbtn.IdleIconLeftImage = null;
             this.increasefontbtn.IdleIconRightImage = null;
             this.increasefontbtn.IndicateFocus = false;
-            this.increasefontbtn.Location = new System.Drawing.Point(877, 625);
+            this.increasefontbtn.Location = new System.Drawing.Point(867, 625);
             this.increasefontbtn.Name = "increasefontbtn";
             this.increasefontbtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.increasefontbtn.OnDisabledState.BorderRadius = 15;
@@ -453,7 +453,7 @@
             this.decreasefontbtn.IdleIconLeftImage = null;
             this.decreasefontbtn.IdleIconRightImage = null;
             this.decreasefontbtn.IndicateFocus = false;
-            this.decreasefontbtn.Location = new System.Drawing.Point(847, 625);
+            this.decreasefontbtn.Location = new System.Drawing.Point(837, 625);
             this.decreasefontbtn.Name = "decreasefontbtn";
             this.decreasefontbtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.decreasefontbtn.OnDisabledState.BorderRadius = 15;

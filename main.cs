@@ -83,9 +83,6 @@ namespace ToolScope_for_EuroScope
                 MessageBox.Show("JSON file error! Your JSON config file was resetted.");
             }
 
-            UpdateUI("read");
-
-
             var webResponse = "";
 
             using (WebClient client = new WebClient())
@@ -94,6 +91,7 @@ namespace ToolScope_for_EuroScope
             }
 
             publicsconfig = JsonConvert.DeserializeObject<ServerConfig>(webResponse);
+            UpdateUI("read");
             #endregion
 
             GetCountries();
@@ -107,6 +105,7 @@ namespace ToolScope_for_EuroScope
 
         private void Main_Shown(Object sender, EventArgs e)
         {
+            runpsscript.Checked = publicconfig.clientconfig.runpowershell;
             FeedDataGrid();
         }
 
@@ -156,7 +155,19 @@ namespace ToolScope_for_EuroScope
 
         private void airacmanagermenu_Opening(object sender, CancelEventArgs e)
         {
-            DataGridViewRow row = this.packagesdatagrid.SelectedRows[0];
+            DataGridViewRow row;
+            try
+            {
+                row = this.packagesdatagrid.SelectedRows[0];
+            } catch
+            {
+                strip_updatebtn.Visible = false;
+                uninstallairac.Visible = false;
+                strip_airacupdateinfotext.Text = "- No AIRAC selected or installed -";
+                return;
+            }
+            
+
             AIRACUpdate update = GetAIRACUpdate(row.Index);
 
             if (update.no_url == true)
@@ -165,6 +176,7 @@ namespace ToolScope_for_EuroScope
                 strip_airacrelease.Visible = false;
                 strip_airacversion.Visible = false;
                 strip_updatebtn.Visible = false;
+                uninstallairac.Visible = true;
                 return;
             }
 
@@ -174,6 +186,7 @@ namespace ToolScope_for_EuroScope
                 strip_airacrelease.Visible = true;
                 strip_airacversion.Visible = true;
                 strip_updatebtn.Visible = true;
+                uninstallairac.Visible = true;
                 strip_airacupdateinfotext.Text = "- New version found -";
 
                 DateTime dr_o = DateTime.ParseExact(update.old_package.released, "yyyyMMddHHmms", CultureInfo.InvariantCulture);
@@ -190,6 +203,7 @@ namespace ToolScope_for_EuroScope
                 strip_airacversion.Visible = false;
                 strip_airacupdateinfotext.Text = "- Latest version installed -";
                 strip_updatebtn.Visible = false;
+                uninstallairac.Visible = true;
             }
         }
 
@@ -198,7 +212,7 @@ namespace ToolScope_for_EuroScope
             publicconfig = JsonConvert.DeserializeObject<ClientRoot>(File.ReadAllText("config.json"));
             var packages = new List<AIRACPackage>();
             AIRACUpdate update = new AIRACUpdate();
-            string[] packagejsons = Directory.GetFiles(publicconfig.clientconfig.esdir, "package.json", SearchOption.AllDirectories).
+                string[] packagejsons = Directory.GetFiles(publicconfig.clientconfig.esdir, "package.json", SearchOption.AllDirectories).
                 Where(d => !d.Contains("ToolScope")).ToArray(); ;
             foreach (var pack in packagejsons)
             {
@@ -210,7 +224,8 @@ namespace ToolScope_for_EuroScope
                         package.url = "NOURL";
                     }
                     packages.Add(package);
-                } catch
+                }
+                catch
                 {
 
                 }
@@ -232,7 +247,8 @@ namespace ToolScope_for_EuroScope
                     update.new_package.released = dr.ToString("dd.MM.yy");
                     x.Cells[4].Value = update.old_package.released + " -> " + update.new_package.released;
                     notifyText("warning", "AIRAC Updates available!", 7000);
-                } else if (update.no_url == true)
+                }
+                else if (update.no_url == true)
                 {
                     x.DefaultCellStyle.BackColor = Color.FromArgb(255, 94, 62, 62);
                     x.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 112, 73, 73);
@@ -516,11 +532,7 @@ namespace ToolScope_for_EuroScope
                     namebox.Text = publicconfig.clientconfig.realname;
                     hoppiecodebox.Text = publicconfig.clientconfig.hoppiecode;
                     esfolderbox.Text = publicconfig.clientconfig.esdir;
-                    countrybox.Text = publicconfig.clientconfig.country;
-                    insertcredentials.Checked = publicconfig.clientconfig.insertcredentials;
-                    insertatisairport.Checked = publicconfig.clientconfig.insertatisairport;
-                    insertplugins.Checked = publicconfig.clientconfig.insertplugins;
-                    runpsscript.Checked = publicconfig.clientconfig.runpowershell;
+                    countrybox.Text = publicconfig.clientconfig.country;;
                     filescopylist.Rows.Clear();
                     if (publicconfig.clientconfig.allowedExtensions != null)
                     {
@@ -1182,6 +1194,11 @@ namespace ToolScope_for_EuroScope
         {
             this.Cursor = new Cursor(Cursor.Current.Handle);
             airacmanagermenu.Show(new Point(Cursor.Position.X, Cursor.Position.Y));
+        }
+
+        private void runpsscript_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUI("write");
         }
     }
 }
