@@ -100,7 +100,6 @@ namespace ToolScope_for_EuroScope
             {
                 notifyText("info", publicsconfig.motd, 10);
             }
-            //CreateInstalledLabels();
         }
 
         private void Main_Shown(Object sender, EventArgs e)
@@ -110,6 +109,12 @@ namespace ToolScope_for_EuroScope
         }
 
         #region AIRAC Manager
+
+        private void packagesdatagrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.Cursor = new Cursor(Cursor.Current.Handle);
+            airacmanagermenu.Show(new Point(Cursor.Position.X, Cursor.Position.Y));
+        }
 
         private void uninstallairac_Click(object sender, EventArgs e)
         {
@@ -212,22 +217,22 @@ namespace ToolScope_for_EuroScope
             publicconfig = JsonConvert.DeserializeObject<ClientRoot>(File.ReadAllText("config.json"));
             var packages = new List<AIRACPackage>();
             AIRACUpdate update = new AIRACUpdate();
-                string[] packagejsons = Directory.GetFiles(publicconfig.clientconfig.esdir, "package.json", SearchOption.AllDirectories).
-                Where(d => !d.Contains("ToolScope")).ToArray(); ;
+            string[] packagejsons = Directory.GetFiles(publicconfig.clientconfig.esdir, "package.json", SearchOption.AllDirectories);
             foreach (var pack in packagejsons)
             {
-                try
+                if(!pack.Contains("ToolScope\\Backup"))
                 {
-                    var package = JsonConvert.DeserializeObject<AIRACPackage>(File.ReadAllText(pack));
-                    if (package.url == null)
+                    try
                     {
-                        package.url = "NOURL";
+                        var package = JsonConvert.DeserializeObject<AIRACPackage>(File.ReadAllText(pack));
+                        if (package.url == null)
+                        {
+                            package.url = "NOURL";
+                        }
+                        packages.Add(package);
                     }
-                    packages.Add(package);
-                }
-                catch
-                {
-
+                    catch
+                    {   }
                 }
             }
             packagesdatagrid.DataSource = packages;
@@ -346,21 +351,6 @@ namespace ToolScope_for_EuroScope
             File.WriteAllText(path + "/package.json", JsonConvert.SerializeObject(package, Formatting.Indented));
 
             pack.jsonpath = path + "/package.json";
-
-            var fileExists = false;
-
-            for (int i = 0; i < root.installedpackages.Count; i++)
-            {
-                if (root.installedpackages[i].jsonpath == pack.jsonpath)
-                {
-                    fileExists = true;
-                }
-            }
-
-            if (!fileExists)
-            {
-                root.installedpackages.Add(pack);
-            }
         }
 
         #endregion
@@ -388,7 +378,7 @@ namespace ToolScope_for_EuroScope
 
         public class ClientPackage
         {
-            public string jsonpath { get; set; }
+            public string jsonpath = "";
         }
 
         public class AIRACPackage
@@ -1178,6 +1168,11 @@ namespace ToolScope_for_EuroScope
             UpdateUI("write");
         }
 
+        private void runpsscript_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUI("write");
+        }
+
         private void insertplugins_CheckedChanged(object sender, EventArgs e)
         {
             UpdateUI("write");
@@ -1189,16 +1184,5 @@ namespace ToolScope_for_EuroScope
         }
 
         #endregion
-
-        private void packagesdatagrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            this.Cursor = new Cursor(Cursor.Current.Handle);
-            airacmanagermenu.Show(new Point(Cursor.Position.X, Cursor.Position.Y));
-        }
-
-        private void runpsscript_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdateUI("write");
-        }
     }
 }
