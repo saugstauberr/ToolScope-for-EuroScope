@@ -17,7 +17,8 @@ ToolScope is a tool which allows you to update your EuroScope AIRAC or even just
 And the best thing: **It's super easy to use!** 👌
 
 - ⚙️ install a new AIRAC or update an existing one
-- 📃 AIRAC Manager (manage all installed packages or uninstall them)
+- 🌐 automatic update detector: never check for updates yourself again
+- 📃 AIRAC Manager (update, manage all installed packages or uninstall them)
 - 🔄️ automatic file download and extraction
 - ⌨️ never type in your credentials and hoppie code again manually
 - ⬇️ drop-down menu for selecting your favourite package
@@ -37,4 +38,4 @@ No, absolutely not. That's the reason why I've published the code on GitHub. Thi
 Issues and bugs can happen. Please report them in the [**Issues**](https://github.com/saugstauberr/ToolScope-for-EuroScope/issues) tab. Thank you very much! 😊
 
 ## Incoming features
-- AIRAC Manager: updater
+- Launcher
