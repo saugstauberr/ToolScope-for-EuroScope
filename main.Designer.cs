@@ -110,9 +110,19 @@ namespace ToolScope_for_EuroScope
             this.downloadbtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.airacmanagerpan = new System.Windows.Forms.TabPage();
             this.packagesdatagrid = new Bunifu.UI.WinForms.BunifuDataGridView();
+            this.country = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.region = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.package = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.airac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.released = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.version = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.url = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.airacmanagermenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.strip_airacupdateinfotext = new System.Windows.Forms.ToolStripMenuItem();
+            this.strip_updatebtn = new System.Windows.Forms.ToolStripMenuItem();
             this.uninstallairac = new System.Windows.Forms.ToolStripMenuItem();
+            this.strip_airacupdateinfotext = new System.Windows.Forms.ToolStripMenuItem();
+            this.strip_airacrelease = new System.Windows.Forms.ToolStripMenuItem();
+            this.strip_airacversion = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.copyfilespan = new Bunifu.Framework.UI.BunifuCards();
@@ -152,16 +162,6 @@ namespace ToolScope_for_EuroScope
             this.bunifuElipse2 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.minimizebtn = new FontAwesome.Sharp.IconButton();
             this.bunifuElipse3 = new Bunifu.Framework.UI.BunifuElipse(this.components);
-            this.strip_updatebtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.strip_airacversion = new System.Windows.Forms.ToolStripMenuItem();
-            this.strip_airacrelease = new System.Windows.Forms.ToolStripMenuItem();
-            this.country = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.region = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.package = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.airac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.released = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.version = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.url = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uipage.SuspendLayout();
             this.airacdownloadpan.SuspendLayout();
             this.airacmanagerpan.SuspendLayout();
@@ -1026,10 +1026,67 @@ namespace ToolScope_for_EuroScope
             this.packagesdatagrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.packagesdatagrid.RowHeadersVisible = false;
             this.packagesdatagrid.RowTemplate.Height = 40;
+            this.packagesdatagrid.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.packagesdatagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.packagesdatagrid.Size = new System.Drawing.Size(786, 455);
             this.packagesdatagrid.TabIndex = 0;
             this.packagesdatagrid.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Dark;
+            // 
+            // country
+            // 
+            this.country.DataPropertyName = "country";
+            this.country.HeaderText = "Country";
+            this.country.Name = "country";
+            this.country.ReadOnly = true;
+            this.country.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // region
+            // 
+            this.region.DataPropertyName = "region";
+            this.region.HeaderText = "Region";
+            this.region.Name = "region";
+            this.region.ReadOnly = true;
+            this.region.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // package
+            // 
+            this.package.DataPropertyName = "package";
+            this.package.HeaderText = "Package";
+            this.package.Name = "package";
+            this.package.ReadOnly = true;
+            this.package.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // airac
+            // 
+            this.airac.DataPropertyName = "airac";
+            this.airac.HeaderText = "AIRAC";
+            this.airac.Name = "airac";
+            this.airac.ReadOnly = true;
+            this.airac.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // released
+            // 
+            this.released.DataPropertyName = "released";
+            this.released.HeaderText = "Released";
+            this.released.Name = "released";
+            this.released.ReadOnly = true;
+            this.released.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // version
+            // 
+            this.version.DataPropertyName = "version";
+            this.version.HeaderText = "Version";
+            this.version.Name = "version";
+            this.version.ReadOnly = true;
+            this.version.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // url
+            // 
+            this.url.DataPropertyName = "url";
+            this.url.HeaderText = "URLHidden";
+            this.url.Name = "url";
+            this.url.ReadOnly = true;
+            this.url.Visible = false;
             // 
             // airacmanagermenu
             // 
@@ -1043,6 +1100,19 @@ namespace ToolScope_for_EuroScope
             this.airacmanagermenu.Size = new System.Drawing.Size(215, 114);
             this.airacmanagermenu.Opening += new System.ComponentModel.CancelEventHandler(this.airacmanagermenu_Opening);
             // 
+            // strip_updatebtn
+            // 
+            this.strip_updatebtn.Name = "strip_updatebtn";
+            this.strip_updatebtn.Size = new System.Drawing.Size(214, 22);
+            this.strip_updatebtn.Text = "Update";
+            // 
+            // uninstallairac
+            // 
+            this.uninstallairac.Name = "uninstallairac";
+            this.uninstallairac.Size = new System.Drawing.Size(214, 22);
+            this.uninstallairac.Text = "Uninstall";
+            this.uninstallairac.Click += new System.EventHandler(this.uninstallairac_Click);
+            // 
             // strip_airacupdateinfotext
             // 
             this.strip_airacupdateinfotext.Enabled = false;
@@ -1051,12 +1121,21 @@ namespace ToolScope_for_EuroScope
             this.strip_airacupdateinfotext.Size = new System.Drawing.Size(214, 22);
             this.strip_airacupdateinfotext.Text = "- AIRAC Update available -";
             // 
-            // uninstallairac
+            // strip_airacrelease
             // 
-            this.uninstallairac.Name = "uninstallairac";
-            this.uninstallairac.Size = new System.Drawing.Size(214, 22);
-            this.uninstallairac.Text = "Uninstall";
-            this.uninstallairac.Click += new System.EventHandler(this.uninstallairac_Click);
+            this.strip_airacrelease.Enabled = false;
+            this.strip_airacrelease.Name = "strip_airacrelease";
+            this.strip_airacrelease.Size = new System.Drawing.Size(214, 22);
+            this.strip_airacrelease.Text = "o_Release -> n_Release";
+            this.strip_airacrelease.Visible = false;
+            // 
+            // strip_airacversion
+            // 
+            this.strip_airacversion.Enabled = false;
+            this.strip_airacversion.Name = "strip_airacversion";
+            this.strip_airacversion.Size = new System.Drawing.Size(214, 22);
+            this.strip_airacversion.Text = "Your version: AIRAC Vx";
+            this.strip_airacversion.Visible = false;
             // 
             // tabPage2
             // 
@@ -2446,84 +2525,6 @@ namespace ToolScope_for_EuroScope
             this.bunifuElipse3.ElipseRadius = 50;
             this.bunifuElipse3.TargetControl = this.minimizebtn;
             // 
-            // strip_updatebtn
-            // 
-            this.strip_updatebtn.Name = "strip_updatebtn";
-            this.strip_updatebtn.Size = new System.Drawing.Size(214, 22);
-            this.strip_updatebtn.Text = "Update";
-            // 
-            // strip_airacversion
-            // 
-            this.strip_airacversion.Enabled = false;
-            this.strip_airacversion.Name = "strip_airacversion";
-            this.strip_airacversion.Size = new System.Drawing.Size(214, 22);
-            this.strip_airacversion.Text = "Your version: AIRAC Vx";
-            this.strip_airacversion.Visible = false;
-            // 
-            // strip_airacrelease
-            // 
-            this.strip_airacrelease.Enabled = false;
-            this.strip_airacrelease.Name = "strip_airacrelease";
-            this.strip_airacrelease.Size = new System.Drawing.Size(214, 22);
-            this.strip_airacrelease.Text = "o_Release -> n_Release";
-            this.strip_airacrelease.Visible = false;
-            // 
-            // country
-            // 
-            this.country.DataPropertyName = "country";
-            this.country.HeaderText = "Country";
-            this.country.Name = "country";
-            this.country.ReadOnly = true;
-            this.country.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // region
-            // 
-            this.region.DataPropertyName = "region";
-            this.region.HeaderText = "Region";
-            this.region.Name = "region";
-            this.region.ReadOnly = true;
-            this.region.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // package
-            // 
-            this.package.DataPropertyName = "package";
-            this.package.HeaderText = "Package";
-            this.package.Name = "package";
-            this.package.ReadOnly = true;
-            this.package.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // airac
-            // 
-            this.airac.DataPropertyName = "airac";
-            this.airac.HeaderText = "AIRAC";
-            this.airac.Name = "airac";
-            this.airac.ReadOnly = true;
-            this.airac.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // released
-            // 
-            this.released.DataPropertyName = "released";
-            this.released.HeaderText = "Released";
-            this.released.Name = "released";
-            this.released.ReadOnly = true;
-            this.released.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // version
-            // 
-            this.version.DataPropertyName = "version";
-            this.version.HeaderText = "Version";
-            this.version.Name = "version";
-            this.version.ReadOnly = true;
-            this.version.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // url
-            // 
-            this.url.DataPropertyName = "url";
-            this.url.HeaderText = "URLHidden";
-            this.url.Name = "url";
-            this.url.ReadOnly = true;
-            this.url.Visible = false;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2543,6 +2544,7 @@ namespace ToolScope_for_EuroScope
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ToolScope for EuroScope";
+            this.Shown += new System.EventHandler(this.Main_Shown);
             this.uipage.ResumeLayout(false);
             this.airacdownloadpan.ResumeLayout(false);
             this.airacdownloadpan.PerformLayout();

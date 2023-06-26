@@ -18,6 +18,7 @@ using System.Runtime.Remoting.Lifetime;
 using System.Security.Policy;
 using System.Text;
 using System.Threading;
+using System.Timers;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -40,6 +41,7 @@ namespace ToolScope_for_EuroScope
         public List<string> regions = new List<string>();
         public List<string> countries = new List<string>();
         public List<string> allpackages = new List<string>();
+        public bool firstrun = false;
         #endregion
 
         #region Notes
@@ -100,6 +102,10 @@ namespace ToolScope_for_EuroScope
                 notifyText("info", publicsconfig.motd, 10);
             }
             //CreateInstalledLabels();
+        }
+
+        private void Main_Shown(Object sender, EventArgs e)
+        {
             FeedDataGrid();
         }
 
@@ -134,7 +140,6 @@ namespace ToolScope_for_EuroScope
         {
             DataGridViewRow row = this.packagesdatagrid.SelectedRows[0];
             AIRACUpdate update = GetAIRACUpdate(row.Index);
-            MessageBox.Show(update.new_package.released);
 
             if (update.no_url == true)
             {
@@ -157,8 +162,6 @@ namespace ToolScope_for_EuroScope
                 update.old_package.released = dr_o.ToString("dd.MM.yyyy");
                 DateTime dr = DateTime.ParseExact(update.new_package.released, "yyyyMMddHHmms", CultureInfo.InvariantCulture);
                 update.new_package.released = dr.ToString("dd.MM.yyyy");
-                DateTime da = DateTime.ParseExact(update.new_package.airac, "yyMMdd", new CultureInfo("da-DK"));
-                update.new_package.airac = da.ToString(@"yy\/MM");
 
                 strip_airacrelease.Text = update.old_package.released + " -> " + update.new_package.released;
                 strip_airacversion.Text = "Version: " + update.old_package.airac + " " + update.old_package.version + " -> " + update.new_package.airac + " V" + update.new_package.version;
@@ -176,6 +179,7 @@ namespace ToolScope_for_EuroScope
         {
             publicconfig = JsonConvert.DeserializeObject<ClientRoot>(File.ReadAllText("config.json"));
             var packages = new List<AIRACPackage>();
+            AIRACUpdate update = new AIRACUpdate();
 
             foreach (var pack in publicconfig.installedpackages)
             {
@@ -194,6 +198,28 @@ namespace ToolScope_for_EuroScope
             }
             packagesdatagrid.DataSource = packages;
 
+            foreach (DataGridViewRow x in packagesdatagrid.Rows)
+            {
+                update = GetAIRACUpdate(x.Index);
+                if (update.update == true)
+                {
+                    x.DefaultCellStyle.BackColor = Color.FromArgb(255, 105, 103, 68);
+                    x.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 122, 120, 80);
+                    x.Cells[5].Value = update.old_package.version + " -> " + "V" + update.new_package.version;
+                    x.Cells[3].Value = update.old_package.airac + " -> " + update.new_package.airac;
+                    DateTime dr_o = DateTime.ParseExact(update.old_package.released, "yyyyMMddHHmms", CultureInfo.InvariantCulture);
+                    update.old_package.released = dr_o.ToString("dd.MM.yy");
+                    DateTime dr = DateTime.ParseExact(update.new_package.released, "yyyyMMddHHmms", CultureInfo.InvariantCulture);
+                    update.new_package.released = dr.ToString("dd.MM.yy");
+                    x.Cells[4].Value = update.old_package.released + " -> " + update.new_package.released;
+                    notifyText("warning", "AIRAC Updates available!", 7000);
+                } else if (update.no_url == true)
+                {
+                    x.DefaultCellStyle.BackColor = Color.FromArgb(255, 94, 62, 62);
+                    x.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 112, 73, 73);
+                    notifyText("warning", "AIRAC Updates available!", 7000);
+                }
+            }
         }
 
         private AIRACUpdate GetAIRACUpdate(int rows)
@@ -243,7 +269,9 @@ namespace ToolScope_for_EuroScope
                 }
             }
             var url = string.Join("", allurls.ToList());
-            el.airac = GetURLInformation(url).airac; ;
+            el.airac = GetURLInformation(url).airac;
+            DateTime da = DateTime.ParseExact(el.airac, "yyMMdd", new CultureInfo("da-DK"));
+            el.airac = da.ToString(@"yy\/MM");
             el.version = GetURLInformation(url).version;
             el.released = GetURLInformation(url).released;
             el.region = GetURLInformation(url).region;
@@ -382,6 +410,12 @@ namespace ToolScope_for_EuroScope
 
                 case "error":
                     notifytxt.ForeColor = Color.Red;
+                    notifytimer.Interval = duration;
+                    notifytimer.Start();
+                    break;
+
+                case "warning":
+                    notifytxt.ForeColor = Color.Orange;
                     notifytimer.Interval = duration;
                     notifytimer.Start();
                     break;
@@ -1040,6 +1074,21 @@ namespace ToolScope_for_EuroScope
             FeedDataGrid();
             uipage.SelectedIndex = 1;
             ChangeUI("AIRAC Manager", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
+
+            if (firstrun == false)
+            {
+                System.Windows.Forms.Timer managertimer = new System.Windows.Forms.Timer();
+                managertimer.Tick += new EventHandler(OnTimedEvent);
+                managertimer.Interval = 50;
+                managertimer.Enabled = true;
+
+                void OnTimedEvent(object sendere, EventArgs ee)
+                {
+                    firstrun = true;
+                    FeedDataGrid();
+                    managertimer.Stop();
+                }
+            }
         }
 
         private void savebtn_Click(object sender, EventArgs e)
