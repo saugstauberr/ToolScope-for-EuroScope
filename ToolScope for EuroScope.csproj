@@ -379,6 +379,9 @@
     <None Include="Resources\arrow-24-128.png" />
     <None Include="Resources\ToolScope Banner.png" />
     <None Include="Resources\power-off-solid.png" />
+    <None Include="Resources\power-off.png" />
+    <None Include="Resources\compress.png" />
+    <None Include="Resources\expand.png" />
     <Content Include="ToolScope.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

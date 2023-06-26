@@ -73,9 +73,39 @@ namespace ToolScope_for_EuroScope.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap compress {
+            get {
+                object obj = ResourceManager.GetObject("compress", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap expand {
+            get {
+                object obj = ResourceManager.GetObject("expand", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pfeile_aktualisieren {
             get {
                 object obj = ResourceManager.GetObject("pfeile-aktualisieren", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap power_off {
+            get {
+                object obj = ResourceManager.GetObject("power-off", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

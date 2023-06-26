@@ -198,12 +198,13 @@ namespace ToolScope_for_EuroScope
             publicconfig = JsonConvert.DeserializeObject<ClientRoot>(File.ReadAllText("config.json"));
             var packages = new List<AIRACPackage>();
             AIRACUpdate update = new AIRACUpdate();
-
-            foreach (var pack in publicconfig.installedpackages)
+            string[] packagejsons = Directory.GetFiles(publicconfig.clientconfig.esdir, "package.json", SearchOption.AllDirectories).
+                Where(d => !d.Contains("ToolScope")).ToArray(); ;
+            foreach (var pack in packagejsons)
             {
                 try
                 {
-                    var package = JsonConvert.DeserializeObject<AIRACPackage>(File.ReadAllText(pack.jsonpath));
+                    var package = JsonConvert.DeserializeObject<AIRACPackage>(File.ReadAllText(pack));
                     if (package.url == null)
                     {
                         package.url = "NOURL";
@@ -211,7 +212,7 @@ namespace ToolScope_for_EuroScope
                     packages.Add(package);
                 } catch
                 {
-                    pack.jsonpath = null;
+
                 }
             }
             packagesdatagrid.DataSource = packages;
@@ -344,8 +345,6 @@ namespace ToolScope_for_EuroScope
             {
                 root.installedpackages.Add(pack);
             }
-            
-            File.WriteAllText("config.json", JsonConvert.SerializeObject(root, Formatting.Indented));
         }
 
         #endregion
@@ -456,17 +455,7 @@ namespace ToolScope_for_EuroScope
         #region File Copier
         private void filescopylist_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
-            publicconfig.clientconfig.allowedExtensions.Clear();
 
-            foreach (DataGridViewRow dr in filescopylist.Rows)
-            {
-                if (dr.Cells.Count >= 0 &&
-                    dr.Cells[0].Value != null)
-                {
-                    publicconfig.clientconfig.allowedExtensions.Add(dr.Cells[0].Value.ToString());
-                }
-            }
-                File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
         }
 
         private void deleteFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1188,5 +1177,11 @@ namespace ToolScope_for_EuroScope
         }
 
         #endregion
+
+        private void packagesdatagrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.Cursor = new Cursor(Cursor.Current.Handle);
+            airacmanagermenu.Show(new Point(Cursor.Position.X, Cursor.Position.Y));
+        }
     }
 }
