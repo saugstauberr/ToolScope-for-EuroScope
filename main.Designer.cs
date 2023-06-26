@@ -1097,7 +1097,7 @@ namespace ToolScope_for_EuroScope
             this.strip_airacrelease,
             this.strip_airacversion});
             this.airacmanagermenu.Name = "filescopymenu";
-            this.airacmanagermenu.Size = new System.Drawing.Size(215, 114);
+            this.airacmanagermenu.Size = new System.Drawing.Size(215, 136);
             this.airacmanagermenu.Opening += new System.ComponentModel.CancelEventHandler(this.airacmanagermenu_Opening);
             // 
             // strip_updatebtn
@@ -1105,6 +1105,7 @@ namespace ToolScope_for_EuroScope
             this.strip_updatebtn.Name = "strip_updatebtn";
             this.strip_updatebtn.Size = new System.Drawing.Size(214, 22);
             this.strip_updatebtn.Text = "Update";
+            this.strip_updatebtn.Click += new System.EventHandler(this.strip_updatebtn_Click);
             // 
             // uninstallairac
             // 

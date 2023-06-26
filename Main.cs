@@ -42,6 +42,7 @@ namespace ToolScope_for_EuroScope
         public List<string> countries = new List<string>();
         public List<string> allpackages = new List<string>();
         public bool firstrun = false;
+        public bool updaterun = false;
         #endregion
 
         #region Notes
@@ -134,6 +135,23 @@ namespace ToolScope_for_EuroScope
 
             }
             FeedDataGrid();
+        }
+
+        private void strip_updatebtn_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = this.packagesdatagrid.SelectedRows[0];
+            AIRACUpdate update = GetAIRACUpdate(row.Index);
+
+            uipage.SelectedIndex = 0;
+
+            countrybox.Text = update.old_package.country;
+            countrybox_SelectedIndexChanged(null, null);
+            regionbox.Text = update.new_package.region;
+            regionbox_SelectedIndexChanged(null, null);
+            packagebox.Text = update.new_package.package;
+            packagebox_SelectedIndexChanged(null, null);
+            downloadbtn_Click(null, null);
+            updaterun = true;
         }
 
         private void airacmanagermenu_Opening(object sender, CancelEventArgs e)
@@ -764,6 +782,13 @@ namespace ToolScope_for_EuroScope
                         System.Windows.MessageBox.Show("PowerShell Script Error! \n" + ex.ToString() + "\n\nThis is not a ToolScope program error!");
                     }
                 }
+
+                if (updaterun == true)
+                {
+                    updaterun = false;
+                    FeedDataGrid();
+                    uipage.SelectedIndex = 1;
+                }
             });
         }
         #endregion
@@ -1010,7 +1035,6 @@ namespace ToolScope_for_EuroScope
         private void packagebox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var x = allpackages.FindIndex(s => s.Contains("https://files.aero-nav.com/" + regionbox.Text + "/" + packagebox.Text));
-
             selectedurl = allpackages[x];
 
             string regionName = GetURLInformation(selectedurl).region;
