@@ -30,7 +30,7 @@ namespace ToolScope_for_EuroScope
     public partial class Main : Form
     {
         #region Developer variables
-        public string pversion = "1.4.0";
+        public string pversion = "1.4.1";
         public string uriserverconfig = "https://raw.githubusercontent.com/saugstauberr/ToolScope-for-EuroScope/master/updates/server.json";
         #endregion
 
