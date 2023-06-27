@@ -30,7 +30,7 @@ namespace ToolScope_for_EuroScope
     public partial class Main : Form
     {
         #region Developer variables 
-        public string pversion = "1.4.1";
+        public string pversion = "1.4.2";
         public string uriserverconfig = "https://raw.githubusercontent.com/saugstauberr/ToolScope-for-EuroScope/master/updates/server.json";
         #endregion
 
@@ -217,8 +217,16 @@ namespace ToolScope_for_EuroScope
             publicconfig = JsonConvert.DeserializeObject<ClientRoot>(File.ReadAllText("config.json"));
             var packages = new List<AIRACPackage>();
             AIRACUpdate update = new AIRACUpdate();
-            string[] packagejsons = Directory.GetFiles(publicconfig.clientconfig.esdir, "package.json", SearchOption.AllDirectories);
-            foreach (var pack in packagejsons)
+            string[] packagejsons;
+            try
+            {
+                packagejsons = Directory.GetFiles(publicconfig.clientconfig.esdir, "package.json", SearchOption.AllDirectories);
+            } catch
+            {
+                return;
+            }
+
+                foreach (var pack in packagejsons)
             {
                 if(!pack.Contains("ToolScope\\Backup"))
                 {
