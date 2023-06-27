@@ -8,16 +8,17 @@
 
 [Support me with a donation here!💸](https://www.paypal.com/donate/?hosted_button_id=F82TVCAT9CJM2)
  
-![Main Menu](https://i.ibb.co/Rz36LZt/Screenshot-2023-06-24-163645.png)
-![AIRAC Manager](https://i.ibb.co/Zdj7srg/Screenshot-2023-06-24-163656.png)
-![Settings Menu](https://i.ibb.co/FWptj28/Screenshot-2023-06-24-163720.png)
+![Main Menu](https://i.ibb.co/Swmcnwh/Screenshot-2023-06-26-044943.png)
+![AIRAC Manager](https://i.ibb.co/zfqbY3G/Screenshot-2023-06-26-044936.png)
+![Settings Menu](https://i.ibb.co/WD24zK6/Screenshot-2023-06-26-045014.png)
 
 ## What is ToolScope?
 ToolScope is a tool which allows you to update your EuroScope AIRAC or even just install a AIRAC package for a new sector without having to type your credentials and your hoppie code ever again! 
 And the best thing: **It's super easy to use!** 👌
 
 - ⚙️ install a new AIRAC or update an existing one
-- 📃 AIRAC Manager (manage all installed packages or uninstall them)
+- 🌐 automatic update detector: never check for updates yourself again
+- 📃 AIRAC Manager (update, manage all installed packages or uninstall them)
 - 🔄️ automatic file download and extraction
 - ⌨️ never type in your credentials and hoppie code again manually
 - ⬇️ drop-down menu for selecting your favourite package
@@ -37,4 +38,4 @@ No, absolutely not. That's the reason why I've published the code on GitHub. Thi
 Issues and bugs can happen. Please report them in the [**Issues**](https://github.com/saugstauberr/ToolScope-for-EuroScope/issues) tab. Thank you very much! 😊
 
 ## Incoming features
-- AIRAC Manager: updater
+- Launcher
