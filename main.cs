@@ -1,40 +1,31 @@
-﻿using AutoUpdaterDotNET;
+﻿#region Using Statements
+using AutoUpdaterDotNET;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
-using ScintillaNET;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.IO.Compression;
-using System.IO.Packaging;
 using System.Linq;
 using System.Net;
-using System.Runtime.Remoting.Lifetime;
-using System.Security.Policy;
 using System.Text;
 using System.Threading;
-using System.Timers;
-using System.Windows.Documents;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
-using static ToolScope_for_EuroScope.Main;
+#endregion
 
 namespace ToolScope_for_EuroScope
 {
     public partial class Main : Form
     {
-        #region Developer variables 
         public string pversion = "1.4.2";
-        public string uriserverconfig = "https://raw.githubusercontent.com/saugstauberr/ToolScope-for-EuroScope/master/updates/server.json";
-        #endregion
 
-        #region Program variables
+        #region Global variables
+        public string uriserverconfig = "https://raw.githubusercontent.com/saugstauberr/ToolScope-for-EuroScope/master/updates/server.json";
+
         public string selectedUrlString;
         public string selectedRegionString;
         public Bunifu.UI.WinForms.BunifuButton.BunifuButton lastButton = null;
@@ -45,17 +36,89 @@ namespace ToolScope_for_EuroScope
         public bool isUpdaterun = false;
         #endregion
 
-        #region Notes
-        // ##### LINK AUFBAU #####
-        // https://files.aero-nav.com/EDMM/Full-Update_20230225100326-230201-2.zip
-        // url / SEKTOR / Packagename_YYYYMMDDHHMMSS-AIRAC/xx-Version .zip
+        #region Notes - Link Structure
+        /// <summary>
+        /// ##### LINK AUFBAU #####
+        /// https://files.aero-nav.com/EDMM/Full-Update_20230225100326-230201-2.zip
+        /// url / SEKTOR / Packagename_YYYYMMDDHHMMSS-AIRAC/xx-Version .zip
+        /// </summary>
+
         #endregion
 
+        #region Global Objects
         ClientRoot publicconfig = new ClientRoot();
         ServerConfig publicsconfig = new ServerConfig();
+        #endregion
 
+        #region Classes
+
+        public class AIRACUpdate
+        {
+            public bool update = false;
+            public bool no_url = false;
+            public AIRACPackage old_package = new AIRACPackage();
+            public AIRACPackage new_package = new AIRACPackage();
+        }
+        public class ServerConfig
+        {
+            public List<string> countries { get; set; }
+            public string motd { get; set; }
+        }
+
+        public class ClientRoot
+        {
+            public ClientConfig clientconfig = new ClientConfig();
+            public List<ClientPackage> installedpackages = new List<ClientPackage>();
+        }
+
+        public class ClientPackage
+        {
+            public string jsonpath = "";
+        }
+
+        public class AIRACPackage
+        {
+            public string country { get; set; }
+            public string region { get; set; }
+            public string package { get; set; }
+            public string airac { get; set; }
+            public string released { get; set; }
+            public string version { get; set; }
+            public string url { get; set; }
+        }
+
+        public class ClientConfig
+        {
+            public string cid = "";
+            public string passwd = "";
+            public string callsign = "";
+            public string realname = "";
+            public string hoppiecode = "";
+            public string rating = "";
+            public string esdir = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope");
+            public List<string> allowedExtensions { get; set; }
+
+
+            public string server = "AUTOMATIC";
+            public string country = "";
+            public bool insertcredentials = true;
+            public bool insertatisairport = true;
+            public bool insertplugins = true;
+            public bool runpowershell = false;
+            public int codezoom = 0;
+        }
+        #endregion
+
+        #region All Events
+        /// <summary>
+        /// This contains all events and their functions. Seperated in 2 regions (Events, Functions).
+        /// </summary>
+
+
+        #region Main
         public Main()
         {
+            // TODO: Optimize Main() Function for better readability
             InitializeComponent();
             AutoUpdater.InstalledVersion = new Version(pversion);
             AutoUpdater.Start("https://raw.githubusercontent.com/saugstauberr/ToolScope-for-EuroScope/master/updates/update.xml");
@@ -77,7 +140,8 @@ namespace ToolScope_for_EuroScope
             try
             {
                 Debug.Write(publicconfig.clientconfig.esdir);
-            } catch
+            }
+            catch
             {
                 File.WriteAllText("config.json", JsonConvert.SerializeObject(clientConfig, Formatting.Indented));
                 MessageBox.Show("JSON file error! Your JSON config file was resetted.");
@@ -96,7 +160,7 @@ namespace ToolScope_for_EuroScope
 
             GetCountries();
 
-            if(publicsconfig.motd != "")
+            if (publicsconfig.motd != "")
             {
                 notifyText("info", publicsconfig.motd, 10);
             }
@@ -107,111 +171,72 @@ namespace ToolScope_for_EuroScope
             runpsscript.Checked = publicconfig.clientconfig.runpowershell;
             FeedDataGrid();
         }
+        #endregion
 
-        #region AIRAC Manager
+        #region HEADER: Navigation Header/Bar
 
-        private void packagesdatagrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        #region Navigation Sidebar
+        private void openupdateui_Click(object sender, EventArgs e)
         {
-            this.Cursor = new Cursor(Cursor.Current.Handle);
-            airacmanagermenu.Show(new Point(Cursor.Position.X, Cursor.Position.Y));
-        }
-
-        private void uninstallairac_Click(object sender, EventArgs e)
-        {
-            DataGridViewRow row = this.packagesdatagrid.SelectedRows[0];
-            string region = row.Cells[1].Value.ToString();
-
-            DirectoryInfo d = new DirectoryInfo(publicconfig.clientconfig.esdir);
-
-            try
-            {
-                Directory.Delete(publicconfig.clientconfig.esdir + "/" + region, true);
-                foreach (var file in d.GetFiles())
-                {
-                    if (file.FullName.Contains(region))
-                    {
-                        file.Delete();
-                    }
-
-                }
-            } catch
-            {
-
-            }
-            FeedDataGrid();
-        }
-
-        private void strip_updatebtn_Click(object sender, EventArgs e)
-        {
-            DataGridViewRow row = this.packagesdatagrid.SelectedRows[0];
-            AIRACUpdate update = GetAIRACUpdate(row.Index);
-
             uipage.SelectedIndex = 0;
-
-            countrybox.Text = update.old_package.country;
-            countrybox_SelectedIndexChanged(null, null);
-            regionbox.Text = update.new_package.region;
-            regionbox_SelectedIndexChanged(null, null);
-            packagebox.Text = update.new_package.package;
-            packagebox_SelectedIndexChanged(null, null);
-            downloadbtn_Click(null, null);
-            isUpdaterun = true;
+            ChangeUI("AIRAC Installer", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
         }
 
-        private void airacmanagermenu_Opening(object sender, CancelEventArgs e)
+        private void openpspan_Click(object sender, EventArgs e)
         {
-            DataGridViewRow row;
-            try
-            {
-                row = this.packagesdatagrid.SelectedRows[0];
-            } catch
-            {
-                strip_updatebtn.Visible = false;
-                uninstallairac.Visible = false;
-                strip_airacupdateinfotext.Text = "- No AIRAC selected or installed -";
-                return;
-            }
-            
-
-            AIRACUpdate update = GetAIRACUpdate(row.Index);
-
-            if (update.no_url == true)
-            {
-                strip_airacupdateinfotext.Text = "- Autoupdater not available, please reinstall package for this feature! -";
-                strip_airacrelease.Visible = false;
-                strip_airacversion.Visible = false;
-                strip_updatebtn.Visible = false;
-                uninstallairac.Visible = true;
-                return;
-            }
-
-            if (update.update == true)
-            {
-                strip_airacupdateinfotext.Visible = true;
-                strip_airacrelease.Visible = true;
-                strip_airacversion.Visible = true;
-                strip_updatebtn.Visible = true;
-                uninstallairac.Visible = true;
-                strip_airacupdateinfotext.Text = "- New version found -";
-
-                DateTime dr_o = DateTime.ParseExact(update.old_package.released, "yyyyMMddHHmms", CultureInfo.InvariantCulture);
-                update.old_package.released = dr_o.ToString("dd.MM.yyyy");
-                DateTime dr = DateTime.ParseExact(update.new_package.released, "yyyyMMddHHmms", CultureInfo.InvariantCulture);
-                update.new_package.released = dr.ToString("dd.MM.yyyy");
-
-                strip_airacrelease.Text = update.old_package.released + " -> " + update.new_package.released;
-                strip_airacversion.Text = "Version: " + update.old_package.airac + " " + update.old_package.version + " -> " + update.new_package.airac + " V" + update.new_package.version;
-            }
-            else
-            {
-                strip_airacrelease.Visible = false;
-                strip_airacversion.Visible = false;
-                strip_airacupdateinfotext.Text = "- Latest version installed -";
-                strip_updatebtn.Visible = false;
-                uninstallairac.Visible = true;
-            }
+            PSEditor pseditor = new PSEditor();
+            //uipage.SelectedIndex = 1;
+            //ChangeUI("PowerShell Editor", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
+            pseditor.Show();
         }
 
+        private void opensettingsui_Click(object sender, EventArgs e)
+        {
+            uipage.SelectedIndex = 2;
+            ChangeUI("AIRAC Settings", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
+        }
+
+        private void airacmanagerbtn_Click(object sender, EventArgs e)
+        {
+            FeedDataGrid();
+            uipage.SelectedIndex = 1;
+            ChangeUI("AIRAC Manager", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
+
+            if (isFirstrun == false)
+            {
+                System.Windows.Forms.Timer managertimer = new System.Windows.Forms.Timer();
+                managertimer.Tick += new EventHandler(OnTimedEvent);
+                managertimer.Interval = 50;
+                managertimer.Enabled = true;
+
+                void OnTimedEvent(object sendere, EventArgs ee)
+                {
+                    isFirstrun = true;
+                    FeedDataGrid();
+                    managertimer.Stop();
+                }
+            }
+        }
+        #endregion
+
+        #region Navigation Header
+        private void closebtn_Click(object sender, EventArgs e)
+        {
+            closebtn.Enabled = false;
+            Close();
+        }
+
+        private void minimizebtn_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+        #endregion
+
+        #endregion
+
+        #region PAGE: AIRAC Manager
+
+        #region Functions
         private void FeedDataGrid()
         {
             publicconfig = JsonConvert.DeserializeObject<ClientRoot>(File.ReadAllText("config.json"));
@@ -221,14 +246,15 @@ namespace ToolScope_for_EuroScope
             try
             {
                 packagejsons = Directory.GetFiles(publicconfig.clientconfig.esdir, "package.json", SearchOption.AllDirectories);
-            } catch
+            }
+            catch
             {
                 return;
             }
 
-                foreach (var pack in packagejsons)
+            foreach (var pack in packagejsons)
             {
-                if(!pack.Contains("ToolScope\\Backup"))
+                if (!pack.Contains("ToolScope\\Backup"))
                 {
                     try
                     {
@@ -240,7 +266,7 @@ namespace ToolScope_for_EuroScope
                         packages.Add(package);
                     }
                     catch
-                    {   }
+                    { }
                 }
             }
             packagesdatagrid.DataSource = packages;
@@ -311,9 +337,9 @@ namespace ToolScope_for_EuroScope
 
             foreach (var x in allurls.ToList())
             {
-                if (x.Contains(update.old_package.package) != true )
+                if (x.Contains(update.old_package.package) != true)
                 {
-                    allurls.Remove(x); 
+                    allurls.Remove(x);
                 }
             }
             var url = string.Join("", allurls.ToList());
@@ -323,7 +349,7 @@ namespace ToolScope_for_EuroScope
             el.version = GetURLInformation(url).version;
             el.released = GetURLInformation(url).released;
             el.region = GetURLInformation(url).region;
-            el.url= url;
+            el.url = url;
             el.country = GetURLInformation(url).country;
             el.package = GetURLInformation(url).package;
             update.new_package = el;
@@ -332,7 +358,8 @@ namespace ToolScope_for_EuroScope
             if (update.old_package.released == update.new_package.released)
             {
                 return update;
-            } else
+            }
+            else
             {
                 update.update = true;
                 return update;
@@ -341,7 +368,7 @@ namespace ToolScope_for_EuroScope
 
         private void CreatePackageJSON(string path)
         {
-            
+
             var root = JsonConvert.DeserializeObject<ClientRoot>(File.ReadAllText("config.json"));
             ClientPackage pack = new ClientPackage();
 
@@ -360,67 +387,567 @@ namespace ToolScope_for_EuroScope
 
             pack.jsonpath = path + "/package.json";
         }
+        #endregion
+
+        #region Events
+
+        #region Additional Settings
+        private void insertcredentials_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUI("write");
+        }
+
+        private void insertatisairport_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUI("write");
+        }
+
+        private void runpsscript_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUI("write");
+        }
+
+        private void insertplugins_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUI("write");
+        }
+
+        private void insertsettings_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUI("write");
+        }
+        #endregion
+
+
+        private void clearesfolderbtn_Click(object sender, EventArgs e)
+        {
+            if ((MessageBox.Show("Do you really want to delete all downloaded AIRACs? Your settings won't be changed.", "Delete all downloaded AIRACs",
+            MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+            MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
+            {
+                try
+                {
+                    System.IO.DirectoryInfo di = new DirectoryInfo(publicconfig.clientconfig.esdir);
+
+                    foreach (FileInfo file in di.GetFiles())
+                    {
+                        file.Delete();
+                    }
+                    foreach (DirectoryInfo dir in di.GetDirectories())
+                    {
+                        dir.Delete(true);
+                    }
+
+                    notifyText("success", "All AIRACs deleted!", 5);
+                }
+                catch
+                {
+                    notifyText("info", "No AIRACs found!", 5);
+                }
+
+            }
+        }
+
+        private void uninstallairac_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = this.packagesdatagrid.SelectedRows[0];
+            string region = row.Cells[1].Value.ToString();
+
+            DirectoryInfo d = new DirectoryInfo(publicconfig.clientconfig.esdir);
+
+            try
+            {
+                Directory.Delete(publicconfig.clientconfig.esdir + "/" + region, true);
+                foreach (var file in d.GetFiles())
+                {
+                    if (file.FullName.Contains(region))
+                    {
+                        file.Delete();
+                    }
+
+                }
+            }
+            catch
+            {
+
+            }
+            FeedDataGrid();
+        }
+
+        private void packagesdatagrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.Cursor = new Cursor(Cursor.Current.Handle);
+            airacmanagermenu.Show(new Point(Cursor.Position.X, Cursor.Position.Y));
+        }
+
+
+
+        private void strip_updatebtn_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = this.packagesdatagrid.SelectedRows[0];
+            AIRACUpdate update = GetAIRACUpdate(row.Index);
+
+            uipage.SelectedIndex = 0;
+
+            countrybox.Text = update.old_package.country;
+            countrybox_SelectedIndexChanged(null, null);
+            regionbox.Text = update.new_package.region;
+            regionbox_SelectedIndexChanged(null, null);
+            packagebox.Text = update.new_package.package;
+            packagebox_SelectedIndexChanged(null, null);
+            downloadbtn_Click(null, null);
+            isUpdaterun = true;
+        }
+
+        private void airacmanagermenu_Opening(object sender, CancelEventArgs e)
+        {
+            DataGridViewRow row;
+            try
+            {
+                row = this.packagesdatagrid.SelectedRows[0];
+            }
+            catch
+            {
+                strip_updatebtn.Visible = false;
+                uninstallairac.Visible = false;
+                strip_airacupdateinfotext.Text = "- No AIRAC selected or installed -";
+                return;
+            }
+
+
+            AIRACUpdate update = GetAIRACUpdate(row.Index);
+
+            if (update.no_url == true)
+            {
+                strip_airacupdateinfotext.Text = "- Autoupdater not available, please reinstall package for this feature! -";
+                strip_airacrelease.Visible = false;
+                strip_airacversion.Visible = false;
+                strip_updatebtn.Visible = false;
+                uninstallairac.Visible = true;
+                return;
+            }
+
+            if (update.update == true)
+            {
+                strip_airacupdateinfotext.Visible = true;
+                strip_airacrelease.Visible = true;
+                strip_airacversion.Visible = true;
+                strip_updatebtn.Visible = true;
+                uninstallairac.Visible = true;
+                strip_airacupdateinfotext.Text = "- New version found -";
+
+                DateTime dr_o = DateTime.ParseExact(update.old_package.released, "yyyyMMddHHmms", CultureInfo.InvariantCulture);
+                update.old_package.released = dr_o.ToString("dd.MM.yyyy");
+                DateTime dr = DateTime.ParseExact(update.new_package.released, "yyyyMMddHHmms", CultureInfo.InvariantCulture);
+                update.new_package.released = dr.ToString("dd.MM.yyyy");
+
+                strip_airacrelease.Text = update.old_package.released + " -> " + update.new_package.released;
+                strip_airacversion.Text = "Version: " + update.old_package.airac + " " + update.old_package.version + " -> " + update.new_package.airac + " V" + update.new_package.version;
+            }
+            else
+            {
+                strip_airacrelease.Visible = false;
+                strip_airacversion.Visible = false;
+                strip_airacupdateinfotext.Text = "- Latest version installed -";
+                strip_updatebtn.Visible = false;
+                uninstallairac.Visible = true;
+            }
+        }
+        #endregion
 
         #endregion
 
-        #region Configs
+        #region PAGE: AIRAC Downloader
 
-        public class AIRACUpdate
+        #region Events
+        private void countrybox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            public bool update = false;
-            public bool no_url = false;
-            public AIRACPackage old_package = new AIRACPackage();
-            public AIRACPackage new_package = new AIRACPackage();
-        }
-        public class ServerConfig
-        {
-            public List<string> countries { get; set; }
-            public string motd { get; set; }
-        }
+            CountryNames country = new CountryNames();
 
-        public class ClientRoot
-        {
-            public ClientConfig clientconfig = new ClientConfig();
-            public List<ClientPackage> installedpackages = new List<ClientPackage>();
-        }
+            publicconfig.clientconfig.country = countrybox.Text;
+            File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
 
-        public class ClientPackage
-        {
-            public string jsonpath = "";
+            regionbox.Text = "";
+            packagebox.Text = "";
+            versiontxt.Text = "None";
+            airactxt.Text = "None";
+            releasetxt.Text = "None";
+            downloadbtn.Enabled = false;
+
+            GrabDownloadUrls();
+            getRegions();
         }
 
-        public class AIRACPackage
+        private void regionbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            public string country { get; set; }
-            public string region { get; set; }
-            public string package { get; set; }
-            public string airac { get; set; }
-            public string released { get; set; }
-            public string version { get; set; }
-            public string url { get; set; }
+            addPackageItems(regionbox.Text);
+            packagebox.Text = "";
+            versiontxt.Text = "None";
+            airactxt.Text = "None";
+            releasetxt.Text = "None";
+            downloadbtn.Enabled = false;
         }
 
-        public class ClientConfig
+        private void packagebox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            public string cid = "";
-            public string passwd = "";
-            public string callsign = "";
-            public string realname = "";
-            public string hoppiecode = "";
-            public string rating = "";
-            public string esdir = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope");
-            public List<string> allowedExtensions { get; set; }
+            var x = allpackages.FindIndex(s => s.Contains("https://files.aero-nav.com/" + regionbox.Text + "/" + packagebox.Text));
+            selectedUrlString = allpackages[x];
 
+            string regionName = GetURLInformation(selectedUrlString).region;
 
-            public string server = "AUTOMATIC";
-            public string country = "";
-            public bool insertcredentials = true;
-            public bool insertatisairport = true;
-            public bool insertplugins = true;
-            public bool runpowershell = false;
-            public int codezoom = 0;
+            string release = GetURLInformation(selectedUrlString).released;
+
+            string airac = GetURLInformation(selectedUrlString).airac;
+
+            string version = GetURLInformation(selectedUrlString).version;
+
+            selectedRegionString = regionName;
+
+            versiontxt.Text = "V" + version;
+            DateTime da = DateTime.ParseExact(airac, "yyMMdd", new CultureInfo("da-DK"));
+            airactxt.Text = da.ToString(@"yy\/MM");
+            DateTime dr = DateTime.ParseExact(release, "yyyyMMddHHmms", CultureInfo.InvariantCulture);
+            releasetxt.Text = dr.ToString("dd.MM.yyyy");
+            downloadbtn.Enabled = true;
+        }
+
+        private void downloadbtn_Click(object sender, EventArgs e)
+        {
+            CreateBackup("");
+            downloadbtn.Enabled = false;
+            Directory.CreateDirectory(publicconfig.clientconfig.esdir + "/ToolScope");
+            Directory.CreateDirectory(publicconfig.clientconfig.esdir + "/ToolScope/Backup");
+
+            Thread thread = new Thread(() =>
+            {
+                WebClient client = new WebClient();
+                client.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate,sdch");
+                client.Headers.Add(HttpRequestHeader.Referer, "https://files.aero-nav.com/EDXX/");
+                client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                client.DownloadFileAsync(new Uri(selectedUrlString), publicconfig.clientconfig.esdir + "/ToolScope/data.zip");
+            });
+            thread.Start();
         }
         #endregion
+
+        #region Download Functions
+        void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            this.BeginInvoke((MethodInvoker)delegate
+            {
+                double bytesIn = double.Parse(e.BytesReceived.ToString());
+                double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+                double percentage = bytesIn / totalBytes * 100;
+                progressbar.Visible = true;
+                progressbar.Value = int.Parse(Math.Truncate(percentage).ToString());
+            });
+        }
+        void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            this.BeginInvoke((MethodInvoker)delegate
+            {
+                progressbar.Visible = false;
+                try
+                {
+                    Directory.Delete(publicconfig.clientconfig.esdir + "/ToolScope/data");
+                }
+                catch
+                {
+                }
+                ExtractZip();
+
+                // Running selected settings
+                if (insertcredentials.Checked == true)
+                {
+                    ReplaceProfiles();
+                }
+
+                if (insertsettings.Checked == true)
+                {
+                    CopySettings();
+                }
+
+                CreatePackageJSON(publicconfig.clientconfig.esdir + "/" + selectedRegionString);
+
+                if (runpsscript.Checked == true)
+                {
+                    try
+                    {
+                        RunPowerShellScript();
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.MessageBox.Show("PowerShell Script Error! \n" + ex.ToString() + "\n\nThis is not a ToolScope program error!");
+                    }
+                }
+
+                if (isUpdaterun == true)
+                {
+                    isUpdaterun = false;
+                    FeedDataGrid();
+                    uipage.SelectedIndex = 1;
+                }
+            });
+        }
+        #endregion
+
+        #region Functions
+        private void CreateBackup(string pathinesdir)
+        {
+            var sourcePath = publicconfig.clientconfig.esdir + pathinesdir;
+            var targetPath = publicconfig.clientconfig.esdir + "/ToolScope/Backup/";
+
+            try
+            {
+                Directory.Delete(publicconfig.clientconfig.esdir + "/ToolScope/Backup", true);
+            }
+            catch
+            {
+
+            }
+
+            foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
+            {
+                Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
+            }
+
+            //Copy all the files & Replaces any files with the same name
+            foreach (string newPath in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories))
+            {
+                System.IO.File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
+            }
+        }
+
+        private void ExtractZip()
+        {
+            var sourcePath = publicconfig.clientconfig.esdir + "/ToolScope/data";
+            var targetPath = publicconfig.clientconfig.esdir;
+
+            try
+            {
+                Directory.Delete(publicconfig.clientconfig.esdir + "/ToolScope/data", true);
+            }
+            catch
+            {
+
+            }
+
+            ZipFile.ExtractToDirectory(publicconfig.clientconfig.esdir + "/ToolScope/data.zip", publicconfig.clientconfig.esdir + "/ToolScope/data");
+            System.IO.File.Delete(publicconfig.clientconfig.esdir + "/ToolScope/data.zip");
+
+            foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
+            {
+                Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
+            }
+
+            //Copy all the files & Replaces any files with the same name
+            foreach (string newPath in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories))
+            {
+                System.IO.File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
+            }
+
+            Directory.Delete(sourcePath, true);
+        }
+
+        private void ReplaceProfiles()
+        {
+            // Inserting the data into the .prf-Files
+
+            var apptext = "\r\nLastSession\tcallsign\t" + publicconfig.clientconfig.callsign + "\r\nLastSession\trealname\t" + publicconfig.clientconfig.realname +
+                    "\r\nLastSession\t" + "certificate\t" + publicconfig.clientconfig.cid + "\r\nLastSession\tpassword\t" +
+                    ConvertPassword("decrypt", publicconfig.clientconfig.passwd) + "\r\nLastSession\trating\t" + publicconfig.clientconfig.rating +
+                    "\r\nLastSession\t" + "server\t" + publicconfig.clientconfig.server + "\r\nLastSession\ttovatsim\t1";
+            string[] allProfiles = Directory.GetFiles(publicconfig.clientconfig.esdir, "*.prf");
+
+            foreach (string profile in allProfiles)
+            {
+                var text = new StringBuilder();
+
+                text.Append(System.IO.File.ReadAllText(profile) + apptext);
+                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + publicconfig.clientconfig.cid);
+                System.IO.File.WriteAllText(profile, text.ToString());
+                text.Clear();
+            }
+
+            try
+            {
+                foreach (string s in Directory.EnumerateFiles(publicconfig.clientconfig.esdir + "/" + selectedRegionString + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories))
+                {
+                    System.IO.File.WriteAllText(s, publicconfig.clientconfig.hoppiecode);
+                }
+            }
+            catch
+            {
+
+            }
+
+            notifyText("success", "Successfully updated and data inserted!", 5);
+
+            /*OpenFileDialog profiles = new OpenFileDialog();
+            profiles.Title = "Select .prf-File/s where your credentials should be inserted into";
+            profiles.Filter = "EuroScope Profiles (multiple possible)|*.prf";
+            profiles.Multiselect = true;
+            profiles.InitialDirectory = esdir;
+            if (profiles.ShowDialog() == DialogResult.OK)
+            {
+                string[] allProfiles = profiles.FileNames;
+
+                foreach(string profile in allProfiles )
+                {
+                    var text = new StringBuilder();
+                    var apptext = "\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
+                        "certificate\t" + cid + "\r\nLastSession\tpassword\t" + passwd + "\r\nLastSession\trating\t" + rating + "\r\nLastSession\t" +
+                        "server\t" + server + "\r\nLastSession\ttovatsim\t1";
+
+                    text.Append(System.IO.File.ReadAllText(profile) + apptext);
+                    System.IO.File.WriteAllText(profile, text.ToString());
+                    text.Clear();
+                }
+                notifyText("success", "Successfully updated and data inserted!", 5);
+            }*/
+
+            //installedpackages.Add(selectedurl);
+            //CreateInstalledLabels();
+            downloadbtn.Enabled = true;
+        }
+
+        private void CopySettings()
+        {
+            var allowedExtensions = publicconfig.clientconfig.allowedExtensions;
+
+            try
+            {
+                var files = Directory
+                .GetFiles(publicconfig.clientconfig.esdir + "/ToolScope/Backup/" + regionbox.Text + "/Settings", "*", SearchOption.AllDirectories).ToList();
+
+
+                foreach (string file in files)
+                {
+                    if (allowedExtensions.Contains(System.IO.Path.GetFileName(file)))
+                    {
+                        System.IO.File.Copy(file, file.Replace("/ToolScope/Backup/", "/"), true);
+                    }
+                }
+
+            }
+            catch
+            {
+
+            }
+        }
+        #endregion
+
+
+        #endregion
+
+        #region PAGE: Settings
+
+        #region File Copier
+
+        #region Events
+        private void deleteFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            publicconfig.clientconfig.allowedExtensions.Clear();
+
+            foreach (DataGridViewCell cell in filescopylist.SelectedCells)
+            {
+                cell.Value = null;
+            }
+
+            foreach (DataGridViewRow dr in filescopylist.Rows)
+            {
+                if (dr.Cells.Count >= 0 &&
+                    dr.Cells[0].Value != null)
+                {
+                    publicconfig.clientconfig.allowedExtensions.Add(dr.Cells[0].Value.ToString());
+                }
+            }
+            File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
+            filescopylist.Rows.Clear();
+            foreach (var ext in publicconfig.clientconfig.allowedExtensions)
+            {
+                filescopylist.Rows.Add(ext);
+            }
+        }
+        #endregion
+
+        #endregion
+
+        #region Save Button Design
+        private void cidbox_TextChanged_1(object sender, EventArgs e)
+        {
+            savebtn.Enabled = true;
+        }
+
+        private void passwdbox_TextChanged(object sender, EventArgs e)
+        {
+            savebtn.Enabled = true;
+        }
+
+        private void namebox_TextChanged(object sender, EventArgs e)
+        {
+            savebtn.Enabled = true;
+        }
+
+        private void ratingbox_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            savebtn.Enabled = true;
+        }
+
+        private void callsignbox_TextChanged(object sender, EventArgs e)
+        {
+            savebtn.Enabled = true;
+        }
+
+        private void hoppiecodebox_TextChanged(object sender, EventArgs e)
+        {
+            savebtn.Enabled = true;
+        }
+
+        private void esfolderbox_TextChanged(object sender, EventArgs e)
+        {
+            savebtn.Enabled = true;
+        }
+        #endregion
+
+        #region Events
+        private void savebtn_Click(object sender, EventArgs e)
+        {
+            UpdateUI("write");
+            UpdateUI("read");
+            savebtn.Enabled = false;
+            notifyText("success", "Settings have been saved and loaded!", 5);
+        }
+
+        private void esfolderbox_Click(object sender, EventArgs e)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    publicconfig.clientconfig.esdir = fbd.SelectedPath;
+                    File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
+                    esfolderbox.Text = publicconfig.clientconfig.esdir;
+                }
+            }
+        }
+        #endregion
+
+        #endregion
+
+
+        #endregion
+
+        #region All Functions
+        /// <summary>
+        /// This only contains functions without any events.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="text"></param>
+        /// <param name="seconds"></param>
 
         #region Notifications
         private void notifyText(string type, string text, int seconds)
@@ -466,39 +993,7 @@ namespace ToolScope_for_EuroScope
         }
         #endregion
 
-        #region File Copier
-        private void filescopylist_CellValidated(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void deleteFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            publicconfig.clientconfig.allowedExtensions.Clear();
-
-            foreach (DataGridViewCell cell in filescopylist.SelectedCells)
-            {
-                cell.Value = null;
-            }
-
-            foreach (DataGridViewRow dr in filescopylist.Rows)
-            {
-                if (dr.Cells.Count >= 0 &&
-                    dr.Cells[0].Value != null)
-                {
-                    publicconfig.clientconfig.allowedExtensions.Add(dr.Cells[0].Value.ToString());
-                }
-            }
-            File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
-            filescopylist.Rows.Clear();
-            foreach (var ext in publicconfig.clientconfig.allowedExtensions)
-            {
-                filescopylist.Rows.Add(ext);
-            }
-        }
-        #endregion
-
-        #region UI Switcher and Updater
+        #region UI
         private void ChangeUI(string pagename, Bunifu.UI.WinForms.BunifuButton.BunifuButton current)
         {
             UpdateUI("read");
@@ -524,16 +1019,17 @@ namespace ToolScope_for_EuroScope
                     namebox.Text = publicconfig.clientconfig.realname;
                     hoppiecodebox.Text = publicconfig.clientconfig.hoppiecode;
                     esfolderbox.Text = publicconfig.clientconfig.esdir;
-                    countrybox.Text = publicconfig.clientconfig.country;;
+                    countrybox.Text = publicconfig.clientconfig.country; ;
                     filescopylist.Rows.Clear();
                     if (publicconfig.clientconfig.allowedExtensions != null)
                     {
                         //filescopylist.DataSource = publicconfig.clientconfig.allowedExtensions.ConvertAll(x => new { Value = x });
-                        foreach(var ext in publicconfig.clientconfig.allowedExtensions)
+                        foreach (var ext in publicconfig.clientconfig.allowedExtensions)
                         {
                             filescopylist.Rows.Add(ext);
                         }
-                    } else
+                    }
+                    else
                     {
                         publicconfig.clientconfig.allowedExtensions = new List<string>() { "Screen.txt", "SCREEN.txt", "General.txt",
                             "GENERAL.txt", "Settings.txt", "SETTINGS.txt", "DepartureList.txt" };
@@ -557,12 +1053,18 @@ namespace ToolScope_for_EuroScope
                     publicconfig.clientconfig.insertatisairport = insertatisairport.Checked;
                     publicconfig.clientconfig.insertplugins = insertplugins.Checked;
                     publicconfig.clientconfig.runpowershell = runpsscript.Checked;
-                    
+
                     File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
                     break;
             }
         }
 
+        #endregion
+
+        #region Converters
+        /// <summary>
+        /// Password and Rating convert functions.
+        /// </summary>
 
         private string ConvertPassword(string task, string value)
         {
@@ -725,213 +1227,6 @@ namespace ToolScope_for_EuroScope
         }
         #endregion
 
-        #region Updater
-
-        #region Downloader
-        void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-        {
-            this.BeginInvoke((MethodInvoker)delegate {
-                double bytesIn = double.Parse(e.BytesReceived.ToString());
-                double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
-                double percentage = bytesIn / totalBytes * 100;
-                progressbar.Visible = true;
-                progressbar.Value = int.Parse(Math.Truncate(percentage).ToString());
-            });
-        }
-        void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
-        {
-            this.BeginInvoke((MethodInvoker)delegate {
-                progressbar.Visible = false;
-                try
-                {
-                    Directory.Delete(publicconfig.clientconfig.esdir + "/ToolScope/data");
-                }
-                catch
-                {
-                }
-                ExtractZip();
-
-                // Running selected settings
-                if (insertcredentials.Checked == true)
-                {
-                    ReplaceProfiles();
-                }
-
-                if (insertsettings.Checked == true)
-                {
-                    CopySettings();
-                }
-
-                CreatePackageJSON(publicconfig.clientconfig.esdir + "/" + selectedRegionString);
-
-                if (runpsscript.Checked == true)
-                {
-                    try
-                    {
-                        RunPowerShellScript();
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Windows.MessageBox.Show("PowerShell Script Error! \n" + ex.ToString() + "\n\nThis is not a ToolScope program error!");
-                    }
-                }
-
-                if (isUpdaterun == true)
-                {
-                    isUpdaterun = false;
-                    FeedDataGrid();
-                    uipage.SelectedIndex = 1;
-                }
-            });
-        }
-        #endregion
-
-        private void CreateBackup(string pathinesdir)
-        {
-            var sourcePath = publicconfig.clientconfig.esdir + pathinesdir;
-            var targetPath = publicconfig.clientconfig.esdir + "/ToolScope/Backup/";
-
-            try
-            {
-                Directory.Delete(publicconfig.clientconfig.esdir + "/ToolScope/Backup", true);
-            }
-            catch
-            {
-
-            }
-
-            foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
-            {
-                Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
-            }
-
-            //Copy all the files & Replaces any files with the same name
-            foreach (string newPath in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories))
-            {
-                System.IO.File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
-            }
-        }
-
-        private void ExtractZip()
-        {
-            var sourcePath = publicconfig.clientconfig.esdir + "/ToolScope/data";
-            var targetPath = publicconfig.clientconfig.esdir;
-
-            try
-            {
-                Directory.Delete(publicconfig.clientconfig.esdir + "/ToolScope/data", true);
-            }
-            catch
-            {
-
-            }
-
-            ZipFile.ExtractToDirectory(publicconfig.clientconfig.esdir + "/ToolScope/data.zip", publicconfig.clientconfig.esdir + "/ToolScope/data");
-            System.IO.File.Delete(publicconfig.clientconfig.esdir + "/ToolScope/data.zip");
-
-            foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
-            {
-                Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
-            }
-
-            //Copy all the files & Replaces any files with the same name
-            foreach (string newPath in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories))
-            {
-                System.IO.File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
-            }
-
-            Directory.Delete(sourcePath, true);
-        }
-
-        private void ReplaceProfiles()
-        {
-            // Inserting the data into the .prf-Files
-
-            var apptext = "\r\nLastSession\tcallsign\t" + publicconfig.clientconfig.callsign + "\r\nLastSession\trealname\t" + publicconfig.clientconfig.realname +
-                    "\r\nLastSession\t" + "certificate\t" + publicconfig.clientconfig.cid + "\r\nLastSession\tpassword\t" +
-                    ConvertPassword("decrypt", publicconfig.clientconfig.passwd) + "\r\nLastSession\trating\t" + publicconfig.clientconfig.rating +
-                    "\r\nLastSession\t" + "server\t" + publicconfig.clientconfig.server + "\r\nLastSession\ttovatsim\t1";
-            string[] allProfiles = Directory.GetFiles(publicconfig.clientconfig.esdir, "*.prf");
-
-            foreach (string profile in allProfiles)
-            {
-                var text = new StringBuilder();
-
-                text.Append(System.IO.File.ReadAllText(profile) + apptext);
-                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + publicconfig.clientconfig.cid);
-                System.IO.File.WriteAllText(profile, text.ToString());
-                text.Clear();
-            }
-
-            try
-            {
-                foreach (string s in Directory.EnumerateFiles(publicconfig.clientconfig.esdir + "/" + selectedRegionString + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories))
-                {
-                    System.IO.File.WriteAllText(s, publicconfig.clientconfig.hoppiecode);
-                }
-            }
-            catch
-            {
-
-            }
-
-            notifyText("success", "Successfully updated and data inserted!", 5);
-
-            /*OpenFileDialog profiles = new OpenFileDialog();
-            profiles.Title = "Select .prf-File/s where your credentials should be inserted into";
-            profiles.Filter = "EuroScope Profiles (multiple possible)|*.prf";
-            profiles.Multiselect = true;
-            profiles.InitialDirectory = esdir;
-            if (profiles.ShowDialog() == DialogResult.OK)
-            {
-                string[] allProfiles = profiles.FileNames;
-
-                foreach(string profile in allProfiles )
-                {
-                    var text = new StringBuilder();
-                    var apptext = "\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
-                        "certificate\t" + cid + "\r\nLastSession\tpassword\t" + passwd + "\r\nLastSession\trating\t" + rating + "\r\nLastSession\t" +
-                        "server\t" + server + "\r\nLastSession\ttovatsim\t1";
-
-                    text.Append(System.IO.File.ReadAllText(profile) + apptext);
-                    System.IO.File.WriteAllText(profile, text.ToString());
-                    text.Clear();
-                }
-                notifyText("success", "Successfully updated and data inserted!", 5);
-            }*/
-
-            //installedpackages.Add(selectedurl);
-            //CreateInstalledLabels();
-            downloadbtn.Enabled = true;
-        }
-
-        private void CopySettings()
-        {
-            var allowedExtensions = publicconfig.clientconfig.allowedExtensions;
-
-            try
-            {
-                var files = Directory
-                .GetFiles(publicconfig.clientconfig.esdir + "/ToolScope/Backup/" + regionbox.Text + "/Settings", "*", SearchOption.AllDirectories).ToList();
-
-
-                foreach (string file in files)
-                {
-                    if (allowedExtensions.Contains(System.IO.Path.GetFileName(file)))
-                    {
-                        System.IO.File.Copy(file, file.Replace("/ToolScope/Backup/", "/"), true);
-                    }
-                }
-
-            }
-            catch
-            {
-
-            }
-        }
-
-        #endregion
-
         #region PowerShell
         private static void RunPowerShellScript()
         {
@@ -948,243 +1243,7 @@ namespace ToolScope_for_EuroScope
         }
         #endregion
 
-        #region Button Actions
-        #region Save Button Design
-        private void cidbox_TextChanged_1(object sender, EventArgs e)
-        {
-            savebtn.Enabled = true;
-        }
-
-        private void passwdbox_TextChanged(object sender, EventArgs e)
-        {
-            savebtn.Enabled = true;
-        }
-
-        private void namebox_TextChanged(object sender, EventArgs e)
-        {
-            savebtn.Enabled = true;
-        }
-
-        private void ratingbox_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            savebtn.Enabled = true;
-        }
-
-        private void callsignbox_TextChanged(object sender, EventArgs e)
-        {
-            savebtn.Enabled = true;
-        }
-
-        private void hoppiecodebox_TextChanged(object sender, EventArgs e)
-        {
-            savebtn.Enabled = true;
-        }
-
-        private void esfolderbox_TextChanged(object sender, EventArgs e)
-        {
-            savebtn.Enabled = true;
-        }
         #endregion
 
-        private void closebtn_Click(object sender, EventArgs e)
-        {
-            closebtn.Enabled = false;
-            Close();
-        }
-
-        private void minimizebtn_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-        private void countrybox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CountryNames country = new CountryNames();
-
-            publicconfig.clientconfig.country = countrybox.Text;
-            File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
-
-            regionbox.Text = "";
-            packagebox.Text = "";
-            versiontxt.Text = "None";
-            airactxt.Text = "None";
-            releasetxt.Text = "None";
-            downloadbtn.Enabled = false;
-
-            GrabDownloadUrls();
-            getRegions();
-        }
-
-        private void regionbox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            addPackageItems(regionbox.Text);
-            packagebox.Text = "";
-            versiontxt.Text = "None";
-            airactxt.Text = "None";
-            releasetxt.Text = "None";
-            downloadbtn.Enabled = false;
-        }
-
-        private void packagebox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var x = allpackages.FindIndex(s => s.Contains("https://files.aero-nav.com/" + regionbox.Text + "/" + packagebox.Text));
-            selectedUrlString = allpackages[x];
-
-            string regionName = GetURLInformation(selectedUrlString).region;
-
-            string release = GetURLInformation(selectedUrlString).released;
-
-            string airac = GetURLInformation(selectedUrlString).airac;
-
-            string version = GetURLInformation(selectedUrlString).version;
-
-            selectedRegionString = regionName;
-
-            versiontxt.Text = "V" + version;
-            DateTime da = DateTime.ParseExact(airac, "yyMMdd", new CultureInfo("da-DK"));
-            airactxt.Text = da.ToString(@"yy\/MM");
-            DateTime dr = DateTime.ParseExact(release, "yyyyMMddHHmms", CultureInfo.InvariantCulture);
-            releasetxt.Text = dr.ToString("dd.MM.yyyy");
-            downloadbtn.Enabled = true;
-        }
-
-        private void downloadbtn_Click(object sender, EventArgs e)
-        {
-            CreateBackup("");
-            downloadbtn.Enabled = false;
-            Directory.CreateDirectory(publicconfig.clientconfig.esdir + "/ToolScope");
-            Directory.CreateDirectory(publicconfig.clientconfig.esdir + "/ToolScope/Backup");
-
-            Thread thread = new Thread(() => {
-                WebClient client = new WebClient();
-                client.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate,sdch");
-                client.Headers.Add(HttpRequestHeader.Referer, "https://files.aero-nav.com/EDXX/");
-                client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
-                client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                client.DownloadFileAsync(new Uri(selectedUrlString), publicconfig.clientconfig.esdir + "/ToolScope/data.zip");
-            });
-            thread.Start();
-        }
-
-        private void openupdateui_Click(object sender, EventArgs e)
-        {
-            uipage.SelectedIndex = 0;
-            ChangeUI("AIRAC Installer", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
-        }
-
-        private void openpspan_Click(object sender, EventArgs e)
-        {
-            PSEditor pseditor = new PSEditor();
-            //uipage.SelectedIndex = 1;
-            //ChangeUI("PowerShell Editor", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
-            pseditor.Show();
-        }
-
-        private void opensettingsui_Click(object sender, EventArgs e)
-        {
-            uipage.SelectedIndex = 2;
-            ChangeUI("AIRAC Settings", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
-        }
-
-        private void airacmanagerbtn_Click(object sender, EventArgs e)
-        {
-            FeedDataGrid();
-            uipage.SelectedIndex = 1;
-            ChangeUI("AIRAC Manager", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
-
-            if (isFirstrun == false)
-            {
-                System.Windows.Forms.Timer managertimer = new System.Windows.Forms.Timer();
-                managertimer.Tick += new EventHandler(OnTimedEvent);
-                managertimer.Interval = 50;
-                managertimer.Enabled = true;
-
-                void OnTimedEvent(object sendere, EventArgs ee)
-                {
-                    isFirstrun = true;
-                    FeedDataGrid();
-                    managertimer.Stop();
-                }
-            }
-        }
-
-        private void savebtn_Click(object sender, EventArgs e)
-        {
-            UpdateUI("write");
-            UpdateUI("read");
-            savebtn.Enabled = false;
-            notifyText("success", "Settings have been saved and loaded!", 5);
-        }
-
-        private void esfolderbox_Click(object sender, EventArgs e)
-        {
-            using (var fbd = new FolderBrowserDialog())
-            {
-                DialogResult result = fbd.ShowDialog();
-
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
-                {
-                    publicconfig.clientconfig.esdir = fbd.SelectedPath;
-                    File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
-                    esfolderbox.Text = publicconfig.clientconfig.esdir;
-                }
-            }
-        }
-
-        private void clearesfolderbtn_Click(object sender, EventArgs e)
-        {
-            if ((MessageBox.Show("Do you really want to delete all downloaded AIRACs? Your settings won't be changed.", "Delete all downloaded AIRACs",
-            MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-            MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
-            {
-                try
-                {
-                    System.IO.DirectoryInfo di = new DirectoryInfo(publicconfig.clientconfig.esdir);
-
-                    foreach (FileInfo file in di.GetFiles())
-                    {
-                        file.Delete();
-                    }
-                    foreach (DirectoryInfo dir in di.GetDirectories())
-                    {
-                        dir.Delete(true);
-                    }
-
-                    notifyText("success", "All AIRACs deleted!", 5);
-                }
-                catch
-                {
-                    notifyText("info", "No AIRACs found!", 5);
-                }
-
-            }
-        }
-
-        private void insertcredentials_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdateUI("write");
-        }
-
-        private void insertatisairport_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdateUI("write");
-        }
-
-        private void runpsscript_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdateUI("write");
-        }
-
-        private void insertplugins_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdateUI("write");
-        }
-
-        private void insertsettings_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdateUI("write");
-        }
-
-        #endregion
     }
 }

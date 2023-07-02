@@ -1017,7 +1017,9 @@ namespace ToolScope_for_EuroScope
             this.packagesdatagrid.EnableHeadersVisualStyles = false;
             this.packagesdatagrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
             this.packagesdatagrid.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
+#pragma warning disable CS0618 // Typ oder Element ist veraltet
             this.packagesdatagrid.HeaderBgColor = System.Drawing.Color.Empty;
+#pragma warning restore CS0618 // Typ oder Element ist veraltet
             this.packagesdatagrid.HeaderForeColor = System.Drawing.Color.White;
             this.packagesdatagrid.Location = new System.Drawing.Point(4, 46);
             this.packagesdatagrid.MultiSelect = false;
@@ -1260,7 +1262,9 @@ namespace ToolScope_for_EuroScope
             this.filescopylist.EnableHeadersVisualStyles = false;
             this.filescopylist.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
             this.filescopylist.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
+#pragma warning disable CS0618 // Typ oder Element ist veraltet
             this.filescopylist.HeaderBgColor = System.Drawing.Color.Empty;
+#pragma warning restore CS0618 // Typ oder Element ist veraltet
             this.filescopylist.HeaderForeColor = System.Drawing.Color.White;
             this.filescopylist.Location = new System.Drawing.Point(534, 50);
             this.filescopylist.Name = "filescopylist";
