@@ -8,7 +8,7 @@ namespace ToolScope_for_EuroScope
 {
     internal class CountryNames
     {
-
+        //TODO: useless function "CountryNames Converter"
         private string _icao;
         private string _name;
 

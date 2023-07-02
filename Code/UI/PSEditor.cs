@@ -12,7 +12,7 @@ using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using System.Windows.Controls;
 using Newtonsoft.Json;
-using static ToolScope_for_EuroScope.Main;
+using ToolScope_for_EuroScope.Code.Core;
 
 namespace ToolScope_for_EuroScope
 {
@@ -21,11 +21,11 @@ namespace ToolScope_for_EuroScope
         private const int cGrip = 16;      // Grip size
         private const int cCaption = 32;   // Caption bar height;
 
-        Main.ClientConfig config = new Main.ClientConfig();
+        Objects.ClientConfig config = new Objects.ClientConfig();
 
         public PSEditor()
         {
-            config = JsonConvert.DeserializeObject<ClientConfig>(File.ReadAllText("config.json"));
+            config = JsonConvert.DeserializeObject<Objects.ClientConfig>(File.ReadAllText("config.json"));
             InitializeComponent();
             ConfigEditor();
             try

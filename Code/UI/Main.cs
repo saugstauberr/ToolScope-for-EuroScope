@@ -9,12 +9,12 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using ToolScope_for_EuroScope.Code.Core;
 #endregion
 
 namespace ToolScope_for_EuroScope
@@ -22,19 +22,6 @@ namespace ToolScope_for_EuroScope
     public partial class Main : Form
     {
         public string pversion = "1.4.2";
-
-        #region Global variables
-        public string uriserverconfig = "https://raw.githubusercontent.com/saugstauberr/ToolScope-for-EuroScope/master/updates/server.json";
-
-        public string selectedUrlString;
-        public string selectedRegionString;
-        public Bunifu.UI.WinForms.BunifuButton.BunifuButton lastButton = null;
-        public List<string> regions = new List<string>();
-        public List<string> countries = new List<string>();
-        public List<string> allpackages = new List<string>();
-        public bool isFirstrun = false;
-        public bool isUpdaterun = false;
-        #endregion
 
         #region Notes - Link Structure
         /// <summary>
@@ -46,74 +33,12 @@ namespace ToolScope_for_EuroScope
         #endregion
 
         #region Global Objects
-        ClientRoot publicconfig = new ClientRoot();
-        ServerConfig publicsconfig = new ServerConfig();
+        public Objects.ClientRoot publicconfig = new Objects.ClientRoot();
+        public Objects.ServerConfig publicsconfig = new Objects.ServerConfig();
+        public Variables variables = new Variables();
+        Converters converters= new Converters();
+        Updater updater = new Updater();
         #endregion
-
-        #region Classes
-
-        public class AIRACUpdate
-        {
-            public bool update = false;
-            public bool no_url = false;
-            public AIRACPackage old_package = new AIRACPackage();
-            public AIRACPackage new_package = new AIRACPackage();
-        }
-        public class ServerConfig
-        {
-            public List<string> countries { get; set; }
-            public string motd { get; set; }
-        }
-
-        public class ClientRoot
-        {
-            public ClientConfig clientconfig = new ClientConfig();
-            public List<ClientPackage> installedpackages = new List<ClientPackage>();
-        }
-
-        public class ClientPackage
-        {
-            public string jsonpath = "";
-        }
-
-        public class AIRACPackage
-        {
-            public string country { get; set; }
-            public string region { get; set; }
-            public string package { get; set; }
-            public string airac { get; set; }
-            public string released { get; set; }
-            public string version { get; set; }
-            public string url { get; set; }
-        }
-
-        public class ClientConfig
-        {
-            public string cid = "";
-            public string passwd = "";
-            public string callsign = "";
-            public string realname = "";
-            public string hoppiecode = "";
-            public string rating = "";
-            public string esdir = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/EuroScope");
-            public List<string> allowedExtensions { get; set; }
-
-
-            public string server = "AUTOMATIC";
-            public string country = "";
-            public bool insertcredentials = true;
-            public bool insertatisairport = true;
-            public bool insertplugins = true;
-            public bool runpowershell = false;
-            public int codezoom = 0;
-        }
-        #endregion
-
-        #region All Events
-        /// <summary>
-        /// This contains all events and their functions. Seperated in 2 regions (Events, Functions).
-        /// </summary>
-
 
         #region Main
         public Main()
@@ -126,7 +51,7 @@ namespace ToolScope_for_EuroScope
 
 
             #region Config Loader
-            ClientRoot clientConfig = new ClientRoot();
+            Objects.ClientRoot clientConfig = new Objects.ClientRoot();
 
             if (File.Exists("config.json") == false)
             {
@@ -134,7 +59,7 @@ namespace ToolScope_for_EuroScope
             }
             else
             {
-                publicconfig = JsonConvert.DeserializeObject<ClientRoot>(File.ReadAllText("config.json"));
+                publicconfig = JsonConvert.DeserializeObject<Objects.ClientRoot>(File.ReadAllText("config.json"));
             }
 
             try
@@ -151,10 +76,10 @@ namespace ToolScope_for_EuroScope
 
             using (WebClient client = new WebClient())
             {
-                webResponse = client.DownloadString(uriserverconfig);
+                webResponse = client.DownloadString(variables.uriserverconfig);
             }
 
-            publicsconfig = JsonConvert.DeserializeObject<ServerConfig>(webResponse);
+            publicsconfig = JsonConvert.DeserializeObject<Objects.ServerConfig>(webResponse);
             UpdateUI("read");
             #endregion
 
@@ -202,7 +127,7 @@ namespace ToolScope_for_EuroScope
             uipage.SelectedIndex = 1;
             ChangeUI("AIRAC Manager", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
 
-            if (isFirstrun == false)
+            if (variables.isFirstrun == false)
             {
                 System.Windows.Forms.Timer managertimer = new System.Windows.Forms.Timer();
                 managertimer.Tick += new EventHandler(OnTimedEvent);
@@ -211,7 +136,7 @@ namespace ToolScope_for_EuroScope
 
                 void OnTimedEvent(object sendere, EventArgs ee)
                 {
-                    isFirstrun = true;
+                    variables.isFirstrun = true;
                     FeedDataGrid();
                     managertimer.Stop();
                 }
@@ -237,11 +162,13 @@ namespace ToolScope_for_EuroScope
         #region PAGE: AIRAC Manager
 
         #region Functions
+
+        //TODO: // #TODO: move into own function (AIRAC Manager Functions)
         private void FeedDataGrid()
         {
-            publicconfig = JsonConvert.DeserializeObject<ClientRoot>(File.ReadAllText("config.json"));
-            var packages = new List<AIRACPackage>();
-            AIRACUpdate update = new AIRACUpdate();
+            publicconfig = JsonConvert.DeserializeObject<Objects.ClientRoot>(File.ReadAllText("config.json"));
+            var packages = new List<Objects.AIRACPackage>();
+            Objects.AIRACUpdate update = new Objects.AIRACUpdate();
             string[] packagejsons;
             try
             {
@@ -258,7 +185,7 @@ namespace ToolScope_for_EuroScope
                 {
                     try
                     {
-                        var package = JsonConvert.DeserializeObject<AIRACPackage>(File.ReadAllText(pack));
+                        var package = JsonConvert.DeserializeObject<Objects.AIRACPackage>(File.ReadAllText(pack));
                         if (package.url == null)
                         {
                             package.url = "NOURL";
@@ -296,10 +223,10 @@ namespace ToolScope_for_EuroScope
             }
         }
 
-        private AIRACUpdate GetAIRACUpdate(int rows)
+        private Objects.AIRACUpdate GetAIRACUpdate(int rows)
         {
-            AIRACUpdate update = new AIRACUpdate();
-            DataGridViewRow row = this.packagesdatagrid.Rows[rows];
+            Objects.AIRACUpdate update = new Objects.AIRACUpdate();
+            DataGridViewRow row = packagesdatagrid.Rows[rows];
 
             if (row.Cells[6].Value.ToString() == "NOURL")
             {
@@ -314,7 +241,7 @@ namespace ToolScope_for_EuroScope
             update.old_package.version = row.Cells[5].Value.ToString();
             update.old_package.released = GetURLInformation(row.Cells[6].Value.ToString()).released;
 
-            AIRACPackage el = new AIRACPackage();
+            Objects.AIRACPackage el = new Objects.AIRACPackage();
             List<string> allurls = new List<string>();
 
             HtmlWeb hw = new HtmlWeb();
@@ -366,30 +293,10 @@ namespace ToolScope_for_EuroScope
             }
         }
 
-        private void CreatePackageJSON(string path)
-        {
-
-            var root = JsonConvert.DeserializeObject<ClientRoot>(File.ReadAllText("config.json"));
-            ClientPackage pack = new ClientPackage();
-
-            AIRACPackage package = new AIRACPackage();
-
-            package.package = packagebox.Text;
-            package.country = countrybox.Text;
-            package.region = regionbox.Text;
-
-            package.airac = airactxt.Text;
-            package.version = versiontxt.Text;
-            package.released = releasetxt.Text;
-            package.url = selectedUrlString;
-
-            File.WriteAllText(path + "/package.json", JsonConvert.SerializeObject(package, Formatting.Indented));
-
-            pack.jsonpath = path + "/package.json";
-        }
+        
         #endregion
 
-        #region Events
+        #region Button Events
 
         #region Additional Settings
         private void insertcredentials_CheckedChanged(object sender, EventArgs e)
@@ -485,7 +392,7 @@ namespace ToolScope_for_EuroScope
         private void strip_updatebtn_Click(object sender, EventArgs e)
         {
             DataGridViewRow row = this.packagesdatagrid.SelectedRows[0];
-            AIRACUpdate update = GetAIRACUpdate(row.Index);
+            Objects.AIRACUpdate update = GetAIRACUpdate(row.Index);
 
             uipage.SelectedIndex = 0;
 
@@ -496,7 +403,7 @@ namespace ToolScope_for_EuroScope
             packagebox.Text = update.new_package.package;
             packagebox_SelectedIndexChanged(null, null);
             downloadbtn_Click(null, null);
-            isUpdaterun = true;
+            variables.isUpdaterun = true;
         }
 
         private void airacmanagermenu_Opening(object sender, CancelEventArgs e)
@@ -515,7 +422,7 @@ namespace ToolScope_for_EuroScope
             }
 
 
-            AIRACUpdate update = GetAIRACUpdate(row.Index);
+            Objects.AIRACUpdate update = GetAIRACUpdate(row.Index);
 
             if (update.no_url == true)
             {
@@ -559,7 +466,7 @@ namespace ToolScope_for_EuroScope
 
         #region PAGE: AIRAC Downloader
 
-        #region Events
+        #region Button Events
         private void countrybox_SelectedIndexChanged(object sender, EventArgs e)
         {
             CountryNames country = new CountryNames();
@@ -590,18 +497,18 @@ namespace ToolScope_for_EuroScope
 
         private void packagebox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var x = allpackages.FindIndex(s => s.Contains("https://files.aero-nav.com/" + regionbox.Text + "/" + packagebox.Text));
-            selectedUrlString = allpackages[x];
+            var x = variables.allpackages.FindIndex(s => s.Contains("https://files.aero-nav.com/" + regionbox.Text + "/" + packagebox.Text));
+            variables.selectedUrlString = variables.allpackages[x];
 
-            string regionName = GetURLInformation(selectedUrlString).region;
+            string regionName = GetURLInformation(variables.selectedUrlString).region;
 
-            string release = GetURLInformation(selectedUrlString).released;
+            string release = GetURLInformation(variables.selectedUrlString).released;
 
-            string airac = GetURLInformation(selectedUrlString).airac;
+            string airac = GetURLInformation(variables.selectedUrlString).airac;
 
-            string version = GetURLInformation(selectedUrlString).version;
+            string version = GetURLInformation(variables.selectedUrlString).version;
 
-            selectedRegionString = regionName;
+            variables.selectedRegionString = regionName;
 
             versiontxt.Text = "V" + version;
             DateTime da = DateTime.ParseExact(airac, "yyMMdd", new CultureInfo("da-DK"));
@@ -613,10 +520,8 @@ namespace ToolScope_for_EuroScope
 
         private void downloadbtn_Click(object sender, EventArgs e)
         {
-            CreateBackup("");
+            updater.CreateBackup("", publicconfig);
             downloadbtn.Enabled = false;
-            Directory.CreateDirectory(publicconfig.clientconfig.esdir + "/ToolScope");
-            Directory.CreateDirectory(publicconfig.clientconfig.esdir + "/ToolScope/Backup");
 
             Thread thread = new Thread(() =>
             {
@@ -625,7 +530,7 @@ namespace ToolScope_for_EuroScope
                 client.Headers.Add(HttpRequestHeader.Referer, "https://files.aero-nav.com/EDXX/");
                 client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                 client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                client.DownloadFileAsync(new Uri(selectedUrlString), publicconfig.clientconfig.esdir + "/ToolScope/data.zip");
+                client.DownloadFileAsync(new Uri(variables.selectedUrlString), publicconfig.clientconfig.esdir + "/ToolScope/data.zip");
             });
             thread.Start();
         }
@@ -655,20 +560,19 @@ namespace ToolScope_for_EuroScope
                 catch
                 {
                 }
-                ExtractZip();
+                updater.ExtractZip(publicconfig);
+                updater.CreatePackageJSON(publicconfig.clientconfig.esdir + "/" + variables.selectedRegionString, this);
 
                 // Running selected settings
                 if (insertcredentials.Checked == true)
                 {
-                    ReplaceProfiles();
+                    updater.ReplaceProfiles(this);
                 }
 
                 if (insertsettings.Checked == true)
                 {
-                    CopySettings();
+                    updater.CopySettings(publicconfig, regionbox);
                 }
-
-                CreatePackageJSON(publicconfig.clientconfig.esdir + "/" + selectedRegionString);
 
                 if (runpsscript.Checked == true)
                 {
@@ -682,159 +586,13 @@ namespace ToolScope_for_EuroScope
                     }
                 }
 
-                if (isUpdaterun == true)
+                if (variables.isUpdaterun == true)
                 {
-                    isUpdaterun = false;
+                    variables.isUpdaterun = false;
                     FeedDataGrid();
                     uipage.SelectedIndex = 1;
                 }
             });
-        }
-        #endregion
-
-        #region Functions
-        private void CreateBackup(string pathinesdir)
-        {
-            var sourcePath = publicconfig.clientconfig.esdir + pathinesdir;
-            var targetPath = publicconfig.clientconfig.esdir + "/ToolScope/Backup/";
-
-            try
-            {
-                Directory.Delete(publicconfig.clientconfig.esdir + "/ToolScope/Backup", true);
-            }
-            catch
-            {
-
-            }
-
-            foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
-            {
-                Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
-            }
-
-            //Copy all the files & Replaces any files with the same name
-            foreach (string newPath in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories))
-            {
-                System.IO.File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
-            }
-        }
-
-        private void ExtractZip()
-        {
-            var sourcePath = publicconfig.clientconfig.esdir + "/ToolScope/data";
-            var targetPath = publicconfig.clientconfig.esdir;
-
-            try
-            {
-                Directory.Delete(publicconfig.clientconfig.esdir + "/ToolScope/data", true);
-            }
-            catch
-            {
-
-            }
-
-            ZipFile.ExtractToDirectory(publicconfig.clientconfig.esdir + "/ToolScope/data.zip", publicconfig.clientconfig.esdir + "/ToolScope/data");
-            System.IO.File.Delete(publicconfig.clientconfig.esdir + "/ToolScope/data.zip");
-
-            foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
-            {
-                Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
-            }
-
-            //Copy all the files & Replaces any files with the same name
-            foreach (string newPath in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories))
-            {
-                System.IO.File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
-            }
-
-            Directory.Delete(sourcePath, true);
-        }
-
-        private void ReplaceProfiles()
-        {
-            // Inserting the data into the .prf-Files
-
-            var apptext = "\r\nLastSession\tcallsign\t" + publicconfig.clientconfig.callsign + "\r\nLastSession\trealname\t" + publicconfig.clientconfig.realname +
-                    "\r\nLastSession\t" + "certificate\t" + publicconfig.clientconfig.cid + "\r\nLastSession\tpassword\t" +
-                    ConvertPassword("decrypt", publicconfig.clientconfig.passwd) + "\r\nLastSession\trating\t" + publicconfig.clientconfig.rating +
-                    "\r\nLastSession\t" + "server\t" + publicconfig.clientconfig.server + "\r\nLastSession\ttovatsim\t1";
-            string[] allProfiles = Directory.GetFiles(publicconfig.clientconfig.esdir, "*.prf");
-
-            foreach (string profile in allProfiles)
-            {
-                var text = new StringBuilder();
-
-                text.Append(System.IO.File.ReadAllText(profile) + apptext);
-                text = text.Replace("TeamSpeakVccs\tTs3NickName\tYOUR ID", "TeamSpeakVccs\tTs3NickName\t" + publicconfig.clientconfig.cid);
-                System.IO.File.WriteAllText(profile, text.ToString());
-                text.Clear();
-            }
-
-            try
-            {
-                foreach (string s in Directory.EnumerateFiles(publicconfig.clientconfig.esdir + "/" + selectedRegionString + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories))
-                {
-                    System.IO.File.WriteAllText(s, publicconfig.clientconfig.hoppiecode);
-                }
-            }
-            catch
-            {
-
-            }
-
-            notifyText("success", "Successfully updated and data inserted!", 5);
-
-            /*OpenFileDialog profiles = new OpenFileDialog();
-            profiles.Title = "Select .prf-File/s where your credentials should be inserted into";
-            profiles.Filter = "EuroScope Profiles (multiple possible)|*.prf";
-            profiles.Multiselect = true;
-            profiles.InitialDirectory = esdir;
-            if (profiles.ShowDialog() == DialogResult.OK)
-            {
-                string[] allProfiles = profiles.FileNames;
-
-                foreach(string profile in allProfiles )
-                {
-                    var text = new StringBuilder();
-                    var apptext = "\r\nLastSession\tcallsign\t" + callsign + "\r\nLastSession\trealname\t" + realname + "\r\nLastSession\t" +
-                        "certificate\t" + cid + "\r\nLastSession\tpassword\t" + passwd + "\r\nLastSession\trating\t" + rating + "\r\nLastSession\t" +
-                        "server\t" + server + "\r\nLastSession\ttovatsim\t1";
-
-                    text.Append(System.IO.File.ReadAllText(profile) + apptext);
-                    System.IO.File.WriteAllText(profile, text.ToString());
-                    text.Clear();
-                }
-                notifyText("success", "Successfully updated and data inserted!", 5);
-            }*/
-
-            //installedpackages.Add(selectedurl);
-            //CreateInstalledLabels();
-            downloadbtn.Enabled = true;
-        }
-
-        private void CopySettings()
-        {
-            var allowedExtensions = publicconfig.clientconfig.allowedExtensions;
-
-            try
-            {
-                var files = Directory
-                .GetFiles(publicconfig.clientconfig.esdir + "/ToolScope/Backup/" + regionbox.Text + "/Settings", "*", SearchOption.AllDirectories).ToList();
-
-
-                foreach (string file in files)
-                {
-                    if (allowedExtensions.Contains(System.IO.Path.GetFileName(file)))
-                    {
-                        System.IO.File.Copy(file, file.Replace("/ToolScope/Backup/", "/"), true);
-                    }
-                }
-
-            }
-            catch
-            {
-
-            }
         }
         #endregion
 
@@ -843,9 +601,8 @@ namespace ToolScope_for_EuroScope
 
         #region PAGE: Settings
 
-        #region File Copier
+        #region File Whitelist
 
-        #region Events
         private void deleteFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             publicconfig.clientconfig.allowedExtensions.Clear();
@@ -870,7 +627,6 @@ namespace ToolScope_for_EuroScope
                 filescopylist.Rows.Add(ext);
             }
         }
-        #endregion
 
         #endregion
 
@@ -911,7 +667,7 @@ namespace ToolScope_for_EuroScope
         }
         #endregion
 
-        #region Events
+        #region Button Events
         private void savebtn_Click(object sender, EventArgs e)
         {
             UpdateUI("write");
@@ -939,7 +695,6 @@ namespace ToolScope_for_EuroScope
         #endregion
 
 
-        #endregion
 
         #region All Functions
         /// <summary>
@@ -998,12 +753,12 @@ namespace ToolScope_for_EuroScope
         {
             UpdateUI("read");
             current.Enabled = false;
-            if (lastButton != null)
+            if (variables.lastButton != null)
             {
-                lastButton.Enabled = true;
+                variables.lastButton.Enabled = true;
             }
 
-            lastButton = current;
+            variables.lastButton = current;
             pagenametxt.Text = pagename;
         }
 
@@ -1013,8 +768,8 @@ namespace ToolScope_for_EuroScope
             {
                 case "read":
                     cidbox.Text = publicconfig.clientconfig.cid;
-                    passwdbox.Text = ConvertPassword("decrypt", publicconfig.clientconfig.passwd);
-                    ratingbox.Text = RatingConvert("read");
+                    passwdbox.Text = converters.ConvertPassword("decrypt", publicconfig.clientconfig.passwd);
+                    ratingbox.Text = converters.RatingConvert("read", publicconfig.clientconfig.rating);
                     callsignbox.Text = publicconfig.clientconfig.callsign;
                     namebox.Text = publicconfig.clientconfig.realname;
                     hoppiecodebox.Text = publicconfig.clientconfig.hoppiecode;
@@ -1042,8 +797,8 @@ namespace ToolScope_for_EuroScope
                     break;
                 case "write":
                     publicconfig.clientconfig.cid = cidbox.Text;
-                    publicconfig.clientconfig.passwd = ConvertPassword("encrypt", passwdbox.Text);
-                    publicconfig.clientconfig.rating = RatingConvert("write");
+                    publicconfig.clientconfig.passwd = converters.ConvertPassword("encrypt", passwdbox.Text);
+                    publicconfig.clientconfig.rating = converters.RatingConvert("write", ratingbox.Text);
                     publicconfig.clientconfig.callsign = callsignbox.Text;
                     publicconfig.clientconfig.realname = namebox.Text;
                     publicconfig.clientconfig.hoppiecode = hoppiecodebox.Text;
@@ -1061,71 +816,12 @@ namespace ToolScope_for_EuroScope
 
         #endregion
 
-        #region Converters
-        /// <summary>
-        /// Password and Rating convert functions.
-        /// </summary>
-
-        private string ConvertPassword(string task, string value)
-        {
-            if (task == "encrypt")
-            {
-                return System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(value));
-            }
-            else
-            {
-                return System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(value));
-            }
-        }
-
-        private string RatingConvert(string task)
-        {
-            var data = ratingbox.Text;
-
-            if (task == "write")
-            {
-                switch (data)
-                {
-                    case "S1 - Tower Trainee":
-                        return "1";
-                    case "S2 - Tower Controller":
-                        return "2";
-                    case "S3 - Terminal Controller":
-                        return "3";
-                    case "C1 - Enroute Controller":
-                        return "4";
-                    case "C3 - Senior Controller":
-                        return "5";
-                    default:
-                        return null;
-                }
-            }
-            else
-            {
-                switch (publicconfig.clientconfig.rating)
-                {
-                    case "1":
-                        return "S1 - Tower Trainee";
-                    case "2":
-                        return "S2 - Tower Controller";
-                    case "3":
-                        return "S3 - Terminal Controller";
-                    case "4":
-                        return "C1 - Enroute Controller";
-                    case "5":
-                        return "C3 - Senior Controller";
-                    default:
-                        return "Rating not found";
-                }
-            }
-        }
-        #endregion
-
         #region Package Initalizer
+        // TODO: move into own function (package initalizer)
         private void GrabDownloadUrls()
         {
             CountryNames database = new CountryNames();
-            allpackages.Clear();
+            variables.allpackages.Clear();
 
             HtmlWeb hw = new HtmlWeb();
             HtmlAgilityPack.HtmlDocument doc = hw.Load("http://files.aero-nav.com/" + database.GetCountryIcao(countrybox.Text));
@@ -1133,14 +829,14 @@ namespace ToolScope_for_EuroScope
             {
                 if (link.Attributes["href"].Value.Contains(".zip"))
                 {
-                    allpackages.Add(link.Attributes["href"].Value);
+                    variables.allpackages.Add(link.Attributes["href"].Value);
                 }
             }
         }
 
-        private AIRACPackage GetURLInformation(string link)
+        private Objects.AIRACPackage GetURLInformation(string link)
         {
-            AIRACPackage package = new AIRACPackage();
+            Objects.AIRACPackage package = new Objects.AIRACPackage();
 
             var regionName = link.Substring(link.IndexOf("nav.com/") + 8);
             package.region = regionName.Substring(0, regionName.IndexOf("/"));
@@ -1198,18 +894,18 @@ namespace ToolScope_for_EuroScope
         private void getRegions()
         {
             regionbox.Items.Clear();
-            regions.Clear();
+            variables.regions.Clear();
 
-            foreach (string link in allpackages)
+            foreach (string link in variables.allpackages)
             {
                 string regionName2 = GetURLInformation(link).region;
 
-                if (!regions.Contains(regionName2))
+                if (!variables.regions.Contains(regionName2))
                 {
                     regionbox.Items.Add(GetURLInformation(link).region);
                 }
 
-                regions.Add(regionName2);
+                variables.regions.Add(regionName2);
             }
         }
 
@@ -1217,7 +913,7 @@ namespace ToolScope_for_EuroScope
         {
             packagebox.Items.Clear();
 
-            foreach (string link in allpackages)
+            foreach (string link in variables.allpackages)
             {
                 if (link.Contains(filter) == true)
                 {
@@ -1228,6 +924,7 @@ namespace ToolScope_for_EuroScope
         #endregion
 
         #region PowerShell
+        // TODO: move into own function (PowerShell)
         private static void RunPowerShellScript()
         {
 

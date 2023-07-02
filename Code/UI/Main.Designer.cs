@@ -1017,9 +1017,7 @@ namespace ToolScope_for_EuroScope
             this.packagesdatagrid.EnableHeadersVisualStyles = false;
             this.packagesdatagrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
             this.packagesdatagrid.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
-#pragma warning disable CS0618 // Typ oder Element ist veraltet
             this.packagesdatagrid.HeaderBgColor = System.Drawing.Color.Empty;
-#pragma warning restore CS0618 // Typ oder Element ist veraltet
             this.packagesdatagrid.HeaderForeColor = System.Drawing.Color.White;
             this.packagesdatagrid.Location = new System.Drawing.Point(4, 46);
             this.packagesdatagrid.MultiSelect = false;
@@ -1262,9 +1260,7 @@ namespace ToolScope_for_EuroScope
             this.filescopylist.EnableHeadersVisualStyles = false;
             this.filescopylist.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
             this.filescopylist.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(34)))), ((int)(((byte)(36)))));
-#pragma warning disable CS0618 // Typ oder Element ist veraltet
             this.filescopylist.HeaderBgColor = System.Drawing.Color.Empty;
-#pragma warning restore CS0618 // Typ oder Element ist veraltet
             this.filescopylist.HeaderForeColor = System.Drawing.Color.White;
             this.filescopylist.Location = new System.Drawing.Point(534, 50);
             this.filescopylist.Name = "filescopylist";
@@ -2737,15 +2733,10 @@ namespace ToolScope_for_EuroScope
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton downloadbtn;
         private System.Windows.Forms.Label notifytxt;
         private System.Windows.Forms.Timer notifytimer;
-        private Bunifu.UI.WinForms.BunifuDropdown packagebox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private Bunifu.UI.WinForms.BunifuDropdown regionbox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label airactxt;
-        private System.Windows.Forms.Label releasetxt;
-        private System.Windows.Forms.Label versiontxt;
         private System.Windows.Forms.Label label9;
         private Bunifu.UI.WinForms.BunifuProgressBar progressbar;
         private Bunifu.UI.WinForms.BunifuPages uipage;
@@ -2772,7 +2763,6 @@ namespace ToolScope_for_EuroScope
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl3;
         private System.Windows.Forms.Label versionlabel;
         private System.Windows.Forms.Label label3;
-        private Bunifu.UI.WinForms.BunifuDropdown countrybox;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label24;
         private Bunifu.UI.WinForms.BunifuToggleSwitch2 runpsscript;
@@ -2820,6 +2810,12 @@ namespace ToolScope_for_EuroScope
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton minimizebtn;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.DataGridViewTextBoxColumn allowedExtensions;
+        public Bunifu.UI.WinForms.BunifuDropdown regionbox;
+        public Bunifu.UI.WinForms.BunifuDropdown packagebox;
+        public System.Windows.Forms.Label airactxt;
+        public System.Windows.Forms.Label releasetxt;
+        public System.Windows.Forms.Label versiontxt;
+        public Bunifu.UI.WinForms.BunifuDropdown countrybox;
     }
 }
 
