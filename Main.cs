@@ -35,14 +35,14 @@ namespace ToolScope_for_EuroScope
         #endregion
 
         #region Program variables
-        public string selectedurl;
-        public string selectedregion;
+        public string selectedUrlString;
+        public string selectedRegionString;
         public Bunifu.UI.WinForms.BunifuButton.BunifuButton lastButton = null;
         public List<string> regions = new List<string>();
         public List<string> countries = new List<string>();
         public List<string> allpackages = new List<string>();
-        public bool firstrun = false;
-        public bool updaterun = false;
+        public bool isFirstrun = false;
+        public bool isUpdaterun = false;
         #endregion
 
         #region Notes
@@ -155,7 +155,7 @@ namespace ToolScope_for_EuroScope
             packagebox.Text = update.new_package.package;
             packagebox_SelectedIndexChanged(null, null);
             downloadbtn_Click(null, null);
-            updaterun = true;
+            isUpdaterun = true;
         }
 
         private void airacmanagermenu_Opening(object sender, CancelEventArgs e)
@@ -354,7 +354,7 @@ namespace ToolScope_for_EuroScope
             package.airac = airactxt.Text;
             package.version = versiontxt.Text;
             package.released = releasetxt.Text;
-            package.url = selectedurl;
+            package.url = selectedUrlString;
 
             File.WriteAllText(path + "/package.json", JsonConvert.SerializeObject(package, Formatting.Indented));
 
@@ -502,16 +502,10 @@ namespace ToolScope_for_EuroScope
         private void ChangeUI(string pagename, Bunifu.UI.WinForms.BunifuButton.BunifuButton current)
         {
             UpdateUI("read");
-            /*current.OnIdleState.FillColor = Color.FromArgb(255, 42, 43, 46);
-            current.onHoverState.FillColor = Color.FromArgb(255, 42, 43, 46);
-            current.OnPressedState.FillColor = Color.FromArgb(255, 42, 43, 46);*/
             current.Enabled = false;
             if (lastButton != null)
             {
                 lastButton.Enabled = true;
-                /* lastButton.OnIdleState.FillColor = Color.FromArgb(255, 33, 34, 36);
-                 lastButton.onHoverState.FillColor = Color.FromArgb(255, 33, 34, 36);
-                 lastButton.OnPressedState.FillColor = Color.FromArgb(255, 33, 34, 36);*/
             }
 
             lastButton = current;
@@ -768,7 +762,7 @@ namespace ToolScope_for_EuroScope
                     CopySettings();
                 }
 
-                CreatePackageJSON(publicconfig.clientconfig.esdir + "/" + selectedregion);
+                CreatePackageJSON(publicconfig.clientconfig.esdir + "/" + selectedRegionString);
 
                 if (runpsscript.Checked == true)
                 {
@@ -782,9 +776,9 @@ namespace ToolScope_for_EuroScope
                     }
                 }
 
-                if (updaterun == true)
+                if (isUpdaterun == true)
                 {
-                    updaterun = false;
+                    isUpdaterun = false;
                     FeedDataGrid();
                     uipage.SelectedIndex = 1;
                 }
@@ -871,7 +865,7 @@ namespace ToolScope_for_EuroScope
 
             try
             {
-                foreach (string s in Directory.EnumerateFiles(publicconfig.clientconfig.esdir + "/" + selectedregion + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories))
+                foreach (string s in Directory.EnumerateFiles(publicconfig.clientconfig.esdir + "/" + selectedRegionString + "/Plugins/", "TopSkyCPDLChoppieCode.txt", SearchOption.AllDirectories))
                 {
                     System.IO.File.WriteAllText(s, publicconfig.clientconfig.hoppiecode);
                 }
@@ -1034,17 +1028,17 @@ namespace ToolScope_for_EuroScope
         private void packagebox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var x = allpackages.FindIndex(s => s.Contains("https://files.aero-nav.com/" + regionbox.Text + "/" + packagebox.Text));
-            selectedurl = allpackages[x];
+            selectedUrlString = allpackages[x];
 
-            string regionName = GetURLInformation(selectedurl).region;
+            string regionName = GetURLInformation(selectedUrlString).region;
 
-            string release = GetURLInformation(selectedurl).released;
+            string release = GetURLInformation(selectedUrlString).released;
 
-            string airac = GetURLInformation(selectedurl).airac;
+            string airac = GetURLInformation(selectedUrlString).airac;
 
-            string version = GetURLInformation(selectedurl).version;
+            string version = GetURLInformation(selectedUrlString).version;
 
-            selectedregion = regionName;
+            selectedRegionString = regionName;
 
             versiontxt.Text = "V" + version;
             DateTime da = DateTime.ParseExact(airac, "yyMMdd", new CultureInfo("da-DK"));
@@ -1067,7 +1061,7 @@ namespace ToolScope_for_EuroScope
                 client.Headers.Add(HttpRequestHeader.Referer, "https://files.aero-nav.com/EDXX/");
                 client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                 client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                client.DownloadFileAsync(new Uri(selectedurl), publicconfig.clientconfig.esdir + "/ToolScope/data.zip");
+                client.DownloadFileAsync(new Uri(selectedUrlString), publicconfig.clientconfig.esdir + "/ToolScope/data.zip");
             });
             thread.Start();
         }
@@ -1098,7 +1092,7 @@ namespace ToolScope_for_EuroScope
             uipage.SelectedIndex = 1;
             ChangeUI("AIRAC Manager", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
 
-            if (firstrun == false)
+            if (isFirstrun == false)
             {
                 System.Windows.Forms.Timer managertimer = new System.Windows.Forms.Timer();
                 managertimer.Tick += new EventHandler(OnTimedEvent);
@@ -1107,7 +1101,7 @@ namespace ToolScope_for_EuroScope
 
                 void OnTimedEvent(object sendere, EventArgs ee)
                 {
-                    firstrun = true;
+                    isFirstrun = true;
                     FeedDataGrid();
                     managertimer.Stop();
                 }

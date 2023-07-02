@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolScope for EuroScope", "ToolScope for EuroScope.csproj", "{F40FD11A-DE63-4B1E-8233-BB7584B3846E}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ToolScope Installer", "ToolScope Installer\ToolScope Installer.vdproj", "{1008D5F9-7A28-4EDC-8F6B-DD13FD5C360A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F40FD11A-DE63-4B1E-8233-BB7584B3846E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F40FD11A-DE63-4B1E-8233-BB7584B3846E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F40FD11A-DE63-4B1E-8233-BB7584B3846E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1008D5F9-7A28-4EDC-8F6B-DD13FD5C360A}.Debug|Any CPU.ActiveCfg = Debug
+		{1008D5F9-7A28-4EDC-8F6B-DD13FD5C360A}.Debug|Any CPU.Build.0 = Debug
+		{1008D5F9-7A28-4EDC-8F6B-DD13FD5C360A}.Release|Any CPU.ActiveCfg = Release
+		{1008D5F9-7A28-4EDC-8F6B-DD13FD5C360A}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

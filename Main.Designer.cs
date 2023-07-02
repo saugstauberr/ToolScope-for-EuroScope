@@ -1568,8 +1568,8 @@ namespace ToolScope_for_EuroScope
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(507, 39);
             this.label11.TabIndex = 44;
-            this.label11.Text = "Never share your config.json file! It contains your password which isn\'t encoded " +
-    "securely.\r\nAs long as you don\'t share your config.json you\'re safe.";
+            this.label11.Text = "Never share your config.json file as contains your password which isn\'t encoded s" +
+    "ecurely.\r\nAs long as you don\'t share your config.json you\'re safe.";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label8
