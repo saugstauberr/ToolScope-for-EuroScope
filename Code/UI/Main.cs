@@ -54,7 +54,7 @@ namespace ToolScope_for_EuroScope
 
             if (File.Exists("config.json") == false)
             {
-                //File.WriteAllText("config.json", JsonConvert.SerializeObject(clientConfig, Formatting.Indented));
+                File.WriteAllText("config.json", JsonConvert.SerializeObject(clientConfig, Formatting.Indented));
             }
             else
             {
@@ -95,10 +95,7 @@ namespace ToolScope_for_EuroScope
             {
                 notifyText("info", variables.server_config.motd, 10);
             }
-        }
 
-        private void Main_Shown(Object sender, EventArgs e)
-        {
             runpsscript.Checked = variables.client_config.general.isRunPowershell;
             FeedDataGrid();
         }
@@ -302,35 +299,6 @@ namespace ToolScope_for_EuroScope
         #endregion
 
         #region Button Events
-
-        #region Additional Settings
-        private void insertcredentials_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdateUI("write");
-        }
-
-        private void insertatisairport_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdateUI("write");
-        }
-
-        private void runpsscript_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdateUI("write");
-        }
-
-        private void insertplugins_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdateUI("write");
-        }
-
-        private void insertsettings_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdateUI("write");
-        }
-        #endregion
-
-
         private void clearesfolderbtn_Click(object sender, EventArgs e)
         {
             if ((MessageBox.Show("Do you really want to delete all downloaded AIRACs? Your settings won't be changed.", "Delete all downloaded AIRACs",
@@ -471,6 +439,33 @@ namespace ToolScope_for_EuroScope
 
         #region PAGE: AIRAC Downloader
 
+        #region Additional Settings
+        private void insertcredentials_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUI("write");
+        }
+
+        private void insertatisairport_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUI("write");
+        }
+
+        private void runpsscript_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUI("write");
+        }
+
+        private void insertplugins_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUI("write");
+        }
+
+        private void insertsettings_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUI("write");
+        }
+        #endregion
+
         #region Button Events
         private void countrybox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -605,6 +600,7 @@ namespace ToolScope_for_EuroScope
         #endregion
 
         #region PAGE: Settings
+
 
         #region File Whitelist
 
