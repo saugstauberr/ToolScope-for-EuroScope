@@ -21,11 +21,11 @@ namespace ToolScope_for_EuroScope
         private const int cGrip = 16;      // Grip size
         private const int cCaption = 32;   // Caption bar height;
 
-        Objects.ClientConfig config = new Objects.ClientConfig();
+        Variables.ClientConfig config = new Variables.ClientConfig();
 
         public PSEditor()
         {
-            config = JsonConvert.DeserializeObject<Objects.ClientConfig>(File.ReadAllText("config.json"));
+            config = JsonConvert.DeserializeObject<Variables.ClientConfig>(File.ReadAllText("config.json"));
             InitializeComponent();
             ConfigEditor();
             try

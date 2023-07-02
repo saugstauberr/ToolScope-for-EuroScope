@@ -33,11 +33,10 @@ namespace ToolScope_for_EuroScope
         #endregion
 
         #region Global Objects
-        public Objects.ClientRoot publicconfig = new Objects.ClientRoot();
-        public Objects.ServerConfig publicsconfig = new Objects.ServerConfig();
         public Variables variables = new Variables();
         Converters converters= new Converters();
         Updater updater = new Updater();
+        PowerShell powershell = new PowerShell();
         #endregion
 
         #region Main
@@ -51,20 +50,27 @@ namespace ToolScope_for_EuroScope
 
 
             #region Config Loader
-            Objects.ClientRoot clientConfig = new Objects.ClientRoot();
+            Variables.ClientRoot clientConfig = new Variables.ClientRoot();
 
             if (File.Exists("config.json") == false)
             {
-                File.WriteAllText("config.json", JsonConvert.SerializeObject(clientConfig, Formatting.Indented));
+                //File.WriteAllText("config.json", JsonConvert.SerializeObject(clientConfig, Formatting.Indented));
             }
             else
             {
-                publicconfig = JsonConvert.DeserializeObject<Objects.ClientRoot>(File.ReadAllText("config.json"));
+                if(File.ReadAllText("config.json").Contains("clientconfig"))
+                {
+                    var fileContent = File.ReadAllText("config.json");
+                    fileContent = fileContent.Replace("clientconfig", "general");
+                    MessageBox.Show(fileContent);
+                    File.WriteAllText("config.json", fileContent);
+                }
+                variables.client_config = JsonConvert.DeserializeObject<Variables.ClientRoot>(File.ReadAllText("config.json"));
             }
 
             try
             {
-                Debug.Write(publicconfig.clientconfig.esdir);
+                Debug.Write(variables.client_config.general.esdir);
             }
             catch
             {
@@ -76,24 +82,24 @@ namespace ToolScope_for_EuroScope
 
             using (WebClient client = new WebClient())
             {
-                webResponse = client.DownloadString(variables.uriserverconfig);
+                webResponse = client.DownloadString(variables.uriToServerConfig);
             }
 
-            publicsconfig = JsonConvert.DeserializeObject<Objects.ServerConfig>(webResponse);
+            variables.server_config = JsonConvert.DeserializeObject<Variables.ServerConfig>(webResponse);
             UpdateUI("read");
             #endregion
 
             GetCountries();
 
-            if (publicsconfig.motd != "")
+            if (variables.server_config.motd != "")
             {
-                notifyText("info", publicsconfig.motd, 10);
+                notifyText("info", variables.server_config.motd, 10);
             }
         }
 
         private void Main_Shown(Object sender, EventArgs e)
         {
-            runpsscript.Checked = publicconfig.clientconfig.runpowershell;
+            runpsscript.Checked = variables.client_config.general.isRunPowershell;
             FeedDataGrid();
         }
         #endregion
@@ -166,13 +172,12 @@ namespace ToolScope_for_EuroScope
         //TODO: // #TODO: move into own function (AIRAC Manager Functions)
         private void FeedDataGrid()
         {
-            publicconfig = JsonConvert.DeserializeObject<Objects.ClientRoot>(File.ReadAllText("config.json"));
-            var packages = new List<Objects.AIRACPackage>();
-            Objects.AIRACUpdate update = new Objects.AIRACUpdate();
+            var packages = new List<Variables.AIRACPackage>();
+            Variables.AIRACUpdate update = new Variables.AIRACUpdate();
             string[] packagejsons;
             try
             {
-                packagejsons = Directory.GetFiles(publicconfig.clientconfig.esdir, "package.json", SearchOption.AllDirectories);
+                packagejsons = Directory.GetFiles(variables.client_config.general.esdir, "package.json", SearchOption.AllDirectories);
             }
             catch
             {
@@ -185,7 +190,7 @@ namespace ToolScope_for_EuroScope
                 {
                     try
                     {
-                        var package = JsonConvert.DeserializeObject<Objects.AIRACPackage>(File.ReadAllText(pack));
+                        var package = JsonConvert.DeserializeObject<Variables.AIRACPackage>(File.ReadAllText(pack));
                         if (package.url == null)
                         {
                             package.url = "NOURL";
@@ -201,7 +206,7 @@ namespace ToolScope_for_EuroScope
             foreach (DataGridViewRow x in packagesdatagrid.Rows)
             {
                 update = GetAIRACUpdate(x.Index);
-                if (update.update == true)
+                if (update.isUpdateAvailable == true)
                 {
                     x.DefaultCellStyle.BackColor = Color.FromArgb(255, 105, 103, 68);
                     x.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 122, 120, 80);
@@ -214,7 +219,7 @@ namespace ToolScope_for_EuroScope
                     x.Cells[4].Value = update.old_package.released + " -> " + update.new_package.released;
                     notifyText("warning", "AIRAC Updates available!", 7000);
                 }
-                else if (update.no_url == true)
+                else if (update.isUrlFound == false)
                 {
                     x.DefaultCellStyle.BackColor = Color.FromArgb(255, 94, 62, 62);
                     x.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 112, 73, 73);
@@ -223,14 +228,14 @@ namespace ToolScope_for_EuroScope
             }
         }
 
-        private Objects.AIRACUpdate GetAIRACUpdate(int rows)
+        private Variables.AIRACUpdate GetAIRACUpdate(int rows)
         {
-            Objects.AIRACUpdate update = new Objects.AIRACUpdate();
+            Variables.AIRACUpdate update = new Variables.AIRACUpdate();
             DataGridViewRow row = packagesdatagrid.Rows[rows];
 
             if (row.Cells[6].Value.ToString() == "NOURL")
             {
-                update.no_url = true;
+                update.isUrlFound = false;
                 return update;
             }
 
@@ -241,7 +246,7 @@ namespace ToolScope_for_EuroScope
             update.old_package.version = row.Cells[5].Value.ToString();
             update.old_package.released = GetURLInformation(row.Cells[6].Value.ToString()).released;
 
-            Objects.AIRACPackage el = new Objects.AIRACPackage();
+            Variables.AIRACPackage el = new Variables.AIRACPackage();
             List<string> allurls = new List<string>();
 
             HtmlWeb hw = new HtmlWeb();
@@ -288,7 +293,7 @@ namespace ToolScope_for_EuroScope
             }
             else
             {
-                update.update = true;
+                update.isUpdateAvailable = true;
                 return update;
             }
         }
@@ -334,7 +339,7 @@ namespace ToolScope_for_EuroScope
             {
                 try
                 {
-                    System.IO.DirectoryInfo di = new DirectoryInfo(publicconfig.clientconfig.esdir);
+                    System.IO.DirectoryInfo di = new DirectoryInfo(variables.client_config.general.esdir);
 
                     foreach (FileInfo file in di.GetFiles())
                     {
@@ -360,11 +365,11 @@ namespace ToolScope_for_EuroScope
             DataGridViewRow row = this.packagesdatagrid.SelectedRows[0];
             string region = row.Cells[1].Value.ToString();
 
-            DirectoryInfo d = new DirectoryInfo(publicconfig.clientconfig.esdir);
+            DirectoryInfo d = new DirectoryInfo(variables.client_config.general.esdir);
 
             try
             {
-                Directory.Delete(publicconfig.clientconfig.esdir + "/" + region, true);
+                Directory.Delete(variables.client_config.general.esdir + "/" + region, true);
                 foreach (var file in d.GetFiles())
                 {
                     if (file.FullName.Contains(region))
@@ -392,7 +397,7 @@ namespace ToolScope_for_EuroScope
         private void strip_updatebtn_Click(object sender, EventArgs e)
         {
             DataGridViewRow row = this.packagesdatagrid.SelectedRows[0];
-            Objects.AIRACUpdate update = GetAIRACUpdate(row.Index);
+            Variables.AIRACUpdate update = GetAIRACUpdate(row.Index);
 
             uipage.SelectedIndex = 0;
 
@@ -422,9 +427,9 @@ namespace ToolScope_for_EuroScope
             }
 
 
-            Objects.AIRACUpdate update = GetAIRACUpdate(row.Index);
+            Variables.AIRACUpdate update = GetAIRACUpdate(row.Index);
 
-            if (update.no_url == true)
+            if (update.isUrlFound == false)
             {
                 strip_airacupdateinfotext.Text = "- Autoupdater not available, please reinstall package for this feature! -";
                 strip_airacrelease.Visible = false;
@@ -434,7 +439,7 @@ namespace ToolScope_for_EuroScope
                 return;
             }
 
-            if (update.update == true)
+            if (update.isUpdateAvailable == true)
             {
                 strip_airacupdateinfotext.Visible = true;
                 strip_airacrelease.Visible = true;
@@ -471,8 +476,8 @@ namespace ToolScope_for_EuroScope
         {
             CountryNames country = new CountryNames();
 
-            publicconfig.clientconfig.country = countrybox.Text;
-            File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
+            variables.client_config.general.country = countrybox.Text;
+            File.WriteAllText("config.json", JsonConvert.SerializeObject(variables.client_config, Formatting.Indented));
 
             regionbox.Text = "";
             packagebox.Text = "";
@@ -520,7 +525,7 @@ namespace ToolScope_for_EuroScope
 
         private void downloadbtn_Click(object sender, EventArgs e)
         {
-            updater.CreateBackup("", publicconfig);
+            updater.CreateBackup("", variables.client_config);
             downloadbtn.Enabled = false;
 
             Thread thread = new Thread(() =>
@@ -530,7 +535,7 @@ namespace ToolScope_for_EuroScope
                 client.Headers.Add(HttpRequestHeader.Referer, "https://files.aero-nav.com/EDXX/");
                 client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                 client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                client.DownloadFileAsync(new Uri(variables.selectedUrlString), publicconfig.clientconfig.esdir + "/ToolScope/data.zip");
+                client.DownloadFileAsync(new Uri(variables.selectedUrlString), variables.client_config.general.esdir + "/ToolScope/data.zip");
             });
             thread.Start();
         }
@@ -555,13 +560,13 @@ namespace ToolScope_for_EuroScope
                 progressbar.Visible = false;
                 try
                 {
-                    Directory.Delete(publicconfig.clientconfig.esdir + "/ToolScope/data");
+                    Directory.Delete(variables.client_config.general.esdir + "/ToolScope/data");
                 }
                 catch
                 {
                 }
-                updater.ExtractZip(publicconfig);
-                updater.CreatePackageJSON(publicconfig.clientconfig.esdir + "/" + variables.selectedRegionString, this);
+                updater.ExtractZip(variables.client_config);
+                updater.CreatePackageJSON(variables.client_config.general.esdir + "/" + variables.selectedRegionString, this);
 
                 // Running selected settings
                 if (insertcredentials.Checked == true)
@@ -571,14 +576,14 @@ namespace ToolScope_for_EuroScope
 
                 if (insertsettings.Checked == true)
                 {
-                    updater.CopySettings(publicconfig, regionbox);
+                    updater.CopySettings(variables.client_config, regionbox);
                 }
 
                 if (runpsscript.Checked == true)
                 {
                     try
                     {
-                        RunPowerShellScript();
+                        powershell.RunPowerShellScript();
                     }
                     catch (Exception ex)
                     {
@@ -605,7 +610,7 @@ namespace ToolScope_for_EuroScope
 
         private void deleteFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            publicconfig.clientconfig.allowedExtensions.Clear();
+            variables.client_config.general.allowedExtensions.Clear();
 
             foreach (DataGridViewCell cell in filescopylist.SelectedCells)
             {
@@ -617,12 +622,12 @@ namespace ToolScope_for_EuroScope
                 if (dr.Cells.Count >= 0 &&
                     dr.Cells[0].Value != null)
                 {
-                    publicconfig.clientconfig.allowedExtensions.Add(dr.Cells[0].Value.ToString());
+                    variables.client_config.general.allowedExtensions.Add(dr.Cells[0].Value.ToString());
                 }
             }
-            File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
+            File.WriteAllText("config.json", JsonConvert.SerializeObject(variables.client_config, Formatting.Indented));
             filescopylist.Rows.Clear();
-            foreach (var ext in publicconfig.clientconfig.allowedExtensions)
+            foreach (var ext in variables.client_config.general.allowedExtensions)
             {
                 filescopylist.Rows.Add(ext);
             }
@@ -684,9 +689,9 @@ namespace ToolScope_for_EuroScope
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    publicconfig.clientconfig.esdir = fbd.SelectedPath;
-                    File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
-                    esfolderbox.Text = publicconfig.clientconfig.esdir;
+                    variables.client_config.general.esdir = fbd.SelectedPath;
+                    File.WriteAllText("config.json", JsonConvert.SerializeObject(variables.client_config, Formatting.Indented));
+                    esfolderbox.Text = variables.client_config.general.esdir;
                 }
             }
         }
@@ -763,49 +768,48 @@ namespace ToolScope_for_EuroScope
             switch (task)
             {
                 case "read":
-                    cidbox.Text = publicconfig.clientconfig.cid;
-                    passwdbox.Text = converters.ConvertPassword("decrypt", publicconfig.clientconfig.passwd);
-                    ratingbox.Text = converters.RatingConvert("read", publicconfig.clientconfig.rating);
-                    callsignbox.Text = publicconfig.clientconfig.callsign;
-                    namebox.Text = publicconfig.clientconfig.realname;
-                    hoppiecodebox.Text = publicconfig.clientconfig.hoppiecode;
-                    esfolderbox.Text = publicconfig.clientconfig.esdir;
-                    countrybox.Text = publicconfig.clientconfig.country; ;
+                    cidbox.Text = variables.client_config.general.cid;
+                    passwdbox.Text = converters.ConvertPassword("decrypt", variables.client_config.general.passwd);
+                    ratingbox.Text = converters.RatingConvert("read", variables.client_config.general.rating);
+                    callsignbox.Text = variables.client_config.general.callsign;
+                    namebox.Text = variables.client_config.general.realname;
+                    hoppiecodebox.Text = variables.client_config.general.hoppiecode;
+                    esfolderbox.Text = variables.client_config.general.esdir;
+                    countrybox.Text = variables.client_config.general.country; ;
                     filescopylist.Rows.Clear();
-                    if (publicconfig.clientconfig.allowedExtensions != null)
+                    if (variables.client_config.general.allowedExtensions != null)
                     {
-                        //filescopylist.DataSource = publicconfig.clientconfig.allowedExtensions.ConvertAll(x => new { Value = x });
-                        foreach (var ext in publicconfig.clientconfig.allowedExtensions)
+                        foreach (var ext in variables.client_config.general.allowedExtensions)
                         {
                             filescopylist.Rows.Add(ext);
                         }
                     }
                     else
                     {
-                        publicconfig.clientconfig.allowedExtensions = new List<string>() { "Screen.txt", "SCREEN.txt", "General.txt",
+                        variables.client_config.general.allowedExtensions = new List<string>() { "Screen.txt", "SCREEN.txt", "General.txt",
                             "GENERAL.txt", "Settings.txt", "SETTINGS.txt", "DepartureList.txt" };
-                        File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
-                        foreach (var ext in publicconfig.clientconfig.allowedExtensions)
+                        File.WriteAllText("config.json", JsonConvert.SerializeObject(variables.client_config, Formatting.Indented));
+                        foreach (var ext in variables.client_config.general.allowedExtensions)
                         {
                             filescopylist.Rows.Add(ext);
                         }
                     }
                     break;
                 case "write":
-                    publicconfig.clientconfig.cid = cidbox.Text;
-                    publicconfig.clientconfig.passwd = converters.ConvertPassword("encrypt", passwdbox.Text);
-                    publicconfig.clientconfig.rating = converters.RatingConvert("write", ratingbox.Text);
-                    publicconfig.clientconfig.callsign = callsignbox.Text;
-                    publicconfig.clientconfig.realname = namebox.Text;
-                    publicconfig.clientconfig.hoppiecode = hoppiecodebox.Text;
-                    publicconfig.clientconfig.esdir = esfolderbox.Text;
-                    publicconfig.clientconfig.country = countrybox.Text;
-                    publicconfig.clientconfig.insertcredentials = insertcredentials.Checked;
-                    publicconfig.clientconfig.insertatisairport = insertatisairport.Checked;
-                    publicconfig.clientconfig.insertplugins = insertplugins.Checked;
-                    publicconfig.clientconfig.runpowershell = runpsscript.Checked;
+                    variables.client_config.general.cid = cidbox.Text;
+                    variables.client_config.general.passwd = converters.ConvertPassword("encrypt", passwdbox.Text);
+                    variables.client_config.general.rating = converters.RatingConvert("write", ratingbox.Text);
+                    variables.client_config.general.callsign = callsignbox.Text;
+                    variables.client_config.general.realname = namebox.Text;
+                    variables.client_config.general.hoppiecode = hoppiecodebox.Text;
+                    variables.client_config.general.esdir = esfolderbox.Text;
+                    variables.client_config.general.country = countrybox.Text;
+                    variables.client_config.general.isInsertCredentials = insertcredentials.Checked;
+                    variables.client_config.general.isInsertAtisAirport = insertatisairport.Checked;
+                    variables.client_config.general.isInsertPlugins = insertplugins.Checked;
+                    variables.client_config.general.isRunPowershell = runpsscript.Checked;
 
-                    File.WriteAllText("config.json", JsonConvert.SerializeObject(publicconfig, Formatting.Indented));
+                    File.WriteAllText("config.json", JsonConvert.SerializeObject(variables.client_config, Formatting.Indented));
                     break;
             }
         }
@@ -830,9 +834,9 @@ namespace ToolScope_for_EuroScope
             }
         }
 
-        private Objects.AIRACPackage GetURLInformation(string link)
+        private Variables.AIRACPackage GetURLInformation(string link)
         {
-            Objects.AIRACPackage package = new Objects.AIRACPackage();
+            Variables.AIRACPackage package = new Variables.AIRACPackage();
 
             var regionName = link.Substring(link.IndexOf("nav.com/") + 8);
             package.region = regionName.Substring(0, regionName.IndexOf("/"));
@@ -871,7 +875,7 @@ namespace ToolScope_for_EuroScope
 
         private void GetCountries()
         {
-            foreach (string country in publicsconfig.countries)
+            foreach (string country in variables.server_config.countries)
             {
                 try
                 {
@@ -916,23 +920,6 @@ namespace ToolScope_for_EuroScope
                     packagebox.Items.Add(GetURLInformation(link).package);
                 }
             }
-        }
-        #endregion
-
-        #region PowerShell
-        // TODO: move into own function (PowerShell)
-        private static void RunPowerShellScript()
-        {
-
-            var ps1File = "custom-ps.ps1";
-
-            var startInfo = new ProcessStartInfo()
-            {
-                FileName = "powershell.exe",
-                Arguments = $"-NoProfile -ExecutionPolicy ByPass -File \"{ps1File}\"",
-                UseShellExecute = false
-            };
-            Process.Start(startInfo);
         }
         #endregion
 

@@ -330,7 +330,7 @@
   <ItemGroup>
     <Compile Include="Code\Core\Converters.cs" />
     <Compile Include="Code\Core\CountryNames.cs" />
-    <Compile Include="Code\Core\Objects.cs" />
+    <Compile Include="Code\Core\PowerShell.cs" />
     <Compile Include="Code\Core\Updater.cs" />
     <Compile Include="Code\Core\Variables.cs" />
     <Compile Include="Code\UI\Main.cs">

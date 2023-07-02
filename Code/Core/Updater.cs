@@ -13,17 +13,17 @@ namespace ToolScope_for_EuroScope.Code.Core
 {
     internal class Updater
     {
-        public bool CreateBackup(string pathinesdir, Objects.ClientRoot config)
+        public bool CreateBackup(string pathinesdir, Variables.ClientRoot config)
         {
-            var sourcePath = config.clientconfig.esdir + pathinesdir;
-            var targetPath = config.clientconfig.esdir + "/ToolScope/Backup/";
+            var sourcePath = config.general.esdir + pathinesdir;
+            var targetPath = config.general.esdir + "/ToolScope/Backup/";
 
-            Directory.CreateDirectory(config.clientconfig.esdir + "/ToolScope");
-            Directory.CreateDirectory(config.clientconfig.esdir + "/ToolScope/Backup");
+            Directory.CreateDirectory(config.general.esdir + "/ToolScope");
+            Directory.CreateDirectory(config.general.esdir + "/ToolScope/Backup");
 
             try
             {
-                Directory.Delete(config.clientconfig.esdir + "/ToolScope/Backup", true);
+                Directory.Delete(config.general.esdir + "/ToolScope/Backup", true);
             }
             catch
             {
@@ -43,22 +43,22 @@ namespace ToolScope_for_EuroScope.Code.Core
             return true;
         }
 
-        public bool ExtractZip(Objects.ClientRoot config)
+        public bool ExtractZip(Variables.ClientRoot config)
         {
-            var sourcePath = config.clientconfig.esdir + "/ToolScope/data";
-            var targetPath = config.clientconfig.esdir;
+            var sourcePath = config.general.esdir + "/ToolScope/data";
+            var targetPath = config.general.esdir;
 
             try
             {
-                Directory.Delete(config.clientconfig.esdir + "/ToolScope/data", true);
+                Directory.Delete(config.general.esdir + "/ToolScope/data", true);
             }
             catch
             {
 
             }
-
-            ZipFile.ExtractToDirectory(config.clientconfig.esdir + "/ToolScope/data.zip", config.clientconfig.esdir + "/ToolScope/data");
-            System.IO.File.Delete(config.clientconfig.esdir + "/ToolScope/data.zip");
+                
+            ZipFile.ExtractToDirectory(config.general.esdir + "/ToolScope/data.zip", config.general.esdir + "/ToolScope/data");
+            System.IO.File.Delete(config.general.esdir + "/ToolScope/data.zip");
 
             foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
             {
@@ -79,7 +79,7 @@ namespace ToolScope_for_EuroScope.Code.Core
         {
             // Inserting the data into the .prf-Files
 
-            Objects.ClientConfig config = form.publicconfig.clientconfig;
+            Variables.ClientConfig config = form.variables.client_config.general;
 
             Converters converters= new Converters();
 
@@ -114,14 +114,14 @@ namespace ToolScope_for_EuroScope.Code.Core
             return true;
         }
 
-        public void CopySettings(Objects.ClientRoot config, Bunifu.UI.WinForms.BunifuDropdown region_object)
+        public void CopySettings(Variables.ClientRoot config, Bunifu.UI.WinForms.BunifuDropdown region_object)
         {
-            var allowedExtensions = config.clientconfig.allowedExtensions;
+            var allowedExtensions = config.general.allowedExtensions;
 
             try
             {
                 var files = Directory
-                .GetFiles(config.clientconfig.esdir + "/ToolScope/Backup/" + region_object.Text + "/Settings", "*", SearchOption.AllDirectories).ToList();
+                .GetFiles(config.general.esdir + "/ToolScope/Backup/" + region_object.Text + "/Settings", "*", SearchOption.AllDirectories).ToList();
 
 
                 foreach (string file in files)
@@ -141,9 +141,9 @@ namespace ToolScope_for_EuroScope.Code.Core
 
         public void CreatePackageJSON(string path, Main el)
         {
-            Objects.ClientPackage pack = new Objects.ClientPackage();
+            Variables.ClientPackage pack = new Variables.ClientPackage();
 
-            Objects.AIRACPackage package = new Objects.AIRACPackage();
+            Variables.AIRACPackage package = new Variables.AIRACPackage();
 
             package.package = el.packagebox.Text;
             package.country = el.countrybox.Text;
