@@ -695,14 +695,10 @@ namespace ToolScope_for_EuroScope
         #endregion
 
 
-
         #region All Functions
         /// <summary>
         /// This only contains functions without any events.
         /// </summary>
-        /// <param name="type"></param>
-        /// <param name="text"></param>
-        /// <param name="seconds"></param>
 
         #region Notifications
         private void notifyText(string type, string text, int seconds)
