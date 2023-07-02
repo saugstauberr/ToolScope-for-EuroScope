@@ -37,6 +37,9 @@ namespace ToolScope_for_EuroScope
         Converters converters= new Converters();
         Updater updater = new Updater();
         PowerShell powershell = new PowerShell();
+        AIRAC_Manager airacmanager = new AIRAC_Manager();
+        Package_Handler packagehandler = new Package_Handler();
+        Notification notification= new Notification();
         #endregion
 
         #region Main
@@ -89,15 +92,15 @@ namespace ToolScope_for_EuroScope
             UpdateUI("read");
             #endregion
 
-            GetCountries();
+            packagehandler.GetCountries(this);
 
             if (variables.server_config.motd != "")
             {
-                notifyText("info", variables.server_config.motd, 10);
+                notification.Information(this, variables.server_config.motd, 10);
             }
 
             runpsscript.Checked = variables.client_config.general.isRunPowershell;
-            FeedDataGrid();
+            airacmanager.FeedDataGrid(this);
         }
         #endregion
 
@@ -126,7 +129,7 @@ namespace ToolScope_for_EuroScope
 
         private void airacmanagerbtn_Click(object sender, EventArgs e)
         {
-            FeedDataGrid();
+            airacmanager.FeedDataGrid(this);
             uipage.SelectedIndex = 1;
             ChangeUI("AIRAC Manager", (Bunifu.UI.WinForms.BunifuButton.BunifuButton)sender);
 
@@ -140,7 +143,7 @@ namespace ToolScope_for_EuroScope
                 void OnTimedEvent(object sendere, EventArgs ee)
                 {
                     variables.isFirstrun = true;
-                    FeedDataGrid();
+                    airacmanager.FeedDataGrid(this);
                     managertimer.Stop();
                 }
             }
@@ -163,140 +166,7 @@ namespace ToolScope_for_EuroScope
         #endregion
 
         #region PAGE: AIRAC Manager
-
-        #region Functions
-
-        //TODO: // #TODO: move into own function (AIRAC Manager Functions)
-        private void FeedDataGrid()
-        {
-            var packages = new List<Variables.AIRACPackage>();
-            Variables.AIRACUpdate update = new Variables.AIRACUpdate();
-            string[] packagejsons;
-            try
-            {
-                packagejsons = Directory.GetFiles(variables.client_config.general.esdir, "package.json", SearchOption.AllDirectories);
-            }
-            catch
-            {
-                return;
-            }
-
-            foreach (var pack in packagejsons)
-            {
-                if (!pack.Contains("ToolScope\\Backup"))
-                {
-                    try
-                    {
-                        var package = JsonConvert.DeserializeObject<Variables.AIRACPackage>(File.ReadAllText(pack));
-                        if (package.url == null)
-                        {
-                            package.url = "NOURL";
-                        }
-                        packages.Add(package);
-                    }
-                    catch
-                    { }
-                }
-            }
-            packagesdatagrid.DataSource = packages;
-
-            foreach (DataGridViewRow x in packagesdatagrid.Rows)
-            {
-                update = GetAIRACUpdate(x.Index);
-                if (update.isUpdateAvailable == true)
-                {
-                    x.DefaultCellStyle.BackColor = Color.FromArgb(255, 105, 103, 68);
-                    x.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 122, 120, 80);
-                    x.Cells[5].Value = update.old_package.version + " -> " + "V" + update.new_package.version;
-                    x.Cells[3].Value = update.old_package.airac + " -> " + update.new_package.airac;
-                    DateTime dr_o = DateTime.ParseExact(update.old_package.released, "yyyyMMddHHmms", CultureInfo.InvariantCulture);
-                    update.old_package.released = dr_o.ToString("dd.MM.yy");
-                    DateTime dr = DateTime.ParseExact(update.new_package.released, "yyyyMMddHHmms", CultureInfo.InvariantCulture);
-                    update.new_package.released = dr.ToString("dd.MM.yy");
-                    x.Cells[4].Value = update.old_package.released + " -> " + update.new_package.released;
-                    notifyText("warning", "AIRAC Updates available!", 7000);
-                }
-                else if (update.isUrlFound == false)
-                {
-                    x.DefaultCellStyle.BackColor = Color.FromArgb(255, 94, 62, 62);
-                    x.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 112, 73, 73);
-                    notifyText("warning", "AIRAC Updates available!", 7000);
-                }
-            }
-        }
-
-        private Variables.AIRACUpdate GetAIRACUpdate(int rows)
-        {
-            Variables.AIRACUpdate update = new Variables.AIRACUpdate();
-            DataGridViewRow row = packagesdatagrid.Rows[rows];
-
-            if (row.Cells[6].Value.ToString() == "NOURL")
-            {
-                update.isUrlFound = false;
-                return update;
-            }
-
-            update.old_package.country = row.Cells[0].Value.ToString();
-            update.old_package.region = row.Cells[1].Value.ToString();
-            update.old_package.package = row.Cells[2].Value.ToString();
-            update.old_package.airac = row.Cells[3].Value.ToString();
-            update.old_package.version = row.Cells[5].Value.ToString();
-            update.old_package.released = GetURLInformation(row.Cells[6].Value.ToString()).released;
-
-            Variables.AIRACPackage el = new Variables.AIRACPackage();
-            List<string> allurls = new List<string>();
-
-            HtmlWeb hw = new HtmlWeb();
-            HtmlAgilityPack.HtmlDocument doc = hw.Load("http://files.aero-nav.com/" + update.old_package.country);
-            foreach (HtmlNode link in doc.DocumentNode.SelectNodes("//a[@href]"))
-            {
-                if (link.Attributes["href"].Value.Contains(".zip"))
-                {
-                    allurls.Add(link.Attributes["href"].Value);
-                }
-            }
-
-            foreach (var x in allurls.ToList())
-            {
-                if (x.Contains(update.old_package.region) != true)
-                {
-                    allurls.Remove(x);
-                }
-            }
-
-            foreach (var x in allurls.ToList())
-            {
-                if (x.Contains(update.old_package.package) != true)
-                {
-                    allurls.Remove(x);
-                }
-            }
-            var url = string.Join("", allurls.ToList());
-            el.airac = GetURLInformation(url).airac;
-            DateTime da = DateTime.ParseExact(el.airac, "yyMMdd", new CultureInfo("da-DK"));
-            el.airac = da.ToString(@"yy\/MM");
-            el.version = GetURLInformation(url).version;
-            el.released = GetURLInformation(url).released;
-            el.region = GetURLInformation(url).region;
-            el.url = url;
-            el.country = GetURLInformation(url).country;
-            el.package = GetURLInformation(url).package;
-            update.new_package = el;
-
-
-            if (update.old_package.released == update.new_package.released)
-            {
-                return update;
-            }
-            else
-            {
-                update.isUpdateAvailable = true;
-                return update;
-            }
-        }
-
-        
-        #endregion
+        //Only Button Events here
 
         #region Button Events
         private void clearesfolderbtn_Click(object sender, EventArgs e)
@@ -318,11 +188,11 @@ namespace ToolScope_for_EuroScope
                         dir.Delete(true);
                     }
 
-                    notifyText("success", "All AIRACs deleted!", 5);
+                    notification.Success(this, "All AIRACs deleted!", 5);
                 }
                 catch
                 {
-                    notifyText("info", "No AIRACs found!", 5);
+                    notification.Information(this, "No AIRACs found!", 5);
                 }
 
             }
@@ -351,7 +221,7 @@ namespace ToolScope_for_EuroScope
             {
 
             }
-            FeedDataGrid();
+            airacmanager.FeedDataGrid(this);
         }
 
         private void packagesdatagrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -365,7 +235,7 @@ namespace ToolScope_for_EuroScope
         private void strip_updatebtn_Click(object sender, EventArgs e)
         {
             DataGridViewRow row = this.packagesdatagrid.SelectedRows[0];
-            Variables.AIRACUpdate update = GetAIRACUpdate(row.Index);
+            Variables.AIRACUpdate update = airacmanager.GetAIRACUpdate(this, row.Index);
 
             uipage.SelectedIndex = 0;
 
@@ -395,7 +265,7 @@ namespace ToolScope_for_EuroScope
             }
 
 
-            Variables.AIRACUpdate update = GetAIRACUpdate(row.Index);
+            Variables.AIRACUpdate update = airacmanager.GetAIRACUpdate(this, row.Index);
 
             if (update.isUrlFound == false)
             {
@@ -438,6 +308,7 @@ namespace ToolScope_for_EuroScope
         #endregion
 
         #region PAGE: AIRAC Downloader
+        // Only button events here except of Download Functions
 
         #region Additional Settings
         private void insertcredentials_CheckedChanged(object sender, EventArgs e)
@@ -469,8 +340,6 @@ namespace ToolScope_for_EuroScope
         #region Button Events
         private void countrybox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CountryNames country = new CountryNames();
-
             variables.client_config.general.country = countrybox.Text;
             File.WriteAllText("config.json", JsonConvert.SerializeObject(variables.client_config, Formatting.Indented));
 
@@ -481,13 +350,13 @@ namespace ToolScope_for_EuroScope
             releasetxt.Text = "None";
             downloadbtn.Enabled = false;
 
-            GrabDownloadUrls();
-            getRegions();
+            packagehandler.GrabDownloadUrls(this);
+            packagehandler.getRegions(this);
         }
 
         private void regionbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            addPackageItems(regionbox.Text);
+            packagehandler.addPackageItems(this, regionbox.Text);
             packagebox.Text = "";
             versiontxt.Text = "None";
             airactxt.Text = "None";
@@ -500,13 +369,13 @@ namespace ToolScope_for_EuroScope
             var x = variables.allpackages.FindIndex(s => s.Contains("https://files.aero-nav.com/" + regionbox.Text + "/" + packagebox.Text));
             variables.selectedUrlString = variables.allpackages[x];
 
-            string regionName = GetURLInformation(variables.selectedUrlString).region;
+            string regionName = packagehandler.GetURLInformation(variables.selectedUrlString).region;
 
-            string release = GetURLInformation(variables.selectedUrlString).released;
+            string release = packagehandler.GetURLInformation(variables.selectedUrlString).released;
 
-            string airac = GetURLInformation(variables.selectedUrlString).airac;
+            string airac = packagehandler.GetURLInformation(variables.selectedUrlString).airac;
 
-            string version = GetURLInformation(variables.selectedUrlString).version;
+            string version = packagehandler.GetURLInformation(variables.selectedUrlString).version;
 
             variables.selectedRegionString = regionName;
 
@@ -563,6 +432,8 @@ namespace ToolScope_for_EuroScope
                 updater.ExtractZip(variables.client_config);
                 updater.CreatePackageJSON(variables.client_config.general.esdir + "/" + variables.selectedRegionString, this);
 
+                notification.Success(this, "Packages successfully installed/updated!", 10);
+
                 // Running selected settings
                 if (insertcredentials.Checked == true)
                 {
@@ -589,7 +460,7 @@ namespace ToolScope_for_EuroScope
                 if (variables.isUpdaterun == true)
                 {
                     variables.isUpdaterun = false;
-                    FeedDataGrid();
+                    airacmanager.FeedDataGrid(this);
                     uipage.SelectedIndex = 1;
                 }
             });
@@ -600,7 +471,7 @@ namespace ToolScope_for_EuroScope
         #endregion
 
         #region PAGE: Settings
-
+        // Only Button Events here
 
         #region File Whitelist
 
@@ -674,7 +545,7 @@ namespace ToolScope_for_EuroScope
             UpdateUI("write");
             UpdateUI("read");
             savebtn.Enabled = false;
-            notifyText("success", "Settings have been saved and loaded!", 5);
+            notification.Success(this, "Settings have been saved and loaded!", 5);
         }
 
         private void esfolderbox_Click(object sender, EventArgs e)
@@ -695,48 +566,10 @@ namespace ToolScope_for_EuroScope
 
         #endregion
 
-
         #region All Functions
-        /// <summary>
-        /// This only contains functions without any events.
-        /// </summary>
+        // This only contains functions without any events.
 
         #region Notifications
-        private void notifyText(string type, string text, int seconds)
-        {
-            notifytxt.Text = text;
-            notifytxt.Visible = true;
-            notifytimer.Stop();
-
-            int duration = seconds * 1000;
-
-            switch (type)
-            {
-                case "success":
-                    notifytxt.ForeColor = Color.Green;
-                    notifytimer.Interval = duration;
-                    notifytimer.Start();
-                    break;
-
-                case "error":
-                    notifytxt.ForeColor = Color.Red;
-                    notifytimer.Interval = duration;
-                    notifytimer.Start();
-                    break;
-
-                case "warning":
-                    notifytxt.ForeColor = Color.Orange;
-                    notifytimer.Interval = duration;
-                    notifytimer.Start();
-                    break;
-
-                default:
-                    notifytxt.ForeColor = Color.Silver;
-                    notifytimer.Interval = duration;
-                    notifytimer.Start();
-                    break;
-            }
-        }
 
         private void notifytimer_Tick(object sender, EventArgs e)
         {
@@ -810,113 +643,6 @@ namespace ToolScope_for_EuroScope
             }
         }
 
-        #endregion
-
-        #region Package Initalizer
-        // TODO: move into own function (package initalizer)
-        private void GrabDownloadUrls()
-        {
-            CountryNames database = new CountryNames();
-            variables.allpackages.Clear();
-
-            HtmlWeb hw = new HtmlWeb();
-            HtmlAgilityPack.HtmlDocument doc = hw.Load("http://files.aero-nav.com/" + database.GetCountryIcao(countrybox.Text));
-            foreach (HtmlNode link in doc.DocumentNode.SelectNodes("//a[@href]"))
-            {
-                if (link.Attributes["href"].Value.Contains(".zip"))
-                {
-                    variables.allpackages.Add(link.Attributes["href"].Value);
-                }
-            }
-        }
-
-        private Variables.AIRACPackage GetURLInformation(string link)
-        {
-            Variables.AIRACPackage package = new Variables.AIRACPackage();
-
-            var regionName = link.Substring(link.IndexOf("nav.com/") + 8);
-            package.region = regionName.Substring(0, regionName.IndexOf("/"));
-
-            var packageName = regionName.Substring(regionName.IndexOf("/") + 1);
-            package.package = packageName.Substring(0, packageName.IndexOf("_2"));
-
-            var release = packageName.Substring(packageName.IndexOf("_2") + 1);
-            package.released = release.Substring(0, release.IndexOf("-"));
-
-            var airac = release.Substring(15);
-            package.airac = airac.Substring(0, airac.IndexOf("-"));
-
-            var version = airac.Substring(7);
-            package.version = version.Substring(0, version.IndexOf(".zip"));
-            package.url = "";
-
-            /*switch (type)
-            {
-                case "region":
-                    return regionName2;
-                case "package":
-                    return packageName2;
-                case "release":
-                    return release2;
-                case "airac":
-                    return airac2;
-                case "version":
-                    return version2;
-                default:
-                    return "ERROR";
-            }*/
-            return package;
-        }
-
-
-        private void GetCountries()
-        {
-            foreach (string country in variables.server_config.countries)
-            {
-                try
-                {
-                    countrybox.Items.Add(country);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-
-            }
-            GrabDownloadUrls();
-            getRegions();
-        }
-
-        private void getRegions()
-        {
-            regionbox.Items.Clear();
-            variables.regions.Clear();
-
-            foreach (string link in variables.allpackages)
-            {
-                string regionName2 = GetURLInformation(link).region;
-
-                if (!variables.regions.Contains(regionName2))
-                {
-                    regionbox.Items.Add(GetURLInformation(link).region);
-                }
-
-                variables.regions.Add(regionName2);
-            }
-        }
-
-        private void addPackageItems(string filter)
-        {
-            packagebox.Items.Clear();
-
-            foreach (string link in variables.allpackages)
-            {
-                if (link.Contains(filter) == true)
-                {
-                    packagebox.Items.Add(GetURLInformation(link).package);
-                }
-            }
-        }
         #endregion
 
         #endregion
