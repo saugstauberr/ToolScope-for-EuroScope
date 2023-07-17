@@ -43,10 +43,9 @@ namespace ToolScope_for_EuroScope.Code.Core
             return true;
         }
 
-        public bool ExtractZip(Variables.ClientRoot config)
+        public bool ExtractZip(Variables.ClientRoot config, string targetPath)
         {
             var sourcePath = config.general.esdir + "/ToolScope/data";
-            var targetPath = config.general.esdir;
 
             try
             {
@@ -87,7 +86,7 @@ namespace ToolScope_for_EuroScope.Code.Core
                     "\r\nLastSession\t" + "certificate\t" + config.cid + "\r\nLastSession\tpassword\t" +
                     converters.ConvertPassword("decrypt", config.passwd) + "\r\nLastSession\trating\t" + config.rating +
                     "\r\nLastSession\t" + "server\t" + config.server + "\r\nLastSession\ttovatsim\t1";
-            string[] allProfiles = Directory.GetFiles(config.esdir, "*.prf");
+            string[] allProfiles = Directory.GetFiles(config.esdir + "/" + form.regionbox.Text + " " + form.packagebox.Text, "*.prf");
 
             foreach (string profile in allProfiles)
             {
