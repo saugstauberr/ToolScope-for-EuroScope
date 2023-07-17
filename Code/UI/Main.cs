@@ -21,7 +21,7 @@ namespace ToolScope_for_EuroScope
 {
     public partial class Main : Form
     {
-        public string pversion = "1.4.2";
+        public string pversion = "1.4.3";
 
         #region Notes - Link Structure
         /// <summary>
@@ -202,20 +202,13 @@ namespace ToolScope_for_EuroScope
         {
             DataGridViewRow row = this.packagesdatagrid.SelectedRows[0];
             string region = row.Cells[1].Value.ToString();
+            string package = row.Cells[2].Value.ToString();
 
             DirectoryInfo d = new DirectoryInfo(variables.client_config.general.esdir);
 
             try
             {
-                Directory.Delete(variables.client_config.general.esdir + "/" + region, true);
-                foreach (var file in d.GetFiles())
-                {
-                    if (file.FullName.Contains(region))
-                    {
-                        file.Delete();
-                    }
-
-                }
+                Directory.Delete(variables.client_config.general.esdir + "/" + region + " " + package, true);
             }
             catch
             {
@@ -429,8 +422,10 @@ namespace ToolScope_for_EuroScope
                 catch
                 {
                 }
-                updater.ExtractZip(variables.client_config);
-                updater.CreatePackageJSON(variables.client_config.general.esdir + "/" + variables.selectedRegionString, this);
+                updater.ExtractZip(variables.client_config, variables.client_config.general.esdir + "/" + regionbox.Text + " " + packagebox.Text);
+
+                // TODO: Folder structure, if selected advanced then to below, else do without packagebox.Text
+                updater.CreatePackageJSON(variables.client_config.general.esdir + "/" + regionbox.Text + " " + packagebox.Text + "/" + variables.selectedRegionString, this);
 
                 notification.Success(this, "Packages successfully installed/updated!", 10);
 
