@@ -21,7 +21,7 @@ namespace ToolScope_for_EuroScope
 {
     public partial class Main : Form
     {
-        public string pversion = "1.4.3";
+        public string pversion = "1.4.4";
 
         #region Notes - Link Structure
         /// <summary>
@@ -632,7 +632,6 @@ namespace ToolScope_for_EuroScope
                     variables.client_config.general.isInsertAtisAirport = insertatisairport.Checked;
                     variables.client_config.general.isInsertPlugins = insertplugins.Checked;
                     variables.client_config.general.isRunPowershell = runpsscript.Checked;
-
                     File.WriteAllText("config.json", JsonConvert.SerializeObject(variables.client_config, Formatting.Indented));
                     break;
             }
@@ -642,5 +641,19 @@ namespace ToolScope_for_EuroScope
 
         #endregion
 
+        private void SaveFileWhitelist(object sender, DataGridViewCellEventArgs e)
+        {
+            variables.client_config.general.allowedExtensions.Clear();
+
+            foreach (DataGridViewRow ext in filescopylist.Rows)
+            {
+                
+                if(ext.Cells[0].Value != null)
+                {
+                    variables.client_config.general.allowedExtensions.Add(ext.Cells[0].Value.ToString());
+                }
+                UpdateUI("write");
+            }
+        }
     }
 }
