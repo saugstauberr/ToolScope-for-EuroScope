@@ -6,7 +6,7 @@
  [VATSIM Germany Website](https://vatsim-germany.org/) •
  [Manual AIRAC download](http://files.aero-nav.com/EDXX)
 
-[!Donate](https://img.shields.io/badge/Send-A%20Coffee-FFDD00?style=plastic&logo=buymeacoffee&logoColor=white)](https://www.buymeacoffee.com/saugstauber)
+[![Donate](https://img.shields.io/badge/Send-A%20Coffee-FFDD00?style=plastic&logo=buymeacoffee&logoColor=white)](https://www.buymeacoffee.com/saugstauber)
 ![Main Menu](https://i.ibb.co/Swmcnwh/Screenshot-2023-06-26-044943.png)
 ![AIRAC Manager](https://i.ibb.co/zfqbY3G/Screenshot-2023-06-26-044936.png)
 ![Settings Menu](https://i.ibb.co/WD24zK6/Screenshot-2023-06-26-045014.png)
