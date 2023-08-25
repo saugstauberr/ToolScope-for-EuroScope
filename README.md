@@ -1,11 +1,10 @@
 
 ![Banner](https://i.imgur.com/Itmo2Vl.png)
 ### Welcome to ToolScope! :wave:
- [**Download here!**](https://github.com/saugstauberr/ToolScope-for-EuroScope/releases) •
- [Where I've got this idea from](https://board.vatsim-germany.org/threads/tool-powershell-script-fuer-airac-update-mit-erhaltung-eigener-einstellungen.69729/page-2) •
- [VATSIM Germany Website](https://vatsim-germany.org/) •
- [Manual AIRAC download](http://files.aero-nav.com/EDXX)
-
+[![Download](https://img.shields.io/badge/Latest-Download-blue)](https://github.com/saugstauberr/ToolScope-for-EuroScope/releases)
+[![Where I've got this idea from](https://img.shields.io/badge/-Go_to_original_idea-grey)](https://board.vatsim-germany.org/threads/tool-powershell-script-fuer-airac-update-mit-erhaltung-eigener-einstellungen.69729/page-2)
+ [![VATSIM Germany Website](https://img.shields.io/badge/Go_to-VATSIM_Germany-blue)](https://vatsim-germany.org/)
+ [![Manual AIRAC download](https://img.shields.io/badge/Update_AIRAC-manually-purple)](http://files.aero-nav.com/EDXX)
 [![Donate](https://img.shields.io/badge/Send-A%20Coffee-FFDD00?style=plastic&logo=buymeacoffee&logoColor=white)](https://www.buymeacoffee.com/saugstauber)
 ![Main Menu](https://i.ibb.co/Swmcnwh/Screenshot-2023-06-26-044943.png)
 ![AIRAC Manager](https://i.ibb.co/zfqbY3G/Screenshot-2023-06-26-044936.png)
