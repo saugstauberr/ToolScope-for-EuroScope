@@ -1,0 +1,44 @@
+﻿<Window x:Class="ToolScope.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToolScope.WPF"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:vm="clr-namespace:ToolScope.WPF"
+        d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="CanResizeWithGrip"
+        MouseDown="Window_MouseDown"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Title="MainWindow" d:Height="486" d:Width="935" Height="{Binding Height}" Width="{Binding Width}">
+    
+    <Border CornerRadius="25" BorderBrush="#FF322E37" BorderThickness="2" Padding="6" Background="#111012">
+        <Grid>
+            <Grid.RowDefinitions>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="13*"/>
+                <ColumnDefinition Width="173*"/>
+                <ColumnDefinition Width="598*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="34" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,2,9,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="565*"/>
+                    <ColumnDefinition Width="136*"/>
+                </Grid.ColumnDefinitions>
+                <Button Click="CloseCommand" Background="#FF731414" BorderThickness="1" hc:BorderElement.CornerRadius="20" Height="34" Width="34" HorizontalAlignment="Right" Grid.Column="1" Padding="0" BorderBrush="#FF653636" VerticalAlignment="Top">
+                    <Image Source="/Ressources/close.png" Margin="7" RenderOptions.BitmapScalingMode="HighQuality" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Button>
+            </Grid>
+            <Border Background="#FF141215" CornerRadius="20" BorderBrush="#FF29242B" BorderThickness="1" HorizontalAlignment="Left" Width="173" Grid.ColumnSpan="2" Margin="15,10,0,10">
+                <Image Source="/Views/ToolScope Banner.png"
+                   RenderOptions.BitmapScalingMode="HighQuality" Margin="9,9,9,0" Height="57" VerticalAlignment="Top"/>
+
+            </Border>
+        </Grid>
+    </Border>
+</Window>
