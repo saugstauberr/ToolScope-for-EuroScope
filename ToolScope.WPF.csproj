@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="Ressources\close.png" />
     <None Remove="Views\close.png" />
+    <None Remove="Views\settings.png" />
     <None Remove="Views\ToolScope Banner.png" />
   </ItemGroup>
 
@@ -25,11 +26,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controls\" />
     <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Ressources\close.png" />
+    <Resource Include="Views\settings.png" />
     <Resource Include="Views\ToolScope Banner.png" />
   </ItemGroup>
 
