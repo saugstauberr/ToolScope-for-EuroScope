@@ -77,118 +77,132 @@
                     Foreground="#111012"
                     SelectedIndex="{Binding CurrentTab}">
                     <TabItem Header="Dashboard" Visibility="Collapsed">
-                        <Grid x:Name="grid">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="70" />
-                                <RowDefinition Height="50" />
-                                <RowDefinition Height="50" />
-                                <RowDefinition Height="50" />
-                                <RowDefinition Height="50" />
-                            </Grid.RowDefinitions>
+                        <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="130" />
-                                <ColumnDefinition Width="150" />
-                                <ColumnDefinition Width="130" />
-                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock
-                                FontFamily="Microsoft PhagsPa"
-                                FontSize="18"
-                                FontWeight="Black"
-                                Foreground="#FFEDBD3A"
-                                Text="Dashboard" />
-                            <TextBlock
-                                Grid.Row="1"
-                                Margin="0,-9,0,0"
-                                FontFamily="Microsoft PhagsPa"
-                                FontSize="15"
-                                FontWeight="Regular"
-                                Foreground="White"
-                                Text="Country:" />
-                            <ComboBox
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                Height="30"
-                                Margin="0,-47,0,0"
-                                HorizontalAlignment="Stretch"
-                                Background="#161517"
-                                BorderThickness="0" />
-                            <TextBlock
-                                Grid.Row="2"
-                                Margin="0,-9,0,0"
-                                FontFamily="Microsoft PhagsPa"
-                                FontSize="15"
-                                FontWeight="Regular"
-                                Foreground="White"
-                                Text="Region:" />
-                            <ComboBox
-                                Grid.Row="2"
-                                Grid.Column="1"
-                                Height="30"
-                                Margin="0,-47,0,0"
-                                HorizontalAlignment="Stretch"
-                                Background="#161517"
-                                BorderThickness="0" />
-                            <TextBlock
-                                Grid.Row="3"
-                                Margin="0,-9,0,0"
-                                FontFamily="Microsoft PhagsPa"
-                                FontSize="15"
-                                FontWeight="Regular"
-                                Foreground="White"
-                                Text="Package:" />
-                            <ComboBox
-                                Grid.Row="3"
-                                Grid.Column="1"
-                                Height="30"
-                                Margin="0,-47,0,0"
-                                HorizontalAlignment="Stretch"
-                                Background="#161517"
-                                BorderThickness="0" />
-                            <Button
-                                Grid.Row="4"
-                                Grid.Column="0"
-                                Grid.ColumnSpan="2"
-                                HorizontalAlignment="Stretch"
-                                Background="#15BD6F"
-                                BorderThickness="0"
-                                Content="Apply AIRAC"
-                                FontFamily="Microsoft PhagsPa"
-                                FontWeight="Bold"
-                                Foreground="#fff" />
-                            <CheckBox
-                                Grid.Row="1"
-                                Grid.Column="3"
-                                Margin="0,-46,20,0"
-                                HorizontalAlignment="Right"
-                                FontFamily="Microsoft PhagsPa"
-                                Foreground="White" />
-                            <TextBlock
-                                Grid.Row="1"
-                                Grid.Column="4"
-                                Margin="0,-9,0,0"
-                                FontFamily="Microsoft PhagsPa"
-                                FontSize="15"
-                                FontWeight="Regular"
-                                Foreground="White"
-                                Text="Some Setting" />
-                            <CheckBox
-                                Grid.Row="2"
-                                Grid.Column="3"
-                                Margin="0,-46,20,0"
-                                HorizontalAlignment="Right"
-                                FontFamily="Microsoft PhagsPa"
-                                Foreground="White" />
-                            <TextBlock
-                                Grid.Row="2"
-                                Grid.Column="4"
-                                Margin="0,-9,0,0"
-                                FontFamily="Microsoft PhagsPa"
-                                FontSize="15"
-                                FontWeight="Regular"
-                                Foreground="White"
-                                Text="Some Setting" />
+                            <Grid x:Name="grid" Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="50" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="130" />
+                                    <ColumnDefinition Width="150" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    FontFamily="Microsoft PhagsPa"
+                                    FontSize="18"
+                                    FontWeight="Black"
+                                    Foreground="#FFEDBD3A"
+                                    Text="Dashboard" />
+                                <TextBlock
+                                    Grid.Row="1"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Microsoft PhagsPa"
+                                    FontSize="15"
+                                    FontWeight="Regular"
+                                    Foreground="White"
+                                    Text="Country:" />
+                                <ComboBox
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Height="30"
+                                    HorizontalAlignment="Stretch"
+                                    Background="#161517"
+                                    BorderThickness="0" />
+                                <TextBlock
+                                    Grid.Row="2"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Microsoft PhagsPa"
+                                    FontSize="15"
+                                    FontWeight="Regular"
+                                    Foreground="White"
+                                    Text="Region:" />
+                                <ComboBox
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Height="30"
+                                    HorizontalAlignment="Stretch"
+                                    Background="#161517"
+                                    BorderThickness="0" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Microsoft PhagsPa"
+                                    FontSize="15"
+                                    FontWeight="Regular"
+                                    Foreground="White"
+                                    Text="Package:" />
+                                <ComboBox
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    Height="30"
+                                    HorizontalAlignment="Stretch"
+                                    Background="#161517"
+                                    BorderThickness="0" />
+                                <Button
+                                    Grid.Row="4"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalAlignment="Stretch"
+                                    Background="#15BD6F"
+                                    BorderThickness="0"
+                                    Content="Apply AIRAC"
+                                    FontFamily="Microsoft PhagsPa"
+                                    FontWeight="Bold"
+                                    Foreground="#fff" />
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <CheckBox
+                                    Grid.Row="1"
+                                    Grid.ColumnSpan="2"
+                                    Padding="15,0,0,2"
+                                    HorizontalAlignment="Left"
+                                    Content="Insert credentials and hoppie code"
+                                    FontFamily="Microsoft PhagsPa"
+                                    FontSize="15"
+                                    FontWeight="Regular"
+                                    Foreground="White" />
+                                <CheckBox
+                                    Grid.Row="2"
+                                    Grid.ColumnSpan="2"
+                                    Padding="15,0,0,2"
+                                    HorizontalAlignment="Left"
+                                    FontFamily="Microsoft PhagsPa"
+                                    FontSize="15"
+                                    FontWeight="Regular"
+                                    Foreground="White">
+                                    <TextBlock Text="Copy settings from previous AIRAC (window position, ...)" TextWrapping="Wrap" />
+                                </CheckBox>
+                                <CheckBox
+                                    Grid.Row="3"
+                                    Grid.ColumnSpan="2"
+                                    Padding="15,0,0,2"
+                                    HorizontalAlignment="Left"
+                                    FontFamily="Microsoft PhagsPa"
+                                    FontSize="15"
+                                    FontWeight="Regular"
+                                    Foreground="White">
+                                    <TextBlock Text="Run custom PowerShell script" TextWrapping="Wrap" />
+                                </CheckBox>
+                            </Grid>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Settings" Visibility="Collapsed">
