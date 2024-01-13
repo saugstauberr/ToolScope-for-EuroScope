@@ -20,6 +20,19 @@ public partial class MainWindowViewModel : ObservableObject
     [ObservableProperty]
     public int currentTab = 0;
 
+    [ObservableProperty]
+    public string packageAIRAC = "23/06";
+
+    [ObservableProperty]
+    public string packageReleased = "16.06.2023";
+
+    [ObservableProperty]
+    public string packageVersion = "V1";
+
+    [ObservableProperty]
+    public string[] countryList = new string[] { "EDXX", "EHXX" };
+
+
     [RelayCommand]
     public void ChangeTab(object tab)
     {

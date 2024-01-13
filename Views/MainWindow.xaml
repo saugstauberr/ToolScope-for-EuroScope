@@ -32,7 +32,7 @@
         <Grid>
             <Grid.RowDefinitions />
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="13" />
+                <ColumnDefinition Width="0" />
                 <ColumnDefinition Width="222" />
                 <ColumnDefinition Width="17" />
                 <ColumnDefinition Width="667*" />
@@ -85,9 +85,12 @@
                             <Grid x:Name="grid" Grid.Column="0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="50" />
-                                    <RowDefinition Height="50" />
-                                    <RowDefinition Height="50" />
-                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
                                     <RowDefinition Height="50" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
@@ -103,58 +106,142 @@
                                     Text="Dashboard" />
                                 <TextBlock
                                     Grid.Row="1"
+                                    Margin="0,0,20,0"
+                                    HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
                                     FontFamily="Microsoft PhagsPa"
-                                    FontSize="15"
+                                    FontSize="13"
                                     FontWeight="Regular"
                                     Foreground="White"
                                     Text="Country:" />
                                 <ComboBox
                                     Grid.Row="1"
                                     Grid.Column="1"
-                                    Height="30"
+                                    Height="20"
                                     HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Center"
                                     Background="#161517"
-                                    BorderThickness="0" />
+                                    BorderThickness="0"
+                                    FontFamily="Microsoft PhagsPa"
+                                    FontSize="13"
+                                    Foreground="#fff" />
                                 <TextBlock
                                     Grid.Row="2"
+                                    Margin="0,0,20,0"
+                                    HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
                                     FontFamily="Microsoft PhagsPa"
-                                    FontSize="15"
+                                    FontSize="13"
                                     FontWeight="Regular"
                                     Foreground="White"
                                     Text="Region:" />
                                 <ComboBox
                                     Grid.Row="2"
                                     Grid.Column="1"
-                                    Height="30"
+                                    Height="20"
                                     HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Center"
                                     Background="#161517"
-                                    BorderThickness="0" />
+                                    BorderThickness="0"
+                                    FontFamily="Microsoft PhagsPa"
+                                    FontSize="13"
+                                    Foreground="#fff" />
                                 <TextBlock
                                     Grid.Row="3"
+                                    Margin="0,0,20,0"
+                                    HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
                                     FontFamily="Microsoft PhagsPa"
-                                    FontSize="15"
+                                    FontSize="13"
                                     FontWeight="Regular"
                                     Foreground="White"
                                     Text="Package:" />
                                 <ComboBox
                                     Grid.Row="3"
                                     Grid.Column="1"
-                                    Height="30"
+                                    Height="20"
                                     HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Center"
                                     Background="#161517"
-                                    BorderThickness="0" />
-                                <Button
+                                    BorderThickness="0"
+                                    FontFamily="Microsoft PhagsPa"
+                                    FontSize="13"
+                                    Foreground="#fff" />
+                                <TextBlock
                                     Grid.Row="4"
+                                    Margin="0,0,20,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Microsoft PhagsPa"
+                                    FontSize="13"
+                                    FontWeight="Regular"
+                                    Foreground="White"
+                                    Text="AIRAC:" />
+                                <TextBlock
+                                    Grid.Row="6"
+                                    Grid.Column="1"
+                                    Margin="0,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Microsoft PhagsPa"
+                                    FontSize="13"
+                                    FontWeight="Bold"
+                                    Foreground="White"
+                                    Text="{Binding PackageVersion}" />
+                                <TextBlock
+                                    Grid.Row="5"
+                                    Margin="0,0,20,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Microsoft PhagsPa"
+                                    FontSize="13"
+                                    FontWeight="Regular"
+                                    Foreground="White"
+                                    Text="Released:" />
+                                <TextBlock
+                                    Grid.Row="5"
+                                    Grid.Column="1"
+                                    Margin="0,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Microsoft PhagsPa"
+                                    FontSize="13"
+                                    FontWeight="Bold"
+                                    Foreground="White"
+                                    Text="{Binding PackageReleased}" />
+                                <TextBlock
+                                    Grid.Row="6"
+                                    Margin="0,0,20,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Microsoft PhagsPa"
+                                    FontSize="13"
+                                    FontWeight="Regular"
+                                    Foreground="White"
+                                    Text="Version:" />
+                                <TextBlock
+                                    Grid.Row="4"
+                                    Grid.Column="1"
+                                    Margin="0,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Microsoft PhagsPa"
+                                    FontSize="13"
+                                    FontWeight="Bold"
+                                    Foreground="White"
+                                    Text="{Binding PackageAIRAC}" />
+                                <Button
+                                    Grid.Row="7"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="2"
+                                    Height="28"
+                                    Padding="0,-1,0,0"
                                     HorizontalAlignment="Stretch"
                                     Background="#15BD6F"
                                     BorderThickness="0"
                                     Content="Apply AIRAC"
                                     FontFamily="Microsoft PhagsPa"
+                                    FontSize="13"
                                     FontWeight="Bold"
                                     Foreground="#fff" />
                             </Grid>
@@ -177,7 +264,7 @@
                                     HorizontalAlignment="Left"
                                     Content="Insert credentials and hoppie code"
                                     FontFamily="Microsoft PhagsPa"
-                                    FontSize="15"
+                                    FontSize="13"
                                     FontWeight="Regular"
                                     Foreground="White" />
                                 <CheckBox
@@ -186,7 +273,7 @@
                                     Padding="15,0,0,2"
                                     HorizontalAlignment="Left"
                                     FontFamily="Microsoft PhagsPa"
-                                    FontSize="15"
+                                    FontSize="13"
                                     FontWeight="Regular"
                                     Foreground="White">
                                     <TextBlock Text="Copy settings from previous AIRAC (window position, ...)" TextWrapping="Wrap" />
@@ -197,7 +284,7 @@
                                     Padding="15,0,0,2"
                                     HorizontalAlignment="Left"
                                     FontFamily="Microsoft PhagsPa"
-                                    FontSize="15"
+                                    FontSize="13"
                                     FontWeight="Regular"
                                     Foreground="White">
                                     <TextBlock Text="Run custom PowerShell script" TextWrapping="Wrap" />

@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <Folder Include="Controls\" />
-    <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>
