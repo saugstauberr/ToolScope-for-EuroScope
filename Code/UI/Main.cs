@@ -21,7 +21,7 @@ namespace ToolScope_for_EuroScope
 {
     public partial class Main : Form
     {
-        public string pversion = "1.4.4";
+        public string pversion = "1.4.5";
 
         #region Notes - Link Structure
         /// <summary>
@@ -373,8 +373,7 @@ namespace ToolScope_for_EuroScope
             variables.selectedRegionString = regionName;
 
             versiontxt.Text = "V" + version;
-            DateTime da = DateTime.ParseExact(airac, "yyMMdd", new CultureInfo("da-DK"));
-            airactxt.Text = da.ToString(@"yy\/MM");
+            airactxt.Text = airac.Substring(0, 4) + " / " + airac.Substring(4, 2);
             DateTime dr = DateTime.ParseExact(release, "yyyyMMddHHmms", CultureInfo.InvariantCulture);
             releasetxt.Text = dr.ToString("dd.MM.yyyy");
             downloadbtn.Enabled = true;
