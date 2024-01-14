@@ -130,6 +130,9 @@
                                     ItemsSource="{Binding CountryList}"
                                     SelectedValue="{Binding SelectedCountry}">
                                     <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Loaded">
+                                            <i:InvokeCommandAction Command="{Binding ChangeCountryCommand}" CommandParameter="{Binding SelectedValue, ElementName=country}" />
+                                        </i:EventTrigger>
                                         <i:EventTrigger EventName="SelectionChanged">
                                             <i:InvokeCommandAction Command="{Binding ChangeCountryCommand}" CommandParameter="{Binding SelectedValue, ElementName=country}" />
                                         </i:EventTrigger>
@@ -160,6 +163,9 @@
                                     ItemsSource="{Binding RegionList}"
                                     SelectedValue="{Binding SelectedRegion}">
                                     <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Loaded">
+                                            <i:InvokeCommandAction Command="{Binding ChangeRegionCommand}" CommandParameter="{Binding SelectedValue, ElementName=region}" />
+                                        </i:EventTrigger>
                                         <i:EventTrigger EventName="SelectionChanged">
                                             <i:InvokeCommandAction Command="{Binding ChangeRegionCommand}" CommandParameter="{Binding SelectedValue, ElementName=region}" />
                                         </i:EventTrigger>
@@ -190,6 +196,9 @@
                                     ItemsSource="{Binding PackageList}"
                                     SelectedValue="{Binding SelectedPackage}">
                                     <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Loaded">
+                                            <i:InvokeCommandAction Command="{Binding ChangePackageCommand}" CommandParameter="{Binding SelectedValue, ElementName=package}" />
+                                        </i:EventTrigger>
                                         <i:EventTrigger EventName="SelectionChanged">
                                             <i:InvokeCommandAction Command="{Binding ChangePackageCommand}" CommandParameter="{Binding SelectedValue, ElementName=package}" />
                                         </i:EventTrigger>
@@ -267,6 +276,7 @@
                                     HorizontalAlignment="Stretch"
                                     Background="#15BD6F"
                                     BorderThickness="0"
+                                    Command="{Binding InstallCommand}"
                                     Content="Apply AIRAC"
                                     FontFamily="Microsoft PhagsPa"
                                     FontSize="13"

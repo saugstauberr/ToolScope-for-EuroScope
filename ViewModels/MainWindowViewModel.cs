@@ -3,12 +3,14 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
+using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using ToolScope.WPF.Models;
+using ToolScope.WPF.Models.Config;
 
 namespace ToolScope.WPF;
 
@@ -37,19 +39,19 @@ public partial class MainWindowViewModel : ObservableObject
     public string[] countryList = PackageLister.GetCountriesFromServer();
 
     [ObservableProperty]
-    public string selectedCountry = "";
+    public string selectedCountry = ConfigManager.GetUserConfig().country;
 
     [ObservableProperty]
     public string[] regionList = { };
 
     [ObservableProperty]
-    public string selectedRegion = "";
+    public string selectedRegion = ConfigManager.GetUserConfig().region;
 
     [ObservableProperty]
     public string[] packageList = { };
 
     [ObservableProperty]
-    public string selectedPackage = "";
+    public string selectedPackage = ConfigManager.GetUserConfig().package;
 
 
     [RelayCommand]
@@ -70,7 +72,7 @@ public partial class MainWindowViewModel : ObservableObject
     [RelayCommand]
     public void ChangeRegion(object region)
     {
-        if(region == null)
+        if (region == null)
         {
             PackageList = new string[] { };
             return;
@@ -83,5 +85,12 @@ public partial class MainWindowViewModel : ObservableObject
     public void ChangeTab(object tab)
     {
         CurrentTab = int.Parse(tab.ToString()!);
+    }
+
+    [RelayCommand]
+    public void Install()
+    {
+        var userConfig = new UserConfig("", "", "", selectedCountry, selectedRegion, selectedPackage);
+        ConfigManager.SaveConfig(userConfig);
     }
 }
