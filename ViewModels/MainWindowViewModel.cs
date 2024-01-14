@@ -57,7 +57,7 @@ public partial class MainWindowViewModel : ObservableObject
     [RelayCommand]
     public void ChangePackage(object package)
     {
-        var currentPackage = PackageLister.GetSelectedPackage(selectedCountry, selectedRegion, selectedPackage);
+        Models.Package currentPackage = PackageLister.GetSelectedPackage(SelectedCountry, SelectedRegion, SelectedPackage);
         PackageAIRAC = currentPackage.airac;
         PackageReleased = currentPackage.released;
         PackageVersion = currentPackage.version;
