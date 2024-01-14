@@ -2,11 +2,12 @@
     x:Class="ToolScope.WPF.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:local="clr-namespace:ToolScope.WPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
     xmlns:vm="clr-namespace:ToolScope.WPF"
     Title="MainWindow"
     Width="{Binding Width}"
@@ -115,6 +116,7 @@
                                     Foreground="White"
                                     Text="Country:" />
                                 <ComboBox
+                                    x:Name="country"
                                     Grid.Row="1"
                                     Grid.Column="1"
                                     Height="20"
@@ -124,7 +126,15 @@
                                     BorderThickness="0"
                                     FontFamily="Microsoft PhagsPa"
                                     FontSize="13"
-                                    Foreground="#fff" />
+                                    Foreground="#fff"
+                                    ItemsSource="{Binding CountryList}"
+                                    SelectedValue="{Binding SelectedCountry}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding ChangeCountryCommand}" CommandParameter="{Binding SelectedValue, ElementName=country}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
                                 <TextBlock
                                     Grid.Row="2"
                                     Margin="0,0,20,0"
@@ -136,6 +146,7 @@
                                     Foreground="White"
                                     Text="Region:" />
                                 <ComboBox
+                                    x:Name="region"
                                     Grid.Row="2"
                                     Grid.Column="1"
                                     Height="20"
@@ -145,7 +156,15 @@
                                     BorderThickness="0"
                                     FontFamily="Microsoft PhagsPa"
                                     FontSize="13"
-                                    Foreground="#fff" />
+                                    Foreground="#fff"
+                                    ItemsSource="{Binding RegionList}"
+                                    SelectedValue="{Binding SelectedRegion}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding ChangeRegionCommand}" CommandParameter="{Binding SelectedValue, ElementName=region}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
                                 <TextBlock
                                     Grid.Row="3"
                                     Margin="0,0,20,0"
@@ -157,6 +176,7 @@
                                     Foreground="White"
                                     Text="Package:" />
                                 <ComboBox
+                                    x:Name="package"
                                     Grid.Row="3"
                                     Grid.Column="1"
                                     Height="20"
@@ -166,7 +186,15 @@
                                     BorderThickness="0"
                                     FontFamily="Microsoft PhagsPa"
                                     FontSize="13"
-                                    Foreground="#fff" />
+                                    Foreground="#fff"
+                                    ItemsSource="{Binding PackageList}"
+                                    SelectedValue="{Binding SelectedPackage}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding ChangePackageCommand}" CommandParameter="{Binding SelectedValue, ElementName=package}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
                                 <TextBlock
                                     Grid.Row="4"
                                     Margin="0,0,20,0"
