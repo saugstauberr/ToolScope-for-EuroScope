@@ -169,6 +169,7 @@
                                 <TextBlock
                                     Grid.Row="6"
                                     Grid.Column="1"
+                                    Style="{DynamicResource TextBlock_Bold}"
                                     Text="{Binding PackageVersion}" />
                                 <TextBlock
                                     Grid.Row="5"
@@ -177,6 +178,7 @@
                                 <TextBlock
                                     Grid.Row="5"
                                     Grid.Column="1"
+                                    Style="{DynamicResource TextBlock_Bold}"
                                     Text="{Binding PackageReleased}" />
                                 <TextBlock
                                     Grid.Row="6"
@@ -186,6 +188,7 @@
                                     Grid.Row="4"
                                     Grid.Column="1"
                                     FontWeight="Bold"
+                                    Style="{DynamicResource TextBlock_Bold}"
                                     Text="{Binding PackageAIRAC}" />
                                 <Button
                                     Grid.Row="7"

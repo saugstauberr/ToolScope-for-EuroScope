@@ -6,7 +6,12 @@
         <Setter Property="FontFamily" Value="Microsoft PhagsPa" />
         <Setter Property="Foreground" Value="#fff" />
         <Setter Property="FontSize" Value="13" />
-        <Setter Property="FontWeight" Value="Regular" />
+    </Style>
+    <Style
+        x:Key="TextBlock_Bold"
+        BasedOn="{StaticResource {x:Type TextBlock}}"
+        TargetType="{x:Type TextBlock}">
+        <Setter Property="FontWeight" Value="Bold" />
     </Style>
     <Style
         x:Key="TextBlock_Right"

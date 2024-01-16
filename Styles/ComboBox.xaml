@@ -7,7 +7,6 @@
         <Setter Property="FontFamily" Value="Microsoft PhagsPa" />
         <Setter Property="Foreground" Value="#fff" />
         <Setter Property="FontSize" Value="13" />
-        <Setter Property="FontWeight" Value="Regular" />
         <Setter Property="BorderThickness" Value="0" />
     </Style>
 </ResourceDictionary>
