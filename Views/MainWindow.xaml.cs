@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System.Threading;
+using System;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Shell;
+using System.Globalization;
 
 namespace ToolScope.WPF
 {

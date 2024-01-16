@@ -5,11 +5,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:lex="http://wpflocalizeextension.codeplex.com"
     xmlns:local="clr-namespace:ToolScope.WPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:vm="clr-namespace:ToolScope.WPF"
-    Title="MainWindow"
+    Title="ToolScope V2"
     Width="{Binding Width}"
     Height="{Binding Height}"
     MinWidth="935"
@@ -17,6 +18,9 @@
     d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
     d:Height="486"
     d:Width="935"
+    lex:LocalizeDictionary.DesignCulture="en"
+    lex:ResxLocalizationProvider.DefaultAssembly="ToolScope.WPF"
+    lex:ResxLocalizationProvider.DefaultDictionary="Lang"
     AllowsTransparency="True"
     Background="Transparent"
     MouseDown="Window_MouseDown"
@@ -104,7 +108,7 @@
                                     FontSize="18"
                                     FontWeight="Black"
                                     Foreground="#FFEDBD3A"
-                                    Text="Dashboard" />
+                                    Text="{lex:Loc dashboard}" />
                                 <TextBlock
                                     Grid.Row="1"
                                     Margin="0,0,20,0"
@@ -114,7 +118,7 @@
                                     FontSize="13"
                                     FontWeight="Regular"
                                     Foreground="White"
-                                    Text="Country:" />
+                                    Text="{lex:Loc country}" />
                                 <ComboBox
                                     x:Name="country"
                                     Grid.Row="1"
@@ -180,7 +184,7 @@
                                     FontSize="13"
                                     FontWeight="Regular"
                                     Foreground="White"
-                                    Text="Package:" />
+                                    Text="{lex:Loc package}" />
                                 <ComboBox
                                     x:Name="package"
                                     Grid.Row="3"
@@ -234,7 +238,7 @@
                                     FontSize="13"
                                     FontWeight="Regular"
                                     Foreground="White"
-                                    Text="Released:" />
+                                    Text="{lex:Loc released}" />
                                 <TextBlock
                                     Grid.Row="5"
                                     Grid.Column="1"
@@ -277,7 +281,7 @@
                                     Background="#15BD6F"
                                     BorderThickness="0"
                                     Command="{Binding InstallCommand}"
-                                    Content="Apply AIRAC"
+                                    Content="{lex:Loc apply_airac}"
                                     FontFamily="Microsoft PhagsPa"
                                     FontSize="13"
                                     FontWeight="Bold"
@@ -300,7 +304,7 @@
                                     Grid.ColumnSpan="2"
                                     Padding="15,0,0,2"
                                     HorizontalAlignment="Left"
-                                    Content="Insert credentials and hoppie code"
+                                    Content="{lex:Loc insert_credentials_and_data}"
                                     FontFamily="Microsoft PhagsPa"
                                     FontSize="13"
                                     FontWeight="Regular"
@@ -314,7 +318,7 @@
                                     FontSize="13"
                                     FontWeight="Regular"
                                     Foreground="White">
-                                    <TextBlock Text="Copy settings from previous AIRAC (window position, ...)" TextWrapping="Wrap" />
+                                    <TextBlock Text="{lex:Loc copy_settings_previous_airac}" TextWrapping="Wrap" />
                                 </CheckBox>
                                 <CheckBox
                                     Grid.Row="3"
@@ -325,7 +329,7 @@
                                     FontSize="13"
                                     FontWeight="Regular"
                                     Foreground="White">
-                                    <TextBlock Text="Run custom PowerShell script" TextWrapping="Wrap" />
+                                    <TextBlock Text="{lex:Loc run_custom_ps_script}" TextWrapping="Wrap" />
                                 </CheckBox>
                             </Grid>
                         </Grid>
@@ -336,7 +340,7 @@
                             FontSize="18"
                             FontWeight="Black"
                             Foreground="#FFEDBD3A"
-                            Text="Settings" />
+                            Text="{lex:Loc settings}" />
                     </TabItem>
                 </TabControl>
             </Grid>
@@ -387,7 +391,7 @@
                                     FontSize="16"
                                     FontWeight="Bold"
                                     Foreground="White"
-                                    Text="Dashboard" />
+                                    Text="{lex:Loc dashboard}" />
                             </StackPanel>
                         </Button>
                         <Button
@@ -414,7 +418,7 @@
                                     FontSize="16"
                                     FontWeight="Bold"
                                     Foreground="White"
-                                    Text="Settings" />
+                                    Text="{lex:Loc settings}" />
                             </StackPanel>
                         </Button>
                     </StackPanel>
