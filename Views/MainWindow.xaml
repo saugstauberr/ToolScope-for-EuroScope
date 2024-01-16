@@ -103,21 +103,10 @@
                                     <ColumnDefinition Width="130" />
                                     <ColumnDefinition Width="150" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock
-                                    FontFamily="Microsoft PhagsPa"
-                                    FontSize="18"
-                                    FontWeight="Black"
-                                    Foreground="#FFEDBD3A"
-                                    Text="{lex:Loc dashboard}" />
+                                <TextBlock Style="{DynamicResource TextBlock_Header}" Text="{lex:Loc dashboard}" />
                                 <TextBlock
                                     Grid.Row="1"
-                                    Margin="0,0,20,0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    FontFamily="Microsoft PhagsPa"
-                                    FontSize="13"
-                                    FontWeight="Regular"
-                                    Foreground="White"
+                                    Style="{DynamicResource TextBlock_Right}"
                                     Text="{lex:Loc country}" />
                                 <ComboBox
                                     x:Name="country"
@@ -144,13 +133,7 @@
                                 </ComboBox>
                                 <TextBlock
                                     Grid.Row="2"
-                                    Margin="0,0,20,0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    FontFamily="Microsoft PhagsPa"
-                                    FontSize="13"
-                                    FontWeight="Regular"
-                                    Foreground="White"
+                                    Style="{DynamicResource TextBlock_Right}"
                                     Text="Region:" />
                                 <ComboBox
                                     x:Name="region"
@@ -177,13 +160,7 @@
                                 </ComboBox>
                                 <TextBlock
                                     Grid.Row="3"
-                                    Margin="0,0,20,0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    FontFamily="Microsoft PhagsPa"
-                                    FontSize="13"
-                                    FontWeight="Regular"
-                                    Foreground="White"
+                                    Style="{DynamicResource TextBlock_Right}"
                                     Text="{lex:Loc package}" />
                                 <ComboBox
                                     x:Name="package"
@@ -210,82 +187,37 @@
                                 </ComboBox>
                                 <TextBlock
                                     Grid.Row="4"
-                                    Margin="0,0,20,0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    FontFamily="Microsoft PhagsPa"
-                                    FontSize="13"
-                                    FontWeight="Regular"
-                                    Foreground="White"
+                                    Style="{DynamicResource TextBlock_Right}"
                                     Text="AIRAC:" />
                                 <TextBlock
                                     Grid.Row="6"
                                     Grid.Column="1"
-                                    Margin="0,0,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    FontFamily="Microsoft PhagsPa"
-                                    FontSize="13"
-                                    FontWeight="Bold"
-                                    Foreground="White"
                                     Text="{Binding PackageVersion}" />
                                 <TextBlock
                                     Grid.Row="5"
-                                    Margin="0,0,20,0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    FontFamily="Microsoft PhagsPa"
-                                    FontSize="13"
-                                    FontWeight="Regular"
-                                    Foreground="White"
+                                    Style="{DynamicResource TextBlock_Right}"
                                     Text="{lex:Loc released}" />
                                 <TextBlock
                                     Grid.Row="5"
                                     Grid.Column="1"
-                                    Margin="0,0,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    FontFamily="Microsoft PhagsPa"
-                                    FontSize="13"
-                                    FontWeight="Bold"
-                                    Foreground="White"
                                     Text="{Binding PackageReleased}" />
                                 <TextBlock
                                     Grid.Row="6"
-                                    Margin="0,0,20,0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    FontFamily="Microsoft PhagsPa"
-                                    FontSize="13"
-                                    FontWeight="Regular"
-                                    Foreground="White"
+                                    Style="{DynamicResource TextBlock_Right}"
                                     Text="Version:" />
                                 <TextBlock
                                     Grid.Row="4"
                                     Grid.Column="1"
-                                    Margin="0,0,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    FontFamily="Microsoft PhagsPa"
-                                    FontSize="13"
                                     FontWeight="Bold"
-                                    Foreground="White"
                                     Text="{Binding PackageAIRAC}" />
                                 <Button
                                     Grid.Row="7"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="2"
-                                    Height="28"
-                                    Padding="0,-1,0,0"
                                     HorizontalAlignment="Stretch"
-                                    Background="#15BD6F"
-                                    BorderThickness="0"
                                     Command="{Binding InstallCommand}"
                                     Content="{lex:Loc apply_airac}"
-                                    FontFamily="Microsoft PhagsPa"
-                                    FontSize="13"
-                                    FontWeight="Bold"
-                                    Foreground="#fff" />
+                                    Style="{DynamicResource Button_Green}" />
                             </Grid>
                             <Grid Grid.Column="1">
                                 <Grid.RowDefinitions>

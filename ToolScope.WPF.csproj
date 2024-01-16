@@ -28,10 +28,6 @@
     <PackageReference Include="WPFLocalizeExtension" Version="3.10.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <Resource Include="Ressources\close.png" />
@@ -50,9 +46,6 @@
 
 
   <ItemGroup>
-    <EmbeddedResource Update="Languages\Lang.de-DE.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Languages\Lang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang.Designer.cs</LastGenOutput>
