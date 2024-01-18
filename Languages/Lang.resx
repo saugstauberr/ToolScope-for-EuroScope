@@ -144,4 +144,22 @@
   <data name="run_custom_ps_script" xml:space="preserve">
     <value>Run custom PowerShell script.</value>
   </data>
+  <data name="save_settings" xml:space="preserve">
+    <value>Save settings!</value>
+  </data>
+  <data name="real_name" xml:space="preserve">
+    <value>Real name:</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="rating" xml:space="preserve">
+    <value>Rating:</value>
+  </data>
+  <data name="callsign" xml:space="preserve">
+    <value>Callsign:</value>
+  </data>
+  <data name="es_folder" xml:space="preserve">
+    <value>EuroScope folder:</value>
+  </data>
 </root>

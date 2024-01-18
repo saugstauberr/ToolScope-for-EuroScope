@@ -70,6 +70,15 @@ namespace ToolScope.WPF.Languages {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Callsign: ähnelt.
+        /// </summary>
+        public static string callsign {
+            get {
+                return ResourceManager.GetString("callsign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Copy window and other settings from previous AIRAC. ähnelt.
         /// </summary>
         public static string copy_settings_previous_airac {
@@ -97,6 +106,15 @@ namespace ToolScope.WPF.Languages {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die EuroScope folder: ähnelt.
+        /// </summary>
+        public static string es_folder {
+            get {
+                return ResourceManager.GetString("es_folder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Insert credentials and user data. ähnelt.
         /// </summary>
         public static string insert_credentials_and_data {
@@ -115,6 +133,33 @@ namespace ToolScope.WPF.Languages {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Password: ähnelt.
+        /// </summary>
+        public static string password {
+            get {
+                return ResourceManager.GetString("password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Rating: ähnelt.
+        /// </summary>
+        public static string rating {
+            get {
+                return ResourceManager.GetString("rating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Real name: ähnelt.
+        /// </summary>
+        public static string real_name {
+            get {
+                return ResourceManager.GetString("real_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Released: ähnelt.
         /// </summary>
         public static string released {
@@ -129,6 +174,15 @@ namespace ToolScope.WPF.Languages {
         public static string run_custom_ps_script {
             get {
                 return ResourceManager.GetString("run_custom_ps_script", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save settings! ähnelt.
+        /// </summary>
+        public static string save_settings {
+            get {
+                return ResourceManager.GetString("save_settings", resourceCulture);
             }
         }
         

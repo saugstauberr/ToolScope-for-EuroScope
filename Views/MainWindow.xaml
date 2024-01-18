@@ -9,6 +9,7 @@
     xmlns:local="clr-namespace:ToolScope.WPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
+    xmlns:ts="clr-namespace:ToolScope.WPF.Controls"
     xmlns:vm="clr-namespace:ToolScope.WPF"
     Title="ToolScope V2"
     Width="{Binding Width}"
@@ -69,7 +70,6 @@
                         RenderOptions.BitmapScalingMode="HighQuality"
                         Source="/Ressources/close.png" />
                 </Button>
-
                 <DockPanel Grid.Row="1">
                     <ContentControl Content="" />
                 </DockPanel>
@@ -225,7 +225,111 @@
                         </Grid>
                     </TabItem>
                     <TabItem Header="Settings" Visibility="Collapsed">
-                        <TextBlock Style="{DynamicResource TextBlock_Header}" Text="{lex:Loc settings}" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="330" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="50" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="130" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Style="{DynamicResource TextBlock_Header}" Text="{lex:Loc settings}" />
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Style="{DynamicResource TextBlock_Right}"
+                                    Text="CID:" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Text="CID" />
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Style="{DynamicResource TextBlock_Right}"
+                                    Text="{lex:Loc real_name}" />
+                                <TextBox Grid.Row="2" Grid.Column="1" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Style="{DynamicResource TextBlock_Right}"
+                                    Text="{lex:Loc callsign}" />
+                                <TextBox Grid.Row="3" Grid.Column="1" />
+                                <TextBlock
+                                    Grid.Row="4"
+                                    VerticalAlignment="Bottom"
+                                    Text="{lex:Loc es_folder}" />
+                                <TextBox
+                                    Grid.Row="5"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2" />
+                                <Button
+                                    Grid.Row="7"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalAlignment="Stretch"
+                                    Command="{Binding InstallCommand}"
+                                    Content="{lex:Loc save_settings}"
+                                    Style="{DynamicResource Button_Green}" />
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120" />
+                                    <ColumnDefinition Width="130" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Style="{DynamicResource TextBlock_Right}"
+                                    Text="{lex:Loc password}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Text="Password" />
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Style="{DynamicResource TextBlock_Right}"
+                                    Text="{lex:Loc rating}" />
+                                <ComboBox
+                                    x:Name="rating"
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    ItemsSource="{Binding RegionList}"
+                                    SelectedValue="{Binding SelectedRegion}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Loaded">
+                                            <i:InvokeCommandAction Command="{Binding ChangeRegionCommand}" CommandParameter="{Binding SelectedValue, ElementName=region}" />
+                                        </i:EventTrigger>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding ChangeRegionCommand}" CommandParameter="{Binding SelectedValue, ElementName=region}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Style="{DynamicResource TextBlock_Right}"
+                                    Text="Hoppie-Code:" />
+                                <TextBox
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    Text="Hoppie" />
+                            </Grid>
+                        </Grid>
                     </TabItem>
                 </TabControl>
             </Grid>
