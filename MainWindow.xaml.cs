@@ -18,7 +18,7 @@ namespace ToolScope_for_EuroScope
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : AdonisUI.Controls.AdonisWindow
     {
         public MainWindow()
         {
