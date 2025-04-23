@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="ToolScope.WPF/App.axaml" value="ToolScope.WPF/ToolScope.WPF.csproj" />
+        <entry key="ToolScope.WPF/Controls/NavigationButton.axaml" value="ToolScope.WPF/ToolScope.WPF.csproj" />
+        <entry key="ToolScope.WPF/Styles/Button.axaml" value="ToolScope.WPF/ToolScope.WPF.csproj" />
+        <entry key="ToolScope.WPF/Styles/Main.axaml" value="ToolScope.WPF/ToolScope.WPF.csproj" />
+        <entry key="ToolScope.WPF/ViewModels/Button.axaml" value="ToolScope.WPF/ToolScope.WPF.csproj" />
+        <entry key="ToolScope.WPF/Views/MainWindow.axaml" value="ToolScope.WPF/ToolScope.WPF.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,42 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ToolScope.WPF.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:ToolScope.WPF.Controls"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ToolScope.WPF.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        ExtendClientAreaToDecorationsHint="True"
+        Title="ToolScope.WPF"
+        RequestedThemeVariant="Dark"
+        FontSize="13"
+        MinWidth="800"
+        MinHeight="450"
+        Width="800"
+        Height="450"
+        Background="#191919"
+        >
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    <Grid RowDefinitions="30, *">
+        <Panel Background="#252525" Grid.Row="0" IsHitTestVisible="False">
+            <Grid ColumnDefinitions="*">
+                <TextBlock Text="ToolScope" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#B8B8B8"/>
+            </Grid>
+        </Panel>
+        <Grid Grid.Row="1" ColumnDefinitions="80,*">
+            <Border Background="#191919" Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="#252525">
+                <StackPanel>
+                    <controls:NavigationButton Symbol="&#xf015;" Content="Home"></controls:NavigationButton>
+                    <controls:NavigationButton Symbol="&#xf0ae;" Content="Manager"></controls:NavigationButton>
+                    <controls:NavigationButton Symbol="&#xf013;" Content="Settings"></controls:NavigationButton>
+            </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
