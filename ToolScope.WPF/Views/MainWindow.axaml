@@ -31,12 +31,24 @@
         </Panel>
         <Grid Grid.Row="1" ColumnDefinitions="80,*">
             <Border Background="#191919" Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="#252525">
-                <StackPanel>
-                    <controls:NavigationButton Symbol="&#xf015;" Content="Home"></controls:NavigationButton>
-                    <controls:NavigationButton Symbol="&#xf0ae;" Content="Manager"></controls:NavigationButton>
-                    <controls:NavigationButton Symbol="&#xf013;" Content="Settings"></controls:NavigationButton>
-            </StackPanel>
+                <Grid>
+                    <StackPanel>
+                        <Button Classes="nav" Command="{Binding ChangeTab}" CommandParameter="Home"><controls:NavigationButton Symbol="&#xf015;" Content="Home"></controls:NavigationButton></Button>
+                        <Button Classes="nav" Command="{Binding ChangeTab}" CommandParameter="Manager"><controls:NavigationButton Symbol="&#xf0ae;" Content="Manager"></controls:NavigationButton></Button>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Bottom">
+                        <Button Classes="nav" Command="{Binding ChangeTab}" CommandParameter="Settings"><controls:NavigationButton Symbol="&#xf013;" Content="Settings"></controls:NavigationButton></Button>
+                    </StackPanel>
+                </Grid>
             </Border>
+            <TabControl Grid.Column="1">
+                <TabItem Classes="tabItem" Header="Home" Name="HomeTab">
+                    <Grid>
+                        <TextBlock>Test</TextBlock>
+                        <Button Command="{Binding LoadWebData}">Load Data</Button>
+                    </Grid>
+                </TabItem>
+            </TabControl>
         </Grid>
     </Grid>
 </Window>

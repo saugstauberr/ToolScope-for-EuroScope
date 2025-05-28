@@ -5,6 +5,10 @@
             <!-- Add Controls for Previewer Here -->
         </Border>
     </Design.PreviewWith>
+    
+    <Style Selector="TabItem.tabItem">
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
 
     <Style Selector="Button.nav">
         <Setter Property="Background" Value="#191919"/>
@@ -18,6 +22,20 @@
         <Setter Property="Padding" Value="0,10,0,0"/>
         <Setter Property="Margin" Value="0,0"/>
     </Style>
+    
+    <Style Selector="Button.nav:pointerover">
+        <Setter Property="Background" Value="#191919"/>
+    </Style>
+    
+    <Style Selector="Button.nav-selected">
+        <Setter Property="BorderThickness" Value="2,0,0,0"/>
+        <Setter Property="BorderBrush" Value="#FAC62E"/>        
+    </Style>
+    
+    <Style Selector="Button.nav-selected:pointerover">
+        <Setter Property="BorderBrush" Value="#FAC62E"/>
+        <Setter Property="BorderThickness" Value="2,0,0,0"/>
+        </Style>
     
     <Style Selector="TextBlock.navicon">
         <Setter Property="HorizontalAlignment" Value="Center"/>

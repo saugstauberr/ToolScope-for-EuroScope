@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ToolScope.WPF.Controls.NavigationButton">
-    <Button Classes="nav" ><StackPanel>
+    <StackPanel>
         <TextBlock Text="{ReflectionBinding Symbol}" Classes="navicon" FontFamily="{StaticResource FontAwesome}" />
         <Label Content="{ReflectionBinding Content}"/>
-    </StackPanel></Button>
+    </StackPanel>
 </UserControl>
