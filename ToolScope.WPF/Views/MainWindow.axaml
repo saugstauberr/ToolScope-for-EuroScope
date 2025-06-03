@@ -33,19 +33,25 @@
             <Border Background="#191919" Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="#252525">
                 <Grid>
                     <StackPanel>
-                        <Button Classes="nav" Command="{Binding ChangeTab}" CommandParameter="Home"><controls:NavigationButton Symbol="&#xf015;" Content="Home"></controls:NavigationButton></Button>
-                        <Button Classes="nav" Command="{Binding ChangeTab}" CommandParameter="Manager"><controls:NavigationButton Symbol="&#xf0ae;" Content="Manager"></controls:NavigationButton></Button>
+                        <Button Classes="nav" Command="{Binding ChangeTab}" CommandParameter="0"><controls:NavigationButton Symbol="&#xf015;" Content="Home"></controls:NavigationButton></Button>
+                        <Button Classes="nav" Command="{Binding ChangeTab}" CommandParameter="1"><controls:NavigationButton Symbol="&#xf0ae;" Content="Manager"></controls:NavigationButton></Button>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Bottom">
-                        <Button Classes="nav" Command="{Binding ChangeTab}" CommandParameter="Settings"><controls:NavigationButton Symbol="&#xf013;" Content="Settings"></controls:NavigationButton></Button>
+                        <Button Classes="nav" Command="{Binding ChangeTab}" CommandParameter="2"><controls:NavigationButton Symbol="&#xf013;" Content="Settings"></controls:NavigationButton></Button>
                     </StackPanel>
                 </Grid>
             </Border>
-            <TabControl Grid.Column="1">
+            <TabControl Grid.Column="1" SelectedIndex="{Binding CurrentTab}">
                 <TabItem Classes="tabItem" Header="Home" Name="HomeTab">
                     <Grid>
                         <TextBlock>Test</TextBlock>
                         <Button Command="{Binding LoadWebData}">Load Data</Button>
+                    </Grid>
+                </TabItem>
+                <TabItem Classes="tabItem" Header="Settings" Name="SettingsTab">
+                    <Grid>
+                        <TextBlock>Test</TextBlock>
+                        <Button Command="{Binding LoadWebData}">X</Button>
                     </Grid>
                 </TabItem>
             </TabControl>

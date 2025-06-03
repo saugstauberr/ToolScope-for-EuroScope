@@ -1,13 +1,34 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Tmds.DBus.Protocol;
 using ToolScope.WPF.Models.Web;
 
 namespace ToolScope.WPF.ViewModels;
 
-public partial class MainWindowViewModel : ViewModelBase
+public partial class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
 {
-    public string CurrentTab { get; set; } = "Home";
-    
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    private string _currentTab = "0";
+
+    public string CurrentTab
+    {
+        get => _currentTab;
+        set
+        {
+            _currentTab = value;
+            OnPropertyChanged();
+        }
+    }
+
     public void ChangeTab(string tabName)
     {
         // Logic to change the tab in the main window
@@ -15,13 +36,14 @@ public partial class MainWindowViewModel : ViewModelBase
         // For example, you might have a property called CurrentTab
         // and set it to the name of the tab you want to switch to.
         
-        Console.WriteLine(tabName);
+        CurrentTab = tabName;
+        Console.WriteLine($"Tab changed to: {CurrentTab}");
     }
 
-    public void LoadWebData()
+    public async Task LoadWebData()
     {
         HTTPHandler httpHandler = new HTTPHandler();
-        foreach (var country in httpHandler.GetCountryArrayFromWeb())
+        foreach (var country in await httpHandler.GetCountryArrayFromWeb())
         {
             Console.WriteLine(country);
         }

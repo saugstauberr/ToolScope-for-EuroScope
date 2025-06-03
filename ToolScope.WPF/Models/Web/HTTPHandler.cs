@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using HtmlAgilityPack;
 
 namespace ToolScope.WPF.Models.Web;
 
 public class HTTPHandler
 {
-    public string[] GetCountryArrayFromWeb()
+    public async Task<string[]> GetCountryArrayFromWeb()
     {
         string[] countries = [];
         
