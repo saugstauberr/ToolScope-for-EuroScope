@@ -24,14 +24,15 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     <Grid RowDefinitions="30, *">
-        <Panel Background="#252525" Grid.Row="0" IsHitTestVisible="False">
+        <Panel Grid.Row="0" IsHitTestVisible="False">
             <Grid ColumnDefinitions="*">
                 <TextBlock Text="ToolScope" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#B8B8B8"/>
             </Grid>
         </Panel>
-        <Grid Grid.Row="1" ColumnDefinitions="*">
+        <Grid Grid.Row="1" ColumnDefinitions="*" Margin="10,0,10,10">
+            <Border HorizontalAlignment="Left" BorderBrush="{Binding ElementName=ReferenceTabItem, Path=BorderBrush}" BorderThickness="{Binding ElementName=ReferenceTabItem, Path=BorderThickness}" Width="{Binding ElementName=ReferenceTabItem, Path=Width}"/>
             <TabControl Classes="nav" SelectedIndex="{Binding CurrentTab}">
-                <TabItem Header="Home" Classes="nav">
+                <TabItem Header="Home" Classes="nav" Name="ReferenceTabItem">
                     <Grid RowDefinitions="50,10,*">
                         <Panel Classes="tabHeader"><Label Classes="tabHeader" Content="Home"/></Panel>
                         <StackPanel Grid.Row="2" Classes="tabItem">
@@ -39,7 +40,7 @@
                         </StackPanel>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Manager" Classes="nav">
+                <TabItem Header="List" Classes="nav">
                     <Grid RowDefinitions="50,10,*">
                         <Panel Classes="tabHeader"><Label Classes="tabHeader" Content="Manager"/></Panel>
                         <StackPanel Grid.Row="2" Classes="tabItem">
@@ -47,7 +48,7 @@
                         </StackPanel>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Settings" Classes="nav">
+                <TabItem Header="Gear" Classes="nav">
                     <Grid RowDefinitions="50,10,*">
                         <Panel Classes="tabHeader"><Label Classes="tabHeader" Content="Settings"/></Panel>
                         <StackPanel Grid.Row="2" Classes="tabItem">
