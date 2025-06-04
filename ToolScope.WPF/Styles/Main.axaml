@@ -6,18 +6,36 @@
         </Border>
     </Design.PreviewWith>
     
-    <Style Selector="TabControl">
-        <Setter Property="Margin" Value="0,-2"/>
+    <Style Selector="TabControl.nav">
+        <Setter Property="Margin" Value="0,0"/>
         <Setter Property="Padding" Value="0"/>
+        <Setter Property="TabStripPlacement" Value="Left"/>
+    </Style>
+    
+    <Style Selector="TabItem.nav">
+        <Setter Property="Width" Value="60"/>        
+        <Setter Property="Height" Value="60"/>
+        <Setter Property="Padding" Value="0,0, 15, 0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="BorderThickness" Value="0,0,1,0"/>
+        <Setter Property="BorderBrush" Value="#292929"/>
+        <Setter Property="FontFamily" Value="{StaticResource FontAwesome}"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+    
+    <Style Selector="TabItem.nav:selected /template/ Border#PART_SelectedPipe">
+        <Setter Property="Background" Value="Goldenrod"/>
+        <Setter Property="Width" Value="3"/>
+        <Setter Property="Height" Value="40"/>
     </Style>
     
     <Style Selector="TabItem">
-        <Setter Property="IsVisible" Value="False"/>
+        
     </Style>
 
     <Style Selector="Panel.tabHeader">
         <Setter Property="Background" Value="#292929" />
-        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Margin" Value="0,0,0,0"/>
         <Setter Property="Height" Value="50"/>
     </Style>
     
@@ -32,38 +50,5 @@
     <Style Selector="StackPanel.tabItem">
         <Setter Property="Spacing" Value="0,10"/>
         <Setter Property="Margin" Value="20,10"/>
-    </Style>
-    
-    <Style Selector="Button.nav">
-        <Setter Property="Background" Value="#191919"/>
-        <Setter Property="CornerRadius" Value="0"/>
-        <Setter Property="Height" Value="60"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Foreground" Value="#B8B8B8"/>
-        <Setter Property="Padding" Value="0,10,0,0"/>
-        <Setter Property="Margin" Value="0,0"/>
-    </Style>
-    
-    <Style Selector="Button.nav:pointerover">
-        <Setter Property="Background" Value="#191919"/>
-    </Style>
-    
-    <Style Selector="Button.nav-selected">
-        <Setter Property="BorderThickness" Value="2,0,0,0"/>
-        <Setter Property="BorderBrush" Value="#FAC62E"/>        
-    </Style>
-    
-    <Style Selector="Button.nav-selected:pointerover">
-        <Setter Property="BorderBrush" Value="#FAC62E"/>
-        <Setter Property="BorderThickness" Value="2,0,0,0"/>
-        </Style>
-    
-    <Style Selector="TextBlock.navicon">
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="0,0,0,5"/>
-        <Setter Property="FontSize" Value="17"/>
     </Style>
 </Styles>

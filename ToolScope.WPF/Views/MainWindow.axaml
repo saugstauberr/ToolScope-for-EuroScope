@@ -24,25 +24,15 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     <Grid RowDefinitions="30, *">
-        <Panel Background="#252525" Grid.Row="0" IsHitTestVisible="False">
+        <Panel Grid.Row="0" IsHitTestVisible="False">
             <Grid ColumnDefinitions="*">
                 <TextBlock Text="ToolScope" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#B8B8B8"/>
             </Grid>
         </Panel>
-        <Grid Grid.Row="1" ColumnDefinitions="80,*">
-            <Border Background="#191919" Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="#252525">
-                <Grid>
-                    <StackPanel>
-                        <Button Classes="nav" Command="{Binding ChangeTab}" CommandParameter="0"><controls:NavigationButton Symbol="&#xf015;" Content="Home"></controls:NavigationButton></Button>
-                        <Button Classes="nav" Command="{Binding ChangeTab}" CommandParameter="1"><controls:NavigationButton Symbol="&#xf0ae;" Content="Manager"></controls:NavigationButton></Button>
-                    </StackPanel>
-                    <StackPanel VerticalAlignment="Bottom">
-                        <Button Classes="nav" Command="{Binding ChangeTab}" CommandParameter="2"><controls:NavigationButton Symbol="&#xf013;" Content="Settings"></controls:NavigationButton></Button>
-                    </StackPanel>
-                </Grid>
-            </Border>
-            <TabControl Grid.Column="1" SelectedIndex="{Binding CurrentTab}">
-                <TabItem>
+        <Grid Grid.Row="1" ColumnDefinitions="*" Margin="10,0,10,10">
+            <Border HorizontalAlignment="Left" BorderBrush="{Binding ElementName=ReferenceTabItem, Path=BorderBrush}" BorderThickness="{Binding ElementName=ReferenceTabItem, Path=BorderThickness}" Width="{Binding ElementName=ReferenceTabItem, Path=Width}"/>
+            <TabControl Classes="nav" SelectedIndex="{Binding CurrentTab}">
+                <TabItem Header="Home" Classes="nav" Name="ReferenceTabItem">
                     <Grid RowDefinitions="50,10,*">
                         <Panel Classes="tabHeader"><Label Classes="tabHeader" Content="Home"/></Panel>
                         <StackPanel Grid.Row="2" Classes="tabItem">
@@ -50,7 +40,7 @@
                         </StackPanel>
                     </Grid>
                 </TabItem>
-                <TabItem>
+                <TabItem Header="List" Classes="nav">
                     <Grid RowDefinitions="50,10,*">
                         <Panel Classes="tabHeader"><Label Classes="tabHeader" Content="Manager"/></Panel>
                         <StackPanel Grid.Row="2" Classes="tabItem">
@@ -58,7 +48,7 @@
                         </StackPanel>
                     </Grid>
                 </TabItem>
-                <TabItem>
+                <TabItem Header="Gear" Classes="nav">
                     <Grid RowDefinitions="50,10,*">
                         <Panel Classes="tabHeader"><Label Classes="tabHeader" Content="Settings"/></Panel>
                         <StackPanel Grid.Row="2" Classes="tabItem">
