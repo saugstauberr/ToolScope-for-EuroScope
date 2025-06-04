@@ -30,8 +30,8 @@
             </Grid>
         </Panel>
         <Grid Grid.Row="1" ColumnDefinitions="*">
-            <TabControl Grid.Column="1" SelectedIndex="{Binding CurrentTab}">
-                <TabItem>
+            <TabControl Classes="nav" SelectedIndex="{Binding CurrentTab}">
+                <TabItem Header="Home" Classes="nav">
                     <Grid RowDefinitions="50,10,*">
                         <Panel Classes="tabHeader"><Label Classes="tabHeader" Content="Home"/></Panel>
                         <StackPanel Grid.Row="2" Classes="tabItem">
@@ -39,7 +39,7 @@
                         </StackPanel>
                     </Grid>
                 </TabItem>
-                <TabItem>
+                <TabItem Header="Manager" Classes="nav">
                     <Grid RowDefinitions="50,10,*">
                         <Panel Classes="tabHeader"><Label Classes="tabHeader" Content="Manager"/></Panel>
                         <StackPanel Grid.Row="2" Classes="tabItem">
@@ -47,7 +47,7 @@
                         </StackPanel>
                     </Grid>
                 </TabItem>
-                <TabItem>
+                <TabItem Header="Settings" Classes="nav">
                     <Grid RowDefinitions="50,10,*">
                         <Panel Classes="tabHeader"><Label Classes="tabHeader" Content="Settings"/></Panel>
                         <StackPanel Grid.Row="2" Classes="tabItem">

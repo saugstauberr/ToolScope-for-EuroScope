@@ -6,13 +6,19 @@
         </Border>
     </Design.PreviewWith>
     
-    <Style Selector="TabControl">
+    <Style Selector="TabControl.nav">
         <Setter Property="Margin" Value="0,-2"/>
         <Setter Property="Padding" Value="0"/>
+        <Setter Property="TabStripPlacement" Value="Left"/>
+    </Style>
+    
+    <Style Selector="TabItem.nav">
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="FontSize" Value="15"/>
     </Style>
     
     <Style Selector="TabItem">
-        <Setter Property="IsVisible" Value="False"/>
+        
     </Style>
 
     <Style Selector="Panel.tabHeader">
