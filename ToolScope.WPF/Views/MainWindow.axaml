@@ -29,18 +29,7 @@
                 <TextBlock Text="ToolScope" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#B8B8B8"/>
             </Grid>
         </Panel>
-        <Grid Grid.Row="1" ColumnDefinitions="80,*">
-            <Border Background="#191919" Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="#252525">
-                <Grid>
-                    <StackPanel>
-                        <Button Classes="nav" Command="{Binding ChangeTab}" CommandParameter="0"><controls:NavigationButton Symbol="&#xf015;" Content="Home"></controls:NavigationButton></Button>
-                        <Button Classes="nav" Command="{Binding ChangeTab}" CommandParameter="1"><controls:NavigationButton Symbol="&#xf0ae;" Content="Manager"></controls:NavigationButton></Button>
-                    </StackPanel>
-                    <StackPanel VerticalAlignment="Bottom">
-                        <Button Classes="nav" Command="{Binding ChangeTab}" CommandParameter="2"><controls:NavigationButton Symbol="&#xf013;" Content="Settings"></controls:NavigationButton></Button>
-                    </StackPanel>
-                </Grid>
-            </Border>
+        <Grid Grid.Row="1" ColumnDefinitions="*">
             <TabControl Grid.Column="1" SelectedIndex="{Binding CurrentTab}">
                 <TabItem>
                     <Grid RowDefinitions="50,10,*">
