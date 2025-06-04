@@ -10,9 +10,9 @@ namespace ToolScope.WPF.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
 {
-    public event PropertyChangedEventHandler? PropertyChanged;
+    public new event PropertyChangedEventHandler? PropertyChanged;
 
-    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    protected new virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
@@ -29,14 +29,14 @@ public partial class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
         }
     }
 
-    public void ChangeTab(string tabName)
+    public void ChangeTab(string tabIndex)
     {
         // Logic to change the tab in the main window
         // This could involve updating a property that the view binds to
         // For example, you might have a property called CurrentTab
         // and set it to the name of the tab you want to switch to.
         
-        CurrentTab = tabName;
+        CurrentTab = tabIndex;
         Console.WriteLine($"Tab changed to: {CurrentTab}");
     }
 

@@ -42,16 +42,28 @@
                 </Grid>
             </Border>
             <TabControl Grid.Column="1" SelectedIndex="{Binding CurrentTab}">
-                <TabItem Classes="tabItem" Header="Home" Name="HomeTab">
-                    <Grid>
-                        <TextBlock>Test</TextBlock>
-                        <Button Command="{Binding LoadWebData}">Load Data</Button>
+                <TabItem>
+                    <Grid RowDefinitions="50,10,*">
+                        <Panel Classes="tabHeader"><Label Classes="tabHeader" Content="Home"/></Panel>
+                        <StackPanel Grid.Row="2" Classes="tabItem">
+                            <Button Command="{Binding LoadWebData}">Load Data</Button>
+                        </StackPanel>
                     </Grid>
                 </TabItem>
-                <TabItem Classes="tabItem" Header="Settings" Name="SettingsTab">
-                    <Grid>
-                        <TextBlock>Test</TextBlock>
-                        <Button Command="{Binding LoadWebData}">X</Button>
+                <TabItem>
+                    <Grid RowDefinitions="50,10,*">
+                        <Panel Classes="tabHeader"><Label Classes="tabHeader" Content="Manager"/></Panel>
+                        <StackPanel Grid.Row="2" Classes="tabItem">
+                            <Button Command="{Binding LoadWebData}">X</Button>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem>
+                    <Grid RowDefinitions="50,10,*">
+                        <Panel Classes="tabHeader"><Label Classes="tabHeader" Content="Settings"/></Panel>
+                        <StackPanel Grid.Row="2" Classes="tabItem">
+                            <Button Command="{Binding LoadWebData}">Set</Button>
+                        </StackPanel>
                     </Grid>
                 </TabItem>
             </TabControl>

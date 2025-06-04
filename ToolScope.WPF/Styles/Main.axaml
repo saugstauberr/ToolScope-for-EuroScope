@@ -6,10 +6,34 @@
         </Border>
     </Design.PreviewWith>
     
-    <Style Selector="TabItem.tabItem">
-        <Setter Property="BorderThickness" Value="0"/>
+    <Style Selector="TabControl">
+        <Setter Property="Margin" Value="0,-2"/>
+        <Setter Property="Padding" Value="0"/>
+    </Style>
+    
+    <Style Selector="TabItem">
+        <Setter Property="IsVisible" Value="False"/>
     </Style>
 
+    <Style Selector="Panel.tabHeader">
+        <Setter Property="Background" Value="#292929" />
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Height" Value="50"/>
+    </Style>
+    
+    <Style Selector="Label.tabHeader">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Padding" Value="20,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+    
+    
+    <Style Selector="StackPanel.tabItem">
+        <Setter Property="Spacing" Value="0,10"/>
+        <Setter Property="Margin" Value="20,10"/>
+    </Style>
+    
     <Style Selector="Button.nav">
         <Setter Property="Background" Value="#191919"/>
         <Setter Property="CornerRadius" Value="0"/>

@@ -1,3 +1,4 @@
+using System;
 using Avalonia.Controls;
 using ToolScope.WPF.ViewModels;
 
@@ -8,6 +9,5 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        
     }
 }
