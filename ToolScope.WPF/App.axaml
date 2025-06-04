@@ -9,13 +9,13 @@
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
+             
+     <Application.Resources>
+         <FontFamily x:Key="FontAwesome">avares://ToolScope.WPF/Assets/Fonts/Font Awesome 6 Free-Solid-900.otf#Font Awesome 6 Free</FontFamily>
+     </Application.Resources>
   
     <Application.Styles>
         <FluentTheme />
         <StyleInclude Source="/Styles/Main.axaml" />
     </Application.Styles>
-             
-    <Application.Resources>
-        <FontFamily x:Key="FontAwesome">avares://ToolScope.WPF/Assets/Fonts/Font Awesome 6 Free-Solid-900.otf#Font Awesome 6 Free</FontFamily>
-    </Application.Resources>
 </Application>  
