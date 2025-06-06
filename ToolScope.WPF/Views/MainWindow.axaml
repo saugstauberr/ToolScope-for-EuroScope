@@ -16,20 +16,22 @@
         MinHeight="450"
         Width="800"
         Height="450"
-        Background="#191919"
+        Background="#18191a"
         >
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-    <Grid RowDefinitions="30, *">
+    <Grid RowDefinitions="40, *">
         <Panel Grid.Row="0" IsHitTestVisible="False">
             <Grid ColumnDefinitions="*">
-                <TextBlock Text="ToolScope" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#B8B8B8"/>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="10,0">
+                    <Image Source="/Assets/ToolScope Banner.png" RenderOptions.BitmapInterpolationMode="MediumQuality"/>
+                </StackPanel>
             </Grid>
         </Panel>
-        <Grid Grid.Row="1" ColumnDefinitions="*" Margin="10,0,10,10">
+        <Grid Grid.Row="1" ColumnDefinitions="*" Margin="10,0">
             <Border HorizontalAlignment="Left" BorderBrush="{Binding ElementName=ReferenceTabItem, Path=BorderBrush}" BorderThickness="{Binding ElementName=ReferenceTabItem, Path=BorderThickness}" Width="{Binding ElementName=ReferenceTabItem, Path=Width}"/>
             <TabControl Classes="nav" SelectedIndex="{Binding CurrentTab}">
                 <TabItem Header="Home" Classes="nav" Name="ReferenceTabItem">

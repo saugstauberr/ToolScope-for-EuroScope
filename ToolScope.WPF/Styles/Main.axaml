@@ -32,9 +32,12 @@
     <Style Selector="TabItem">
         
     </Style>
+    
+    <Style Selector="Image">
+
+    </Style>
 
     <Style Selector="Panel.tabHeader">
-        <Setter Property="Background" Value="#292929" />
         <Setter Property="Margin" Value="0,0,0,0"/>
         <Setter Property="Height" Value="50"/>
     </Style>
@@ -44,6 +47,7 @@
         <Setter Property="Padding" Value="20,0"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="#ffbf01"/>
     </Style>
     
     
