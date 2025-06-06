@@ -39,13 +39,4 @@ public partial class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
         CurrentTab = tabIndex;
         Console.WriteLine($"Tab changed to: {CurrentTab}");
     }
-
-    public async Task LoadWebData()
-    {
-        HTTPHandler httpHandler = new HTTPHandler();
-        foreach (var country in await httpHandler.GetCountryArrayFromWeb())
-        {
-            Console.WriteLine(country);
-        }
-    }
 }

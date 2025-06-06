@@ -4,10 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:ToolScope.WPF.Controls"
+        xmlns:views="clr-namespace:ToolScope.WPF.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="ToolScope.WPF.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/ToolScope.ico"
         ExtendClientAreaToDecorationsHint="True"
         Title="ToolScope.WPF"
         RequestedThemeVariant="Dark"
@@ -35,28 +36,13 @@
             <Border HorizontalAlignment="Left" BorderBrush="{Binding ElementName=ReferenceTabItem, Path=BorderBrush}" BorderThickness="{Binding ElementName=ReferenceTabItem, Path=BorderThickness}" Width="{Binding ElementName=ReferenceTabItem, Path=Width}"/>
             <TabControl Classes="nav" SelectedIndex="{Binding CurrentTab}">
                 <TabItem Header="Home" Classes="nav" Name="ReferenceTabItem">
-                    <Grid RowDefinitions="50,10,*">
-                        <Panel Classes="tabHeader"><Label Classes="tabHeader" Content="Home"/></Panel>
-                        <StackPanel Grid.Row="2" Classes="tabItem">
-                            <Button Command="{Binding LoadWebData}">Load Data</Button>
-                        </StackPanel>
-                    </Grid>
+                    <views:HomeWindow/>
                 </TabItem>
                 <TabItem Header="List" Classes="nav">
-                    <Grid RowDefinitions="50,10,*">
-                        <Panel Classes="tabHeader"><Label Classes="tabHeader" Content="Manager"/></Panel>
-                        <StackPanel Grid.Row="2" Classes="tabItem">
-                            <Button Command="{Binding LoadWebData}">X</Button>
-                        </StackPanel>
-                    </Grid>
+                    <views:ManagerWindow/>
                 </TabItem>
                 <TabItem Header="Gear" Classes="nav">
-                    <Grid RowDefinitions="50,10,*">
-                        <Panel Classes="tabHeader"><Label Classes="tabHeader" Content="Settings"/></Panel>
-                        <StackPanel Grid.Row="2" Classes="tabItem">
-                            <Button Command="{Binding LoadWebData}">Set</Button>
-                        </StackPanel>
-                    </Grid>
+                    <views:SettingsWindow/>
                 </TabItem>
             </TabControl>
         </Grid>

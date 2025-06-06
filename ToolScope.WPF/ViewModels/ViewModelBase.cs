@@ -1,7 +1,18 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System;
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
+using ToolScope.WPF.Models.Web;
 
 namespace ToolScope.WPF.ViewModels;
 
 public class ViewModelBase : ObservableObject
 {
+    public async Task LoadWebData()
+    {
+        HTTPHandler httpHandler = new HTTPHandler();
+        foreach (var country in await httpHandler.GetCountryArrayFromWeb())
+        {
+            Console.WriteLine(country);
+        }
+    }
 }
