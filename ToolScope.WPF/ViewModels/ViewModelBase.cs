@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ToolScope.WPF.Models;
 using ToolScope.WPF.Models.Web;
 
 namespace ToolScope.WPF.ViewModels;
@@ -14,5 +15,7 @@ public class ViewModelBase : ObservableObject
         {
             Console.WriteLine(country);
         }
+
+        Console.WriteLine(ConfigHandler.Get("RealName"));
     }
 }
