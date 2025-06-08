@@ -43,11 +43,13 @@
     </Style>
     
     <Style Selector="Label.tabHeader">
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontSize" Value="15"/>
         <Setter Property="Padding" Value="20,0"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Foreground" Value="#ffbf01"/>
+        <Setter Property="Margin" Value="0,0,12,0"/>
     </Style>
     
     

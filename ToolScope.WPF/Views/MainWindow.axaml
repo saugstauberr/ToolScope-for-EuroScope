@@ -24,7 +24,7 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-    <Grid RowDefinitions="40, *">
+    <Grid RowDefinitions="40, 20, *">
         <Panel Grid.Row="0" IsHitTestVisible="False">
             <Grid ColumnDefinitions="*">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="10,0">
@@ -32,7 +32,8 @@
                 </StackPanel>
             </Grid>
         </Panel>
-        <Grid Grid.Row="1" ColumnDefinitions="*" Margin="10,0">
+        <Panel Grid.Row="1" Classes="tabHeader"><Label Classes="tabHeader" Content="{Binding CurrentTab}"/></Panel>
+        <Grid Grid.Row="2" ColumnDefinitions="*" Margin="10,0">
             <Border HorizontalAlignment="Left" BorderBrush="{Binding ElementName=ReferenceTabItem, Path=BorderBrush}" BorderThickness="{Binding ElementName=ReferenceTabItem, Path=BorderThickness}" Width="{Binding ElementName=ReferenceTabItem, Path=Width}"/>
             <TabControl Classes="nav" SelectedIndex="{Binding CurrentTab}">
                 <TabItem Header="Home" Classes="nav" Name="ReferenceTabItem">

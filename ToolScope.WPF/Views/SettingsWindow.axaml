@@ -12,7 +12,6 @@
         <vm:SettingsWindowViewModel/>
     </Design.DataContext>
     <Grid RowDefinitions="50,10,*">
-        <Panel Classes="tabHeader"><Label Classes="tabHeader" Content="Settings"/></Panel>
         <StackPanel Grid.Row="2" Classes="tabItem">
             <Button Command="{Binding LoadWebData}">Load Data</Button>
         </StackPanel>

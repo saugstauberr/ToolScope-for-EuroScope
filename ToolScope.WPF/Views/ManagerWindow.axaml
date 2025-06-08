@@ -12,9 +12,17 @@
         <vm:ManagerWindowViewModel/>
     </Design.DataContext>
     <Grid RowDefinitions="50,10,*">
-        <Panel Classes="tabHeader"><Label Classes="tabHeader" Content="Manager"/></Panel>
         <StackPanel Grid.Row="2" Classes="tabItem">
-            <Button Command="{Binding LoadWebData}">Load Data</Button>
+            <DataGrid ItemsSource="{Binding InstalledPackages}" GridLinesVisibility="All" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Country" Binding="{Binding Country}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Region" Binding="{Binding Region}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Variant" Binding="{Binding Variant}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="AIRAC" Binding="{Binding Airac}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Release Date" Binding="{Binding ReleaseDate}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Version" Binding="{Binding Version}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
     </Grid>
 </UserControl>

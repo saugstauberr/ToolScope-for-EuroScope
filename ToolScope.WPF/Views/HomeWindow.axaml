@@ -12,7 +12,7 @@
         <vm:HomeWindowViewModel/>
     </Design.DataContext>
     <Grid RowDefinitions="50,10,*">
-        <Panel Classes="tabHeader"><Label Classes="tabHeader" Content="Home"/></Panel>
+        
         <StackPanel Grid.Row="2" Classes="tabItem">
             
         </StackPanel>
