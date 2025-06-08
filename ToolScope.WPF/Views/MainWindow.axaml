@@ -10,6 +10,7 @@
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/ToolScope.ico"
         ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
         Title="ToolScope.WPF"
         RequestedThemeVariant="Dark"
         FontSize="13"
@@ -17,6 +18,7 @@
         MinHeight="450"
         Width="800"
         Height="450"
+        WindowState="{Binding CurrentWindowState}"
         >
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -24,10 +26,15 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     <Grid RowDefinitions="40, 20, *">
-        <Panel Grid.Row="0" IsHitTestVisible="False">
+        <Panel Grid.Row="0">
             <Grid ColumnDefinitions="*">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="10,0">
                     <Image Source="/Assets/ToolScope Banner.png" RenderOptions.BitmapInterpolationMode="MediumQuality"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Margin="5,5">
+                    <Button Content="Minus" Classes="controlBar" Command="{Binding MinimizeWindow}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+                    <Button Content="{Binding CurrentWindowStateIcon}" Classes="controlBar" Command="{Binding ToggleWindowState}"/>
+                    <Button Content="Close" Classes="controlBar" Command="{Binding CloseWindow}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
                 </StackPanel>
             </Grid>
         </Panel>
