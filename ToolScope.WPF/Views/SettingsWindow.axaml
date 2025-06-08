@@ -11,9 +11,34 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:SettingsWindowViewModel/>
     </Design.DataContext>
-    <Grid RowDefinitions="50,10,*">
+    <Grid RowDefinitions="20,10,*,*" ColumnDefinitions="*,100,*" Margin="30,10">
         <StackPanel Grid.Row="2" Classes="tabItem">
-            <Button Command="{Binding LoadWebData}">Load Data</Button>
+            <StackPanel>
+                <Label Classes="h3" Content="Real Name"></Label>
+                <TextBox></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <Label Classes="h3" Content="Vatsim CID"></Label>
+                <TextBox></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <Label Classes="h3" Content="Callsign"></Label>
+                <TextBox></TextBox>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="2" Classes="tabItem">
+            <StackPanel>
+                <Label Classes="h3" Content="Password"></Label>
+                <TextBox></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <Label Classes="h3" Content="Hoppie-Code"></Label>
+                <TextBox></TextBox>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Classes="tabItem">
+            <Label Classes="h3" Content="Folder for installed packages"></Label>
+            <TextBox></TextBox>
         </StackPanel>
     </Grid>
 </UserControl>

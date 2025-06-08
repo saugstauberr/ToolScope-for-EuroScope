@@ -6,6 +6,10 @@
         </Border>
     </Design.PreviewWith>
     
+    <Style Selector="Window">
+        <Setter Property="Background" Value="#18191a"/>
+    </Style>
+    
     <Style Selector="TabControl.nav">
         <Setter Property="Margin" Value="0,0"/>
         <Setter Property="Padding" Value="0"/>
@@ -24,7 +28,7 @@
     </Style>
     
     <Style Selector="TabItem.nav:selected /template/ Border#PART_SelectedPipe">
-        <Setter Property="Background" Value="Goldenrod"/>
+        <Setter Property="Background" Value="#ffbf01"/>
         <Setter Property="Width" Value="3"/>
         <Setter Property="Height" Value="40"/>
     </Style>
@@ -36,7 +40,16 @@
     <Style Selector="Image">
 
     </Style>
-
+    
+    <Style Selector="TextBox">
+        <Setter Property="BorderBrush" Value="#272829"/>
+        <Setter Property="Foreground" Value="#B2B8BD"/>
+    </Style>
+    
+    <Style Selector="Label.h3">
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+    
     <Style Selector="Panel.tabHeader">
         <Setter Property="Margin" Value="0,0,0,0"/>
         <Setter Property="Height" Value="50"/>

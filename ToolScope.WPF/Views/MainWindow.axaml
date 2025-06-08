@@ -17,7 +17,6 @@
         MinHeight="450"
         Width="800"
         Height="450"
-        Background="#18191a"
         >
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
