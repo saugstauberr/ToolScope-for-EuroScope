@@ -11,4 +11,5 @@ public class ConfigClass
     public string? SelectedCountry { get; set; }
     public string? SelectedRegion { get; set; }
     public string? SelectedPackage { get; set; }
+    public bool? IsFirstRun { get; set; }
 }

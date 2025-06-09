@@ -49,13 +49,13 @@ public partial class MainWindowViewModel : ViewModelBase
     
     public void MinimizeWindow(object obj)
     {
-        if (obj is Window window) { window.Hide();}
+        if (obj is Window window) { window.WindowState = WindowState.Minimized;}
     }
     
     public void ToggleWindowState()
     {
         CurrentWindowStateIcon = CurrentWindowStateIcon == "Expand" ? "Compress" : "Expand";
-        CurrentWindowState = CurrentWindowState == "Maximize" ? "Normal" : "Maximize";
+        CurrentWindowState = CurrentWindowState == "Maximized" ? "Normal" : "Maximized";
         
     }
 
