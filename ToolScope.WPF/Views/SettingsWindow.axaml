@@ -15,30 +15,31 @@
         <StackPanel Grid.Row="2" Classes="tabItem">
             <StackPanel>
                 <Label Classes="h3" Content="Real Name"></Label>
-                <TextBox></TextBox>
+                <TextBox Text="{Binding InputValues[0]}"></TextBox>
             </StackPanel>
             <StackPanel>
                 <Label Classes="h3" Content="Vatsim CID"></Label>
-                <TextBox></TextBox>
+                <TextBox Text="{Binding InputValues[1]}"></TextBox>
             </StackPanel>
             <StackPanel>
                 <Label Classes="h3" Content="Callsign"></Label>
-                <TextBox></TextBox>
+                <TextBox Text="{Binding InputValues[2]}"></TextBox>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="2" Classes="tabItem">
             <StackPanel>
                 <Label Classes="h3" Content="Password"></Label>
-                <TextBox></TextBox>
+                <TextBox Text="{Binding InputValues[3]}"></TextBox>
             </StackPanel>
             <StackPanel>
                 <Label Classes="h3" Content="Hoppie-Code"></Label>
-                <TextBox></TextBox>
+                <TextBox Text="{Binding InputValues[4]}"></TextBox>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Classes="tabItem">
             <Label Classes="h3" Content="Folder for installed packages"></Label>
-            <TextBox></TextBox>
+            <TextBox Text="{Binding InputValues[5]}"></TextBox>
+            <Button Content="Save" Command="{Binding SaveInput}"></Button>
         </StackPanel>
     </Grid>
 </UserControl>
