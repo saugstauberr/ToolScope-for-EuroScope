@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ReactiveUI;
 using ToolScope.WPF.Models;
 using ToolScope.WPF.Models.Web;
 
 namespace ToolScope.WPF.ViewModels;
 
-public class ViewModelBase : ReactiveObject
+public class ViewModelBase : ObservableObject
 {
     public async Task LoadWebData()
     {

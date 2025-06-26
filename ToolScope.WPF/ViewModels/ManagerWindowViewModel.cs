@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ReactiveUI;
 using ToolScope.WPF.Models;
 using ToolScope.WPF.Models.Web;
@@ -12,13 +13,9 @@ namespace ToolScope.WPF.ViewModels;
 
 public partial class ManagerWindowViewModel : ViewModelBase
 {
+    [ObservableProperty]
     private ObservableCollection<PackageClass> _installedPackages;
-
-    public ObservableCollection<PackageClass> InstalledPackages
-    {
-        get => _installedPackages;
-        set => this.RaiseAndSetIfChanged(ref _installedPackages, value);
-    }
+    
 
     public ManagerWindowViewModel()
     {

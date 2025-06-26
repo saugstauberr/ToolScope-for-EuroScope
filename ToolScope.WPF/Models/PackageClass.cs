@@ -2,6 +2,7 @@
 
 public class PackageClass
 {
+    // This class represents a package with various properties such as country, region, variant, airac, release date, version, and URL.
     public string Country { get; set; }
     public string Region { get; set; }
     public string Variant { get; set; }

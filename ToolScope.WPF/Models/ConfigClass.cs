@@ -2,6 +2,7 @@
 
 public class ConfigClass
 {
+    // This class represents the configuration settings for the application.
     public string? RealName { get; set; }
     public string? Cid { get; set; }
     public string? Password { get; set; }

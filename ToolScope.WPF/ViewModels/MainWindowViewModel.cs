@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Avalonia.Controls;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ReactiveUI;
 using Tmds.DBus.Protocol;
 using ToolScope.WPF.Models.Web;
@@ -17,25 +18,16 @@ public partial class MainWindowViewModel : ViewModelBase
     public string CurrentTab
     {
         get => _currentTab;
-        set => this.RaiseAndSetIfChanged(ref _currentTab, TabIndexToString(value));
+        set => SetProperty(ref _currentTab,TabIndexToString(value));
     }
     
+    [ObservableProperty]
     private string _currentWindowState = "Normal";
     
-    public string CurrentWindowState
-    {
-        get => _currentWindowState;
-        set => this.RaiseAndSetIfChanged(ref _currentWindowState, value);
-    }
-
+    [ObservableProperty]
     private string _currentWindowStateIcon = "Expand";
     
-    public string CurrentWindowStateIcon
-    {
-        get => _currentWindowStateIcon;
-        set => this.RaiseAndSetIfChanged(ref _currentWindowStateIcon, value);
-    }
-    
+
     private string TabIndexToString(string index)
     {
         return index switch
@@ -47,18 +39,19 @@ public partial class MainWindowViewModel : ViewModelBase
         };
     }
     
+
     public void MinimizeWindow(object obj)
     {
         if (obj is Window window) { window.WindowState = WindowState.Minimized;}
     }
-    
+
     public void ToggleWindowState()
     {
         CurrentWindowStateIcon = CurrentWindowStateIcon == "Expand" ? "Compress" : "Expand";
         CurrentWindowState = CurrentWindowState == "Maximized" ? "Normal" : "Maximized";
         
     }
-
+    
     public void CloseWindow(object obj)
     {
         if (obj is Window window) { window.Close();}

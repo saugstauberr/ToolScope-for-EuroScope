@@ -29,7 +29,7 @@
         <StackPanel Grid.Row="2" Grid.Column="2" Classes="tabItem">
             <StackPanel>
                 <Label Classes="h3" Content="Password"></Label>
-                <TextBox Text="{Binding InputValues[3]}"></TextBox>
+                <TextBox PasswordChar="*" Text="{Binding InputValues[3]}"></TextBox>
             </StackPanel>
             <StackPanel>
                 <Label Classes="h3" Content="Hoppie-Code"></Label>
@@ -39,7 +39,11 @@
         <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Classes="tabItem">
             <Label Classes="h3" Content="Folder for installed packages"></Label>
             <TextBox Text="{Binding InputValues[5]}"></TextBox>
-            <Button Content="Save" Command="{Binding SaveInput}"></Button>
+            <StackPanel Orientation="Horizontal" Spacing="20">
+                <Button Classes="highlighted" Content="Save" Command="{Binding SaveInput}"></Button>
+                <Button Content="Choose from folder dialog" Command="{Binding ChoosePathDialogAsync}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></Button>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -54,8 +54,7 @@ public static class ConfigHandler
     
     public static void Set(string key, string value)
     {
-        // Set a configuration value by key
-        // This is a placeholder implementation
+        // First, initialize the configuration
         Initialize();
         
         if (_config == null) return;
@@ -66,6 +65,7 @@ public static class ConfigHandler
             property.SetValue(_config, value);
         }
 
+        // Save the updated configuration
         Save();
     }
 }
