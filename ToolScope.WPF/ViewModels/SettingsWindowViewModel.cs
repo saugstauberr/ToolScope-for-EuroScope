@@ -45,8 +45,6 @@ public partial class SettingsWindowViewModel : ViewModelBase
 
     public void SaveInput()
     {
-        SetInput();
-        
         for (var i = 0; i < _keyNames.Length; i++)
         {
             var key = _keyNames[i];
