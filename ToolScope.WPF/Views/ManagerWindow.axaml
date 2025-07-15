@@ -23,6 +23,7 @@
                     <DataGridTextColumn Header="Version" Binding="{Binding Version}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
+            <Button Content="Install new package" Command="{Binding OpenAddPackageWindow}"/>
         </StackPanel>
     </Grid>
 </UserControl>
