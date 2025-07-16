@@ -39,12 +39,8 @@ public partial class ManagerWindowViewModel : ViewModelBase
             await MessageBox.ShowAsync("Please set a folder for new packages first!", "Warning");
             return;
         }
-        
-        var window = new Window
-        {
-            Title = "ToolScope - Adding new package",
-            Content = new AddPackageWindow()
-        };
+
+        var window = new MainWindow(new AddPackageWindow(), "Install new package");
         window.Show();
     }
 }

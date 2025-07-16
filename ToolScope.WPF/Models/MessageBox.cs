@@ -1,6 +1,8 @@
 using System.Threading.Tasks;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
+using Tmds.DBus.Protocol;
+using ToolScope.WPF.Views;
 
 namespace ToolScope.WPF.Models;
 

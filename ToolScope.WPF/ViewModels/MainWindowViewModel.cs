@@ -13,13 +13,7 @@ namespace ToolScope.WPF.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    private string _currentTab = "Home";
-
-    public string CurrentTab
-    {
-        get => _currentTab;
-        set => SetProperty(ref _currentTab,TabIndexToString(value));
-    }
+    
     
     [ObservableProperty]
     private string _currentWindowState = "Normal";
@@ -27,17 +21,6 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private string _currentWindowStateIcon = "Expand";
     
-
-    private string TabIndexToString(string index)
-    {
-        return index switch
-        {
-            "0" => "Home",
-            "1" => "Manager",
-            "2" => "Settings",
-            _ => throw new ArgumentOutOfRangeException(nameof(index), "Invalid tab index")
-        };
-    }
     
 
     public void MinimizeWindow(object obj)

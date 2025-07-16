@@ -11,8 +11,9 @@
         Icon="/Assets/ToolScope.ico"
         ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="NoChrome"
-        Title="ToolScope.WPF"
+        Title="ToolScope - Home"
         RequestedThemeVariant="Dark"
+        WindowStartupLocation="CenterScreen"
         FontSize="13"
         MinWidth="800"
         MinHeight="450"
@@ -25,7 +26,7 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-    <Grid RowDefinitions="40, 20, *">
+    <Grid x:Name="WindowGrid" RowDefinitions="40, 30, *">
         <Panel Grid.Row="0">
             <Grid ColumnDefinitions="*">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="10,0">
@@ -38,20 +39,7 @@
                 </StackPanel>
             </Grid>
         </Panel>
-        <Panel Grid.Row="1" Classes="tabHeader"><Label Classes="tabHeader" Content="{Binding CurrentTab}"/></Panel>
-        <Grid Grid.Row="2" ColumnDefinitions="*" Margin="10,0">
-            <Border HorizontalAlignment="Left" BorderBrush="{Binding ElementName=ReferenceTabItem, Path=BorderBrush}" BorderThickness="{Binding ElementName=ReferenceTabItem, Path=BorderThickness}" Width="{Binding ElementName=ReferenceTabItem, Path=Width}"/>
-            <TabControl Classes="nav" SelectedIndex="{Binding CurrentTab}">
-                <TabItem Header="Home" Classes="nav" Name="ReferenceTabItem">
-                    <views:HomeWindow/>
-                </TabItem>
-                <TabItem Header="List" Classes="nav">
-                    <views:ManagerWindow/>
-                </TabItem>
-                <TabItem Header="Gear" Classes="nav">
-                    <views:SettingsWindow/>
-                </TabItem>
-            </TabControl>
-        </Grid>
+        <Label x:Name="WindowTitle" Grid.Row="1" Classes="tabHeader" Grid.ColumnSpan="3">WindowTitle</Label>
+        <ContentControl Grid.Row="2" x:Name="Content"></ContentControl>
     </Grid>
 </Window>

@@ -58,8 +58,8 @@ public partial class SettingsWindowViewModel : ViewModelBase
 
             // Set the configuration value using the ConfigHandler
             ConfigHandler.Set(key, value);
-            MessageBox.Show("Your configuration has been saved successfully!");
         }
+        MessageBox.Show("Your configuration has been saved successfully!");
     }
 
     private async Task<IReadOnlyList<IStorageFolder>> OpenFolderPickerAsync(Window window, FolderPickerOpenOptions options)

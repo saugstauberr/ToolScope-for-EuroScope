@@ -11,7 +11,7 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:AddPackageWindowViewModel/>
     </Design.DataContext>
-    <Grid RowDefinitions="20,10,*,*" ColumnDefinitions="*,100,*" Margin="30,10">
+    <Grid RowDefinitions="20,50,*" ColumnDefinitions="*,100,*" Margin="30,10">
         <StackPanel Grid.Row="2" Classes="tabItem">
             <Button Content="Test"/>
         </StackPanel>

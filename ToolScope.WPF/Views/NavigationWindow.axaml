@@ -1,0 +1,32 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:ToolScope.WPF.ViewModels"
+             xmlns:views="clr-namespace:ToolScope.WPF.Views"
+             x:DataType="vm:NavigationWindowViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ToolScope.WPF.Views.NavigationWindow">
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:NavigationWindowViewModel/>
+    </Design.DataContext>
+    <Grid RowDefinitions="20, *">
+        <Panel Grid.Row="0" Classes="tabHeader"><Label Classes="tabHeader" Content="{Binding CurrentTab}"/></Panel>
+        <Grid Grid.Row="1" ColumnDefinitions="*" Margin="10,0">
+            <Border HorizontalAlignment="Left" BorderBrush="{Binding ElementName=ReferenceTabItem, Path=BorderBrush}" BorderThickness="{Binding ElementName=ReferenceTabItem, Path=BorderThickness}" Width="{Binding ElementName=ReferenceTabItem, Path=Width}"/>
+            <TabControl Classes="nav" SelectedIndex="{Binding CurrentTab}">
+                <TabItem Header="Home" Classes="nav" Name="ReferenceTabItem">
+                    <views:HomeWindow/>
+                </TabItem>
+                <TabItem Header="List" Classes="nav">
+                    <views:ManagerWindow/>
+                </TabItem>
+                <TabItem Header="Gear" Classes="nav">
+                    <views:SettingsWindow/>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</UserControl>
