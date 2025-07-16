@@ -1,0 +1,29 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:ToolScope.WPF.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ToolScope.WPF.Views.ManagerWindow"
+             x:DataType="vm:ManagerWindowViewModel">
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:ManagerWindowViewModel/>
+    </Design.DataContext>
+    <Grid RowDefinitions="50,10,*">
+        <StackPanel Grid.Row="2" Classes="tabItem">
+            <DataGrid ItemsSource="{Binding InstalledPackages}" GridLinesVisibility="All" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Country" Binding="{Binding Country}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Region" Binding="{Binding Region}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Variant" Binding="{Binding Variant}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="AIRAC" Binding="{Binding Airac}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Release Date" Binding="{Binding ReleaseDate}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Version" Binding="{Binding Version}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Install new package" Command="{Binding OpenAddPackageWindow}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

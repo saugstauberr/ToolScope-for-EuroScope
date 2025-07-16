@@ -3,49 +3,57 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Avalonia.Controls;
+using CommunityToolkit.Mvvm.ComponentModel;
+using ReactiveUI;
 using Tmds.DBus.Protocol;
 using ToolScope.WPF.Models.Web;
 
 namespace ToolScope.WPF.ViewModels;
 
-public partial class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
+public partial class MainWindowViewModel : ViewModelBase
 {
-    public new event PropertyChangedEventHandler? PropertyChanged;
-
-    protected new virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    private string _currentTab = "0";
+    private string _currentTab = "Home";
 
     public string CurrentTab
     {
         get => _currentTab;
-        set
+        set => SetProperty(ref _currentTab,TabIndexToString(value));
+    }
+    
+    [ObservableProperty]
+    private string _currentWindowState = "Normal";
+    
+    [ObservableProperty]
+    private string _currentWindowStateIcon = "Expand";
+    
+
+    private string TabIndexToString(string index)
+    {
+        return index switch
         {
-            _currentTab = value;
-            OnPropertyChanged();
-        }
+            "0" => "Home",
+            "1" => "Manager",
+            "2" => "Settings",
+            _ => throw new ArgumentOutOfRangeException(nameof(index), "Invalid tab index")
+        };
+    }
+    
+
+    public void MinimizeWindow(object obj)
+    {
+        if (obj is Window window) { window.WindowState = WindowState.Minimized;}
     }
 
-    public void ChangeTab(string tabIndex)
+    public void ToggleWindowState()
     {
-        // Logic to change the tab in the main window
-        // This could involve updating a property that the view binds to
-        // For example, you might have a property called CurrentTab
-        // and set it to the name of the tab you want to switch to.
+        CurrentWindowStateIcon = CurrentWindowStateIcon == "Expand" ? "Compress" : "Expand";
+        CurrentWindowState = CurrentWindowState == "Maximized" ? "Normal" : "Maximized";
         
-        CurrentTab = tabIndex;
-        Console.WriteLine($"Tab changed to: {CurrentTab}");
     }
-
-    public async Task LoadWebData()
+    
+    public void CloseWindow(object obj)
     {
-        HTTPHandler httpHandler = new HTTPHandler();
-        foreach (var country in await httpHandler.GetCountryArrayFromWeb())
-        {
-            Console.WriteLine(country);
-        }
+        if (obj is Window window) { window.Close();}
     }
 }

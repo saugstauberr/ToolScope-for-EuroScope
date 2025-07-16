@@ -1,0 +1,50 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:ToolScope.WPF.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ToolScope.WPF.Views.SettingsWindow"
+             x:DataType="vm:SettingsWindowViewModel">
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:SettingsWindowViewModel/>
+    </Design.DataContext>
+    <Grid RowDefinitions="20,10,*,*" ColumnDefinitions="*,100,*" Margin="30,10">
+        <StackPanel Grid.Row="2" Classes="tabItem">
+            <StackPanel>
+                <Label Classes="h3" Content="Real Name"></Label>
+                <TextBox Text="{Binding InputValues[0]}"></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <Label Classes="h3" Content="Vatsim CID"></Label>
+                <TextBox Text="{Binding InputValues[1]}"></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <Label Classes="h3" Content="Callsign"></Label>
+                <TextBox Text="{Binding InputValues[2]}"></TextBox>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="2" Classes="tabItem">
+            <StackPanel>
+                <Label Classes="h3" Content="Password"></Label>
+                <TextBox PasswordChar="*" Text="{Binding InputValues[3]}"></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <Label Classes="h3" Content="Hoppie-Code"></Label>
+                <TextBox Text="{Binding InputValues[4]}"></TextBox>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Classes="tabItem">
+            <Label Classes="h3" Content="Folder for installed packages"></Label>
+            <TextBox Text="{Binding InputValues[5]}"></TextBox>
+            <StackPanel Orientation="Horizontal" Spacing="20">
+                <Button Classes="highlighted" Content="Save" Command="{Binding SaveInput}"></Button>
+                <Button Content="Choose from folder dialog" Command="{Binding ChoosePathDialogAsync}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></Button>
+            </StackPanel>
+        </StackPanel>
+            <Label Grid.Row="3" Grid.Column="0" Content="{Binding Version}" Foreground="#393939" VerticalAlignment="Bottom"/>
+    </Grid>
+</UserControl>

@@ -6,6 +6,10 @@
         </Border>
     </Design.PreviewWith>
     
+    <Style Selector="Window">
+        <Setter Property="Background" Value="#18191a"/>
+    </Style>
+    
     <Style Selector="TabControl.nav">
         <Setter Property="Margin" Value="0,0"/>
         <Setter Property="Padding" Value="0"/>
@@ -23,8 +27,9 @@
         <Setter Property="FontSize" Value="16"/>
     </Style>
     
+    
     <Style Selector="TabItem.nav:selected /template/ Border#PART_SelectedPipe">
-        <Setter Property="Background" Value="Goldenrod"/>
+        <Setter Property="Background" Value="#ffbf01"/>
         <Setter Property="Width" Value="3"/>
         <Setter Property="Height" Value="40"/>
     </Style>
@@ -32,18 +37,62 @@
     <Style Selector="TabItem">
         
     </Style>
+    
+    <Style Selector="Image">
 
+    </Style>
+    
+    <Style Selector="TextBox">
+        <Setter Property="BorderBrush" Value="#272829"/>
+        <Setter Property="Foreground" Value="#B2B8BD"/>
+    </Style>
+    
+    <Style Selector="Button">
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+    
+    <Style Selector="Button.highlighted">
+        <Setter Property="Foreground" Value="#ffbf01"/>
+    </Style>
+    
+    <Style Selector="Button.controlBar">
+        <Setter Property="FontFamily" Value="{StaticResource FontAwesome}"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Foreground" Value="#959595"/>
+        <Setter Property="Background" Value="#18191A"/>
+    </Style>
+    
+    <Style Selector="Button.controlBar:pointerover /template/ ContentPresenter">
+        <Setter Property="FontFamily" Value="{StaticResource FontAwesome}"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="#18191A"/>
+    </Style>
+    
+    <Style Selector="Button.controlBar:pressed /template/ ContentPresenter">
+        <Setter Property="FontFamily" Value="{StaticResource FontAwesome}"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Foreground" Value="#959595"/>
+        <Setter Property="Background" Value="#18191A"/>
+    </Style>
+    
+    <Style Selector="Label.h3">
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+    
     <Style Selector="Panel.tabHeader">
-        <Setter Property="Background" Value="#292929" />
         <Setter Property="Margin" Value="0,0,0,0"/>
         <Setter Property="Height" Value="50"/>
     </Style>
     
     <Style Selector="Label.tabHeader">
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontSize" Value="15"/>
         <Setter Property="Padding" Value="20,0"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="#ffbf01"/>
+        <Setter Property="Margin" Value="0,0,12,0"/>
     </Style>
     
     
