@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using DynamicData;
@@ -26,7 +27,7 @@ public partial class SettingsWindowViewModel : ViewModelBase
     // When adding a new input value, ensure it corresponds to the keys defined above
     [ObservableProperty]
     private ObservableCollection<string> _inputValues = new ObservableCollection<string>(new string[100]);
-    
+
 
     public SettingsWindowViewModel()
     {

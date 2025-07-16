@@ -45,5 +45,6 @@
                         CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></Button>
             </StackPanel>
         </StackPanel>
+            <Label Grid.Row="3" Grid.Column="0" Content="{Binding Version}" Foreground="#393939" VerticalAlignment="Bottom"/>
     </Grid>
 </UserControl>

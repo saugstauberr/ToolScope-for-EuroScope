@@ -6,13 +6,7 @@ using ToolScope.WPF.Models.Web;
 
 namespace ToolScope.WPF.ViewModels;
 
-public partial class HomeWindowViewModel : ViewModelBase, INotifyPropertyChanged
+public partial class HomeWindowViewModel : ViewModelBase
 {
-    public new event PropertyChangedEventHandler? PropertyChanged;
-
-    private new void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-    
+       
 }
