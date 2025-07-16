@@ -43,6 +43,7 @@
                 <Button Classes="highlighted" Content="Save" Command="{Binding SaveInput}"></Button>
                 <Button Content="Choose from folder dialog" Command="{Binding ChoosePathDialogAsync}" 
                         CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></Button>
+                <Button Classes="error" Content="Reset Config" Command="{Binding ResetConfig}"></Button>
             </StackPanel>
         </StackPanel>
             <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding Version}" Classes="dimmed" VerticalAlignment="Bottom"/>

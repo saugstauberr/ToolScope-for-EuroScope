@@ -1,0 +1,43 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ToolScope.WPF.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:ToolScope.WPF.Controls"
+        xmlns:views="clr-namespace:ToolScope.WPF.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ToolScope.WPF.Views.NotificationWindow"
+        x:DataType="vm:NotificationWindowViewModel"
+        Icon="/Assets/ToolScope.ico"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        Title="ToolScope"
+        RequestedThemeVariant="Dark"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False"
+        FontSize="13"
+        Width="800"
+        Height="450"
+        WindowState="{Binding CurrentWindowState}"
+        >
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:NotificationWindowViewModel/>
+    </Design.DataContext>
+    <Grid RowDefinitions="40, 30, *">
+        <Panel Grid.Row="0">
+            <Grid ColumnDefinitions="*">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="10,0">
+                    <Image Source="/Assets/ToolScope Banner.png" RenderOptions.BitmapInterpolationMode="MediumQuality"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Margin="5,5">
+                    <Button Content="Minus" Classes="controlBar" Command="{Binding MinimizeWindow}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+                    <Button Content="Close" Classes="controlBar" Command="{Binding CloseWindow}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+                </StackPanel>
+            </Grid>
+        </Panel>
+        <TextBlock x:Name="WindowTitle" Grid.Row="1" Classes="tabHeader" Grid.ColumnSpan="3" Text="WindowTitle"/>
+        
+    </Grid>
+</Window>

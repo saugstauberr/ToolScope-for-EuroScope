@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Avalonia;
 using Newtonsoft.Json;
 
 namespace ToolScope.WPF.Models;
@@ -67,5 +68,10 @@ public static class ConfigHandler
 
         // Save the updated configuration
         Save();
+    }
+
+    public static void Reset()
+    {
+        File.Delete(ConfigFileFolder);
     }
 }

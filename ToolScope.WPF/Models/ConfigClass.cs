@@ -8,7 +8,7 @@ public class ConfigClass
     public string? Password { get; set; }
     public string? CallSign { get; set; }
     public string? HoppieCode { get; set; }
-    public string? EuroScopeFolder { get; set; }
+    public string? EuroScopeFolder { get; set; } = "ToolScope";
     public string? SelectedCountry { get; set; }
     public bool? IsFirstRun { get; set; }
 }

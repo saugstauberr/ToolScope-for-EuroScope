@@ -56,6 +56,10 @@
         <Setter Property="Foreground" Value="#ffbf01"/>
     </Style>
     
+    <Style Selector="Button.error">
+        <Setter Property="Foreground" Value="#FF3044"/>
+    </Style>
+    
     <Style Selector="Button.controlBar">
         <Setter Property="FontFamily" Value="{StaticResource FontAwesome}"/>
         <Setter Property="FontSize" Value="16"/>
