@@ -39,7 +39,7 @@
                 </StackPanel>
             </Grid>
         </Panel>
-        <Label x:Name="WindowTitle" Grid.Row="1" Classes="tabHeader" Grid.ColumnSpan="3">WindowTitle</Label>
+        <TextBlock x:Name="WindowTitle" Grid.Row="1" Classes="tabHeader" Grid.ColumnSpan="3" Text="WindowTitle"/>
         <ContentControl Grid.Row="2" x:Name="Content"></ContentControl>
     </Grid>
 </Window>

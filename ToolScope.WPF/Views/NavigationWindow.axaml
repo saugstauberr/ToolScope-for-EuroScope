@@ -13,7 +13,7 @@
         <vm:NavigationWindowViewModel/>
     </Design.DataContext>
     <Grid RowDefinitions="20, *">
-        <Panel Grid.Row="0" Classes="tabHeader"><Label Classes="tabHeader" Content="{Binding CurrentTab}"/></Panel>
+        <Panel Grid.Row="0" Classes="tabHeader"><TextBlock Classes="tabHeader" Text="{Binding CurrentTab}"/></Panel>
         <Grid Grid.Row="1" ColumnDefinitions="*" Margin="10,0">
             <Border HorizontalAlignment="Left" BorderBrush="{Binding ElementName=ReferenceTabItem, Path=BorderBrush}" BorderThickness="{Binding ElementName=ReferenceTabItem, Path=BorderThickness}" Width="{Binding ElementName=ReferenceTabItem, Path=Width}"/>
             <TabControl Classes="nav" SelectedIndex="{Binding CurrentTab}">

@@ -11,7 +11,6 @@ using Avalonia.Platform.Storage;
 using DynamicData;
 using ReactiveUI;
 using ToolScope.WPF.Models;
-using ToolScope.WPF.Models.Web;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ToolScope.WPF.ViewModels;

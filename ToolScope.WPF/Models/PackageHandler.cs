@@ -1,6 +1,6 @@
 ﻿namespace ToolScope.WPF.Models;
 
-public class PackageHandler
+public static class PackageHandler
 {
     
 }

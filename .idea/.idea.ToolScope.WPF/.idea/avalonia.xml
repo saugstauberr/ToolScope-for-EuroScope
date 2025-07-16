@@ -12,6 +12,8 @@
         <entry key="ToolScope.WPF/Views/HomeWindow.axaml" value="ToolScope.WPF/ToolScope.WPF.csproj" />
         <entry key="ToolScope.WPF/Views/MainWindow.axaml" value="ToolScope.WPF/ToolScope.WPF.csproj" />
         <entry key="ToolScope.WPF/Views/ManagerWindow.axaml" value="ToolScope.WPF/ToolScope.WPF.csproj" />
+        <entry key="ToolScope.WPF/Views/MessageWindow.axaml" value="ToolScope.WPF/ToolScope.WPF.csproj" />
+        <entry key="ToolScope.WPF/Views/NavigationWindow.axaml" value="ToolScope.WPF/ToolScope.WPF.csproj" />
         <entry key="ToolScope.WPF/Views/SettingsWindow.axaml" value="ToolScope.WPF/ToolScope.WPF.csproj" />
       </map>
     </option>

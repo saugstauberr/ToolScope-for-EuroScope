@@ -12,7 +12,6 @@ using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
 using ReactiveUI;
 using ToolScope.WPF.Models;
-using ToolScope.WPF.Models.Web;
 using ToolScope.WPF.Views;
 
 namespace ToolScope.WPF.ViewModels;

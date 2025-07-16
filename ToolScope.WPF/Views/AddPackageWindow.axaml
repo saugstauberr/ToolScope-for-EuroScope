@@ -11,9 +11,24 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:AddPackageWindowViewModel/>
     </Design.DataContext>
-    <Grid RowDefinitions="20,50,*" ColumnDefinitions="*,100,*" Margin="30,10">
+    <Grid RowDefinitions="20,10,*,*" ColumnDefinitions="*,100,*" Margin="30,10">
         <StackPanel Grid.Row="2" Classes="tabItem">
-            <Button Content="Test"/>
+            <StackPanel>
+                <TextBlock Classes="h3" Text="Select country"></TextBlock>
+                <AutoCompleteBox MinimumPrefixLength="0" ItemsSource="{Binding Countries}" 
+                                 Text="{Binding SelectedCountry}"></AutoCompleteBox>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Classes="h3" Text="Select package to install"></TextBlock>
+                <ListBox ItemsSource="{Binding PackagesListBox}" SelectedIndex="{Binding SelectedPackageIndex}">
+                </ListBox>
+                <TextBlock Classes="dimmed">Update packages are hidden and have to be installed in the Manager.</TextBlock>
+            </StackPanel>
+            <StackPanel>
+                <Button Classes="highlighted" Content="Install Package" 
+                        Command="{Binding InstallPackage}" 
+                        IsEnabled="{Binding IsInstallButtonEnabled}"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

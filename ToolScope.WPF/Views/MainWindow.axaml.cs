@@ -13,12 +13,12 @@ public partial class MainWindow : Window
 
         if (windowTitle == "null")
         {
-            this.FindControl<Label>("WindowTitle")!.IsVisible = false;
+            this.FindControl<TextBlock>("WindowTitle")!.IsVisible = false;
             this.FindControl<Grid>("WindowGrid")!.RowDefinitions = RowDefinitions.Parse("40, *");
         }
         else
         {
-            this.FindControl<Label>("WindowTitle")!.Content = windowTitle;
+            this.FindControl<TextBlock>("WindowTitle")!.Text = windowTitle;
             this.Title = windowTitle;
         }
         this.FindControl<ContentControl>("Content")!.Content = userControl;

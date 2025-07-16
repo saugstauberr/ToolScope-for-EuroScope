@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using ToolScope.WPF.Models.Web;
+using ToolScope.WPF.Models;
 
 namespace ToolScope.WPF.ViewModels;
 

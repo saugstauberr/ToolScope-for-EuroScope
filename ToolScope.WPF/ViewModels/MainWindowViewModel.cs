@@ -7,7 +7,7 @@ using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ReactiveUI;
 using Tmds.DBus.Protocol;
-using ToolScope.WPF.Models.Web;
+using ToolScope.WPF.Models;
 
 namespace ToolScope.WPF.ViewModels;
 
