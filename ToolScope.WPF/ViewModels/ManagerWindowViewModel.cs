@@ -19,19 +19,15 @@ namespace ToolScope.WPF.ViewModels;
 public partial class ManagerWindowViewModel : ViewModelBase
 {
     [ObservableProperty]
-    private ObservableCollection<PackageClass> _installedPackages;
+    private ObservableCollection<PackageClass> _installedPackages = PackageHandler.GetInstalled();
     
 
     public ManagerWindowViewModel()
     {
-        var people = new List<PackageClass> 
-        {
-            new PackageClass("EDXX", "EDDM", "Test-Variant")
-        };
-        InstalledPackages = new ObservableCollection<PackageClass>(people);
+
     }
 
-    public void OpenAddPackageWindow()
+    public async void OpenAddPackageWindow()
     {
         if (ConfigHandler.Get("EuroScopeFolder") == "")
         {
@@ -40,6 +36,12 @@ public partial class ManagerWindowViewModel : ViewModelBase
         }
 
         var window = new MainWindow(new AddPackageWindow(), "Install new package");
-        window.Show();
+        await window.ShowDialog((Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow);
+        ReloadInstalledPackages();
+    }
+    
+    private void ReloadInstalledPackages()
+    {
+        InstalledPackages = PackageHandler.GetInstalled();
     }
 }

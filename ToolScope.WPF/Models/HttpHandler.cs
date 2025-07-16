@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 
@@ -94,5 +95,26 @@ public static class HttpHandler
         
         
         return packages;
+    }
+    
+    public static async Task<string> DownloadPackage(string url)
+    {
+        var installPath = ConfigHandler.Get("EuroScopeFolder") + "/install.zip";
+        
+        WebClient webClient = new WebClient();
+        webClient.Headers.Add("Accept: gzip,deflate,sdch");
+        webClient.Headers.Add("Referer: https://files.aero-nav.com/EDXX/");
+        webClient.DownloadFileCompleted += (sender, e) =>
+        {
+            if (e.Error != null)
+            {
+                MessageBox.Show(e.Error.Message, "Error while downloading package");
+            }
+        };
+        await webClient.DownloadFileTaskAsync(
+            new Uri(url), installPath);
+        MessageBox.Show("Package downloaded successfully!", "Download Complete");
+        return installPath;
+        
     }
 }

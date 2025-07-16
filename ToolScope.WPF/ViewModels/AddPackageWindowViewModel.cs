@@ -54,11 +54,14 @@ public partial class AddPackageWindowViewModel : ViewModelBase
         UpdatePackagesList();
     }
     
-    public void InstallPackage()
+    public async void InstallPackage()
     {
         var installPackage = _packages[SelectedPackageIndex!.Value];
         
-        MessageBox.Show(installPackage.DownloadUrl);
+        MessageBox.Show("Package is being downloaded. Please wait...", "Downloading Package...");
+        IsInstallButtonEnabled = false;
+        await PackageHandler.Install(installPackage);
+        IsInstallButtonEnabled = true;
     }
 
     private void UpdatePackagesList()
