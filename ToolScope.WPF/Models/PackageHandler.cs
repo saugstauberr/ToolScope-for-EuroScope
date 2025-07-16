@@ -9,13 +9,15 @@ namespace ToolScope.WPF.Models;
 
 public static class PackageHandler
 {
-    private const string packageDescriptionFileName = "package.tslist";
+    private const string PackageDescriptionFileName = "package.tslist";
 
     public static string GetPackagePath(PackageClass package)
     {
         var packagePath = ConfigHandler.Get("EuroScopeFolder") + "/Packages/" + package.Country + "-" +
                               package.Region + "-" + package.Variant + "/";
-        return packagePath;
+
+       return packagePath;
+
     }
     
     public static async Task<bool> Install(PackageClass package)
@@ -36,7 +38,7 @@ public static class PackageHandler
         
         foreach (var directory in directories)
         {
-            var packageDescriptionFile = directory + "/" + packageDescriptionFileName;
+            var packageDescriptionFile = directory + "/" + PackageDescriptionFileName;
             if (File.Exists(packageDescriptionFile))
             {
                 var packageDescription = File.ReadAllText(packageDescriptionFile);
@@ -54,7 +56,7 @@ public static class PackageHandler
     private static void AddPackageDescription(string destinationPath, PackageClass package)
     {
         var packageDescription = JsonConvert.SerializeObject(package);
-        var packageDescriptionFile = destinationPath + "/" + packageDescriptionFileName;
+        var packageDescriptionFile = destinationPath + "/" + PackageDescriptionFileName;
         System.IO.File.Create(packageDescriptionFile).Close();
         System.IO.File.WriteAllText(packageDescriptionFile, packageDescription);
     }

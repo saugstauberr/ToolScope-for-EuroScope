@@ -10,5 +10,6 @@ public class ConfigClass
     public string? HoppieCode { get; set; }
     public string? EuroScopeFolder { get; set; } = "ToolScope";
     public string? SelectedCountry { get; set; }
+    public string? SelectedPackage { get; set; }
     public bool? IsFirstRun { get; set; }
 }

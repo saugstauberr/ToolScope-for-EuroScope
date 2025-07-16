@@ -113,6 +113,6 @@
     
     <Style Selector="StackPanel.tabItem">
         <Setter Property="Spacing" Value="0,10"/>
-        <Setter Property="Margin" Value="20,10"/>
+        <Setter Property="Margin" Value="10, 10, 65,10"/>
     </Style>
 </Styles>

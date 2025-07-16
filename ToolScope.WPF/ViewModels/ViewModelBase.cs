@@ -8,6 +8,6 @@ namespace ToolScope.WPF.ViewModels;
 
 public abstract partial class ViewModelBase : ObservableObject
 {
-    [ObservableProperty] private string _version = "2.0.0";
+    [ObservableProperty] private string _version = "2.0.0-beta.1";
     
 }
