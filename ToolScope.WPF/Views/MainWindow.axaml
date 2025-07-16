@@ -30,7 +30,7 @@
         <Panel Grid.Row="0">
             <Grid ColumnDefinitions="*">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="10,0">
-                    <Image Source="/Assets/ToolScope Banner.png" RenderOptions.BitmapInterpolationMode="MediumQuality"/>
+                    <Image Source="/Assets/ToolScope Banner.png" RenderOptions.BitmapInterpolationMode="MediumQuality" Margin="10,0,0,0"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Margin="5,5">
                     <Button Content="Minus" Classes="controlBar" Command="{Binding MinimizeWindow}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>

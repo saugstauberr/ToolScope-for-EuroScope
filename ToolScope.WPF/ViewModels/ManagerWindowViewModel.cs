@@ -31,11 +31,11 @@ public partial class ManagerWindowViewModel : ViewModelBase
         InstalledPackages = new ObservableCollection<PackageClass>(people);
     }
 
-    public async void OpenAddPackageWindow()
+    public void OpenAddPackageWindow()
     {
         if (ConfigHandler.Get("EuroScopeFolder") == "")
         {
-            await MessageBox.ShowAsync("Please set a folder for new packages first!", "Warning");
+            MessageBox.Show("Please set a folder for new packages first!", "Warning");
             return;
         }
 

@@ -12,4 +12,12 @@ public partial class NotificationWindow : Window
         DataContext = new NotificationWindowViewModel();
 
     }
+    
+    public NotificationWindow(string title, string message)
+    {
+        InitializeComponent();
+        DataContext = new NotificationWindowViewModel();
+        this.FindControl<TextBlock>("WindowTitle")!.Text = title;
+        this.FindControl<TextBlock>("WindowText")!.Text = message;
+    }
 }

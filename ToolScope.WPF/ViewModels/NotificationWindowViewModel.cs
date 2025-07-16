@@ -21,7 +21,6 @@ public partial class NotificationWindowViewModel : ViewModelBase
     [ObservableProperty]
     private string _currentWindowStateIcon = "Expand";
     
-    
 
     public void MinimizeWindow(object obj)
     {

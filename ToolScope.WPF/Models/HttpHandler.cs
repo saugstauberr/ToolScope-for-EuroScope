@@ -72,13 +72,26 @@ public static class HttpHandler
         var hw = new HtmlWeb();
         var doc = hw.Load("http://files.aero-nav.com/" + country);
         
-        foreach (HtmlNode link in doc.DocumentNode.SelectNodes("//a[@href]")!)
+        if (doc.DocumentNode.SelectNodes("//a[@href]") == null)
         {
-            if (link.Attributes["href"].Value.Contains(".zip"))
+            return packages; // Return empty list if no links found
+        }
+        try
+        {
+            foreach (HtmlNode link in doc.DocumentNode.SelectNodes("//a[@href]")!)
             {
-                packages.Add(CreatePackageFromString(country, link.Attributes["href"].Value));
+                if (link.Attributes["href"].Value.Contains(".zip"))
+                {
+                    packages.Add(CreatePackageFromString(country, link.Attributes["href"].Value));
+                }
             }
         }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        
         
         return packages;
     }

@@ -13,6 +13,7 @@ using ReactiveUI;
 using ToolScope.WPF.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using MsBox.Avalonia.Enums;
+using ToolScope.WPF.Views;
 
 namespace ToolScope.WPF.ViewModels;
 
@@ -86,8 +87,6 @@ public partial class SettingsWindowViewModel : ViewModelBase
 
     public void ResetConfig()
     {
-        Console.WriteLine(MessageBox.ShowAsync(
-            "Do you really want to delete your configuration? This action cannot be undone.",
-            "Reset Configuration", ButtonEnum.YesNo));
+        
     }
 }
