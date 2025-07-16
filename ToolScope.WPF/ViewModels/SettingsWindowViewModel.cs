@@ -57,6 +57,7 @@ public partial class SettingsWindowViewModel : ViewModelBase
 
             // Set the configuration value using the ConfigHandler
             ConfigHandler.Set(key, value);
+            MessageBox.Show("Your configuration has been saved successfully!");
         }
     }
 
