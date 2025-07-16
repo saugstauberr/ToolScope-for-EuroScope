@@ -6,6 +6,11 @@ namespace ToolScope.WPF.Views;
 
 public partial class MainWindow : Window
 {
+    public MainWindow()
+    {
+        InitializeComponent();
+        DataContext = new MainWindowViewModel();
+    }
     public MainWindow(UserControl userControl, string windowTitle = "null")
     {
         InitializeComponent();
