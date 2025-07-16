@@ -23,6 +23,11 @@ public partial class SettingsWindowViewModel : ViewModelBase
     // Define the keys for the configuration settings
     // These keys correspond to the properties in the ConfigClass
     private string[] _keyNames = ["RealName", "Cid", "CallSign", "Password", "HoppieCode", "EuroScopeFolder"];
+
+    [ObservableProperty]
+    private string _resetConfigButton = "Reset Config";
+    private readonly string _resetConfigButtonText1 = "Reset Config";
+    private readonly string _resetConfigButtonText2 = "Click again to confirm reset";
     
     // This array will hold the input values for each key
     // When adding a new input value, ensure it corresponds to the keys defined above
@@ -60,7 +65,7 @@ public partial class SettingsWindowViewModel : ViewModelBase
             // Set the configuration value using the ConfigHandler
             ConfigHandler.Set(key, value);
         }
-        MessageBox.Show("Your configuration has been saved successfully!");
+        MessageBox.Show("Your configuration has been saved successfully!", "Config saved!");
     }
 
     private async Task<IReadOnlyList<IStorageFolder>> OpenFolderPickerAsync(Window window, FolderPickerOpenOptions options)
@@ -87,6 +92,18 @@ public partial class SettingsWindowViewModel : ViewModelBase
 
     public void ResetConfig()
     {
-        
+        if (ResetConfigButton == _resetConfigButtonText1)
+        {
+            ResetConfigButton = _resetConfigButtonText2;
+            return;
+        }
+
+        if (ResetConfigButton == _resetConfigButtonText2)
+        {
+            ConfigHandler.Reset();
+            SetInput();
+            ResetConfigButton = _resetConfigButtonText1;
+            MessageBox.Show("Your configuration has been reset successfully!", "Config deleted!");
+        }
     }
 }

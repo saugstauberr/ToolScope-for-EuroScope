@@ -35,7 +35,7 @@ public partial class ManagerWindowViewModel : ViewModelBase
     {
         if (ConfigHandler.Get("EuroScopeFolder") == "")
         {
-            MessageBox.Show("Please set a folder for new packages first!", "Warning");
+            MessageBox.Show("Please set a folder for new packages first!", "Warning!");
             return;
         }
 

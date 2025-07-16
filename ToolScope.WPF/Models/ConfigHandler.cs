@@ -72,6 +72,7 @@ public static class ConfigHandler
 
     public static void Reset()
     {
-        File.Delete(ConfigFileFolder);
+        File.Delete(ConfigFileName);
+        Initialize();
     }
 }

@@ -24,7 +24,7 @@ public static class MessageBox
             .GetMessageBoxStandard(title, text, buttonEnum);
         box.ShowAsync();
     }*/
-    public static void Show(string text, string title = "ToolScope", ButtonEnum buttonEnum = ButtonEnum.Ok)
+    public static void Show(string text, string title = "Information")
     {
         var box = new NotificationWindow(title, text);
         box.Show();
