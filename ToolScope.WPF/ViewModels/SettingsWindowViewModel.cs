@@ -5,9 +5,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Timers;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
+using Avalonia.Threading;
 using DynamicData;
 using ReactiveUI;
 using ToolScope.WPF.Models;
@@ -39,6 +41,7 @@ public partial class SettingsWindowViewModel : ViewModelBase
     {
         SetInput();
     }
+    
 
     private void SetInput()
     {

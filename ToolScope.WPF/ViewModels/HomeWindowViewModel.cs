@@ -3,6 +3,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Timers;
+using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ToolScope.WPF.Models;
 
@@ -10,9 +12,10 @@ namespace ToolScope.WPF.ViewModels;
 
 public partial class HomeWindowViewModel : ViewModelBase
 {
-    private readonly ObservableCollection<PackageClass> _installedPackagesObj = PackageHandler.GetInstalled();
+    
+    private ObservableCollection<PackageClass> _installedPackagesObj = PackageHandler.GetInstalled();
 
-    public ObservableCollection<string> InstalledPackages => UpdateInstalledPackages();
+    public ObservableCollection<string> InstalledPackagesStr => UpdateInstalledPackages();
 
     private ObservableCollection<string> UpdateInstalledPackages()
     {

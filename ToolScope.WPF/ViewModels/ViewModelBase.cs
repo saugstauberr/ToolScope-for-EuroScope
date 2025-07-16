@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Timers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ReactiveUI;
 using ToolScope.WPF.Models;

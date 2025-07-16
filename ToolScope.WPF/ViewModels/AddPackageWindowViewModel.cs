@@ -77,6 +77,15 @@ public partial class AddPackageWindowViewModel : ViewModelBase
             {
                 _packages.RemoveAt(i);
             }
+
+            try
+            {
+                _packages[i].ReleaseDate = DateTime.ParseExact(_packages[i].ReleaseDate, "yyyyMMddHHmms", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
         
         foreach (var package in _packages)

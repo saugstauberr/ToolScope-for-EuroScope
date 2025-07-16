@@ -24,7 +24,7 @@
             </Grid>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10,10">
-            <ComboBox Width="300" ItemsSource="{Binding InstalledPackages}">
+            <ComboBox Width="300" ItemsSource="{Binding InstalledPackagesStr}">
             </ComboBox>
             <Button Classes="highlighted" Content="Start EuroScope! ->" Margin="10, 0"/>
         </StackPanel>

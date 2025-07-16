@@ -15,8 +15,8 @@
         <StackPanel Grid.Row="2" Classes="tabItem">
             <StackPanel>
                 <TextBlock Classes="h3" Text="Select country"></TextBlock>
-                <AutoCompleteBox MinimumPrefixLength="0" ItemsSource="{Binding Countries}" 
-                                 Text="{Binding SelectedCountry}"></AutoCompleteBox>
+                <ComboBox ItemsSource="{Binding Countries}" 
+                                 SelectedValue="{Binding SelectedCountry}"></ComboBox>
             </StackPanel>
             <StackPanel>
                 <TextBlock Classes="h3" Text="Select package to install"></TextBlock>

@@ -30,6 +30,11 @@ public static class PackageHandler
         return true;
     }
 
+    public static void Remove(PackageClass package)
+    {
+        Directory.Delete(GetPackagePath(package), true);
+    }
+
     public static ObservableCollection<PackageClass> GetInstalled()
     {
         var installedPackages = new ObservableCollection<PackageClass>();

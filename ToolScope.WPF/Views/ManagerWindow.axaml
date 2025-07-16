@@ -13,7 +13,7 @@
     </Design.DataContext>
     <Grid RowDefinitions="50,10,*">
         <StackPanel Grid.Row="2" Classes="tabItem">
-            <DataGrid ItemsSource="{Binding InstalledPackages}" GridLinesVisibility="All" IsReadOnly="True">
+            <DataGrid ItemsSource="{Binding InstalledPackages}" SelectedIndex="{Binding SelectedPackageIndex}" GridLinesVisibility="All" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Country" Binding="{Binding Country}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Region" Binding="{Binding Region}"></DataGridTextColumn>
@@ -23,7 +23,13 @@
                     <DataGridTextColumn Header="Version" Binding="{Binding Version}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Content="Install new package" Command="{Binding OpenAddPackageWindow}"/>
+            <StackPanel Orientation="Horizontal" Spacing="10">
+                <Button Content="Install new package" Command="{Binding OpenAddPackageWindow}"/>
+                <Button  Classes="highlighted" Content="Update selected package" IsEnabled="{Binding IsPackageSelected}" 
+                        Command="{Binding UpdateSelectedPackage}"/>
+                <Button Classes="error" Content="Delete selected package" IsEnabled="{Binding IsPackageSelected}" 
+                        Command="{Binding RemoveSelectedPackage}"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>
