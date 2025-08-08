@@ -1,7 +1,20 @@
+### This version is outdated but still usable as I'm working on a new version. See the progress below.
+
+### V2-Progress:
+| Category    | Progress |
+| -------- | ------- |
+| New user interface  | ![](https://geps.dev/progress/90)    |
+| Functionality from V1 | ![](https://geps.dev/progress/40)     |
+| Other new features    | ![](https://geps.dev/progress/0)    |
+
+Feel free to monitor all commits in the wpf2-branch.
+
+**This version is being coded on a whole new framework for better stability, performance and more possibilities.**
+
+---
 
 ![Banner](https://i.imgur.com/Itmo2Vl.png)
 ### Welcome to ToolScope! :wave:
-### This version is outdated but still usable as I'm working on a new version. To see the progress, change to the wpf2-branch.
 
 [![Download](https://img.shields.io/badge/Latest-Download-blue)](https://github.com/saugstauberr/ToolScope-for-EuroScope/releases)
 [![Where I've got this idea from](https://img.shields.io/badge/-Go_to_original_idea-grey)](https://board.vatsim-germany.org/threads/tool-powershell-script-fuer-airac-update-mit-erhaltung-eigener-einstellungen.69729/page-2)
