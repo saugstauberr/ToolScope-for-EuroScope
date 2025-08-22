@@ -12,17 +12,6 @@
         <vm:HomeWindowViewModel/>
     </Design.DataContext>
     <Grid RowDefinitions="10,*">
-        <StackPanel Grid.Row="0" Classes="tabItem">
-            <TextBlock HorizontalAlignment="Center" Classes="h3" Text="Welcome to ToolScope!"/>
-            <Grid ColumnDefinitions="*,*">
-                <StackPanel Grid.Column="0" HorizontalAlignment="Center">
-                    <TextBlock Classes="" Text="Your installed packages: 3"/>
-                </StackPanel>
-                <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                    <TextBlock Classes="" Text="Your installed packages: 3"/>
-                </StackPanel>
-            </Grid>
-        </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10,10">
             <ComboBox Width="300" ItemsSource="{Binding InstalledPackagesStr}">
             </ComboBox>

@@ -25,7 +25,7 @@
             </DataGrid>
             <StackPanel Orientation="Horizontal" Spacing="10">
                 <Button Content="Install new package" Command="{Binding OpenAddPackageWindow}"/>
-                <Button  Classes="highlighted" Content="Update selected package" IsEnabled="{Binding IsPackageSelected}" 
+                <Button  Classes="highlighted" Content="Override/update selected package" IsEnabled="{Binding IsPackageSelected}" 
                         Command="{Binding UpdateSelectedPackage}"/>
                 <Button Classes="error" Content="Delete selected package" IsEnabled="{Binding IsPackageSelected}" 
                         Command="{Binding RemoveSelectedPackage}"/>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -27,6 +28,36 @@ public static class PackageHandler
         System.IO.Compression.ZipFile.ExtractToDirectory(installPath, destinationPath);
         System.IO.File.Delete(installPath);
         AddPackageDescription(destinationPath, package);
+        return true;
+    }
+    
+    public static async Task<bool> Update(PackageClass package, bool keepExisting = false)
+    {
+        var destinationPath = GetPackagePath(package);
+        var availablePackages = HttpHandler.GetPackagesFromCountry(package.Country);
+        
+        foreach (var availablePackage in availablePackages.ToList())
+        {
+            if (availablePackage.Region != package.Region)
+            {
+                availablePackages.Remove(availablePackage);
+                continue;
+            }
+        }
+
+        Console.WriteLine(availablePackages.FirstOrDefault(p => p.Variant.Contains("Update"))?.DownloadUrl);
+
+
+        /*
+         * if (Directory.Exists(destinationPath) && keepExisting)
+        {
+            return await Install(package);
+        }
+
+        Directory.Delete(destinationPath, true);
+        return await Install(package);
+         */
+        
         return true;
     }
 

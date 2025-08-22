@@ -54,8 +54,9 @@ public partial class ManagerWindowViewModel : ViewModelBase
         InstalledPackages = PackageHandler.GetInstalled();
     }
 
-    public void UpdateSelectedPackage()
+    public async void UpdateSelectedPackage()
     {
+        PackageHandler.Update(InstalledPackages[SelectedPackageIndex]);
         InstalledPackages = PackageHandler.GetInstalled();
     }
     

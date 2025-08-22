@@ -12,6 +12,7 @@
         <entry key="ToolScope.WPF/Views/NavigationWindow.axaml" value="ToolScope.WPF/ToolScope.WPF.csproj" />
         <entry key="ToolScope.WPF/Views/NotificationWindow.axaml" value="ToolScope.WPF/ToolScope.WPF.csproj" />
         <entry key="ToolScope.WPF/Views/SettingsWindow.axaml" value="ToolScope.WPF/ToolScope.WPF.csproj" />
+        <entry key="ToolScope.WPF/Views/UpdatePackageWindow.axaml" value="ToolScope.WPF/ToolScope.WPF.csproj" />
       </map>
     </option>
   </component>
